@@ -73,19 +73,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FermORG/Fermion.git"
+    "url": "git+https://github.com/FermORG/FermionJS.git"
   },
   "author": {
     "name": "FermORG",
     "email": "garrettlr@gmail.com",
-    "url": "https://github.com/FermORG/Fermion"
+    "url": "https://github.com/FermORG/FermionJS"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FermORG/Fermion/issues"
+    "url": "https://github.com/FermORG/FermionJS/issues"
   },
 
-  "homepage": "https://github.com/FermORG/Fermion#readme",
+  "homepage": "https://github.com/FermORG/FermionJS#readme",
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/fileMock.js",
