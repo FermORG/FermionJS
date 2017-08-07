@@ -31,9 +31,24 @@
 }
 
 .deleteKey {
-  width: 5px;
-  height: 5px;
-  color: yellow;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  float: right;
+  margin-right: 10px;
+  background-color: #282c36;
+  border: 1px solid #1a1d23;
+  border-radius: 5px;
+  /*color: yellow;*/
+}
+
+.deleteKey:hover {
+  background-color: #232630;
+}
+
+.deleteKey:active {
+  background-color: #232630;
+  color: red;
 }
 
 .header{

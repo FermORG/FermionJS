@@ -30,7 +30,7 @@ export class Props extends Component {
           <input className={`${panelStyles.editField}`} defaultValue={`${key}`}></input>
           <strong> : </strong>
           <input className={`${panelStyles.editField}`} defaultValue={`${component[key]}`}></input>
-          <strong className={`${panelStyles.deleteKey}`}>X</strong>
+          <div className={`${panelStyles.deleteKey}`}>X</div>
         </li>
       );
     });
