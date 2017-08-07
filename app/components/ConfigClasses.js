@@ -22,16 +22,15 @@ export class Props extends Component {
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
     const list = testAry.map((component) => {
+        // grabs key from array of props. function may need to be updated to work with live data.
       const key = Object.keys(component)[0];
       return (
-        <li key = {key} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
-          <strong>{`${key} : ${component[key]}`}</strong>
-          {/* <input className = {`${styles['tab-item']} ${coreStyles.tab}`}>
-            {key}
-          </input>
-          <input className = {`${styles['tab-item']} ${coreStyles.tab}`}>
-            {component[key]}
-          </input> */}
+        <li key={key} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
+          {/* <strong>{`${key} : ${component[key]}`}</strong> */}
+          <input className={`${panelStyles.editField}`} defaultValue={`${key}`}></input>
+          <strong> : </strong>
+          <input className={`${panelStyles.editField}`} defaultValue={`${component[key]}`}></input>
+          <strong className={`${panelStyles.deleteKey}`}>X</strong>
         </li>
       );
     });
