@@ -30,6 +30,10 @@
   flex-direction: column;
 }
 
+.editor {
+
+}
+
 .header{
   background-color: #282c36;
   border: 1px solid #1a1d23;

@@ -9,7 +9,7 @@ export class State extends Component {
   render(){
     return (
       <div className={`${styles['form-group']}`}>
-        <input className={`${styles['form-control']}`} placeholder="new State value..."></input>
+        <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new State value..."></input>
         <hr />
       </div>
     );
@@ -26,6 +26,12 @@ export class Props extends Component {
       return (
         <li key = {key} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
           <strong>{`${key} : ${component[key]}`}</strong>
+          {/* <input className = {`${styles['tab-item']} ${coreStyles.tab}`}>
+            {key}
+          </input>
+          <input className = {`${styles['tab-item']} ${coreStyles.tab}`}>
+            {component[key]}
+          </input> */}
         </li>
       );
     });
@@ -33,7 +39,7 @@ export class Props extends Component {
     return (
       <div className = {panelStyles.container}>
         <div className={`${styles['form-group']}`}>
-          <input className={`${styles['form-control']}`} placeholder="new Prop: Value..."></input>
+          <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Prop: Value..."></input>
           <hr />
         </div>
         {list}
@@ -50,7 +56,7 @@ export class Styles extends Component {
   render(){
     return (
       <div className={`${styles['form-group']}`}>
-      <input className={`${styles['form-control']}`} placeholder="new Styles..."></input>
+      <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Styles..."></input>
       <hr />
     </div>
   );
@@ -63,7 +69,7 @@ export class Events extends Component {
   render() {
     return (
       <div className={`${styles['form-group']}`}>
-      <input className={`${styles['form-control']}`} placeholder="new Event Handler..."></input>
+      <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Event Handler..."></input>
       <hr />
     </div>
     );

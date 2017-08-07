@@ -18,6 +18,20 @@
   flex-direction: column;
 }
 
+.input {
+  color: #31DBC3;
+  background-color: #282c36;
+}
+
+::-webkit-input-placeholder {
+  color: #31DBC3;
+}
+
+.propInput {
+  color: #31DBC3; /*#31DBC3;*/
+  background-color: #282c36;
+}
+
 .workspace {
   background-color: #282c36;
   border-left: 1px solid #1a1d23;
