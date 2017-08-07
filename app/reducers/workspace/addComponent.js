@@ -10,13 +10,10 @@ import cloneComponentAndChildren from './utilities';
 export default function addComponent(state, action) {
   const components = { ...state.components };
   components.workspace = cloneComponentAndChildren(components.workspace);
-  console.log('action: ', action);
   const { newComponent } = action;
   newComponent.id = state.componentCounter;
   components[newComponent.id] = newComponent;
   components.workspace.children.push(state.componentCounter);
-
-  console.log(JSON.stringify(components, null, '  '));
 
   return {
     ...state,

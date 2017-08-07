@@ -1,9 +1,7 @@
 import React from 'react';
 
-// import styles from './BlackBox.css';
-
 const defaultStyles = {
-  position: 'absolute',
+  position: 'relative',
   height: '20px',
   width: '20px',
   display: 'inline-block',
@@ -14,7 +12,7 @@ const defaultStyles = {
 };
 
 const One = (props) => (
-  <div id={props.id} style={{...defaultStyles, ...props.style }}>
+  <div id={props.id} {...props} style={{...defaultStyles, ...props.style}}>
      {props ? props.children : null}
   </div>
 );

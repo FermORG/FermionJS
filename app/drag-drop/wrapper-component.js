@@ -5,11 +5,10 @@ import { dragTarget, dropTarget } from './specification';
 import { dragCollect, dropCollect } from './collectors';
 
 // Connect and wrap
-export default function (Component, style, children) {
-  console.log('dnd wrapper st: ', style);
+export default function (Component, props, children) {
   const divWrappedComponent = (
     <div style={{ display: 'inline-block', margin: '0', padding: '0' }}>
-      <Component style={style}>
+      <Component {...props}>
         { children }
       </Component>
     </div>

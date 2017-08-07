@@ -16,12 +16,7 @@ const defaultStyles = {
 
 const BlueBox = (props) => {
     return (
-        <div
-            id={props.id}
-            style={props.style}
-            draggable='true'
-            onDragStart={(ev) => ev.dataTransfer.setData('text', ev.target.id)}
-        >
+        <div {...props}>
             {props ? props.children : null}
         </ div>
     );

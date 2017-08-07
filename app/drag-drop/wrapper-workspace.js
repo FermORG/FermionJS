@@ -8,7 +8,7 @@ import coreStyles from '../components/Core.css';
 export default function (Workspace) {
   const divWrappedWorkspace =  (
     <div
-    className={coreStyles.workspace}>
+      className={coreStyles.workspace}>
       <Workspace />
     </div>
   );
