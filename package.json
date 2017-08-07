@@ -1,7 +1,7 @@
 {
   "name": "fermionui",
   "productName": "fermionui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A React rapid prototyping tool built on the React-Electron-Boilerplate package",
   "scripts": {
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
