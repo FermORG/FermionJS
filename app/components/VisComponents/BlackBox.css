@@ -1,0 +1,10 @@
+.vis-component {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    background-color: black;
+    resize: both;
+    overflow: auto;
+    z-index: 1; 
+}

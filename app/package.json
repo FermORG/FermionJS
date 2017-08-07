@@ -1,0 +1,17 @@
+{
+  "name": "Fermion",
+  "productName": "Fermion",
+  "version": "1.0.0",
+  "description": "An Electron App for rapidly prototyping react projects",
+  "main": "./main.prod.js",
+  "author": {
+    "name": "FERMION",
+    "email": "garrettlr@gmail.com",
+    "url": "https://github.com/FermORG/Fermion"
+  },
+  "scripts": {
+    "postinstall": "npm rebuild --runtime=electron --target=1.6.6 --disturl=https://atom.io/download/atom-shell --build-from-source"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}

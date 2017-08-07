@@ -1,0 +1,23 @@
+.container {
+  position: absolute;
+  top: 30%;
+  left: 10px;
+  text-align: center;
+  margin: auto;
+
+}
+.main {
+  background-color: #232630;
+}
+#top {
+  display: flex;
+}
+.container h2 {
+  font-size: 5rem;
+
+}
+
+.link {
+  width: 100vw;
+  font-size: 1rem;
+}

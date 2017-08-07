@@ -1,0 +1,59 @@
+.treeContainer {
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+.listContainer {
+  height: 55%;
+  display: flex;
+  flex-direction: column;
+}
+
+.stateContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #232630;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+
+.tabContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.header{
+  background-color: #282c36;
+  border: 1px solid #1a1d23;
+  border-right: none;
+  border-left: none;
+  min-height: 30px;
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  bottom: 3px;
+  left: 15px;
+  font-size: 14px;
+  color: #31DBC3;
+  text-align: left;
+
+}
+
+.list {
+  color: #31DBC3;
+  border-bottom: 1px solid #1a1d23;
+}
+
+.list:hover {
+  background-color: #282c36;
+}
