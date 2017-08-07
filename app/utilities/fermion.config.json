@@ -1,0 +1,41 @@
+{
+  "availableComponents" : [
+    {
+      "name": "One",
+      "style": {
+        "position": "absolute",
+        "height": "20px",
+        "width":"20px",
+        "display": "inline-block",
+        "backgroundColor": "red",
+        "resize": "both",
+        "overflow": "auto",
+        "zIndex": 3
+      }
+    },
+    {
+      "name": "Two",
+      "style": {
+        "backgroundColor": "yellow",
+        "height": "50%",
+        "width": "50%"
+      }
+    },
+    {
+      "name": "Five",
+      "style": {
+        "backgroundColor": "white",
+        "height": "50%",
+        "width": "50%"
+      }
+    },
+    {
+      "name": "Four",
+      "style": {
+        "backgroundColor": "blue",
+        "height": "50%",
+        "width": "50%"
+      }
+    }
+  ]
+}
