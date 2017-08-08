@@ -30,6 +30,27 @@
   flex-direction: column;
 }
 
+.deleteKey {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  float: right;
+  margin-right: 10px;
+  background-color: #282c36;
+  border: 1px solid #1a1d23;
+  border-radius: 5px;
+  /*color: yellow;*/
+}
+
+.deleteKey:hover {
+  background-color: #232630;
+}
+
+.deleteKey:active {
+  background-color: #232630;
+  color: red;
+}
+
 .header{
   background-color: #282c36;
   border: 1px solid #1a1d23;
@@ -49,11 +70,31 @@
 
 }
 
+.editField {
+  display: inline-block;
+  width: 50px;
+  min-height: 25px;
+  /*padding: 5px 10px;*/
+  font-size: 13px;
+  line-height: 1.6;
+  background-color: #232630; /*#282c36;*/
+  /*border: 1px solid #1a1d23;*/
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  color: #31DBC3;
+  /*border-bottom: 1px solid #1a1d23;*/
+}
+
 .list {
   color: #31DBC3;
   border-bottom: 1px solid #1a1d23;
 }
 
 .list:hover {
+  background-color: #282c36;
+}
+
+.list:hover .editField {
   background-color: #282c36;
 }

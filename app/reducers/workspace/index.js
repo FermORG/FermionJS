@@ -22,17 +22,18 @@ defaultWorkspace.components[0] = {
   name: 'BlackBox',
   children: [],
   parentID: WORKSPACE_ID,
-  style: {
-    position: 'absolute',
-    height: '100px',
-    width: '100px',
-    display: 'inline-block',
-    backgroundColor: 'black',
-    resize: 'both',
-    overflow: 'auto',
-    zIndex: 1,
+  props: {
+    style: {
+      position: 'relative',
+      height: '100px',
+      width: '100px',
+      display: 'inline-block',
+      backgroundColor: 'black',
+      resize: 'both',
+      overflow: 'auto',
+      zIndex: 1,
+    },
   },
-  props: { test: 'prop test =]', },
   events: { test: 'event test =]' }
 };
 
@@ -41,17 +42,18 @@ defaultWorkspace.components[1] = {
   name: 'BlueBox',
   children: [],
   parentID: WORKSPACE_ID,
-  style: {
-    position: 'absolute',
-    height: '30px',
-    width: '30px',
-    display: 'inline-block',
-    backgroundColor: 'blue',
-    resize: 'both',
-    overflow: 'auto',
-    zIndex: 2,
+  props: {
+    style: {
+      position: 'relative',
+      height: '30px',
+      width: '30px',
+      display: 'inline-block',
+      backgroundColor: 'blue',
+      resize: 'both',
+      overflow: 'auto',
+      zIndex: 2,
+    },
   },
-  props: { test: 'prop test =]', },
   events: { test: 'event test =]' }
 };
 

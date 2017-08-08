@@ -51,9 +51,6 @@ export default function listReducer(state: {} = defaultData, action: actionType)
     case ADD_COMPONENTS:
       return newState.components.concat(action.components);
     case ADD_TO_PROJECT:
-      console.log('This will add component a to the project bro');
-      console.log(`the state is: ${JSON.stringify(state)}`);
-      console.log(`this is component: ${JSON.stringify(state[+action.component])}`)
       return newState;
     default:
       return newState;

@@ -19,12 +19,11 @@ class Workspace extends Component {
     }
 
     const allComponents = this.props.components;
-      console.log('AC: ', allComponents);
     return componentIDList.map((componentID) => {
       const component = allComponents[componentID];
       const CustomComponent = getVisComponent(component.name);
       const children = this.renderDeep(component.children);
-      const DndComponent = dndComponentWrapper(CustomComponent, component.style, children);
+      const DndComponent = dndComponentWrapper(CustomComponent, component.props, children);
 
       return (
         <DndComponent

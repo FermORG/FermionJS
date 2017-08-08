@@ -9,7 +9,7 @@ export class State extends Component {
   render(){
     return (
       <div className={`${styles['form-group']}`}>
-        <input className={`${styles['form-control']}`} placeholder="new State value..."></input>
+        <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new State value..."></input>
         <hr />
       </div>
     );
@@ -22,10 +22,15 @@ export class Props extends Component {
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
     const list = testAry.map((component) => {
+        // grabs key from array of props. function may need to be updated to work with live data.
       const key = Object.keys(component)[0];
       return (
-        <li key = {key} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
-          <strong>{`${key} : ${component[key]}`}</strong>
+        <li key={key} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
+          {/* <strong>{`${key} : ${component[key]}`}</strong> */}
+          <input className={`${panelStyles.editField}`} defaultValue={`${key}`}></input>
+          <strong> : </strong>
+          <input className={`${panelStyles.editField}`} defaultValue={`${component[key]}`}></input>
+          <div className={`${panelStyles.deleteKey}`}>X</div>
         </li>
       );
     });
@@ -33,7 +38,7 @@ export class Props extends Component {
     return (
       <div className = {panelStyles.container}>
         <div className={`${styles['form-group']}`}>
-          <input className={`${styles['form-control']}`} placeholder="new Prop: Value..."></input>
+          <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Prop: Value..."></input>
           <hr />
         </div>
         {list}
@@ -50,7 +55,7 @@ export class Styles extends Component {
   render(){
     return (
       <div className={`${styles['form-group']}`}>
-      <input className={`${styles['form-control']}`} placeholder="new Styles..."></input>
+      <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Styles..."></input>
       <hr />
     </div>
   );
@@ -63,7 +68,7 @@ export class Events extends Component {
   render() {
     return (
       <div className={`${styles['form-group']}`}>
-      <input className={`${styles['form-control']}`} placeholder="new Event Handler..."></input>
+      <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Event Handler..."></input>
       <hr />
     </div>
     );
