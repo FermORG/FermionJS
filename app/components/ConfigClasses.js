@@ -5,6 +5,11 @@ import coreStyles from './Core.css';
 import panelStyles from './Panels.css';
 
 export class State extends Component {
+  props: {
+    addState : ()=> void,
+    changeState: ()=> void,
+    workspace: {},
+  }
   // should return a list built from the current state.
   render(){
     return (
@@ -19,12 +24,12 @@ const testAry = [{'Prop 1': 'Red'}, {'Prop 2': 6}, {'Prop 3': 'true'}, {'Prop 4'
 
 export class Props extends Component {
   props: {
-     // why am i coming back void?
+    addProps : ()=> void,
+    changeProps: ()=> void,
     workspace: {},
   }
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
-    console.log('props: ', this.props);
     const list = testAry.map((component) => {
         // grabs key from array of props. function may need to be updated to work with live data.
       const key = Object.keys(component)[0];
@@ -55,7 +60,11 @@ export class Props extends Component {
     // bg color, color, margins, padding, display, font size maybe more
 
 export class Styles extends Component {
-
+  props: {
+    addStyles : ()=> void,
+    changeStyles: ()=> void,
+    workspace: {},
+  }
   render(){
     return (
       <div className={`${styles['form-group']}`}>
@@ -69,6 +78,11 @@ export class Styles extends Component {
 //should return a list of event handlers that can be applied to the app.
 // should be able to insert some custom code for that event handler.
 export class Events extends Component {
+  props: {
+    addEvents : ()=> void,
+    changeEvents: ()=> void,
+    workspace: {},
+  }
   render() {
     return (
       <div className={`${styles['form-group']}`}>

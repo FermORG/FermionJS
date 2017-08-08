@@ -8,7 +8,6 @@ import Props from '../containers/PropsConfig';
 import Styles from '../containers/StylesConfig';
 import Events from '../containers/EventsConfig';
 
-console.log('state, ', State);
 class Right extends Component {
   props: {
     tabs: {},
