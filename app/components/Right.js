@@ -1,9 +1,14 @@
-//@flow
+// @flow
 import React, { Component } from 'react';
 import styles from './photon.css';
 import coreStyles from './Core.css';
 import panelStyles from './Panels.css';
-import { State, Props, Styles, Events } from './ConfigClasses';
+import State from '../containers/StateConfig';
+import Props from '../containers/PropsConfig';
+import Styles from '../containers/StylesConfig';
+import Events from '../containers/EventsConfig';
+
+console.log('state, ', State);
 class Right extends Component {
   props: {
     tabs: {},

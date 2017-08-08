@@ -13,7 +13,7 @@ type actionType = {
 
 
 
-export default function toggleConfig(state: configStateType, action: actionType) {
+export default function toggleConfig(state: configStateType = {}, action: actionType) {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
@@ -21,28 +21,28 @@ export default function toggleConfig(state: configStateType, action: actionType)
     // inject new whatever if adding
     // update whatever if changing.
     case ADD_STATE:
-    return
+    return state;
 
     case ADD_PROPS:
-    return
+    return state;
 
     case ADD_STYLES:
-    return
+    return state;
 
     case ADD_EVENTS:
-    return
+    return state;
 
     case CHANGE_STATE:
-    return
+    return state;
 
     case CHANGE_PROPS:
-    return
+    return state;
 
     case CHANGE_STYLES:
-    return
+    return state;
 
     case CHANGE_EVENTS:
-    return
+    return state;
 
     default:
     return state;

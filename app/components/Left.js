@@ -8,7 +8,7 @@ function Left(props){
   return (
     <div className = {`${styles['pane-med']} ${coreStyle.sidebar}`}>
       <CompList />
-        <Tree />  
+        <Tree />
     </div>
   )
 }
