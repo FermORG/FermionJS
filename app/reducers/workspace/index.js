@@ -34,6 +34,7 @@ defaultWorkspace.components[0] = {
       overflow: 'auto',
       zIndex: 1,
     },
+    'zIndex': 'testProp',
   },
   events: { test: 'event test =]' }
 };

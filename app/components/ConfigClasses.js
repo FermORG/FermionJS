@@ -34,14 +34,15 @@ export class Props extends Component {
   }
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
-    // const { props } = this.props.workspace;
+     const { activeComponent } = this.props.workspace;
+     const Props = this.props.workspace.components[activeComponent].props;
     return (
       <div className = {panelStyles.container}>
         <div className={`${styles['form-group']}`}>
           <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Prop: Value..."></input>
           <hr />
         </div>
-        {/* {configOptions(props)} */}
+        {configOptions(Props)}
       </div>
     );
   }
@@ -57,11 +58,13 @@ export class Styles extends Component {
     workspace: {},
   }
   render(){
-    // const { state } = this.props.workspace.props;
+    const { activeComponent } = this.props.workspace;
+    const style = this.props.workspace.components[activeComponent].props.style;
     return (
       <div className={`${styles['form-group']}`}>
       <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Styles..."></input>
       <hr />
+      {configOptions(style)}
     </div>
   );
   }
@@ -76,11 +79,13 @@ export class Events extends Component {
     workspace: {},
   }
   render() {
-    // const { state } = this.props.workspace.props;
+    const { activeComponent } = this.props.workspace;
+    const events = this.props.workspace.components[activeComponent].events;
     return (
       <div className={`${styles['form-group']}`}>
       <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Event Handler..."></input>
       <hr />
+      {configOptions(events)}
     </div>
     );
   }
