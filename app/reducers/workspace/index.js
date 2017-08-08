@@ -8,6 +8,7 @@ import moveChild from './moveChild';
 
 const defaultWorkspace = {
   componentCounter: 2,
+  activeComponent: '0',
   components: {
     workspace: {
       id: WORKSPACE_ID,

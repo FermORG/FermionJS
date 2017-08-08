@@ -41,7 +41,7 @@ export class Props extends Component {
           <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Prop: Value..."></input>
           <hr />
         </div>
-        {configOptions(props)}
+        {/* {configOptions(props)} */}
       </div>
     );
   }
