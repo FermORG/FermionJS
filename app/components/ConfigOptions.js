@@ -7,14 +7,13 @@ import panelStyles from './Panels.css';
 // returns renderable config Panel options.
 
 export default function configOptions(option) {
-  // const option = props.option;
-  console.log('op: ', option);
   const list = Object.keys(option).map((component) => {
       // prevents prop tab from rendering style.
     if (component === 'style') return null;
     return (
       <li key={component} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
-        <input className={`${panelStyles.editField}`} defaultValue={`${component}`}></input>
+        {/* <input className={`${panelStyles.editField}`} defaultValue={`${component}`}></input> */}
+        <strong>{`${component}`}</strong>
         <strong> : </strong>
         <input className={`${panelStyles.editField}`} defaultValue={`${option[component]}`}></input>
         <div className={`${panelStyles.deleteKey}`}>X</div>

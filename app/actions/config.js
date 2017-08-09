@@ -11,11 +11,10 @@ export const CHANGE_PROPS = 'CHANGE PROPS';
 export const CHANGE_STYLES = 'CHANGE STYLES';
 export const CHANGE_EVENTS = 'CHANGE EVENTS';
 
-export function addState(aState, component) {
+export function addState(aState) {
   return {
     type: 'ADD_STATE',
     aState,
-    component
   };
 }
 
@@ -43,11 +42,10 @@ export function addEvents(event, component) {
   }
 }
 
-export function changeState(aState, component) {
+export function changeState(aState) {
   return {
     type: 'CHANGE_STATE',
     aState,
-    component
   };
 }
 

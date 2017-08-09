@@ -9,7 +9,7 @@ type actionType = {
 const defaultData = {
   "availableComponents" : [
     {
-      "name": "one",
+      "name": "One",
       "styles": {
         "backgroundColor": "red",
         "height": "50%",
@@ -17,7 +17,7 @@ const defaultData = {
       }
     },
     {
-      "name": "two",
+      "name": "Two",
       "styles": {
         "backgroundColor": "yellow",
         "height": "50%",
@@ -25,7 +25,7 @@ const defaultData = {
       }
     },
     {
-      "name": "five",
+      "name": "Five",
       "styles": {
         "backgroundColor": "white",
         "height": "50%",
@@ -33,7 +33,7 @@ const defaultData = {
       },
     },
     {
-      "name": "four",
+      "name": "Four",
       "styles": {
         "backgroundColor": "blue",
         "height": "50%",

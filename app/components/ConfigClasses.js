@@ -15,10 +15,22 @@ export class State extends Component {
   }
   // should return a list built from the current state.
   render(){
+    const { workspace, addState } = this.props;
     const { state } = this.props.workspace;
+
     return (
       <div className={`${styles['form-group']}`}>
-        <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new State value..."></input>
+        <input
+          className={`${styles['form-control']} ${coreStyles.input}`}
+          onChange={(event) => {
+          console.log(event.target.value);
+          const key = event.target.value;
+          const newVal = {};
+          newVal[key] = null;
+          console.log(newVal);
+          addState(newVal);
+          }}
+          placeholder="new State key..."></input>
         <hr />
         {configOptions(state)}
       </div>

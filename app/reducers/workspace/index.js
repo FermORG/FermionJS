@@ -15,7 +15,9 @@ const defaultWorkspace = {
       children: [0, 1],
     },
   },
-  state: {},
+  state: {
+    'blue': 'waffle',
+  },
 };
 
 defaultWorkspace.components[0] = {
