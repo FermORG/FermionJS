@@ -1,9 +1,12 @@
 import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD } from '../../actions/workspace';
+/* ADDING CONFIG ACTIONS: */
+import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, CHANGE_STATE, CHANGE_PROPS, CHANGE_STYLES, CHANGE_EVENTS } from '../../actions/config';
+/* ACA */
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 import removeComponent from './removeComponent';
 import moveChild from './moveChild';
-
+import addStateValue from './addStateValue';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -72,10 +75,37 @@ export default function workspace(state = defaultWorkspace, action) {
   switch (action.type) {
     case ADD_CHILD:
       return addComponent(state, action);
+
     case REMOVE_CHILD:
       return removeComponent(state, action);
+
     case MOVE_CHILD:
       return moveChild(state, action);
+
+    case ADD_STATE:
+      return addStateValue(state, action.aState);
+
+    case ADD_PROPS:
+      return state;
+
+    case ADD_STYLES:
+      return state;
+
+    case ADD_EVENTS:
+      return state;
+
+    case CHANGE_STATE:
+      return state;
+
+    case CHANGE_PROPS:
+      return state;
+
+    case CHANGE_STYLES:
+      return state;
+
+    case CHANGE_EVENTS:
+        return state;
+
     default:
       return state;
   }
