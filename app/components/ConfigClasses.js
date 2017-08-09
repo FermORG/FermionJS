@@ -77,22 +77,19 @@ export class Props extends Component {
   }
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
-     const { activeComponent } = this.props.workspace;
-     const { addProps } = this.props;
-     const Props = this.props.workspace.components[activeComponent].props;
+    const { activeComponent } = this.props.workspace;
+    const { addProps } = this.props;
+    const Props = this.props.workspace.components[activeComponent].props;
     return (
-      <div className = {panelStyles.container}>
-        <div className={`${styles['form-group']}`}>
-          <input
-            className={`${styles['form-control']} ${coreStyles.input}`}
-            placeholder="new Prop: Value..."
-            onChange={(event) => this.captureKeyPress(event)}
-            onKeyPress ={(event) => this.updateStore(event, addProps, activeComponent)}
-          >
-          </input>
-
-          <hr />
-        </div>
+      <div className={`${styles['form-group']}`}>
+        <input
+          className={`${styles['form-control']} ${coreStyles.input}`}
+          placeholder="new Prop: Value..."
+          onChange={(event) => this.captureKeyPress(event)}
+          onKeyPress ={(event) => this.updateStore(event, addProps, activeComponent)}
+        >
+        </input>
+        <hr />
         {configOptions(Props)}
       </div>
     );
@@ -117,6 +114,7 @@ export class Styles extends Component {
     changeStyles: ()=> void,
     workspace: {},
   }
+
   render(){
     const { activeComponent } = this.props.workspace;
     const { addStyles } = this.props;
