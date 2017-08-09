@@ -84,7 +84,6 @@
   "bugs": {
     "url": "https://github.com/FermORG/Fermion/issues"
   },
-
   "homepage": "https://github.com/FermORG/Fermion#readme",
   "jest": {
     "moduleNameMapper": {
@@ -176,18 +175,26 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "brace": "^0.10.0",
+    "classnames": "^2.2.5",
+    "copy-webpack-plugin": "^4.0.1",
+    "create-react-class": "^15.6.0",
     "devtron": "^1.4.0",
     "directory-tree": "^2.0.0",
     "electron-debug": "^1.2.0",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
-    "prop-types": "^15.5.10",
+    "lodash": "^4.17.4",
     "path": "^0.12.7",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-ace": "^5.1.2",
+    "react-codemirror": "^1.0.0",
     "react-dnd": "^2.4.0",
     "react-dnd-html5-backend": "^2.4.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "3.0.0-beta.6",
+    "react-monaco-editor": "^0.9.0",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",

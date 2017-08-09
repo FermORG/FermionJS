@@ -28,10 +28,10 @@ class FileTree extends Component {
     }
 
     function getChildrenData(childrenArray){
-      let childrenArrayFinal = [];
+      const childrenArrayFinal = [];
       for (let i=0; i<childrenArray.length; i++){
-        let currComponent = treeComponents[childrenArray[i]]
-        let currComponentChildren = currComponent.children;
+        const currComponent = treeComponents[childrenArray[i]]
+        const currComponentChildren = currComponent.children;
         if (currComponentChildren.length !== 0){
           childrenArrayFinal.push({
             title: currComponent.name,
@@ -58,7 +58,10 @@ class FileTree extends Component {
           innerStyle = {this.state.innerStyle}
           treeData={this.state.treeData}
           canDrag = {false}
-          onChange={treeData => this.setState({ treeData })}
+          onChange={treeData => {
+            console.log(treeData);
+            this.setState({ treeData });
+          }}
         />
       </div>
     );
