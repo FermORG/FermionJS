@@ -12,7 +12,6 @@ export default function configOptions(option) {
     if (component === 'style') return null;
     return (
       <li key={component} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
-        {/* <input className={`${panelStyles.editField}`} defaultValue={`${component}`}></input> */}
         <strong>{`${component}`}</strong>
         <strong> : </strong>
         <input className={`${panelStyles.editField}`} defaultValue={`${option[component]}`}></input>

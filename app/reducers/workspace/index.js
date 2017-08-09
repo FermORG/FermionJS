@@ -7,6 +7,7 @@ import addComponent from './addComponent';
 import removeComponent from './removeComponent';
 import moveChild from './moveChild';
 import addStateValue from './addStateValue';
+import addPropsValue from './addPropsValue';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -18,9 +19,7 @@ const defaultWorkspace = {
       children: [0, 1],
     },
   },
-  state: {
-    'blue': 'waffle',
-  },
+  state: {},
 };
 
 defaultWorkspace.components[0] = {
@@ -86,7 +85,7 @@ export default function workspace(state = defaultWorkspace, action) {
       return addStateValue(state, action.aState);
 
     case ADD_PROPS:
-      return state;
+      return addPropsValue(state, action.prop, action.component);
 
     case ADD_STYLES:
       return state;

@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
   tabs,
   workspace,
   availableComponents,
-  config,
 });
 
 export default rootReducer;

@@ -1,13 +1,38 @@
 //@flow
 
-// important note to self: need an active component definition, so go add that to state you cock boi.
 import React, { Component } from 'react';
 import styles from './photon.css';
 import coreStyles from './Core.css';
 import panelStyles from './Panels.css';
 import configOptions from './ConfigOptions';
 
+// captures key presses in config panel;
+function captureKeyPress(e) {
+ this.setState({key: e.target.value});
+}
+ // sends data to the store from config panel;
+function updateStore(e,action, component) {
+ if (e.key === 'Enter' && this.state.key !== '') {
+   const key = this.state.key;
+   if (key === undefined) return;
+   const newStateObj = {};
+   newStateObj[key] = null;
+   this.setState({stateKey: ''});
+   action(newStateObj, (component || null) );
+ }
+}
+
+
 export class State extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stateKey: '',
+    }
+    this.captureKeyPress = captureKeyPress.bind(this);
+    this.updateStore = updateStore.bind(this);
+  }
+
   props: {
     addState : ()=> void,
     changeState: ()=> void,
@@ -22,15 +47,12 @@ export class State extends Component {
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          onChange={(event) => {
-          console.log(event.target.value);
-          const key = event.target.value;
-          const newVal = {};
-          newVal[key] = null;
-          console.log(newVal);
-          addState(newVal);
-          }}
-          placeholder="new State key..."></input>
+          onChange={(event) => this.captureKeyPress(event)}
+          onKeyPress ={(event) => this.updateStore(event, addState)}
+          placeholder='New State Key...'
+          defaultValue = ''
+        >
+        </input>
         <hr />
         {configOptions(state)}
       </div>
@@ -39,6 +61,15 @@ export class State extends Component {
 }
 
 export class Props extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      propsKey: '',
+    }
+    this.captureKeyPress = captureKeyPress.bind(this);
+    this.updateStore = updateStore.bind(this);
+  }
+
   props: {
     addProps : ()=> void,
     changeProps: ()=> void,
@@ -47,11 +78,19 @@ export class Props extends Component {
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
      const { activeComponent } = this.props.workspace;
+     const { addProps } = this.props;
      const Props = this.props.workspace.components[activeComponent].props;
     return (
       <div className = {panelStyles.container}>
         <div className={`${styles['form-group']}`}>
-          <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Prop: Value..."></input>
+          <input
+            className={`${styles['form-control']} ${coreStyles.input}`}
+            placeholder="new Prop: Value..."
+            onChange={(event) => this.captureKeyPress(event)}
+            onKeyPress ={(event) => this.updateStore(event, addProps, activeComponent)}
+          >
+          </input>
+
           <hr />
         </div>
         {configOptions(Props)}
@@ -102,19 +141,3 @@ export class Events extends Component {
     );
   }
 }
-
-// const testAry = [{'Prop 1': 'Red'}, {'Prop 2': 6}, {'Prop 3': 'true'}, {'Prop 4': '6'}];
-//
-// const list = testAry.map((component) => {
-//     // grabs key from array of props. function may need to be updated to work with live data.
-//   const key = Object.keys(component)[0];
-//   return (
-//     <li key={key} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
-//       {/* <strong>{`${key} : ${component[key]}`}</strong> */}
-//       <input className={`${panelStyles.editField}`} defaultValue={`${key}`}></input>
-//       <strong> : </strong>
-//       <input className={`${panelStyles.editField}`} defaultValue={`${component[key]}`}></input>
-//       <div className={`${panelStyles.deleteKey}`}>X</div>
-//     </li>
-//   );
-// });
