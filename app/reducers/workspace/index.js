@@ -8,6 +8,8 @@ import removeComponent from './removeComponent';
 import moveChild from './moveChild';
 import addStateValue from './addStateValue';
 import addPropsValue from './addPropsValue';
+import addStyleValue from './addStyleValue';
+import addEvent from './addEvent';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -88,10 +90,10 @@ export default function workspace(state = defaultWorkspace, action) {
       return addPropsValue(state, action.prop, action.component);
 
     case ADD_STYLES:
-      return state;
+      return addStyleValue(state, action.style, action.component);
 
     case ADD_EVENTS:
-      return state;
+      return addEvent(state, action.event, action.component);
 
     case CHANGE_STATE:
       return state;

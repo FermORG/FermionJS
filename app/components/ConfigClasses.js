@@ -8,18 +8,18 @@ import configOptions from './ConfigOptions';
 
 // captures key presses in config panel;
 function captureKeyPress(e) {
- this.setState({key: e.target.value});
+  this.setState({key: e.target.value});
 }
  // sends data to the store from config panel;
 function updateStore(e,action, component) {
- if (e.key === 'Enter' && this.state.key !== '') {
-   const key = this.state.key;
-   if (key === undefined) return;
-   const newStateObj = {};
-   newStateObj[key] = null;
-   this.setState({stateKey: ''});
-   action(newStateObj, (component || null) );
- }
+  if (e.key === 'Enter' && this.state.key !== '') {
+    const key = this.state.key;
+    if (key === undefined) return;
+    const newStateObj = {};
+    newStateObj[key] = null;
+    this.setState({key: ''});
+    action(newStateObj, (component || null) );
+  }
 }
 
 
@@ -64,7 +64,7 @@ export class Props extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      propsKey: '',
+      key: '',
     }
     this.captureKeyPress = captureKeyPress.bind(this);
     this.updateStore = updateStore.bind(this);
@@ -103,6 +103,15 @@ export class Props extends Component {
     // bg color, color, margins, padding, display, font size maybe more
 
 export class Styles extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      key: '',
+    }
+    this.captureKeyPress = captureKeyPress.bind(this);
+    this.updateStore = updateStore.bind(this);
+  }
+
   props: {
     addStyles : ()=> void,
     changeStyles: ()=> void,
@@ -110,10 +119,17 @@ export class Styles extends Component {
   }
   render(){
     const { activeComponent } = this.props.workspace;
+    const { addStyles } = this.props;
     const style = this.props.workspace.components[activeComponent].props.style;
     return (
       <div className={`${styles['form-group']}`}>
-      <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Styles..."></input>
+      <input
+        className={`${styles['form-control']} ${coreStyles.input}`}
+        placeholder="new Styles..."
+        onChange={(event) => this.captureKeyPress(event)}
+        onKeyPress ={(event) => this.updateStore(event, addStyles, activeComponent)}
+      >
+      </input>
       <hr />
       {configOptions(style)}
     </div>
@@ -124,6 +140,14 @@ export class Styles extends Component {
 //should return a list of event handlers that can be applied to the app.
 // should be able to insert some custom code for that event handler.
 export class Events extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      key: '',
+    }
+    this.captureKeyPress = captureKeyPress.bind(this);
+    this.updateStore = updateStore.bind(this);
+  }
   props: {
     addEvents : ()=> void,
     changeEvents: ()=> void,
@@ -131,10 +155,17 @@ export class Events extends Component {
   }
   render() {
     const { activeComponent } = this.props.workspace;
+    const { addEvents } = this.props;
     const events = this.props.workspace.components[activeComponent].events;
     return (
       <div className={`${styles['form-group']}`}>
-      <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Event Handler..."></input>
+      <input
+        className={`${styles['form-control']} ${coreStyles.input}`}
+        placeholder="new Event Handler..."
+        onChange={(event) => this.captureKeyPress(event)}
+        onKeyPress ={(event) => this.updateStore(event, addEvents, activeComponent)}
+      >
+      </input>
       <hr />
       {configOptions(events)}
     </div>
