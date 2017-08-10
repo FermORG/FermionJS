@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import { ResizableBox } from 'react-resizable';
 
 import { WORKSPACE_ID } from './../constants';
 import { addChild, removeChild, moveChild } from '../actions/workspace';
@@ -22,14 +23,22 @@ class Workspace extends Component {
 
     return componentIDList.map((componentID) => {
       const componentData = allComponents[componentID];
+
+      const [widthInt, heightInt] = [
+        parseInt(componentData.props.style.width.split('px')[0], 10),
+        parseInt(componentData.props.style.height.split('px')[0], 10)
+      ];
+
       const CustomComponent = getVisComponent(componentData.name);
       const children = this.renderDeep(componentData.children);
 
       const wrappedComponent = (
         <div style={{ display: 'inline-block', margin: '0', padding: '0' }}>
-          <CustomComponent {...componentData.props}>
-            { children }
-          </CustomComponent>
+          <ResizableBox width={widthInt} height={heightInt}>
+            <CustomComponent {...componentData.props}>
+              { children }
+            </CustomComponent>
+          </ResizableBox>
         </div>
       );
 
@@ -48,7 +57,7 @@ class Workspace extends Component {
   render() {
     const worskpaceChildren = this.props.components.workspace.children;
     const Workspace = () => (
-      <div className = 'workspace' style={{ width: '100%', height: '100%', overflowY:'scroll' }}>
+      <div className ="workspace" style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
         { this.renderDeep(worskpaceChildren) }
       </div>
     );
@@ -60,7 +69,6 @@ class Workspace extends Component {
     );
   }
 }
-
 
 
 // Validate props
