@@ -25,12 +25,11 @@ defaultWorkspace.components[0] = {
   props: {
     style: {
       position: 'relative',
-      height: '100px',
-      width: '100px',
+      height: '100%',
+      width: '100%',
       display: 'inline-block',
       backgroundColor: 'black',
       overflow: 'auto',
-      zIndex: 1,
     },
   },
   events: { test: 'event test =]' }
@@ -44,12 +43,11 @@ defaultWorkspace.components[1] = {
   props: {
     style: {
       position: 'relative',
-      height: '30px',
-      width: '30px',
+      height: '100%',
+      width: '100%',
       display: 'inline-block',
       backgroundColor: 'blue',
       overflow: 'auto',
-      zIndex: 2,
     },
   },
   events: { test: 'event test =]' }
