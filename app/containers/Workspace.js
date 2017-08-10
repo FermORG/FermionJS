@@ -8,7 +8,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { ResizableBox } from 'react-resizable';
 
 import { WORKSPACE_ID } from './../constants';
-import { addChild, removeChild, moveChild } from '../actions/workspace';
+import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
@@ -34,7 +34,16 @@ class Workspace extends Component {
 
       const wrappedComponent = (
         <div style={{ display: 'inline-block', margin: '0', padding: '0' }}>
-          <ResizableBox width={widthInt} height={heightInt}>
+          <ResizableBox
+            width={widthInt}
+            height={heightInt}
+            onResizeStop={
+              (e, data) => {
+                const [newWidth, newHeight] = [data.size.width, data.size.height];
+                this.props.updateStyle(componentData.id, { width: newWidth, height: newHeight });
+              }
+            }
+          >
             <CustomComponent {...componentData.props}>
               { children }
             </CustomComponent>
@@ -56,7 +65,7 @@ class Workspace extends Component {
 
   render() {
     const worskpaceChildren = this.props.components.workspace.children;
-    
+
     const Workspace = () => (
       <div className="workspace" style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
         { this.renderDeep(worskpaceChildren) }
@@ -84,7 +93,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addChild, removeChild, moveChild }, dispatch);
+  return bindActionCreators({ addChild, removeChild, moveChild, updateStyle }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Workspace);
