@@ -6,19 +6,28 @@ import coreStyles from './Core.css';
 import panelStyles from './Panels.css';
 import configOptions from './ConfigOptions';
 
-// captures key presses in config panel;
-function captureKeyPress(e) {
-  this.setState({key: e.target.value});
-}
  // sends data to the store from config panel;
-function updateStore(e,action, component) {
-  if (e.key === 'Enter' && this.state.key !== '') {
-    const key = this.state.key;
-    if (key === undefined) return;
+function updateStore(e, action, component) {
+  if (e.key === 'Enter' && e.target.value !== '') {
+    const key = e.target.value.trim();
+    if (key === '') return;
     const newStateObj = {};
     newStateObj[key] = null;
-    this.setState({key: ''});
     action(newStateObj, (component || null) );
+    e.target.value = '';
+  }
+}
+
+function updateStoreValues(e, actionOptions) {
+  const { component, prop, action } = actionOptions;
+  console.log("AO: ", actionOptions);
+  if (e.key === 'Enter' && e.target.value !== '') {
+    const key = e.target.value.trim();
+    if (key === '') return;
+    const newStateObj = {};
+    newStateObj[key] = null;
+    action(newStateObj, (component || null) );
+    e.target.value = '';
   }
 }
 
@@ -26,11 +35,8 @@ function updateStore(e,action, component) {
 export class State extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      stateKey: '',
-    }
-    this.captureKeyPress = captureKeyPress.bind(this);
     this.updateStore = updateStore.bind(this);
+    this.updateStoreValues = updateStoreValues.bind(this);
   }
 
   props: {
@@ -40,21 +46,19 @@ export class State extends Component {
   }
   // should return a list built from the current state.
   render(){
-    const { workspace, addState } = this.props;
+    const { workspace, addState, changeState } = this.props;
     const { state } = this.props.workspace;
 
     return (
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          onChange={(event) => this.captureKeyPress(event)}
           onKeyPress ={(event) => this.updateStore(event, addState)}
           placeholder='New State Key...'
-          defaultValue = ''
         >
         </input>
         <hr />
-        {configOptions(state)}
+        {configOptions(state, this.updateStoreValues, {action: changeState})}
       </div>
     );
   }
@@ -63,11 +67,8 @@ export class State extends Component {
 export class Props extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      key: '',
-    }
-    this.captureKeyPress = captureKeyPress.bind(this);
     this.updateStore = updateStore.bind(this);
+    this.updateStoreValues = updateStoreValues.bind(this);
   }
 
   props: {
@@ -78,19 +79,18 @@ export class Props extends Component {
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
     const { activeComponent } = this.props.workspace;
-    const { addProps } = this.props;
+    const { addProps, changeProps } = this.props;
     const Props = this.props.workspace.components[activeComponent].props;
     return (
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
           placeholder="new Prop: Value..."
-          onChange={(event) => this.captureKeyPress(event)}
           onKeyPress ={(event) => this.updateStore(event, addProps, activeComponent)}
         >
         </input>
         <hr />
-        {configOptions(Props)}
+        {configOptions(Props, this.updateStoreValues, {action: changeProps, component: activeComponent})}
       </div>
     );
   }
@@ -102,11 +102,8 @@ export class Props extends Component {
 export class Styles extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      key: '',
-    }
-    this.captureKeyPress = captureKeyPress.bind(this);
     this.updateStore = updateStore.bind(this);
+    this.updateStoreValues = updateStoreValues.bind(this);
   }
 
   props: {
@@ -117,19 +114,18 @@ export class Styles extends Component {
 
   render(){
     const { activeComponent } = this.props.workspace;
-    const { addStyles } = this.props;
+    const { addStyles, changeStyles } = this.props;
     const style = this.props.workspace.components[activeComponent].props.style;
     return (
       <div className={`${styles['form-group']}`}>
       <input
         className={`${styles['form-control']} ${coreStyles.input}`}
         placeholder="new Styles..."
-        onChange={(event) => this.captureKeyPress(event)}
         onKeyPress ={(event) => this.updateStore(event, addStyles, activeComponent)}
       >
       </input>
       <hr />
-      {configOptions(style)}
+      {configOptions(style, this.updateStoreValues, {action: changeStyles, component: activeComponent})}
     </div>
   );
   }
@@ -140,32 +136,29 @@ export class Styles extends Component {
 export class Events extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      key: '',
-    }
-    this.captureKeyPress = captureKeyPress.bind(this);
     this.updateStore = updateStore.bind(this);
+    this.updateStoreValues = updateStoreValues.bind(this);
   }
   props: {
     addEvents : ()=> void,
     changeEvents: ()=> void,
     workspace: {},
   }
+
   render() {
     const { activeComponent } = this.props.workspace;
-    const { addEvents } = this.props;
+    const { addEvents, changeEvents } = this.props;
     const events = this.props.workspace.components[activeComponent].events;
     return (
       <div className={`${styles['form-group']}`}>
       <input
         className={`${styles['form-control']} ${coreStyles.input}`}
         placeholder="new Event Handler..."
-        onChange={(event) => this.captureKeyPress(event)}
         onKeyPress ={(event) => this.updateStore(event, addEvents, activeComponent)}
       >
       </input>
       <hr />
-      {configOptions(events)}
+      {configOptions(events, this.updateStoreValues, {action: changeEvents, component: activeComponent})}
     </div>
     );
   }
