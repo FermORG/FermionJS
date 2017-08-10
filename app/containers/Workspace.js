@@ -56,8 +56,9 @@ class Workspace extends Component {
 
   render() {
     const worskpaceChildren = this.props.components.workspace.children;
+    
     const Workspace = () => (
-      <div className ="workspace" style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
+      <div className="workspace" style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
         { this.renderDeep(worskpaceChildren) }
       </div>
     );
