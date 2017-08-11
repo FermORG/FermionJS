@@ -4,7 +4,9 @@ import styles from '../components/photon.css';
 import coreStyles from '../components/Core.css';
 import WorkspaceConverter from '../utilities/WorkspaceConverter'
 import WorkspaceExporter from '../utilities/WorkspaceExporter'
+import path from 'path'
 
+const EXPORT_DIR = 'export'
 class ExportButton extends Component {
   constructor(props){
     super(props)
@@ -12,7 +14,7 @@ class ExportButton extends Component {
   }
 
   exportCode(){
-    let destinationDir = '/Users/jyamamoto/testFerm/test'
+    let destinationDir = path.join(__dirname, EXPORT_DIR);
     try {
       let wc = new WorkspaceConverter(this.props.components)
       let exporter = new WorkspaceExporter(destinationDir, wc.convert())
