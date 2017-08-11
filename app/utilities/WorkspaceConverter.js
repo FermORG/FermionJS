@@ -1,13 +1,23 @@
+const PAD_LENGTH = 3
+const padName = (name, id) =>{
+  return `${name}_${id.padStart(PAD_LENGTH, '0')}`
+}
 class ComponentConverter {
   constructor(component) {
     this.component = component
+  }
+  get fileName(){
+    return padName(this.component.name, this.component.id.toString()) 
+  }
+  get id(){
+    return this.component.id
   }
   get name(){
     return this.component.name
   }
   getImports(){
-    return this.component.children.reduce((final, childName )=>{
-      final += `import ${childName} from './${childName}'` + "\n"
+    return this.component.childrenFileNames.reduce((final, childFile )=>{
+      final += `import ${childFile} from './${childFile}'` + "\n"
       return final
     }, '')
   }
@@ -55,13 +65,13 @@ class WorkspaceConverter {
   constructor(components){
     let childcomps= Object.assign({}, components)
     delete childcomps['workspace']
-    this.components = this.convertIDtoName(childcomps)
+    this.components = this.convertChildIDtoFileName(childcomps)
   }
-  convertIDtoName(components){
+  convertChildIDtoFileName(components){
     let converted = Object.keys(components).reduce((acc, id)=>{
       let newComponent = Object.assign({}, components[id])
-      newComponent.children = components[id].children.map(childID =>{
-        return components[childID].name
+      newComponent.childrenFileNames = components[id].children.map(childID =>{
+        return padName(components[childID].name, components[childID].id.toString())
       })
       acc[id] = newComponent
       return acc
@@ -71,7 +81,11 @@ class WorkspaceConverter {
   convert(){
     return Object.keys(this.components).reduce((acc, key)=>{
       const cc = new ComponentConverter(this.components[key])
-      acc.push({name: cc.name, code: cc.generateCode()})
+      acc.push({
+        name: cc.name,
+        id: cc.id,
+        fileName: cc.fileName,
+        code: cc.generateCode()})
       return acc
     }, [])
   }

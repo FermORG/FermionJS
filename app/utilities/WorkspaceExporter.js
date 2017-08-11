@@ -3,32 +3,6 @@ const path  = require('path')
 const WorkspaceConverter = require('./WorkspaceConverter')
 const rimraf = require('rimraf')
 
-// let components = {
-//   0: {
-//     id: 0,
-//     name: 'BlackBox',
-//     children: [1],
-//     props: {
-//       style: {
-//         position: 'relative',
-//         zIndex: 1,
-//       },
-//       'zIndex': 'testProp',
-//     }
-//   },
-//   1: {
-//     id: 1,
-//     name: 'BlueBox',
-//     children: [],
-//     props: {
-//       style: {
-//         position: 'relative',
-//         height: '30px',
-//       },
-//     }
-//   }
-// }
-
 class WorkspaceExporter {
   constructor(targetPath, components){
     this.targetPath = targetPath
@@ -64,9 +38,9 @@ class WorkspaceExporter {
     try {
       fs.mkdirSync(this.targetPath)
       this.components.forEach(component =>{
-        let compDir = path.join(this.targetPath, component.name)
+        let compDir = path.join(this.targetPath, component.fileName)
         fs.mkdirSync(compDir)
-        let fPath = path.join(compDir, component.name)
+        let fPath = path.join(compDir, component.fileName)
         fs.writeFileSync(fPath, component.code)
       })
     } catch(e){
@@ -75,9 +49,5 @@ class WorkspaceExporter {
     }
   }
 }
-// let destinationDir = '/Users/jyamamoto/testFerm/test'
-// let wc = new WorkspaceConverter(components)
-// let exporter = new WorkspaceExporter(destinationDir, wc.convert())
-// exporter.deleteDir()
-// exporter.export()
+
 module.exports = WorkspaceExporter
