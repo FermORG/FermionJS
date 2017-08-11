@@ -93,3 +93,16 @@ hr {
   background-color: #282c36 !important;
   margin: 2px 4px 0px 0px;
 }
+
+.hideEditor {
+  display: none;
+}
+
+.ace {
+  margin-top: 2%;
+  margin-left:2%;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  overflow: hidden;
+  height: 300px;
+}

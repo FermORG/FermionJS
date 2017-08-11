@@ -5,6 +5,7 @@
 */
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { AutoSizer, List } from 'react-virtualized';
 import isEqual from 'lodash.isequal';
@@ -37,6 +38,7 @@ import {
 } from './utils/drag-and-drop-utils';
 import styles from './react-sortable-tree.scss';
 
+
 let dndTypeCounter = 1;
 
 class ReactSortableTree extends Component {
@@ -47,6 +49,7 @@ class ReactSortableTree extends Component {
       dndType,
       nodeContentRenderer,
       isVirtualized,
+      treeDataRedux,
       slideRegionSize,
       treeData,
     } = props;
@@ -65,6 +68,7 @@ class ReactSortableTree extends Component {
     }
 
     this.state = {
+      treeDataRedux: this.getInitial(),
       draggingTreeData: null,
       swapFrom: null,
       swapLength: null,
@@ -79,6 +83,7 @@ class ReactSortableTree extends Component {
     this.startDrag = this.startDrag.bind(this);
     this.dragHover = this.dragHover.bind(this);
     this.endDrag = this.endDrag.bind(this);
+    this.getInitial = this.getInitial.bind(this);
   }
 
   componentWillMount() {
@@ -112,6 +117,44 @@ class ReactSortableTree extends Component {
     } else if (this.props.searchFocusOffset !== nextProps.searchFocusOffset) {
       this.search(nextProps, true, true, true);
     }
+  }
+  getInitial(){
+    console.log("inside getInitial");
+    console.log(this.props.treeDataRedux)
+    const treeStructure = this.props.treeDataRedux.components.workspace;
+    console.log("this is treeStructure:", treeStructure)
+    const treeComponents = this.props.treeDataRedux.components;
+    console.log("this is tree Components", treeComponents)
+    const treeData = [getTreeData(treeStructure)];
+    function getTreeData(workspaceTree){
+        return {
+          title: workspaceTree.id,
+          children: getChildrenData(workspaceTree.children)
+        }
+    }
+
+    function getChildrenData(childrenArray){
+      console.log(childrenArray);
+      const childrenArrayFinal = [];
+      for (let i=0; i<childrenArray.length; i++){
+        const currComponent = treeComponents[childrenArray[i]]
+        const currComponentChildren = currComponent.children;
+        if (currComponentChildren.length !== 0){
+          childrenArrayFinal.push({
+            title: currComponent.name,
+            children: getChildrenData(currComponentChildren)
+          });
+        }
+        else {
+          childrenArrayFinal.push({
+            title: currComponent.name,
+          });
+        }
+      }
+      return childrenArrayFinal;
+    }
+    console.log(treeData);
+    return treeData;
   }
 
   getRows(treeData) {
@@ -499,6 +542,12 @@ class ReactSortableTree extends Component {
     );
   }
 }
+function mapStateToProps(state){
+  console.log("inside mapstate")
+  return {
+    workspace: state.workspace
+  }
+}
 
 ReactSortableTree.propTypes = {
   // Tree data in the following format:
@@ -615,9 +664,13 @@ ReactSortableTree.defaultProps = {
   style: {},
 };
 
+
 // Export the tree component without the react-dnd DragDropContext,
 // for when component is used with other components using react-dnd.
 // see: https://github.com/gaearon/react-dnd/issues/186
+
+export default connect(mapStateToProps)(dndWrapRoot(ReactSortableTree));
+
 export { ReactSortableTree as SortableTreeWithoutDndContext };
 
-export default dndWrapRoot(ReactSortableTree);
+
