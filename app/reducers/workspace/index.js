@@ -1,7 +1,5 @@
 import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD } from '../../actions/workspace';
-/* ADDING CONFIG ACTIONS: */
-import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, CHANGE_STATE, CHANGE_PROPS, CHANGE_STYLES, CHANGE_EVENTS } from '../../actions/config';
-/* ACA */
+import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS } from '../../actions/config';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 import removeComponent from './removeComponent';
@@ -94,18 +92,6 @@ export default function workspace(state = defaultWorkspace, action) {
 
     case ADD_EVENTS:
       return addEvent(state, action.event, action.component);
-
-    case CHANGE_STATE:
-      return state;
-
-    case CHANGE_PROPS:
-      return state;
-
-    case CHANGE_STYLES:
-      return state;
-
-    case CHANGE_EVENTS:
-        return state;
 
     default:
       return state;
