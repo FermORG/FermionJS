@@ -11,15 +11,14 @@ export const CHANGE_PROPS = 'CHANGE PROPS';
 export const CHANGE_STYLES = 'CHANGE STYLES';
 export const CHANGE_EVENTS = 'CHANGE EVENTS';
 
-export function AddState(aState, component) {
+export function addState(aState) {
   return {
     type: 'ADD_STATE',
     aState,
-    component
   };
 }
 
-export function AddProps(prop, component) {
+export function addProps(prop, component) {
   return {
     type: 'ADD_PROPS',
     prop,
@@ -27,7 +26,7 @@ export function AddProps(prop, component) {
   };
 }
 
-export function AddStyles(style, component) {
+export function addStyles(style, component) {
   return {
     type: 'ADD_STYLES',
     style,
@@ -35,7 +34,7 @@ export function AddStyles(style, component) {
   };
 }
 
-export function AddEvents(event, component) {
+export function addEvents(event, component) {
   return {
     type: 'ADD_EVENTS',
     event,
@@ -43,15 +42,14 @@ export function AddEvents(event, component) {
   }
 }
 
-export function ChangeState(aState, component) {
+export function changeState(aState) {
   return {
     type: 'CHANGE_STATE',
     aState,
-    component
   };
 }
 
-export function ChangeProps(prop, component) {
+export function changeProps(prop, component) {
   return {
     type: 'CHANGE_PROPS',
     prop,
@@ -59,7 +57,7 @@ export function ChangeProps(prop, component) {
   };
 }
 
-export function ChangeStyles(style, component) {
+export function changeStyles(style, component) {
   return {
     type: 'CHANGE_STYLES',
     style,
@@ -67,7 +65,7 @@ export function ChangeStyles(style, component) {
   };
 }
 
-export function ChangeEvents(event, component) {
+export function changeEvents(event, component) {
   return {
     type: 'CHANGE_EVENTS',
     event,
