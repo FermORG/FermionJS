@@ -22,7 +22,7 @@ class FileTree extends Component {
   getUpdate(){
     this.setState({
       treeData: this.getInitial()
-    })
+    });
   }
   getInitial(){
     const treeStructure = this.props.workspace.components.workspace;

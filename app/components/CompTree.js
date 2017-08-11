@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styles from './photon.css';
 import panelStyles from './Panels.css';
-// import { Link } from 'react-router-dom';
 import FileTree from './FileSystem.js';
 
 function Tree(props){
