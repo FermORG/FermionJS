@@ -23,16 +23,11 @@ function updateStoreValues(e, action:()=>void, component:string, prop:string) {
     if (value === '') return;
     const newStateObj = {};
     newStateObj[prop] = value;
-    console.log(newStateObj);
     action(newStateObj, (component || null) );
   }
 }
 
 function deleteStoreValues(deleter:()=>void, component:string, propKey:string) {
-  console.log('deleter: ', deleter);
-  console.log('component: ', component);
-  console.log('props: ', propKey);
-
   deleter(propKey, component);
 }
 
@@ -201,8 +196,8 @@ export class Events extends Component {
   }
 
   render() {
-    const { activeComponent, deleteEvents } = this.props.workspace;
-    const { addEvents, changeEvents } = this.props;
+    const { activeComponent } = this.props.workspace;
+    const { addEvents, deleteEvents } = this.props;
     const events = this.props.workspace.components[activeComponent].events;
 
     const list = Object.keys(events).map((prop) => {

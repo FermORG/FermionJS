@@ -42,10 +42,10 @@ export function addEvents(event, component) {
   }
 }
 
-export function deleteState(propKey, component) {
+export function deleteState(stateKey, component) {
   return {
     type: 'DELETE_STATE',
-    propKey: propKey,
+    propKey: stateKey,
   }
 }
 export function deleteProps(propKey, component) {
@@ -55,17 +55,17 @@ export function deleteProps(propKey, component) {
     component
   }
 }
-export function deleteStyles(styles, component) {
+export function deleteStyles(styleKey, component) {
   return {
     type: 'DELETE_STYLES',
-    styles,
+    style: styleKey,
     component
   }
 }
-export function deleteEvents(events, component) {
+export function deleteEvents(eventKey, component) {
   return {
     type: 'DELETE_EVENTS',
-    events,
+    event: eventKey,
     component
   }
 }

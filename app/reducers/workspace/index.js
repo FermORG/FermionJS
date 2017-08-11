@@ -104,7 +104,7 @@ export default function workspace(state = defaultWorkspace, action) {
       return deletePropsValue(state, action.prop, action.component);
 
     case DELETE_STYLES:
-      return deleteStyleValue(state, action.style, action.component);
+      return deleteStylesValue(state, action.style, action.component);
 
     case DELETE_EVENTS:
       return deleteEvent(state, action.event, action.component);
