@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
-// import { DragDropContext } from 'react-dnd';
-// import HTML5Backend from 'react-dnd-html5-backend';
 
 import { WORKSPACE_ID } from './../constants';
 import { addChild, removeChild, moveChild } from '../actions/workspace';
@@ -19,20 +17,28 @@ class Workspace extends Component {
     }
 
     const allComponents = this.props.components;
-    console.log('AC: ', allComponents);
+    
     return componentIDList.map((componentID) => {
-      const component = allComponents[componentID];
-      const CustomComponent = getVisComponent(component.name);
-      const children = this.renderDeep(component.children);
-      const DndComponent = dndComponentWrapper(CustomComponent, component.style, children);
+      const componentData = allComponents[componentID];
+      const CustomComponent = getVisComponent(componentData.name);
+      const children = this.renderDeep(componentData.children);
+
+      const wrappedComponent = (
+        <div style={{ display: 'inline-block', margin: '0', padding: '0' }}>
+          <CustomComponent {...componentData.props}>
+            { children }
+          </CustomComponent>
+        </div>
+      );
+
+      const DndComponent = dndComponentWrapper(wrappedComponent);
 
       return (
         <DndComponent
-          id={component.id}
+          id={componentData.id}
           moveChild={this.props.moveChild}
-          key={component.id}
+          key={componentData.id}
         />
-
       );
     });
   }
@@ -52,6 +58,8 @@ class Workspace extends Component {
     );
   }
 }
+
+
 
 // Validate props
 Workspace.propTypes = {

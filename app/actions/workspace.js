@@ -1,15 +1,17 @@
+import { WORKSPACE_ID } from './../constants';
+
 export const ADD_CHILD = 'ADD_CHILD';
 export const CREATE_CHILD = 'CREATE_CHILD';
 export const DELETE_CHILD = 'DELETE_CHILD';
 export const MOVE_CHILD = 'MOVE_CHILD';
 export const REMOVE_CHILD = 'REMOVE_CHILD';
 
-const createChild = ({ name, style }) => {
+const createChild = ({ name, props }) => {
   return {
     name,
-    style,
+    props,
     children: [],
-    parentID: '',
+    parentID: WORKSPACE_ID,
   };
 };
 

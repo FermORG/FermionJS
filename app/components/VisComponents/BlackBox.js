@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import styles from './BlackBox.css';
-
 const defaultStyles = {
   position: 'relative',
   height: '100px',
@@ -14,7 +12,7 @@ const defaultStyles = {
 };
 
 const BlackBox = (props) => (
-  <div id={props.id} style={props.style}>
+  <div id={props.id} {...props}>
     {props
       ? props.children
       : null}

@@ -22,6 +22,8 @@ import Workspace from '../containers/Workspace';
 // Visual component exporter function
 import getVisComponent from './VisComponents/exporter';
 
+import ExportButton from '../containers/ExportButton'
+
 class Core extends Component {
   constructor(props){
     super(props);
@@ -33,11 +35,6 @@ class Core extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.onChanges = this.onChanges.bind(this);
   }
-  // updateCode(newCode) {
-	// 	this.setState({
-	// 		code: newCode,
-	// 	});
-  // }
   onChanges(newValue) {
     console.log('change',newValue);
   }
@@ -107,9 +104,7 @@ class Core extends Component {
                   <i className="fa fa-arrow-left" />
                 </Link>
               </div>
-              {/* <h1 className = {`${styles.title} ${coreStyles.title} ${coreStyles.footTitle}`}>Footer</h1> */}
-              <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show':'Hide'} Editor</button>
-              <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`}>Export</button>
+              <ExportButton />
             </footer>
           </div>
           <Right />
@@ -119,12 +114,5 @@ class Core extends Component {
     );
   }
 }
-            //  <textarea
-            //       id={`${coreStyles.editor}`} 
-            //       name="codeEditor" 
-            //       cols="30" 
-            //       rows="10" 
-            //       onChange={this.handleTextArea} 
-            //       value={this.state.code}>
-            //     </textarea>
+
 export default DragDropContext(HTML5Backend)(Core)

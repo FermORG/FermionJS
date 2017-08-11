@@ -1,40 +1,58 @@
 {
-  "availableComponents" : [
-    {
+  "availableComponents": [{
       "name": "One",
-      "style": {
-        "position": "absolute",
-        "height": "20px",
-        "width":"20px",
-        "display": "inline-block",
-        "backgroundColor": "red",
-        "resize": "both",
-        "overflow": "auto",
-        "zIndex": 3
+      "props": {
+        "style": {
+          "position": "relative",
+          "height": "20px",
+          "width": "20px",
+          "display": "inline-block",
+          "backgroundColor": "yellow",
+          "resize": "both",
+          "overflow": "auto"
+        }
       }
     },
     {
       "name": "Two",
-      "style": {
-        "backgroundColor": "yellow",
-        "height": "50%",
-        "width": "50%"
+      "props": {
+        "style": {
+          "position": "relative",
+          "height": "20px",
+          "width": "20px",
+          "display": "inline-block",
+          "backgroundColor": "red",
+          "resize": "both",
+          "overflow": "auto"
+        }
       }
     },
     {
       "name": "Five",
-      "style": {
-        "backgroundColor": "white",
-        "height": "50%",
-        "width": "50%"
+      "props": {
+        "style": {
+          "position": "relative",
+          "height": "20px",
+          "width": "20px",
+          "display": "inline-block",
+          "backgroundColor": "purple",
+          "resize": "both",
+          "overflow": "auto"
+        }
       }
     },
     {
       "name": "Four",
-      "style": {
-        "backgroundColor": "blue",
-        "height": "50%",
-        "width": "50%"
+      "props": {
+        "style": {
+          "position": "relative",
+          "height": "20px",
+          "width": "20px",
+          "display": "inline-block",
+          "backgroundColor": "white",
+          "resize": "both",
+          "overflow": "auto"
+        }
       }
     }
   ]

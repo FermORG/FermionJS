@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import SortableTreeWithoutDndContext from './src/index'//'react-sortable-tree';
 import {SortableTreeWithoutDndContext} from './src/index'; //'react-sortable-tree';
 import SortableTree from './src/index';
 import { connect } from "react-redux";
@@ -8,7 +7,6 @@ import coreStyles from './Core.css';
 
 const path = require('path')
 const dirTree = require('directory-tree');
-
 
 class FileTree extends Component {
 
@@ -29,9 +27,8 @@ class FileTree extends Component {
   getInitial(){
     const treeStructure = this.props.workspace.components.workspace;
     const treeComponents = this.props.workspace.components;
-    console.log(this.props.workspace);
+    // console.log(this.props.workspace);
     const treeData = [getTreeData(treeStructure)];
-    console.log(treeStructure);
 
     function getTreeData(workspaceTree){
         return {
@@ -61,8 +58,6 @@ class FileTree extends Component {
     }
     console.log(treeData);
     return treeData;
-
-
   }
   render() {
     const treeDataFetch = this.state.treeData;
