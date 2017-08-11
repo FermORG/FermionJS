@@ -25,6 +25,9 @@ class ComponentConverter {
   constructor(component) {
     this.component = component
   }
+  get ext(){
+    return '.js'
+  }
   get fileName(){
     return padName(this.component.name, this.component.id.toString()) 
   }
@@ -41,10 +44,11 @@ class ComponentConverter {
     }, '')
   }
   getChildren(){
-    return this.component.childrenFileNames.reduce((final, childFile )=>{
+    return this.component.childrenFileNames.reduce((final, childFile, i, array)=>{
       final += `<${childFile} /> `
+      if (i === array.length - 1) final += "\n"
       return final
-    }, '')
+    }, "\n")
 
   }
   getClass(){
@@ -75,11 +79,7 @@ class ${this.getClass()} extends Component {
     super(props)
   }
   render(){
-  <div
-    style={divStyle}
-    ${this.getProps()}
-   >
-   ${this.getChildren()}
+  <div style={divStyle} ${this.getProps()}>${this.getChildren()}
   </div>
   }
 }
@@ -112,6 +112,7 @@ class WorkspaceConverter {
         name: cc.name,
         id: cc.id,
         fileName: cc.fileName,
+        ext: cc.ext,
         code: cc.generateCode()})
       return acc
     }, [])
