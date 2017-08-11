@@ -17,7 +17,7 @@ function updateStore(e, action, component) {
   }
 }
 
-function updateStoreValues(e, action, component, prop) {
+function updateStoreValues(e, action:()=>void, component:string, prop:string) {
   if (e.key === 'Enter' && e.target.value !== '') {
     const value = e.target.value.trim();
     if (value === '') return;
@@ -28,8 +28,12 @@ function updateStoreValues(e, action, component, prop) {
   }
 }
 
-function deleteStoreValue() {
-  // should send back a full copy of whatever is being deleted - state, props, styles, events. NOT JUST A STUB. OR: can send back a snub and the business logic can happen in the reducer, but that may be unnecessary.
+function deleteStoreValues(deleter:()=>void, component:string, propKey:string) {
+  console.log('deleter: ', deleter);
+  console.log('component: ', component);
+  console.log('props: ', propKey);
+
+  deleter(propKey, component);
 }
 
 
@@ -38,15 +42,17 @@ export class State extends Component {
     super(props);
     this.updateStore = updateStore.bind(this);
     this.updateStoreValues = updateStoreValues.bind(this);
+    this.deleteStoreValues = deleteStoreValues.bind(this);
   }
 
   props: {
-    addState : ()=> void,
+    addState : () => void,
+    deleteState : () => void,
     workspace: {},
   }
   // should return a list built from the current state.
   render(){
-    const { workspace, addState } = this.props;
+    const { workspace, addState, deleteState } = this.props;
     const { state, activeComponent } = this.props.workspace;
 
     const list = Object.keys(state).map((prop) => {
@@ -58,7 +64,8 @@ export class State extends Component {
           value={state[prop]}
           action = {addState}
           actionHandler={this.updateStoreValues}
-
+          deleter={deleteState}
+          onClick={this.deleteStoreValues}
         />
       )
     });
@@ -83,16 +90,18 @@ export class Props extends Component {
     super(props);
     this.updateStore = updateStore.bind(this);
     this.updateStoreValues = updateStoreValues.bind(this);
+    this.deleteStoreValues = deleteStoreValues.bind(this);
   }
 
   props: {
     addProps : ()=> void,
+    deleteProps : ()=> void,
     workspace: {},
   }
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
     const { activeComponent } = this.props.workspace;
-    const { addProps } = this.props;
+    const { addProps, deleteProps } = this.props;
     const Props = this.props.workspace.components[activeComponent].props;
 
     const list = Object.keys(Props).map((prop) => {
@@ -105,8 +114,9 @@ export class Props extends Component {
           propKey={prop}
           value={Props[prop]}
           action = {addProps}
+          deleter={deleteProps}
           actionHandler={this.updateStoreValues}
-
+          onClick={this.deleteStoreValues}
         />
       )
     });
@@ -131,16 +141,18 @@ export class Styles extends Component {
     super(props);
     this.updateStore = updateStore.bind(this);
     this.updateStoreValues = updateStoreValues.bind(this);
+    this.deleteStoreValues = deleteStoreValues.bind(this);
   }
 
   props: {
     addStyles : ()=> void,
+    deleteStyles : ()=> void,
     workspace: {},
   }
 
   render(){
     const { activeComponent } = this.props.workspace;
-    const { addStyles } = this.props;
+    const { addStyles, deleteStyles } = this.props;
     const style = this.props.workspace.components[activeComponent].props.style;
 
     const list = Object.keys(style).map((prop) => {
@@ -152,7 +164,8 @@ export class Styles extends Component {
           value={style[prop]}
           action = {addStyles}
           actionHandler={this.updateStoreValues}
-
+          deleter={deleteStyles}
+          onClick={this.deleteStoreValues}
         />
       )
     });
@@ -179,14 +192,16 @@ export class Events extends Component {
     super(props);
     this.updateStore = updateStore.bind(this);
     this.updateStoreValues = updateStoreValues.bind(this);
+    this.deleteStoreValues = deleteStoreValues.bind(this);
   }
   props: {
     addEvents : ()=> void,
+    deleteEvents : ()=> void,
     workspace: {},
   }
 
   render() {
-    const { activeComponent } = this.props.workspace;
+    const { activeComponent, deleteEvents } = this.props.workspace;
     const { addEvents, changeEvents } = this.props;
     const events = this.props.workspace.components[activeComponent].events;
 
@@ -198,8 +213,9 @@ export class Events extends Component {
           propKey={prop}
           value={events[prop]}
           action = {addEvents}
+          deleter={deleteEvents}
           actionHandler={this.updateStoreValues}
-
+          onClick={this.deleteStoreValues}
         />
       )
     });

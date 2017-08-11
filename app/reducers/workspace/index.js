@@ -1,5 +1,5 @@
 import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD } from '../../actions/workspace';
-import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS } from '../../actions/config';
+import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 import removeComponent from './removeComponent';
@@ -8,6 +8,10 @@ import addStateValue from './addStateValue';
 import addPropsValue from './addPropsValue';
 import addStyleValue from './addStyleValue';
 import addEvent from './addEvent';
+import deleteStateValue from './deleteStateValue';
+import deletePropsValue from './deletePropsValue';
+import deleteStylesValue from './deleteStylesValue';
+import deleteEvent from './deleteEvent';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -92,6 +96,18 @@ export default function workspace(state = defaultWorkspace, action) {
 
     case ADD_EVENTS:
       return addEvent(state, action.event, action.component);
+
+    case DELETE_STATE:
+      return deleteStateValue(state, action.propKey);
+
+    case DELETE_PROPS:
+      return deletePropsValue(state, action.prop, action.component);
+
+    case DELETE_STYLES:
+      return deleteStyleValue(state, action.style, action.component);
+
+    case DELETE_EVENTS:
+      return deleteEvent(state, action.event, action.component);
 
     default:
       return state;

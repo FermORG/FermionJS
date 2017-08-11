@@ -7,7 +7,7 @@ import panelStyles from './Panels.css';
 // returns renderable config Panel options.
 
 export default function ConfigOption(props) {
-    const { activeComponent, propKey, value, action, actionHandler } = props;
+  const { activeComponent, propKey, value, action, deleter, actionHandler, onClick } = props;
   return (
     <li className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
       <strong>{`${propKey}`}</strong>
@@ -20,7 +20,7 @@ export default function ConfigOption(props) {
       </input>
       <div
         className={`${panelStyles.deleteKey}`}
-        onClick={()=>{console.log('DELETE ME BITCH')}}
+        onClick={()=>{onClick(deleter, activeComponent, propKey)}}
       >
         X
       </div>
