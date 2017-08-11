@@ -3,8 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 
 import { WORKSPACE_ID } from './../constants';
 import { addChild, removeChild, moveChild } from '../actions/workspace';
@@ -19,7 +17,7 @@ class Workspace extends Component {
     }
 
     const allComponents = this.props.components;
-
+    
     return componentIDList.map((componentID) => {
       const componentData = allComponents[componentID];
       const CustomComponent = getVisComponent(componentData.name);
