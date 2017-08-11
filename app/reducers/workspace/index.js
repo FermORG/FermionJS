@@ -33,8 +33,8 @@ defaultWorkspace.components[0] = {
   props: {
     style: {
       position: 'relative',
-      height: '100%',
-      width: '100%',
+      height: '100px',
+      width: '100px',
       display: 'inline-block',
       backgroundColor: 'black',
       overflow: 'auto',
@@ -51,8 +51,8 @@ defaultWorkspace.components[1] = {
   props: {
     style: {
       position: 'relative',
-      height: '100%',
-      width: '100%',
+      height: '100px',
+      width: '100px',
       display: 'inline-block',
       backgroundColor: 'blue',
       overflow: 'auto',
