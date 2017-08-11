@@ -40,6 +40,13 @@ class ComponentConverter {
       return final
     }, '')
   }
+  getChildren(){
+    return this.component.childrenFileNames.reduce((final, childFile )=>{
+      final += `<${childFile} /> `
+      return final
+    }, '')
+
+  }
   getClass(){
     return `${this.component.name}`
   }
@@ -72,7 +79,7 @@ class ${this.getClass()} extends Component {
     style={divStyle}
     ${this.getProps()}
    >
-    {children}
+   ${this.getChildren()}
   </div>
   }
 }
