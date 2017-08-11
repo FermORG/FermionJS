@@ -27,7 +27,7 @@ class Core extends Component {
     super(props);
     this.state = {
       code: "*** Insert Code Here ***",
-      hideEditor: false
+      hideEditor: true
     }
     this.handleTextArea = this.handleTextArea.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -108,7 +108,7 @@ class Core extends Component {
                 </Link>
               </div>
               {/* <h1 className = {`${styles.title} ${coreStyles.title} ${coreStyles.footTitle}`}>Footer</h1> */}
-              <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>Show Editor</button>
+              <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show':'Hide'} Editor</button>
               <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`}>Export</button>
             </footer>
           </div>

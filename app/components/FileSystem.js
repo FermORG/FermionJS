@@ -3,17 +3,30 @@ import React, { Component } from 'react';
 import {SortableTreeWithoutDndContext} from './src/index'; //'react-sortable-tree';
 import SortableTree from './src/index';
 import { connect } from "react-redux";
+import styles from './photon.css';
+import coreStyles from './Core.css';
+
 const path = require('path')
 const dirTree = require('directory-tree');
+
 
 class FileTree extends Component {
 
   constructor(props) {
     super(props);
-    this.state = this.getInitialState();
-  }
+    this.state = {
+      treeData: this.getInitial()
+    }
+    this.getInitial = this.getInitial.bind(this);
+    this.getUpdate = this.getUpdate.bind(this);
 
-  getInitialState(){
+  }
+  getUpdate(){
+    this.setState({
+      treeData: this.getInitial()
+    })
+  }
+  getInitial(){
     const treeStructure = this.props.workspace.components.workspace;
     const treeComponents = this.props.workspace.components;
     console.log(this.props.workspace);
@@ -47,22 +60,24 @@ class FileTree extends Component {
       return childrenArrayFinal;
     }
     console.log(treeData);
-    return { treeData };
+    return treeData;
 
 
   }
   render() {
+    const treeDataFetch = this.state.treeData;
+    const getData = this.props.workspace;
+    console.log("hello")
+    console.log("Get Data: ", getData)
     return (
       <div style={{ height: '100%' }}>
         <SortableTreeWithoutDndContext
-          innerStyle = {this.state.innerStyle}
+          treeDataRedux={getData}
           treeData={this.state.treeData}
-          canDrag = {false}
-          onChange={treeData => {
-            console.log(treeData);
-            this.setState({ treeData });
-          }}
+          canDrag={false}
+          onChange={(treeDataRedux)=>{ this.setState({ treeData: treeDataRedux }) }}
         />
+        <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.getUpdate}>Update</button>
       </div>
     );
   }
