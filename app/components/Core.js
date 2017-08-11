@@ -4,6 +4,13 @@ import styles from './photon.css';
 import coreStyles from './Core.css';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import AceEditor from 'react-ace';
+import brace from 'brace';
+
+import 'brace/mode/javascript';
+import 'brace/theme/twilight';
+
+
 
 // Gui columns
 import Left from './left';
@@ -18,6 +25,33 @@ import getVisComponent from './VisComponents/exporter';
 import ExportButton from '../containers/ExportButton'
 
 class Core extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      code: "*** Insert Code Here ***",
+      hideEditor: true
+    }
+    this.handleTextArea = this.handleTextArea.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.onChanges = this.onChanges.bind(this);
+  }
+  onChanges(newValue) {
+    console.log('change',newValue);
+  }
+  handleClick(e){
+    console.log("inside handle click");
+    
+    this.setState({
+      hideEditor: !this.state.hideEditor
+    })
+  }
+  handleTextArea(e){
+    e.preventDefault();
+    console.log(e.target.value);
+    this.setState({
+      code: e.target.value
+    })
+  }
    /* Recursively renders all levels of a nested component
    */
   renderDeep(nestedComponentsList) {
@@ -32,10 +66,14 @@ class Core extends Component {
       );
     });
   }
-
   render() {
+    const options = {
+      lineNumbers: true
+    }
     return (
+      <div>
       <div className={`${styles['window-content']} ${coreStyles.container}`}>
+         
         <div className={styles["pane-group"]}>
           <Left drag={this.dragComponent} />
           <div className={`${styles.pane} ${coreStyles.main}`}>
@@ -44,6 +82,21 @@ class Core extends Component {
             </header>
             <div className = {coreStyles.pads} data-tid='AppContainer'>
               <Workspace />
+            </div>
+           
+            <div className = {`${this.state.hideEditor ? coreStyles.hideEditor : ""} ${coreStyles.pads}`}>
+               <form data-tid="textEditor">
+                  <div className={`${coreStyles.ace}`}>
+                    <AceEditor
+                        className={`${coreStyles.footer} ${coreStyles.header}`} 
+                        mode="javascript"
+                        theme="twilight"
+                        onChange={this.onChanges}
+                        name="UNIQUE_ID_OF_DIV"
+                        editorProps={{$blockScrolling: true}}
+                      />
+                  </div>
+              </form>
             </div>
             <footer className ={coreStyles.footer}>
               <div className={coreStyles.backButton} data-tid='backButton'>
@@ -56,6 +109,7 @@ class Core extends Component {
           </div>
           <Right />
         </div>
+      </div>
       </div>
     );
   }
