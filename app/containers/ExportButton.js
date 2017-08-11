@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-
-import { WORKSPACE_ID } from './../constants';
 import styles from '../components/photon.css';
 import coreStyles from '../components/Core.css';
 import WorkspaceConverter from '../utilities/WorkspaceConverter'
@@ -17,10 +13,15 @@ class ExportButton extends Component {
 
   exportCode(){
     let destinationDir = '/Users/jyamamoto/testFerm/test'
-    let wc = new WorkspaceConverter(this.props.components)
-    let exporter = new WorkspaceExporter(destinationDir, wc.convert())
-    exporter.deleteDir()
-    exporter.export()
+    try {
+      let wc = new WorkspaceConverter(this.props.components)
+      let exporter = new WorkspaceExporter(destinationDir, wc.convert())
+      exporter.deleteDir()
+      exporter.export()
+      console.log('successful export to:', destinationDir)
+    } catch(e) {
+      console.log(e)
+    }
   }
   render() {
     return (
@@ -33,10 +34,6 @@ function mapStateToProps(state) {
   return {
     components: state.workspace.components
   };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addChild, removeChild, moveChild }, dispatch);
 }
 
 export default connect(mapStateToProps, {})(ExportButton);
