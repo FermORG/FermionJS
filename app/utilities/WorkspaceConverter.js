@@ -1,28 +1,3 @@
-let components = [
-{
-  id: 0,
-  name: 'BlackBox',
-  children: [],
-  props: {
-    style: {
-      position: 'relative',
-      zIndex: 1,
-    },
-    'zIndex': 'testProp',
-  }
-},
-{
-  id: 1,
-  name: 'BlueBox',
-  children: [],
-  props: {
-    style: {
-      position: 'relative',
-      height: '30px',
-    },
-  }
-}
-]
 class ComponentConverter {
   constructor(component) {
     this.component = component
@@ -40,6 +15,7 @@ class ComponentConverter {
     return `${this.component.name}`
   }
   getStyle(){
+    if(!this.component.props) return
     let style = this.component.props.style
     return JSON.stringify(style)
   }
@@ -77,16 +53,27 @@ class ${this.getClass()} extends Component {
 }
 class WorkspaceConverter {
   constructor(components){
-    this.components = components
+    let childcomps= Object.assign({}, components)
+    delete childcomps['workspace']
+    this.components = this.convertIDtoName(childcomps)
+  }
+  convertIDtoName(components){
+    let converted = Object.keys(components).reduce((acc, id)=>{
+      let newComponent = Object.assign({}, components[id])
+      newComponent.children = components[id].children.map(childID =>{
+        return components[childID].name
+      })
+      acc[id] = newComponent
+      return acc
+    }, {})
+    return converted
   }
   convert(){
-    return this.components.reduce((acc, component)=>{
-      const cc = new ComponentConverter(component)
+    return Object.keys(this.components).reduce((acc, key)=>{
+      const cc = new ComponentConverter(this.components[key])
       acc.push({name: cc.name, code: cc.generateCode()})
       return acc
     }, [])
   }
 }
-// const w = new WorkspaceConverter(components)
-// const converted = w.convert()
 module.exports = WorkspaceConverter

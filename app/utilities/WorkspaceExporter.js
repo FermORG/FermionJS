@@ -3,31 +3,31 @@ const path  = require('path')
 const WorkspaceConverter = require('./WorkspaceConverter')
 const rimraf = require('rimraf')
 
-let components = [
-{
-  id: 0,
-  name: 'BlackBox',
-  children: [],
-  props: {
-    style: {
-      position: 'relative',
-      zIndex: 1,
-    },
-    'zIndex': 'testProp',
-  }
-},
-{
-  id: 1,
-  name: 'BlueBox',
-  children: [],
-  props: {
-    style: {
-      position: 'relative',
-      height: '30px',
-    },
-  }
-}
-]
+// let components = {
+//   0: {
+//     id: 0,
+//     name: 'BlackBox',
+//     children: [1],
+//     props: {
+//       style: {
+//         position: 'relative',
+//         zIndex: 1,
+//       },
+//       'zIndex': 'testProp',
+//     }
+//   },
+//   1: {
+//     id: 1,
+//     name: 'BlueBox',
+//     children: [],
+//     props: {
+//       style: {
+//         position: 'relative',
+//         height: '30px',
+//       },
+//     }
+//   }
+// }
 
 class WorkspaceExporter {
   constructor(targetPath, components){
@@ -75,8 +75,9 @@ class WorkspaceExporter {
     }
   }
 }
-let destinationDir = '/Users/jyamamoto/testFerm/test'
-let wc = new WorkspaceConverter(components)
-let exporter = new WorkspaceExporter(destinationDir, wc.convert())
-exporter.deleteDir()
-exporter.export(components)
+// let destinationDir = '/Users/jyamamoto/testFerm/test'
+// let wc = new WorkspaceConverter(components)
+// let exporter = new WorkspaceExporter(destinationDir, wc.convert())
+// exporter.deleteDir()
+// exporter.export()
+module.exports = WorkspaceExporter

@@ -15,6 +15,8 @@ import Workspace from '../containers/Workspace';
 // Visual component exporter function
 import getVisComponent from './VisComponents/exporter';
 
+import ExportButton from '../containers/ExportButton'
+
 class Core extends Component {
    /* Recursively renders all levels of a nested component
    */
@@ -49,8 +51,7 @@ class Core extends Component {
                   <i className="fa fa-arrow-left" />
                 </Link>
               </div>
-              {/* <h1 className = {`${styles.title} ${coreStyles.title} ${coreStyles.footTitle}`}>Footer</h1> */}
-              <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`}>Export</button>
+              <ExportButton />
             </footer>
           </div>
           <Right />
