@@ -6,6 +6,7 @@ export function dragCollect(connect, monitor) {
 }
 
 export function dropCollect(connect, monitor) {
+  console.log('watdafaq')
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver()

@@ -41,8 +41,8 @@ class Workspace extends Component {
        */
       const componentStyle = {
         ...componentData.props.style,
-        width: '100%',
-        height: '100%'
+        width: `100%`,
+        height: `100%`
       }
 
       /**
@@ -96,7 +96,6 @@ class Workspace extends Component {
     );
   }
 }
-
 
 // Validate props
 Workspace.propTypes = {
