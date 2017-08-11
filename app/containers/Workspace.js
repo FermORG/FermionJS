@@ -23,15 +23,32 @@ class Workspace extends Component {
 
     return componentIDList.map((componentID) => {
       const componentData = allComponents[componentID];
-
-      const [widthInt, heightInt] = [
-        parseInt(componentData.props.style.width.split('%')[0], 10),
-        parseInt(componentData.props.style.height.split('%')[0], 10)
-      ];
-
       const CustomComponent = getVisComponent(componentData.name);
       const children = this.renderDeep(componentData.children);
 
+      /**
+       * Since ResizableBox takes integer width and heights, 
+       * we extract them from the strings suffixed with 'px'
+       */
+      const [widthInt, heightInt] = [
+        parseInt(componentData.props.style.width.split('px')[0], 10),
+        parseInt(componentData.props.style.height.split('px')[0], 10)
+      ];
+
+      /**
+       * Change component width and height to 100% 
+       * Actual width and height gets set on ResizableBox wrapper
+       */
+      const componentStyle = {
+        ...componentData.props.style,
+        width: '100%',
+        height: '100%'
+      }
+
+      /**
+       * Wrap CustomComponent with a ResizableBox and an outer div 
+       * to be prepared to be wrapped again by the drag and drop wrapper
+       */
       const wrappedComponent = (
         <div style={{ display: 'inline-block', margin: '0', padding: '0' }}>
           <ResizableBox
@@ -44,7 +61,7 @@ class Workspace extends Component {
               }
             }
           >
-            <CustomComponent {...componentData.props}>
+            <CustomComponent {...componentData.props} style={componentStyle}>
               { children }
             </CustomComponent>
           </ResizableBox>
