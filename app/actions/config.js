@@ -3,15 +3,15 @@
 
 
 export const ADD_STATE = 'ADD_STATE';
-export const ADD_PROPS = 'ADD PROPS';
-export const ADD_STYLES = 'ADD STYLES';
-export const ADD_EVENTS = 'ADD EVENTS';
-export const CHANGE_STATE = 'CHANGE STATE';
-export const CHANGE_PROPS = 'CHANGE PROPS';
-export const CHANGE_STYLES = 'CHANGE STYLES';
-export const CHANGE_EVENTS = 'CHANGE EVENTS';
+export const ADD_PROPS = 'ADD_PROPS';
+export const ADD_STYLES = 'ADD_STYLES';
+export const ADD_EVENTS = 'ADD_EVENTS';
+export const DELETE_STATE = 'DELETE_STATE';
+export const DELETE_PROPS = 'DELETE_PROPS';
+export const DELETE_STYLES = 'DELETE_STYLES';
+export const DELETE_EVENTS = 'DELETE_EVENTS';
 
-export function addState(aState) {
+export function addState(aState, component) {
   return {
     type: 'ADD_STATE',
     aState,
@@ -42,33 +42,30 @@ export function addEvents(event, component) {
   }
 }
 
-export function changeState(aState) {
+export function deleteState(stateKey, component) {
   return {
-    type: 'CHANGE_STATE',
-    aState,
-  };
+    type: 'DELETE_STATE',
+    propKey: stateKey,
+  }
 }
-
-export function changeProps(prop, component) {
+export function deleteProps(propKey, component) {
   return {
-    type: 'CHANGE_PROPS',
-    prop,
+    type: 'DELETE_PROPS',
+    prop: propKey,
     component
-  };
+  }
 }
-
-export function changeStyles(style, component) {
+export function deleteStyles(styleKey, component) {
   return {
-    type: 'CHANGE_STYLES',
-    style,
+    type: 'DELETE_STYLES',
+    style: styleKey,
     component
-  };
+  }
 }
-
-export function changeEvents(event, component) {
+export function deleteEvents(eventKey, component) {
   return {
-    type: 'CHANGE_EVENTS',
-    event,
+    type: 'DELETE_EVENTS',
+    event: eventKey,
     component
   }
 }

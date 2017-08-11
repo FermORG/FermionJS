@@ -1,83 +1,181 @@
 //@flow
-
-// important note to self: need an active component definition, so go add that to state you cock boi.
 import React, { Component } from 'react';
 import styles from './photon.css';
 import coreStyles from './Core.css';
 import panelStyles from './Panels.css';
-import configOptions from './ConfigOptions';
+import ConfigOption from './ConfigOptions';
+
+ // sends data to the store from config panel;
+function updateStore(e, action, component) {
+  if (e.key === 'Enter' && e.target.value !== '') {
+    const key = e.target.value.trim();
+    if (key === '') return;
+    const newStateObj = {};
+    newStateObj[key] = null;
+    action(newStateObj, (component || null) );
+    e.target.value = '';
+  }
+}
+
+function updateStoreValues(e, action:()=>void, component:string, prop:string) {
+  if (e.key === 'Enter' && e.target.value !== '') {
+    const value = e.target.value.trim();
+    if (value === '') return;
+    const newStateObj = {};
+    newStateObj[prop] = value;
+    action(newStateObj, (component || null) );
+  }
+}
+
+function deleteStoreValues(deleter:()=>void, component:string, propKey:string) {
+  deleter(propKey, component);
+}
+
 
 export class State extends Component {
+  constructor(props) {
+    super(props);
+    this.updateStore = updateStore.bind(this);
+    this.updateStoreValues = updateStoreValues.bind(this);
+    this.deleteStoreValues = deleteStoreValues.bind(this);
+  }
+
   props: {
-    addState : ()=> void,
-    changeState: ()=> void,
+    addState : () => void,
+    deleteState : () => void,
     workspace: {},
   }
   // should return a list built from the current state.
   render(){
-    const { workspace, addState } = this.props;
-    const { state } = this.props.workspace;
+    const { workspace, addState, deleteState } = this.props;
+    const { state, activeComponent } = this.props.workspace;
+
+    const list = Object.keys(state).map((prop) => {
+      return (
+        <ConfigOption
+          key={prop}
+          activeComponent={activeComponent}
+          propKey={prop}
+          value={state[prop]}
+          action = {addState}
+          actionHandler={this.updateStoreValues}
+          deleter={deleteState}
+          onClick={this.deleteStoreValues}
+        />
+      )
+    });
 
     return (
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          onChange={(event) => {
-          console.log(event.target.value);
-          const key = event.target.value;
-          const newVal = {};
-          newVal[key] = null;
-          console.log(newVal);
-          addState(newVal);
-          }}
-          placeholder="new State key..."></input>
+          onKeyPress ={(event) => this.updateStore(event, addState)}
+          placeholder='New State Key...'
+        >
+        </input>
         <hr />
-        {configOptions(state)}
+        {list}
       </div>
     );
   }
 }
 
 export class Props extends Component {
+  constructor(props) {
+    super(props);
+    this.updateStore = updateStore.bind(this);
+    this.updateStoreValues = updateStoreValues.bind(this);
+    this.deleteStoreValues = deleteStoreValues.bind(this);
+  }
+
   props: {
     addProps : ()=> void,
-    changeProps: ()=> void,
+    deleteProps : ()=> void,
     workspace: {},
   }
     // maps over the array of properties for whatever component is selected and returns a list of their names and values.
   render() {
-     const { activeComponent } = this.props.workspace;
-     const Props = this.props.workspace.components[activeComponent].props;
+    const { activeComponent } = this.props.workspace;
+    const { addProps, deleteProps } = this.props;
+    const Props = this.props.workspace.components[activeComponent].props;
+
+    const list = Object.keys(Props).map((prop) => {
+      // prevents prop tab from rendering style.
+      if (prop === 'style') return null;
+      return (
+        <ConfigOption
+          key={prop}
+          activeComponent={activeComponent}
+          propKey={prop}
+          value={Props[prop]}
+          action = {addProps}
+          deleter={deleteProps}
+          actionHandler={this.updateStoreValues}
+          onClick={this.deleteStoreValues}
+        />
+      )
+    });
+
     return (
-      <div className = {panelStyles.container}>
-        <div className={`${styles['form-group']}`}>
-          <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Prop: Value..."></input>
-          <hr />
-        </div>
-        {configOptions(Props)}
+      <div className={`${styles['form-group']}`}>
+        <input
+          className={`${styles['form-control']} ${coreStyles.input}`}
+          placeholder="new Prop Key..."
+          onKeyPress ={(event) => this.updateStore(event, addProps, activeComponent)}
+        >
+        </input>
+        <hr />
+        {list}
       </div>
     );
   }
 }
 
-//should return controls to adjust predetermined styles.
-    // bg color, color, margins, padding, display, font size maybe more
-
 export class Styles extends Component {
+  constructor(props) {
+    super(props);
+    this.updateStore = updateStore.bind(this);
+    this.updateStoreValues = updateStoreValues.bind(this);
+    this.deleteStoreValues = deleteStoreValues.bind(this);
+  }
+
   props: {
     addStyles : ()=> void,
-    changeStyles: ()=> void,
+    deleteStyles : ()=> void,
     workspace: {},
   }
+
   render(){
     const { activeComponent } = this.props.workspace;
+    const { addStyles, deleteStyles } = this.props;
     const style = this.props.workspace.components[activeComponent].props.style;
+
+    const list = Object.keys(style).map((prop) => {
+      return (
+        <ConfigOption
+          key={prop}
+          activeComponent={activeComponent}
+          propKey={prop}
+          value={style[prop]}
+          action = {addStyles}
+          actionHandler={this.updateStoreValues}
+          deleter={deleteStyles}
+          onClick={this.deleteStoreValues}
+        />
+      )
+    });
+
     return (
       <div className={`${styles['form-group']}`}>
-      <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Styles..."></input>
-      <hr />
-      {configOptions(style)}
-    </div>
+        <input
+          className={`${styles['form-control']} ${coreStyles.input}`}
+          placeholder="new Styles..."
+          onKeyPress ={(event) => this.updateStore(event, addStyles, activeComponent)}
+        >
+        </input>
+        <hr />
+        {list}
+      </div>
   );
   }
 
@@ -85,36 +183,49 @@ export class Styles extends Component {
 //should return a list of event handlers that can be applied to the app.
 // should be able to insert some custom code for that event handler.
 export class Events extends Component {
+  constructor(props) {
+    super(props);
+    this.updateStore = updateStore.bind(this);
+    this.updateStoreValues = updateStoreValues.bind(this);
+    this.deleteStoreValues = deleteStoreValues.bind(this);
+  }
   props: {
     addEvents : ()=> void,
-    changeEvents: ()=> void,
+    deleteEvents : ()=> void,
     workspace: {},
   }
+
   render() {
     const { activeComponent } = this.props.workspace;
+    const { addEvents, deleteEvents } = this.props;
     const events = this.props.workspace.components[activeComponent].events;
+
+    const list = Object.keys(events).map((prop) => {
+      return (
+        <ConfigOption
+          key={prop}
+          activeComponent={activeComponent}
+          propKey={prop}
+          value={events[prop]}
+          action = {addEvents}
+          deleter={deleteEvents}
+          actionHandler={this.updateStoreValues}
+          onClick={this.deleteStoreValues}
+        />
+      )
+    });
+
     return (
       <div className={`${styles['form-group']}`}>
-      <input className={`${styles['form-control']} ${coreStyles.input}`} placeholder="new Event Handler..."></input>
-      <hr />
-      {configOptions(events)}
-    </div>
+        <input
+          className={`${styles['form-control']} ${coreStyles.input}`}
+          placeholder="new Event Handler..."
+          onKeyPress ={(event) => this.updateStore(event, addEvents, activeComponent)}
+        >
+        </input>
+        <hr />
+        {list}
+      </div>
     );
   }
 }
-
-// const testAry = [{'Prop 1': 'Red'}, {'Prop 2': 6}, {'Prop 3': 'true'}, {'Prop 4': '6'}];
-//
-// const list = testAry.map((component) => {
-//     // grabs key from array of props. function may need to be updated to work with live data.
-//   const key = Object.keys(component)[0];
-//   return (
-//     <li key={key} className={`${styles["list-group-item"]}  ${panelStyles.list}`}>
-//       {/* <strong>{`${key} : ${component[key]}`}</strong> */}
-//       <input className={`${panelStyles.editField}`} defaultValue={`${key}`}></input>
-//       <strong> : </strong>
-//       <input className={`${panelStyles.editField}`} defaultValue={`${component[key]}`}></input>
-//       <div className={`${panelStyles.deleteKey}`}>X</div>
-//     </li>
-//   );
-// });

@@ -1,12 +1,17 @@
 import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD } from '../../actions/workspace';
-/* ADDING CONFIG ACTIONS: */
-import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, CHANGE_STATE, CHANGE_PROPS, CHANGE_STYLES, CHANGE_EVENTS } from '../../actions/config';
-/* ACA */
+import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 import removeComponent from './removeComponent';
 import moveChild from './moveChild';
 import addStateValue from './addStateValue';
+import addPropsValue from './addPropsValue';
+import addStyleValue from './addStyleValue';
+import addEvent from './addEvent';
+import deleteStateValue from './deleteStateValue';
+import deletePropsValue from './deletePropsValue';
+import deleteStylesValue from './deleteStylesValue';
+import deleteEvent from './deleteEvent';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -18,9 +23,7 @@ const defaultWorkspace = {
       children: [0, 1],
     },
   },
-  state: {
-    'blue': 'waffle',
-  },
+  state: {},
 };
 
 defaultWorkspace.components[0] = {
@@ -86,25 +89,25 @@ export default function workspace(state = defaultWorkspace, action) {
       return addStateValue(state, action.aState);
 
     case ADD_PROPS:
-      return state;
+      return addPropsValue(state, action.prop, action.component);
 
     case ADD_STYLES:
-      return state;
+      return addStyleValue(state, action.style, action.component);
 
     case ADD_EVENTS:
-      return state;
+      return addEvent(state, action.event, action.component);
 
-    case CHANGE_STATE:
-      return state;
+    case DELETE_STATE:
+      return deleteStateValue(state, action.propKey);
 
-    case CHANGE_PROPS:
-      return state;
+    case DELETE_PROPS:
+      return deletePropsValue(state, action.prop, action.component);
 
-    case CHANGE_STYLES:
-      return state;
+    case DELETE_STYLES:
+      return deleteStylesValue(state, action.style, action.component);
 
-    case CHANGE_EVENTS:
-        return state;
+    case DELETE_EVENTS:
+      return deleteEvent(state, action.event, action.component);
 
     default:
       return state;
