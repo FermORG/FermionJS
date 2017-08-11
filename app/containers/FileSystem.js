@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import FileSystem from '../components/FileSystem';
-import * as ConfigActions from '../actions/config';
+import * as FileSystemActions from '../actions/FileSystemActions';
 
 function mapStateToProps(state) {
   return {
@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ConfigActions, dispatch);
+  return bindActionCreators(FileSystemActions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FileSystem);

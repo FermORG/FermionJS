@@ -1,7 +1,5 @@
 // @flow
 // config actions
-
-
 export const ADD_STATE = 'ADD_STATE';
 export const ADD_PROPS = 'ADD_PROPS';
 export const ADD_STYLES = 'ADD_STYLES';

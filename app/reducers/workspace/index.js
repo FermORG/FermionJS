@@ -1,5 +1,6 @@
 import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD } from '../../actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
+import { SET_ACTIVE_COMPONENT} from '../../actions/FileSystemActions';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 import removeComponent from './removeComponent';
@@ -12,6 +13,7 @@ import deleteStateValue from './deleteStateValue';
 import deletePropsValue from './deletePropsValue';
 import deleteStylesValue from './deleteStylesValue';
 import deleteEvent from './deleteEvent';
+import setActiveComponent from './setActiveComponent';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -108,6 +110,9 @@ export default function workspace(state = defaultWorkspace, action) {
 
     case DELETE_EVENTS:
       return deleteEvent(state, action.event, action.component);
+
+    case SET_ACTIVE_COMPONENT:
+      return setActiveComponent(state, action.component);
 
     default:
       return state;
