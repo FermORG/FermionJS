@@ -40,7 +40,7 @@ class WorkspaceExporter {
       this.components.forEach(component =>{
         let compDir = path.join(this.targetPath, component.fileName)
         fs.mkdirSync(compDir)
-        let fPath = path.join(compDir, component.fileName)
+        let fPath = path.join(compDir, component.fileName + component.ext)
         fs.writeFileSync(fPath, component.code)
       })
     } catch(e){
