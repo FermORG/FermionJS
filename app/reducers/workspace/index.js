@@ -1,8 +1,16 @@
-import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD } from '../../actions/workspace';
+import {
+  ADD_CHILD,
+  REMOVE_CHILD,
+  MOVE_CHILD,
+  DELETE_CHILD,
+  UPDATE_STYLE
+} from '../../actions/workspace';
+
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 import removeComponent from './removeComponent';
 import moveChild from './moveChild';
+import updateStyle from './updateStyle';
 
 // /// TEST DATA /////
 
@@ -68,6 +76,8 @@ export default function workspace(state = defaultWorkspace, action) {
       return removeComponent(state, action);
     case MOVE_CHILD:
       return moveChild(state, action);
+    case UPDATE_STYLE:
+      return updateStyle(state, action);
     default:
       return state;
   }

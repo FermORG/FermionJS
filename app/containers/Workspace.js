@@ -25,8 +25,8 @@ class Workspace extends Component {
       const componentData = allComponents[componentID];
 
       const [widthInt, heightInt] = [
-        parseInt(componentData.props.style.width.split('px')[0], 10),
-        parseInt(componentData.props.style.height.split('px')[0], 10)
+        parseInt(componentData.props.style.width.split('%')[0], 10),
+        parseInt(componentData.props.style.height.split('%')[0], 10)
       ];
 
       const CustomComponent = getVisComponent(componentData.name);
@@ -39,7 +39,7 @@ class Workspace extends Component {
             height={heightInt}
             onResizeStop={
               (e, data) => {
-                const [newWidth, newHeight] = [data.size.width, data.size.height];
+                const [newWidth, newHeight] = [`${data.size.width}px`, `${data.size.height}px`];
                 this.props.updateStyle(componentData.id, { width: newWidth, height: newHeight });
               }
             }
