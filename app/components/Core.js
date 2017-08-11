@@ -104,6 +104,7 @@ class Core extends Component {
                   <i className="fa fa-arrow-left" />
                 </Link>
               </div>
+              <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show':'Hide'} Editor</button>
               <ExportButton />
             </footer>
           </div>
