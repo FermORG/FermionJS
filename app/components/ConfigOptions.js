@@ -14,7 +14,6 @@ export default function ConfigOption(props) {
       <strong> : </strong>
       <input
         className={`${panelStyles.editField}`}
-        // defaultValue={`${value}`}
         placeholder={`${value}`}
         onKeyPress={(event)=> actionHandler(event, action, activeComponent, propKey)}
       >

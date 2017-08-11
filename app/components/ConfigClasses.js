@@ -1,5 +1,4 @@
 //@flow
-
 import React, { Component } from 'react';
 import styles from './photon.css';
 import coreStyles from './Core.css';
@@ -26,8 +25,11 @@ function updateStoreValues(e, action, component, prop) {
     newStateObj[prop] = value;
     console.log(newStateObj);
     action(newStateObj, (component || null) );
-    // e.target.value = '';
   }
+}
+
+function deleteStoreValue() {
+  // should send back a full copy of whatever is being deleted - state, props, styles, events. NOT JUST A STUB. OR: can send back a snub and the business logic can happen in the reducer, but that may be unnecessary.
 }
 
 
