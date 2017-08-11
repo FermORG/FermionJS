@@ -1,7 +1,26 @@
 const PAD_LENGTH = 3
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
+if (!String.prototype.padStart) {
+  String.prototype.padStart = function padStart(targetLength,padString) {
+    targetLength = targetLength>>0; //floor if number or convert non-number to 0;
+    padString = String(padString || ' ');
+    if (this.length > targetLength) {
+      return String(this);
+    }
+    else {
+      targetLength = targetLength-this.length;
+      if (targetLength > padString.length) {
+        padString += padString.repeat(targetLength/padString.length); //append to original to ensure we are longer than needed
+      }
+      return padString.slice(0,targetLength) + String(this);
+    }
+  };
+}
 const padName = (name, id) =>{
   return `${name}_${id.padStart(PAD_LENGTH, '0')}`
 }
+
 class ComponentConverter {
   constructor(component) {
     this.component = component
@@ -17,9 +36,16 @@ class ComponentConverter {
   }
   getImports(){
     return this.component.childrenFileNames.reduce((final, childFile )=>{
-      final += `import ${childFile} from './${childFile}'` + "\n"
+      final += `import ${childFile} from '../${childFile}/${childFile}'` + "\n"
       return final
     }, '')
+  }
+  getChildren(){
+    return this.component.childrenFileNames.reduce((final, childFile )=>{
+      final += `<${childFile} /> `
+      return final
+    }, '')
+
   }
   getClass(){
     return `${this.component.name}`
@@ -53,10 +79,11 @@ class ${this.getClass()} extends Component {
     style={divStyle}
     ${this.getProps()}
    >
-    {children}
+   ${this.getChildren()}
   </div>
   }
 }
+export default ${this.getClass()}
 `
     )
   }
