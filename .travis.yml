@@ -31,12 +31,13 @@ install:
 
 before_script:
   - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start &
+  # - sh -e /etc/init.d/xvfb start &
   - sleep 3
 
 script:
   - node --version
-  - yarn lint
-  - yarn package
-  - yarn test
-  - yarn test-e2e
+  - echo hello
+  # - yarn lint
+  # - yarn package
+  # - yarn test
+  # - yarn test-e2e
