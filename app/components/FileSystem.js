@@ -30,6 +30,15 @@ class FileTree extends Component {
       treeData: this.getInitial()
     });
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   const curr = this.props.workspace.components.workspace.children.length;
+  //   const next = nextProps.workspace.components.workspace.children.length
+  //   console.log('CUR: ', this.props.workspace.components.workspace.children.length);
+  //   console.log('NEXT: ', nextProps.workspace.components.workspace.children.length);
+  //   return curr === next;
+  // }
+
   getInitial(){
     const treeStructure = this.props.workspace.components.workspace;
     const treeComponents = this.props.workspace.components;
@@ -61,14 +70,22 @@ class FileTree extends Component {
       }
       return childrenArrayFinal;
     }
-
     return treeData;
   }
     //changes activeComponent
-  handleClick (component) {
+  handleClick (e,component) {
     this.props.setActiveComponent(component);
   }
   render() {
+    // console.log('FS PROPS: ', this.props.workspace);
+    // console.log('TD: ', this.state.treeData);
+    // const components = this.props.workspace.components;
+
+    // const toRender = Object.keys(components).map((component)=>{
+    //     if (component === 'workspace')
+    // })
+
+    const treeData = this.getInitial();
     const treeDataFetch = this.state.treeData;
     const getData = this.props.workspace;
     return (
@@ -76,6 +93,7 @@ class FileTree extends Component {
         <SortableTreeWithoutDndContext
           treeDataRedux={getData}
           treeData={this.state.treeData}
+          // treeData={treeData}
           canDrag={false}
           onChange={(treeDataRedux)=>{ this.setState({ treeData: treeDataRedux }) }}
           handleClick={this.handleClick}

@@ -27,6 +27,8 @@ class NodeRendererDefault extends Component {
       className,
       style,
       didDrop,
+      handleClick,
+      // storeID,
       /* eslint-disable no-unused-vars */
       isOver: _isOver, // Not needed, but preserved for other renderers
       parentNode: _parentNode, // Needed for drag-and-drop utils
@@ -37,36 +39,6 @@ class NodeRendererDefault extends Component {
     } = this.props;
 
     let handle;
-    // if (canDrag) {
-    //   if (typeof node.children === 'function' && node.expanded) {
-    //     // Show a loading symbol on the handle when the children are expanded
-    //     //  and yet still defined by a function (a callback to fetch the children)
-    //     // handle = (
-    //     //   <div className={styles.loadingHandle}>
-    //     //     <div className={styles.loadingCircle}>
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //     </div>
-    //     //   </div>
-    //     // );
-    //   } else {
-    //     // Show the handle used to initiate a drag-and-drop
-    //     // find a way to move this to be encapsulating the entire element, not the shitty little gay drag handle.
-    //     handle = connectDragSource(<div className={styles.moveHandle} />, {
-    //       dropEffect: 'copy',
-    //     });
-    //   }
-    // }
 
     const isDraggedDescendant = draggedNode && isDescendant(draggedNode, node);
     const isLandingPadActive = !didDrop && isDragging;
@@ -95,12 +67,6 @@ class NodeRendererDefault extends Component {
               <i className = {`${ node.expanded ? styles.colArrow : styles.expArrow} fa fa-caret-right`}></i>
             </button>
 
-            {/* {node.expanded &&
-              !isDragging &&
-              <div
-                style={{ width: scaffoldBlockPxWidth }}
-                className={styles.lineChildren}
-            />} */}
            </div>}
 
         <div className={styles.rowWrapper}>
@@ -123,12 +89,12 @@ class NodeRendererDefault extends Component {
               }}
             >
               {/* {handle} */}
-
               <div
                 className={
                   styles.rowContents +
                   (!canDrag ? ` ${styles.rowContentsDragDisabled}` : '')
                 }
+                onClick={(e)=>{handleClick(e, String('0'))}}
               >
                 <div className={styles.rowLabel}>
                   {connectDragSource(<span

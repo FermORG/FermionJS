@@ -16,7 +16,7 @@ function updateStore(e, action, component) {
     e.target.value = '';
   }
 }
-
+  // updates values associated with props, styles, etc.
 function updateStoreValues(e, action:()=>void, component:string, prop:string) {
   if (e.key === 'Enter' && e.target.value !== '') {
     const value = e.target.value.trim();
@@ -26,7 +26,7 @@ function updateStoreValues(e, action:()=>void, component:string, prop:string) {
     action(newStateObj, (component || null) );
   }
 }
-
+  // removes a key value pair from props, styles, etc.
 function deleteStoreValues(deleter:()=>void, component:string, propKey:string) {
   deleter(propKey, component);
 }

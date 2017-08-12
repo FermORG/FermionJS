@@ -86,6 +86,11 @@ class ReactSortableTree extends Component {
     this.getInitial = this.getInitial.bind(this);
   }
 
+  shouldComponentUpdate(){
+    console.log('i was called');
+    return true;
+  }
+
   componentWillMount() {
     this.loadLazyChildren();
     this.search(this.props, false, false);
@@ -427,7 +432,7 @@ class ReactSortableTree extends Component {
         swapDepth={this.state.swapDepth}
         maxDepth={maxDepth}
         dragHover={this.dragHover}
-        onClick={this.props.handleClick}
+        // onClick={this.props.handleClick}
       >
         <NodeContentRenderer
           node={node}
@@ -441,6 +446,7 @@ class ReactSortableTree extends Component {
           canDrag={rowCanDrag}
           toggleChildrenVisibility={this.toggleChildrenVisibility}
           scaffoldBlockPxWidth={scaffoldBlockPxWidth}
+          handleClick={this.props.handleClick}
           {...nodeProps}
         />
       </TreeNodeRenderer>
@@ -448,6 +454,7 @@ class ReactSortableTree extends Component {
   }
 
   render() {
+    console.log('RST: ',this.props);
     const {
       style,
       className,
