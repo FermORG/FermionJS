@@ -119,13 +119,8 @@ class ReactSortableTree extends Component {
     }
   }
   getInitial(){
-    console.log('RSTP: ', this.props);
-    console.log("inside getInitial");
-    console.log(this.props.treeDataRedux)
     const treeStructure = this.props.treeDataRedux.components.workspace;
-    console.log("this is treeStructure:", treeStructure)
     const treeComponents = this.props.treeDataRedux.components;
-    console.log("this is tree Components", treeComponents)
     const treeData = [getTreeData(treeStructure)];
     function getTreeData(workspaceTree){
         return {
@@ -135,7 +130,6 @@ class ReactSortableTree extends Component {
     }
 
     function getChildrenData(childrenArray){
-      console.log(childrenArray);
       const childrenArrayFinal = [];
       for (let i=0; i<childrenArray.length; i++){
         const currComponent = treeComponents[childrenArray[i]]
@@ -154,7 +148,6 @@ class ReactSortableTree extends Component {
       }
       return childrenArrayFinal;
     }
-    console.log(treeData);
     return treeData;
   }
 
@@ -545,7 +538,6 @@ class ReactSortableTree extends Component {
   }
 }
 function mapStateToProps(state){
-  console.log("inside mapstate")
   return {
     workspace: state.workspace
   }
