@@ -1,4 +1,4 @@
-import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD } from '../../actions/workspace';
+import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD, UPDATE_STYLE } from '../../actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
 import { SET_ACTIVE_COMPONENT} from '../../actions/FileSystemActions';
 import { WORKSPACE_ID } from './../../constants';
@@ -14,6 +14,7 @@ import deletePropsValue from './deletePropsValue';
 import deleteStylesValue from './deleteStylesValue';
 import deleteEvent from './deleteEvent';
 import setActiveComponent from './setActiveComponent';
+import updateStyle from './updateStyle';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -40,9 +41,7 @@ defaultWorkspace.components[0] = {
       width: '100px',
       display: 'inline-block',
       backgroundColor: 'black',
-      resize: 'both',
       overflow: 'auto',
-      zIndex: 1,
     },
     'zIndex': 'testProp',
   },
@@ -57,13 +56,11 @@ defaultWorkspace.components[1] = {
   props: {
     style: {
       position: 'relative',
-      height: '30px',
-      width: '30px',
+      height: '100px',
+      width: '100px',
       display: 'inline-block',
       backgroundColor: 'blue',
-      resize: 'both',
       overflow: 'auto',
-      zIndex: 2,
     },
   },
   events: { test: 'event test =]' }
@@ -114,6 +111,8 @@ export default function workspace(state = defaultWorkspace, action) {
     case SET_ACTIVE_COMPONENT:
       return setActiveComponent(state, action.component);
 
+    case UPDATE_STYLE:
+      return updateStyle(state, action);
     default:
       return state;
   }
