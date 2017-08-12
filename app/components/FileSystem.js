@@ -16,9 +16,7 @@ class FileTree extends Component {
   getInitialState(){
     const treeStructure = this.props.workspace.components.workspace;
     const treeComponents = this.props.workspace.components;
-    console.log(this.props.workspace);
     const treeData = [getTreeData(treeStructure)];
-    console.log(treeStructure);
 
     function getTreeData(workspaceTree){
         return {
@@ -46,7 +44,6 @@ class FileTree extends Component {
       }
       return childrenArrayFinal;
     }
-    console.log(treeData);
     return { treeData };
 
 

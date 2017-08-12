@@ -47,7 +47,9 @@ a:hover {
 
 .react-resizable {
   position: relative;
+  display: inline-block;
 }
+
 .react-resizable-handle {
   position: absolute;
   width: 20px;

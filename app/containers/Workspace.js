@@ -27,15 +27,6 @@ class Workspace extends Component {
       const children = this.renderDeep(componentData.children);
 
       /**
-       * Since ResizableBox takes integer width and heights, 
-       * we extract them from the strings suffixed with 'px'
-       */
-      const [widthInt, heightInt] = [
-        parseInt(componentData.props.style.width.split('px')[0], 10),
-        parseInt(componentData.props.style.height.split('px')[0], 10)
-      ];
-
-      /**
        * Change component width and height to 100% 
        * Actual width and height gets set on ResizableBox wrapper
        */
@@ -49,33 +40,44 @@ class Workspace extends Component {
        * Wrap CustomComponent with a ResizableBox and an outer div 
        * to be prepared to be wrapped again by the drag and drop wrapper
        */
-      const wrappedComponent = (
-        <div style={{ display: 'inline-block', margin: '0', padding: '0' }}>
-          <ResizableBox
-            width={widthInt}
-            height={heightInt}
-            onResizeStop={
-              (e, data) => {
-                const [newWidth, newHeight] = [`${data.size.width}px`, `${data.size.height}px`];
-                this.props.updateStyle(componentData.id, { width: newWidth, height: newHeight });
-              }
-            }
-          >
-            <CustomComponent {...componentData.props} style={componentStyle}>
-              { children }
-            </CustomComponent>
-          </ResizableBox>
+      const DivWrappedComponent = (
+        <div id="divwrappedcomp" style={{
+           width: '100%', height: '100%', display: 'inline-block', margin: '0', padding: '0'
+        }}>
+          <CustomComponent {...componentData.props} style={componentStyle}>
+            { children }
+          </CustomComponent>
         </div>
       );
 
-      const DndComponent = dndComponentWrapper(wrappedComponent);
+      const DndComponent = dndComponentWrapper(DivWrappedComponent);
+
+      /**
+       * Since ResizableBox takes integer width and heights, 
+       * we extract them from the strings suffixed with 'px'
+       */
+      const [widthInt, heightInt] = [
+        parseInt(componentData.props.style.width.split('px')[0], 10),
+        parseInt(componentData.props.style.height.split('px')[0], 10)
+      ];
 
       return (
-        <DndComponent
-          id={componentData.id}
-          moveChild={this.props.moveChild}
+        <ResizableBox
+          width={widthInt}
+          height={heightInt}
           key={componentData.id}
-        />
+          onResizeStop={
+            (e, data) => {
+              const [newWidth, newHeight] = [`${data.size.width}px`, `${data.size.height}px`];
+              this.props.updateStyle(componentData.id, { width: newWidth, height: newHeight });
+            }
+          }
+        >
+          <DndComponent
+            id={componentData.id}
+            moveChild={this.props.moveChild}
+          />
+        </ResizableBox>
       );
     });
   }
