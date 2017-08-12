@@ -72,8 +72,6 @@ class FileTree extends Component {
   render() {
     const treeDataFetch = this.state.treeData;
     const getData = this.props.workspace;
-    console.log("hello")
-    console.log("Get Data: ", getData)
     return (
       <div style={{ height: '100%' }}>
         <SortableTreeWithoutDndContext
