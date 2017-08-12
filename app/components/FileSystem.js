@@ -17,8 +17,14 @@ class FileTree extends Component {
     }
     this.getInitial = this.getInitial.bind(this);
     this.getUpdate = this.getUpdate.bind(this);
-
+    this.handleClick = this.handleClick.bind(this);
   }
+  // for flow
+  props: {
+    workspace: {},
+    setActiveComponent: ()=> void,
+  };
+
   getUpdate(){
     this.setState({
       treeData: this.getInitial()
@@ -59,6 +65,10 @@ class FileTree extends Component {
     console.log(treeData);
     return treeData;
   }
+    //changes activeComponent
+  handleClick (component) {
+    this.props.setActiveComponent(component);
+  }
   render() {
     const treeDataFetch = this.state.treeData;
     const getData = this.props.workspace;
@@ -71,6 +81,7 @@ class FileTree extends Component {
           treeData={this.state.treeData}
           canDrag={false}
           onChange={(treeDataRedux)=>{ this.setState({ treeData: treeDataRedux }) }}
+          handleClick={this.handleClick}
         />
         <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.getUpdate}>Update</button>
       </div>

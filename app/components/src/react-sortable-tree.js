@@ -119,6 +119,7 @@ class ReactSortableTree extends Component {
     }
   }
   getInitial(){
+    console.log('RSTP: ', this.props);
     console.log("inside getInitial");
     console.log(this.props.treeDataRedux)
     const treeStructure = this.props.treeDataRedux.components.workspace;
@@ -433,6 +434,7 @@ class ReactSortableTree extends Component {
         swapDepth={this.state.swapDepth}
         maxDepth={maxDepth}
         dragHover={this.dragHover}
+        onClick={this.props.handleClick}
       >
         <NodeContentRenderer
           node={node}
@@ -672,5 +674,3 @@ ReactSortableTree.defaultProps = {
 export default connect(mapStateToProps)(dndWrapRoot(ReactSortableTree));
 
 export { ReactSortableTree as SortableTreeWithoutDndContext };
-
-

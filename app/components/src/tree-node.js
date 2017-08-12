@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import styles from './tree-node.scss';
 
 class TreeNode extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
   render() {
+    console.log(this.props);
     const {
       children,
       listIndex,
@@ -126,6 +132,7 @@ class TreeNode extends Component {
         <div
           className={styles.nodeContent}
           style={{ left: scaffoldBlockPxWidth * scaffoldBlockCount }}
+          onClick={()=>{this.props.onClick(String(this.props.treeIndex - 1))}}
         >
           {Children.map(children, child =>
             cloneElement(child, {
