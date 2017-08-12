@@ -2,7 +2,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Styles } from '../components/ConfigClasses';
 import * as ConfigActions from '../actions/config';
-
 function mapStateToProps(state) {
   return {
     workspace: state.workspace,
