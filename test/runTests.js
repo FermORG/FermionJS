@@ -8,4 +8,5 @@ const pattern = process.argv[2] === 'e2e'
 
 const result = spawn.sync(path.normalize('./node_modules/.bin/jest'), [pattern], { stdio: 'inherit' });
 
+// console.log('resut',result)
 process.exit(result.status);
