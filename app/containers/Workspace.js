@@ -42,9 +42,10 @@ class Workspace extends Component {
        * to be prepared to be wrapped again by the drag and drop wrapper
        */
       const DivWrappedComponent = (
-        <div id="divwrappedcomp" style={{
-           width: '100%', height: '100%', display: 'inline-block', margin: '0', padding: '0'
-        }}>
+        <div 
+          id="divwrappedcomp"
+          style={{ width: '100%', height: '100%', display: 'inline-block', margin: '0', padding: '0'}}
+        >
           <CustomComponent {...componentData.props} style={componentStyle}>
             { children }
           </CustomComponent>
@@ -67,7 +68,10 @@ class Workspace extends Component {
           width={widthInt}
           height={heightInt}
           key={componentData.id}
-          onClick={() => this.props.setActiveComponent(componentData.id.toString())}
+          onClick={(e) => {
+            e.stopPropagation();
+            this.props.setActiveComponent(componentData.id.toString());
+          }}
           onResizeStop={
             (e, data) => {
               const [newWidth, newHeight] = [`${data.size.width}px`, `${data.size.height}px`];
