@@ -9,7 +9,6 @@ class TreeNode extends Component {
   }
 
   render() {
-    console.log(this.props);
     const {
       children,
       listIndex,

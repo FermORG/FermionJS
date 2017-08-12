@@ -20,9 +20,7 @@ class ExportButton extends Component {
       let exporter = new WorkspaceExporter(destinationDir, wc.convert())
       exporter.deleteDir()
       exporter.export()
-      console.log('successful export to:', destinationDir)
     } catch(e) {
-      console.log(e)
     }
   }
   render() {

@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+
 import { ResizableBox } from 'react-resizable';
 import { WORKSPACE_ID } from './../constants';
 import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
+import { setActiveComponent } from '../actions/FileSystemActions';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
@@ -65,6 +67,7 @@ class Workspace extends Component {
           width={widthInt}
           height={heightInt}
           key={componentData.id}
+          onClick={() => this.props.setActiveComponent(componentData.id.toString())}
           onResizeStop={
             (e, data) => {
               const [newWidth, newHeight] = [`${data.size.width}px`, `${data.size.height}px`];
@@ -109,8 +112,9 @@ function mapStateToProps(state) {
   };
 }
 
+const actionCreators = { addChild, removeChild, moveChild, updateStyle, setActiveComponent };
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addChild, removeChild, moveChild, updateStyle }, dispatch);
+  return bindActionCreators(actionCreators, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Workspace);

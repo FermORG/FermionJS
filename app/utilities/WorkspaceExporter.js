@@ -13,7 +13,6 @@ class WorkspaceExporter {
     try {
       fs.mkdirSync(targetPath)
     } catch (e){
-      console.log(e)
       throw new Error(`cannot make dir: ${targetPath} ${e}`)
     }
   }
@@ -22,7 +21,6 @@ class WorkspaceExporter {
     try {
       rimraf.sync(targetPath)
     } catch (e){
-      console.log(e)
       throw new Error(`cannot delete dir: ${targetPath} ${e}`)
     }
   }
@@ -30,7 +28,6 @@ class WorkspaceExporter {
     try {
       fs.writeFileSync(fPath, 'hello');
     } catch (e) {
-      console.log(e)
       throw new Error(`saving resource failed: ${e}`);
     }
   }
@@ -44,7 +41,6 @@ class WorkspaceExporter {
         fs.writeFileSync(fPath, component.code)
       })
     } catch(e){
-      console.log(e)
       throw new Error(`exporting failed: ${e}`)
     }
   }
