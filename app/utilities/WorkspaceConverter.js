@@ -1,4 +1,6 @@
 const PAD_LENGTH = 3
+const WORKSPACE_ID = 'workspace'
+const TOP_LEVEL_NAME = 'App'
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 if (!String.prototype.padStart) {
@@ -29,6 +31,9 @@ class ComponentConverter {
     return '.js'
   }
   get fileName(){
+    if (this.component.id === WORKSPACE_ID){
+      return TOP_LEVEL_NAME
+    }
     return padName(this.component.name, this.component.id.toString()) 
   }
   get id(){
@@ -90,9 +95,9 @@ export default ${this.getClass()}
 }
 class WorkspaceConverter {
   constructor(components){
-    let childcomps= Object.assign({}, components)
-    delete childcomps['workspace']
-    this.components = this.convertChildIDtoFileName(childcomps)
+    let comps= Object.assign({}, components)
+    comps[WORKSPACE_ID].name = TOP_LEVEL_NAME
+    this.components = this.convertChildIDtoFileName(comps)
   }
   convertChildIDtoFileName(components){
     let converted = Object.keys(components).reduce((acc, id)=>{
