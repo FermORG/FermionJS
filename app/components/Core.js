@@ -76,7 +76,6 @@ class Core extends Component {
             <Left drag={this.dragComponent} />
             <div className={`${styles.pane} ${coreStyles.main}`}>
               <header className={`${coreStyles.footer}`}>
-              {/* ${coreStyles.header}`}> */}
                 <h1 className={`${styles.title} ${coreStyles.title}`}>Web View</h1>
               </header>
               <div  data-tid="AppContainer">
@@ -84,7 +83,6 @@ class Core extends Component {
                   hideEditor={this.state.hideEditor}
                 />
               </div>
-
               <div className={`${this.state.hideEditor ? coreStyles.hideEditor : ''} ${coreStyles.pads}`}>
                 <form data-tid="textEditor">
                   <div className={`${coreStyles.ace}`}>
