@@ -5,10 +5,10 @@ import { dropTarget } from './specification';
 import { dropCollect } from './collectors';
 import coreStyles from '../components/Core.css';
 // Connect and wrap
-export default function (Workspace) {
+export default function (Workspace, hideEditor) {
   const divWrappedWorkspace = (
     <div
-      className={coreStyles.workspace}
+      className={` ${hideEditor ? coreStyles.workspace : coreStyles.showEditor}`}
     >
       <Workspace />
     </div>

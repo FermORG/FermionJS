@@ -75,22 +75,26 @@ class Core extends Component {
           <div className={styles['pane-group']}>
             <Left drag={this.dragComponent} />
             <div className={`${styles.pane} ${coreStyles.main}`}>
-              <header className={`${coreStyles.footer} ${coreStyles.header}`}>
+              <header className={`${coreStyles.footer}`}>
+              {/* ${coreStyles.header}`}> */}
                 <h1 className={`${styles.title} ${coreStyles.title}`}>Web View</h1>
               </header>
-              <div className={coreStyles.pads} data-tid="AppContainer">
-                <Workspace />
+              <div  data-tid="AppContainer">
+                <Workspace
+                  hideEditor={this.state.hideEditor}
+                />
               </div>
 
               <div className={`${this.state.hideEditor ? coreStyles.hideEditor : ''} ${coreStyles.pads}`}>
                 <form data-tid="textEditor">
                   <div className={`${coreStyles.ace}`}>
                     <AceEditor
-                      className={`${coreStyles.footer} ${coreStyles.header}`}
+                      className={`${coreStyles.footer}`}
                       mode="javascript"
                       theme="twilight"
                       onChange={this.onChanges}
-                      name="UNIQUE_ID_OF_DIV"
+                      name="editorInterior"
+                      style={{width: '100%', margin:'none'}}
                       editorProps={{ $blockScrolling: true }}
                     />
                   </div>

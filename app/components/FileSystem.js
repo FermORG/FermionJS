@@ -42,9 +42,7 @@ class FileTree extends Component {
   getInitial() {
     const treeStructure = this.props.workspace.components.workspace;
     const treeComponents = this.props.workspace.components;
-    // console.log('treeComponents: ', treeComponents);
     const treeData = [getTreeData(treeStructure)];
-    // console.log('getTD: ', treeData);
     function getTreeData(workspaceTree) {
       return {
         title: 'app',
@@ -59,7 +57,6 @@ class FileTree extends Component {
       for (let i = 0; i < childrenArray.length; i++) {
         const currComponent = treeComponents[childrenArray[i]];
         const currComponentChildren = currComponent.children;
-        // console.log('C: ',currComponent);
         if (currComponentChildren.length !== 0) {
           childrenArrayFinal.push({
             title: currComponent.name,
@@ -95,7 +92,6 @@ class FileTree extends Component {
           onChange={(treeDataRedux) => this.setState({ treeData: treeDataRedux })}
           handleClick={this.handleClick}
         />
-        {/* <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.getUpdate}>Update</button> */}
       </div>
     );
   }

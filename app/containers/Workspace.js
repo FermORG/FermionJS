@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import coreStyles from '../components/Core.css';
 import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -13,6 +14,9 @@ import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
 
 class Workspace extends Component {
+  constructor(props) {
+    super(props);
+  }
   renderDeep(componentIDList) {
     if (!Object.keys(componentIDList).length || !componentIDList) {
       return [];
@@ -86,24 +90,28 @@ class Workspace extends Component {
 
   render() {
     const worskpaceChildren = this.props.components.workspace.children;
-
+    const { hideEditor } = this.props;
     const Workspace = () => (
-      <div className="workspace" style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
+      <div className='unwrappedWorkspace' style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
         { this.renderDeep(worskpaceChildren) }
       </div>
     );
 
-    const WrappedWorkspace = dropWorkspaceWrapper(Workspace);
+    const WrappedWorkspace = dropWorkspaceWrapper(Workspace, hideEditor);
 
     return (
-      <WrappedWorkspace id={WORKSPACE_ID} moveChild={this.props.moveChild} />
+      <WrappedWorkspace
+        id={WORKSPACE_ID}
+        moveChild={this.props.moveChild}
+        hideEditor
+      />
     );
   }
 }
 
 // Validate props
 Workspace.propTypes = {
-  workspace: PropTypes.object
+  workspace: PropTypes.object,
 };
 
 function mapStateToProps(state) {
