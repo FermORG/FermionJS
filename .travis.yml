@@ -43,5 +43,6 @@ script:
   - node --version
   # - yarn lint
   # - yarn package
+  - yarn build
   - yarn test
   # - yarn test-e2e

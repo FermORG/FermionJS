@@ -2,7 +2,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CompList from '../components/CompList';
 // import * as CompListActions from '../actions/complist';
-import * as workspaceActions from '../actions/workspace';
+// import * as workspaceActions from '../actions/workspace';
+import * a workspaceActions from '../actions/workspace';
 
 function mapStateToProps(state) {
   return {
