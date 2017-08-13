@@ -6,6 +6,7 @@ node_js:
   - 8
 
 notifications:
+  email: false
   slack: codesmith-15:zyxRQ3LGtgm0IhpMJosbXlbn
   on_success: change # default: change
   on_failure: always
@@ -36,11 +37,10 @@ install:
 before_script:
   # - export DISPLAY=:99.0
   # - sh -e /etc/init.d/xvfb start &
-  - sleep 3
+  # - sleep 3
 
 script:
   - node --version
-  - echo hello
   # - yarn lint
   # - yarn package
   - yarn test
