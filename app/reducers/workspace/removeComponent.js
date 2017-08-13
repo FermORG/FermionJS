@@ -1,4 +1,4 @@
-import { WORKSPACE_ID } from '../../constants'
+import { WORKSPACE_ID } from '../../constants';
 
 /**
  * Removes a component

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import type { Children } from 'react';
 import styles from '../components/photon.css';
+
 export default class App extends Component {
   props: {
     children: Children
@@ -9,7 +10,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className = {styles.window}>
+      <div className={styles.window}>
         {this.props.children}
       </div>
     );

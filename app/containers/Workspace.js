@@ -31,18 +31,21 @@ class Workspace extends Component {
        */
       const componentStyle = {
         ...componentData.props.style,
-        width: `100%`,
-        height: `100%`
-      }
+        width: '100%',
+        height: '100%'
+      };
 
       /**
        * Wrap CustomComponent with a ResizableBox and an outer div
        * to be prepared to be wrapped again by the drag and drop wrapper
        */
       const DivWrappedComponent = (
-        <div id="divwrappedcomp" style={{
-           width: '100%', height: '100%', display: 'inline-block', margin: '0', padding: '0'
-        }}>
+        <div
+          id="divwrappedcomp"
+          style={{
+            width: '100%', height: '100%', display: 'inline-block', margin: '0', padding: '0'
+          }}
+        >
           <CustomComponent {...componentData.props} style={componentStyle}>
             { children }
           </CustomComponent>

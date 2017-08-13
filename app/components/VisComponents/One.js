@@ -12,8 +12,8 @@ const defaultStyles = {
 };
 
 const One = (props) => (
-  <div id={props.id} {...props} style={{...defaultStyles, ...props.style}}>
-     {props ? props.children : null}
+  <div id={props.id} {...props} style={{ ...defaultStyles, ...props.style }}>
+    {props ? props.children : null}
   </div>
 );
 

@@ -15,10 +15,10 @@ import path from 'path';
     // possible soln : pipe ?
 
 
-//need to make changes for OSX/WIN/LIN.
+// need to make changes for OSX/WIN/LIN.
 
 
-//Users/user/.fermion
+// Users/user/.fermion
 // Home/.fermion
 // C:\Users\USER\AppData\Roaming\Code\User/.fermion;
 
@@ -26,7 +26,7 @@ import path from 'path';
 class FileLib {
 
   static makeDir(appHook) {
-    const fPath = appHook.getPath('home') + '/.fermion';
+    const fPath = `${appHook.getPath('home')}/.fermion`;
 
     try {
       fs.mkdirSync(fPath);
@@ -34,9 +34,8 @@ class FileLib {
     } catch (e) {
       if (e.code === 'EEXIST') {
         return true;
-      } else {
-        throw new Error('something happened!');
       }
+      throw new Error('something happened!');
     }
   }
 
@@ -45,15 +44,15 @@ class FileLib {
     let configPath = '';
     if (process.env.NODE_ENV === 'development') {
       // configPath = path.join(__dirname + '/../dist/fermion.config.json');
-      configPath = path.join(__dirname + '/fermion.config.json');
+      configPath = path.join(`${__dirname}/fermion.config.json`);
       // HACK need to find way to include with webpack.
     } else {
-      configPath = path.join(__dirname + '/dist/fermion.config.json');
+      configPath = path.join(`${__dirname}/dist/fermion.config.json`);
     }
 
     const config = fs.readFileSync(configPath);
-    const options = {'flag': 'wx'};
-    const fPath = appHook.getPath('home') + '/.fermion/fermion.config.json';
+    const options = { flag: 'wx' };
+    const fPath = `${appHook.getPath('home')}/.fermion/fermion.config.json`;
 
     try {
       fs.writeFileSync(fPath, config, options);
@@ -61,23 +60,22 @@ class FileLib {
     } catch (e) {
       if (e.code = 'EEXIST') {
         return true;
-      } else {
-        throw new Error('something happened, couldn\'t save resources!');
       }
+      throw new Error('something happened, couldn\'t save resources!');
     }
   }
 
     // brings in the config file, returns to mainproc to send to window.
   static loadConfig(appHook) {
-    const configPath = appHook.getPath('home') + '/.fermion/fermion.config.json';
+    const configPath = `${appHook.getPath('home')}/.fermion/fermion.config.json`;
 
     const config = fs.readFileSync(configPath, 'utf8');
     return config;
   }
 
-      //adds components to library;
+      // adds components to library;
   static updateConfig(appHook, componentsToAdd) {
-    const configPath = appHook.getPath('home') + '/.fermion/fermion.config.json';
+    const configPath = `${appHook.getPath('home')}/.fermion/fermion.config.json`;
 
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     config.components = config.components.concat(componentsToAdd);
@@ -87,11 +85,7 @@ class FileLib {
     } catch (e) {
       throw new Error('unable to add components!');
     }
-
   }
-
-
-
 
 
 }

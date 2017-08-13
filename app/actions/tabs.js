@@ -1,6 +1,6 @@
 // @flow
 
-//tabs actions.
+// tabs actions.
 
 import type { activeTabStateType } from '../reducers/tabs';
 
@@ -11,7 +11,7 @@ type actionType = {
 export const TOGGLE_STATE = 'TOGGLE_STATE';
 export const TOGGLE_PROPS = 'TOGGLE_PROPS';
 export const TOGGLE_EVENTS = 'TOGGLE_EVENTS';
-export const TOGGLE_STYLES= 'TOGGLE_STYLES';
+export const TOGGLE_STYLES = 'TOGGLE_STYLES';
 export const TOGGLE_TAB = 'TOGGLE_TAB';
 
 export function toggleTabs(name: string) {

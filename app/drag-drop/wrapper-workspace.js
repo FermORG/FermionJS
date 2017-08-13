@@ -6,9 +6,10 @@ import { dropCollect } from './collectors';
 import coreStyles from '../components/Core.css';
 // Connect and wrap
 export default function (Workspace) {
-  const divWrappedWorkspace =  (
+  const divWrappedWorkspace = (
     <div
-      className={coreStyles.workspace}>
+      className={coreStyles.workspace}
+    >
       <Workspace />
     </div>
   );
@@ -18,7 +19,7 @@ export default function (Workspace) {
     return connectDropTarget(divWrappedWorkspace);
   };
 
-  let dropWrappedWorkspace =
+  const dropWrappedWorkspace =
     DropTarget(ItemTypes.COMPONENT, dropTarget, dropCollect)(dropConnectedWorkspace);
   return dropWrappedWorkspace;
 }

@@ -1,4 +1,4 @@
-export default function deletePropsValue(state, key, component){
+export default function deletePropsValue(state, key, component) {
   if (key === 'style' || key === 'styles') return state;
   const newState = Object.assign({}, state);
   const props = newState.components[component].props;
@@ -6,4 +6,4 @@ export default function deletePropsValue(state, key, component){
   delete newProps[key];
   newState.components[component].props = newProps;
   return newState;
-};
+}

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import baseStyles from './node-renderer-default.scss';
 import { isDescendant } from './utils/tree-data-utils';
 
-let styles = baseStyles;
+const styles = baseStyles;
 // Add extra classes in browsers that don't support flex
 
 
 class NodeRendererDefault extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     const { toggleChildrenVisibility, node, path, treeIndex } = this.props;
     toggleChildrenVisibility({
       node,
@@ -47,6 +47,9 @@ class NodeRendererDefault extends Component {
       /* eslint-enable no-unused-vars */
       ...otherProps
     } = this.props;
+    const { id } = node;
+    // console.log('compID: ', id);
+    // console.log('COMPNAME: ', node.title);
 
     let handle;
 
@@ -74,14 +77,14 @@ class NodeRendererDefault extends Component {
                   treeIndex,
                 })}
             >
-              <i className = {`${ node.expanded ? styles.colArrow : styles.expArrow} fa fa-caret-right`}></i>
+              <i className={`${node.expanded ? styles.colArrow : styles.expArrow} fa fa-caret-right`} />
             </button>
 
-           </div>}
+          </div>}
 
         <div className={styles.rowWrapper}>
           {/* Set the row preview to be used during drag and drop */}
-          {/*connectDragPreview*/(
+          {/* connectDragPreview */(
             <div
               className={
                 styles.row +
@@ -104,16 +107,16 @@ class NodeRendererDefault extends Component {
                   styles.rowContents +
                   (!canDrag ? ` ${styles.rowContentsDragDisabled}` : '')
                 }
-                onClick={(e)=>{
-                  console.log('key,', clickKey)
+                onClick={(e) => {
+                  console.log('key,', clickKey);
                   let component = clickKey - 1;
                   if (component <= 0) component = 0;
-                  handleClick(e, String(component))
+                  handleClick(e, String(id));
                 }
                 }
               >
                 <div className={styles.rowLabel}>
-                  {/*connectDragSource*/(<span
+                  {/* connectDragSource */(<span
                     className={
                       styles.rowTitle +
                       (node.subtitle ? ` ${styles.rowTitleWithSubtitle}` : '')
@@ -121,10 +124,10 @@ class NodeRendererDefault extends Component {
                   >
                     {typeof node.title === 'function'
                       ? node.title({
-                          node,
-                          path,
-                          treeIndex,
-                        })
+                        node,
+                        path,
+                        treeIndex,
+                      })
                       : node.title}
                   </span>)}
                   {/* , {dropEffect: 'copy',} */}
@@ -133,22 +136,22 @@ class NodeRendererDefault extends Component {
                     <span className={styles.rowSubtitle}>
                       {typeof node.subtitle === 'function'
                         ? node.subtitle({
-                            node,
-                            path,
-                            treeIndex,
-                          })
+                          node,
+                          path,
+                          treeIndex,
+                        })
                         : node.subtitle}
                     </span>}
                 </div>
 
                 <div className={styles.rowToolbar}>
                   {buttons.map((btn, index) =>
-                    <div
+                    (<div
                       key={index} // eslint-disable-line react/no-array-index-key
                       className={styles.toolbarButton}
                     >
                       {btn}
-                    </div>
+                    </div>)
                   )}
                 </div>
               </div>

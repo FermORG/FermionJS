@@ -7,14 +7,12 @@ export const MOVE_CHILD = 'MOVE_CHILD';
 export const REMOVE_CHILD = 'REMOVE_CHILD';
 export const UPDATE_STYLE = 'UPDATE_STYLE';
 
-const createChild = ({ name, props }) => {
-  return {
-    name,
-    props,
-    children: [],
-    parentID: WORKSPACE_ID,
-  };
-};
+const createChild = ({ name, props }) => ({
+  name,
+  props,
+  children: [],
+  parentID: WORKSPACE_ID,
+});
 
 // export function addChild(targetID, newComponentName) {
 //   const newComponent = createChild(newComponentName);

@@ -5,7 +5,6 @@ import styles from './tree-node.scss';
 class TreeNode extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -36,10 +35,10 @@ class TreeNode extends Component {
     } = this.props;
 
     // Construct the scaffold representing the structure of the tree
-     const scaffoldBlockCount = lowerSiblingCounts.length;
+    const scaffoldBlockCount = lowerSiblingCounts.length;
     //  const scaffold = [];
 
-    return /*connectDropTarget*/(
+    return /* connectDropTarget */(
       <div {...otherProps} className={styles.node}>
         {/* {scaffold} */}
         <div

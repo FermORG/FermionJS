@@ -58,8 +58,8 @@ class ReactSortableTree extends Component {
     // Wrapping classes for use with react-dnd
     this.dndType = dndType || `rst__${dndTypeCounter}`;
     dndTypeCounter += 1;
-    this.nodeContentRenderer = nodeContentRenderer //dndWrapSource(nodeContentRenderer, this.dndType);
-    this.treeNodeRenderer = TreeNode //dndWrapTarget(TreeNode, this.dndType);
+    this.nodeContentRenderer = nodeContentRenderer; // dndWrapSource(nodeContentRenderer, this.dndType);
+    this.treeNodeRenderer = TreeNode; // dndWrapTarget(TreeNode, this.dndType);
 
     // Prepare scroll-on-drag options for this list
     if (isVirtualized) {
@@ -119,34 +119,36 @@ class ReactSortableTree extends Component {
       this.search(nextProps, true, true, true);
     }
   }
-  getInitial(){
+  getInitial() {
     const treeStructure = this.props.treeDataRedux.components.workspace;
     const treeComponents = this.props.treeDataRedux.components;
     const treeData = [getTreeData(treeStructure)];
-    function getTreeData(workspaceTree){
-        return {
-          title: workspaceTree.id,
-          children: getChildrenData(workspaceTree.children),
-          expanded: true,
-        }
+    function getTreeData(workspaceTree) {
+      return {
+        title: workspaceTree.id,
+        children: getChildrenData(workspaceTree.children),
+        expanded: true,
+        id: '0',
+      };
     }
 
-    function getChildrenData(childrenArray){
+    function getChildrenData(childrenArray) {
       const childrenArrayFinal = [];
-      for (let i=0; i<childrenArray.length; i++){
-        const currComponent = treeComponents[childrenArray[i]]
+      for (let i = 0; i < childrenArray.length; i++) {
+        const currComponent = treeComponents[childrenArray[i]];
         const currComponentChildren = currComponent.children;
-        if (currComponentChildren.length !== 0){
+        if (currComponentChildren.length !== 0) {
           childrenArrayFinal.push({
             title: currComponent.name,
             children: getChildrenData(currComponentChildren),
             expanded: true,
+            id: currComponent.id,
           });
-        }
-        else {
+        } else {
           childrenArrayFinal.push({
             title: currComponent.name,
             expanded: true,
+            id: currComponent.id,
           });
         }
       }
@@ -364,9 +366,9 @@ class ReactSortableTree extends Component {
                     //  for in the first place
                     oldNode === node
                       ? {
-                          ...oldNode,
-                          children: childrenArray,
-                        }
+                        ...oldNode,
+                        children: childrenArray,
+                      }
                       : oldNode,
                   getNodeKey: this.props.getNodeKey,
                 })
@@ -487,7 +489,7 @@ class ReactSortableTree extends Component {
       list = (
         <AutoSizer>
           {({ height, width }) =>
-            <ScrollZoneVirtualList
+            (<ScrollZoneVirtualList
               {...scrollToInfo}
               verticalStrength={this.vStrength}
               horizontalStrength={this.hStrength}
@@ -514,7 +516,7 @@ class ReactSortableTree extends Component {
                   matchKeys
                 )}
               {...this.props.reactVirtualizedListProps}
-            />}
+            />)}
         </AutoSizer>
       );
     } else {
@@ -545,10 +547,10 @@ class ReactSortableTree extends Component {
     );
   }
 }
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     workspace: state.workspace
-  }
+  };
 }
 
 ReactSortableTree.propTypes = {
@@ -656,8 +658,8 @@ ReactSortableTree.defaultProps = {
   onMoveNode: null,
   onVisibilityToggle: null,
   reactVirtualizedListProps: {},
-  rowHeight: 32, //was 62, changed.
-  scaffoldBlockPxWidth: 23, //was 44, changed.
+  rowHeight: 32, // was 62, changed.
+  scaffoldBlockPxWidth: 23, // was 44, changed.
   searchFinishCallback: null,
   searchFocusOffset: null,
   searchMethod: null,

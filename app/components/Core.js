@@ -10,8 +10,6 @@ import brace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/theme/twilight';
 
-
-
 // Gui columns
 import Left from './left';
 import Right from '../containers/RightPage.js';
@@ -22,35 +20,35 @@ import Workspace from '../containers/Workspace';
 // Visual component exporter function
 import getVisComponent from './VisComponents/exporter';
 
-import ExportButton from '../containers/ExportButton'
+import ExportButton from '../containers/ExportButton';
 
 class Core extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      code: "*** Insert Code Here ***",
+      code: '*** Insert Code Here ***',
       hideEditor: true
-    }
+    };
     this.handleTextArea = this.handleTextArea.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.onChanges = this.onChanges.bind(this);
   }
   onChanges(newValue) {
-    console.log('change',newValue);
+    console.log('change', newValue);
   }
-  handleClick(e){
-    console.log("inside handle click");
-    
+  handleClick(e) {
+    console.log('inside handle click');
+
     this.setState({
       hideEditor: !this.state.hideEditor
-    })
+    });
   }
-  handleTextArea(e){
+  handleTextArea(e) {
     e.preventDefault();
     console.log(e.target.value);
     this.setState({
       code: e.target.value
-    })
+    });
   }
    /* Recursively renders all levels of a nested component
    */
@@ -69,51 +67,51 @@ class Core extends Component {
   render() {
     const options = {
       lineNumbers: true
-    }
+    };
     return (
       <div>
-      <div className={`${styles['window-content']} ${coreStyles.container}`}>
-         
-        <div className={styles["pane-group"]}>
-          <Left drag={this.dragComponent} />
-          <div className={`${styles.pane} ${coreStyles.main}`}>
-            <header className={`${coreStyles.footer} ${coreStyles.header}`}>
-              <h1 className={`${styles.title} ${coreStyles.title}`}>Web View</h1>
-            </header>
-            <div className = {coreStyles.pads} data-tid='AppContainer'>
-              <Workspace />
-            </div>
-           
-            <div className = {`${this.state.hideEditor ? coreStyles.hideEditor : ""} ${coreStyles.pads}`}>
-               <form data-tid="textEditor">
+        <div className={`${styles['window-content']} ${coreStyles.container}`}>
+
+          <div className={styles['pane-group']}>
+            <Left drag={this.dragComponent} />
+            <div className={`${styles.pane} ${coreStyles.main}`}>
+              <header className={`${coreStyles.footer} ${coreStyles.header}`}>
+                <h1 className={`${styles.title} ${coreStyles.title}`}>Web View</h1>
+              </header>
+              <div className={coreStyles.pads} data-tid="AppContainer">
+                <Workspace />
+              </div>
+
+              <div className={`${this.state.hideEditor ? coreStyles.hideEditor : ''} ${coreStyles.pads}`}>
+                <form data-tid="textEditor">
                   <div className={`${coreStyles.ace}`}>
                     <AceEditor
-                        className={`${coreStyles.footer} ${coreStyles.header}`} 
-                        mode="javascript"
-                        theme="twilight"
-                        onChange={this.onChanges}
-                        name="UNIQUE_ID_OF_DIV"
-                        editorProps={{$blockScrolling: true}}
-                      />
+                      className={`${coreStyles.footer} ${coreStyles.header}`}
+                      mode="javascript"
+                      theme="twilight"
+                      onChange={this.onChanges}
+                      name="UNIQUE_ID_OF_DIV"
+                      editorProps={{ $blockScrolling: true }}
+                    />
                   </div>
-              </form>
-            </div>
-            <footer className ={coreStyles.footer}>
-              <div className={coreStyles.backButton} data-tid='backButton'>
-                <Link to="/">
-                  <i className="fa fa-arrow-left" />
-                </Link>
+                </form>
               </div>
-              <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show':'Hide'} Editor</button>
-              <ExportButton />
-            </footer>
+              <footer className={coreStyles.footer}>
+                <div className={coreStyles.backButton} data-tid="backButton">
+                  <Link to="/">
+                    <i className="fa fa-arrow-left" />
+                  </Link>
+                </div>
+                <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show' : 'Hide'} Editor</button>
+                <ExportButton />
+              </footer>
+            </div>
+            <Right />
           </div>
-          <Right />
         </div>
-      </div>
       </div>
     );
   }
 }
 
-export default DragDropContext(HTML5Backend)(Core)
+export default DragDropContext(HTML5Backend)(Core);

@@ -60,7 +60,7 @@ app.on('ready', async () => {
     await installExtensions();
   }
 
-  if(FileLib.makeDir(app)) {
+  if (FileLib.makeDir(app)) {
     FileLib.makeConfig(app);
   } else {
     throw new Error('Unable to store config files. please check your file permissions and try again!');
@@ -80,7 +80,7 @@ app.on('ready', async () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
-    //send configuration to mainWindow.
+    // send configuration to mainWindow.
 
     const config = FileLib.loadConfig(app);
     mainWindow.webContents.send('ConfigApp', config);

@@ -11,8 +11,8 @@ ipcRenderer.on('ConfigApp', (event, data) => {
 
   const initialState = {
     availableComponents: data.availableComponents,
-  }
- const store = configureStore(initialState);
+  };
+  const store = configureStore(initialState);
 
   render(
     <AppContainer>
@@ -32,5 +32,4 @@ ipcRenderer.on('ConfigApp', (event, data) => {
       );
     });
   }
-
 });
