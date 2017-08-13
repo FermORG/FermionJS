@@ -31,13 +31,14 @@ class FileTree extends Component {
     });
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   const curr = this.props.workspace.components.workspace.children.length;
-  //   const next = nextProps.workspace.components.workspace.children.length
-  //   console.log('CUR: ', this.props.workspace.components.workspace.children.length);
-  //   console.log('NEXT: ', nextProps.workspace.components.workspace.children.length);
-  //   return curr === next;
-  // }
+  componentDidUpdate() {
+    console.log('update');
+    const newData = this.getInitial();
+    const oldData = this.state.treeData;
+    if(newData[0].children.length !== oldData[0].children.length){
+      this.getUpdate();
+    }
+  }
 
   getInitial(){
     const treeStructure = this.props.workspace.components.workspace;
@@ -47,7 +48,8 @@ class FileTree extends Component {
     function getTreeData(workspaceTree){
         return {
           title: workspaceTree.id,
-          children: getChildrenData(workspaceTree.children)
+          children: getChildrenData(workspaceTree.children),
+          expanded: true,
         }
     }
 
@@ -59,12 +61,14 @@ class FileTree extends Component {
         if (currComponentChildren.length !== 0){
           childrenArrayFinal.push({
             title: currComponent.name,
-            children: getChildrenData(currComponentChildren)
+            children: getChildrenData(currComponentChildren),
+            expanded: true,
           });
         }
         else {
           childrenArrayFinal.push({
             title: currComponent.name,
+            expanded: true,
           });
         }
       }
@@ -77,28 +81,17 @@ class FileTree extends Component {
     this.props.setActiveComponent(component);
   }
   render() {
-    // console.log('FS PROPS: ', this.props.workspace);
-    // console.log('TD: ', this.state.treeData);
-    // const components = this.props.workspace.components;
-
-    // const toRender = Object.keys(components).map((component)=>{
-    //     if (component === 'workspace')
-    // })
-
-    const treeData = this.getInitial();
-    const treeDataFetch = this.state.treeData;
     const getData = this.props.workspace;
     return (
       <div style={{ height: '100%' }}>
         <SortableTreeWithoutDndContext
           treeDataRedux={getData}
           treeData={this.state.treeData}
-          // treeData={treeData}
           canDrag={false}
           onChange={(treeDataRedux)=>{ this.setState({ treeData: treeDataRedux }) }}
           handleClick={this.handleClick}
         />
-        <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.getUpdate}>Update</button>
+        {/* <button className = {`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.getUpdate}>Update</button> */}
       </div>
     );
   }

@@ -39,7 +39,7 @@ class TreeNode extends Component {
      const scaffoldBlockCount = lowerSiblingCounts.length;
     //  const scaffold = [];
 
-    return connectDropTarget(
+    return /*connectDropTarget*/(
       <div {...otherProps} className={styles.node}>
         {/* {scaffold} */}
         <div
@@ -87,13 +87,13 @@ TreeNode.propTypes = {
   children: PropTypes.node.isRequired,
 
   // Drop target
-  connectDropTarget: PropTypes.func.isRequired,
-  isOver: PropTypes.bool.isRequired,
+  // connectDropTarget: PropTypes.func.isRequired,
+  // isOver: PropTypes.bool.isRequired,
   canDrop: PropTypes.bool,
   draggedNode: PropTypes.shape({}),
 
   customCanDrop: PropTypes.func, // used in drag-and-drop-utils
-  dragHover: PropTypes.func.isRequired, // used in drag-and-drop-utils
+  // dragHover: PropTypes.func.isRequired, // used in drag-and-drop-utils
   getNodeKey: PropTypes.func.isRequired, // used in drag-and-drop-utils
   getPrevRow: PropTypes.func.isRequired, // used in drag-and-drop-utils
   maxDepth: PropTypes.number, // used in drag-and-drop-utils

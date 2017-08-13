@@ -8,6 +8,15 @@ let styles = baseStyles;
 
 
 class NodeRendererDefault extends Component {
+
+  componentDidMount(){
+    const { toggleChildrenVisibility, node, path, treeIndex } = this.props;
+    toggleChildrenVisibility({
+      node,
+      path,
+      treeIndex,
+    });
+  }
   render() {
     const {
       scaffoldBlockPxWidth,
@@ -71,7 +80,7 @@ class NodeRendererDefault extends Component {
 
         <div className={styles.rowWrapper}>
           {/* Set the row preview to be used during drag and drop */}
-          {connectDragPreview(
+          {/*connectDragPreview*/(
             <div
               className={
                 styles.row +
@@ -97,7 +106,7 @@ class NodeRendererDefault extends Component {
                 onClick={(e)=>{handleClick(e, String('0'))}}
               >
                 <div className={styles.rowLabel}>
-                  {connectDragSource(<span
+                  {/*connectDragSource*/(<span
                     className={
                       styles.rowTitle +
                       (node.subtitle ? ` ${styles.rowTitleWithSubtitle}` : '')
@@ -110,8 +119,9 @@ class NodeRendererDefault extends Component {
                           treeIndex,
                         })
                       : node.title}
-                  </span>, {dropEffect: 'copy',})}
-
+                  </span>)}
+                  {/* , {dropEffect: 'copy',} */}
+                  {/* plug the above in after span tag to reenable DnD */}
                   {node.subtitle &&
                     <span className={styles.rowSubtitle}>
                       {typeof node.subtitle === 'function'
@@ -173,16 +183,16 @@ NodeRendererDefault.propTypes = {
 
   // Drag and drop API functions
   // Drag source
-  connectDragPreview: PropTypes.func.isRequired,
-  connectDragSource: PropTypes.func.isRequired,
+  // connectDragPreview: PropTypes.func.isRequired,
+  // connectDragSource: PropTypes.func.isRequired,
   parentNode: PropTypes.shape({}), // Needed for drag-and-drop utils
-  startDrag: PropTypes.func.isRequired, // Needed for drag-and-drop utils
-  endDrag: PropTypes.func.isRequired, // Needed for drag-and-drop utils
-  isDragging: PropTypes.bool.isRequired,
-  didDrop: PropTypes.bool.isRequired,
+  // startDrag: PropTypes.func.isRequired, // Needed for drag-and-drop utils
+  // endDrag: PropTypes.func.isRequired, // Needed for drag-and-drop utils
+  // isDragging: PropTypes.bool.isRequired,
+  // didDrop: PropTypes.bool.isRequired,
   draggedNode: PropTypes.shape({}),
   // Drop target
-  isOver: PropTypes.bool.isRequired,
+  // isOver: PropTypes.bool.isRequired,
   canDrop: PropTypes.bool,
 };
 

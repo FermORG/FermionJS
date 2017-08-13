@@ -387,6 +387,7 @@ export function map({
  * @return {Object[]} changedTreeData - The changed tree data
  */
 export function toggleExpandedForAll({ treeData, expanded = true }) {
+  console.log('fired');
   return map({
     treeData,
     callback: ({ node }) => ({ ...node, expanded }),
