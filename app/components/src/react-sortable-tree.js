@@ -448,6 +448,7 @@ class ReactSortableTree extends Component {
           toggleChildrenVisibility={this.toggleChildrenVisibility}
           scaffoldBlockPxWidth={scaffoldBlockPxWidth}
           handleClick={this.props.handleClick}
+          clickKey={nodeKey}
           {...nodeProps}
         />
       </TreeNodeRenderer>

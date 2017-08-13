@@ -37,6 +37,7 @@ class NodeRendererDefault extends Component {
       style,
       didDrop,
       handleClick,
+      clickKey,
       // storeID,
       /* eslint-disable no-unused-vars */
       isOver: _isOver, // Not needed, but preserved for other renderers
@@ -103,7 +104,13 @@ class NodeRendererDefault extends Component {
                   styles.rowContents +
                   (!canDrag ? ` ${styles.rowContentsDragDisabled}` : '')
                 }
-                onClick={(e)=>{handleClick(e, String('0'))}}
+                onClick={(e)=>{
+                  console.log('key,', clickKey)
+                  let component = clickKey - 1;
+                  if (component <= 0) component = 0;
+                  handleClick(e, String(component))
+                }
+                }
               >
                 <div className={styles.rowLabel}>
                   {/*connectDragSource*/(<span
