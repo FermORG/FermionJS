@@ -8,7 +8,7 @@ node_js:
 notifications:
   email: false
   slack: codesmith-15:zyxRQ3LGtgm0IhpMJosbXlbn
-  on_success: change # default: change
+  on_success: never # default: change
   on_failure: always
 
 cache:
@@ -43,5 +43,6 @@ script:
   - node --version
   # - yarn lint
   # - yarn package
+  - yarn build
   - yarn test
   # - yarn test-e2e
