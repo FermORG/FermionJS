@@ -84,8 +84,10 @@ class ${this.getClass()} extends Component {
     super(props)
   }
   render(){
-  <div style={divStyle} ${this.getProps()}>${this.getChildren()}
-  </div>
+    return (
+      <div style={divStyle} ${this.getProps()}>${this.getChildren()}
+      </div>
+    )
   }
 }
 export default ${this.getClass()}
