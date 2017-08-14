@@ -103,7 +103,7 @@ class Workspace extends Component {
       <WrappedWorkspace
         id={WORKSPACE_ID}
         moveChild={this.props.moveChild}
-        hideEditor
+        hideEditor={hideEditor}
       />
     );
   }
