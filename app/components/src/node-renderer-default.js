@@ -3,11 +3,20 @@ import PropTypes from 'prop-types';
 import baseStyles from './node-renderer-default.scss';
 import { isDescendant } from './utils/tree-data-utils';
 
-let styles = baseStyles;
+const styles = baseStyles;
 // Add extra classes in browsers that don't support flex
 
 
 class NodeRendererDefault extends Component {
+
+  componentDidMount() {
+    const { toggleChildrenVisibility, node, path, treeIndex } = this.props;
+    toggleChildrenVisibility({
+      node,
+      path,
+      treeIndex,
+    });
+  }
   render() {
     const {
       scaffoldBlockPxWidth,
@@ -27,6 +36,9 @@ class NodeRendererDefault extends Component {
       className,
       style,
       didDrop,
+      handleClick,
+      clickKey,
+      // storeID,
       /* eslint-disable no-unused-vars */
       isOver: _isOver, // Not needed, but preserved for other renderers
       parentNode: _parentNode, // Needed for drag-and-drop utils
@@ -35,38 +47,11 @@ class NodeRendererDefault extends Component {
       /* eslint-enable no-unused-vars */
       ...otherProps
     } = this.props;
+    const { id } = node;
+    // console.log('compID: ', id);
+    // console.log('COMPNAME: ', node.title);
 
     let handle;
-    // if (canDrag) {
-    //   if (typeof node.children === 'function' && node.expanded) {
-    //     // Show a loading symbol on the handle when the children are expanded
-    //     //  and yet still defined by a function (a callback to fetch the children)
-    //     // handle = (
-    //     //   <div className={styles.loadingHandle}>
-    //     //     <div className={styles.loadingCircle}>
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //       <div className={styles.loadingCirclePoint} />
-    //     //     </div>
-    //     //   </div>
-    //     // );
-    //   } else {
-    //     // Show the handle used to initiate a drag-and-drop
-    //     // find a way to move this to be encapsulating the entire element, not the shitty little gay drag handle.
-    //     handle = connectDragSource(<div className={styles.moveHandle} />, {
-    //       dropEffect: 'copy',
-    //     });
-    //   }
-    // }
 
     const isDraggedDescendant = draggedNode && isDescendant(draggedNode, node);
     const isLandingPadActive = !didDrop && isDragging;
@@ -92,20 +77,14 @@ class NodeRendererDefault extends Component {
                   treeIndex,
                 })}
             >
-              <i className = {`${ node.expanded ? styles.colArrow : styles.expArrow} fa fa-caret-right`}></i>
+              <i className={`${node.expanded ? styles.colArrow : styles.expArrow} fa fa-caret-right`} />
             </button>
 
-            {/* {node.expanded &&
-              !isDragging &&
-              <div
-                style={{ width: scaffoldBlockPxWidth }}
-                className={styles.lineChildren}
-            />} */}
-           </div>}
+          </div>}
 
         <div className={styles.rowWrapper}>
           {/* Set the row preview to be used during drag and drop */}
-          {connectDragPreview(
+          {/* connectDragPreview */(
             <div
               className={
                 styles.row +
@@ -123,15 +102,21 @@ class NodeRendererDefault extends Component {
               }}
             >
               {/* {handle} */}
-
               <div
                 className={
                   styles.rowContents +
                   (!canDrag ? ` ${styles.rowContentsDragDisabled}` : '')
                 }
+                onClick={(e) => {
+                  console.log('key,', clickKey);
+                  let component = clickKey - 1;
+                  if (component <= 0) component = 0;
+                  handleClick(e, String(id));
+                }
+                }
               >
                 <div className={styles.rowLabel}>
-                  {connectDragSource(<span
+                  {/* connectDragSource */(<span
                     className={
                       styles.rowTitle +
                       (node.subtitle ? ` ${styles.rowTitleWithSubtitle}` : '')
@@ -139,33 +124,34 @@ class NodeRendererDefault extends Component {
                   >
                     {typeof node.title === 'function'
                       ? node.title({
-                          node,
-                          path,
-                          treeIndex,
-                        })
+                        node,
+                        path,
+                        treeIndex,
+                      })
                       : node.title}
-                  </span>, {dropEffect: 'copy',})}
-
+                  </span>)}
+                  {/* , {dropEffect: 'copy',} */}
+                  {/* plug the above in after span tag to reenable DnD */}
                   {node.subtitle &&
                     <span className={styles.rowSubtitle}>
                       {typeof node.subtitle === 'function'
                         ? node.subtitle({
-                            node,
-                            path,
-                            treeIndex,
-                          })
+                          node,
+                          path,
+                          treeIndex,
+                        })
                         : node.subtitle}
                     </span>}
                 </div>
 
                 <div className={styles.rowToolbar}>
                   {buttons.map((btn, index) =>
-                    <div
+                    (<div
                       key={index} // eslint-disable-line react/no-array-index-key
                       className={styles.toolbarButton}
                     >
                       {btn}
-                    </div>
+                    </div>)
                   )}
                 </div>
               </div>
@@ -207,16 +193,16 @@ NodeRendererDefault.propTypes = {
 
   // Drag and drop API functions
   // Drag source
-  connectDragPreview: PropTypes.func.isRequired,
-  connectDragSource: PropTypes.func.isRequired,
+  // connectDragPreview: PropTypes.func.isRequired,
+  // connectDragSource: PropTypes.func.isRequired,
   parentNode: PropTypes.shape({}), // Needed for drag-and-drop utils
-  startDrag: PropTypes.func.isRequired, // Needed for drag-and-drop utils
-  endDrag: PropTypes.func.isRequired, // Needed for drag-and-drop utils
-  isDragging: PropTypes.bool.isRequired,
-  didDrop: PropTypes.bool.isRequired,
+  // startDrag: PropTypes.func.isRequired, // Needed for drag-and-drop utils
+  // endDrag: PropTypes.func.isRequired, // Needed for drag-and-drop utils
+  // isDragging: PropTypes.bool.isRequired,
+  // didDrop: PropTypes.bool.isRequired,
   draggedNode: PropTypes.shape({}),
   // Drop target
-  isOver: PropTypes.bool.isRequired,
+  // isOver: PropTypes.bool.isRequired,
   canDrop: PropTypes.bool,
 };
 

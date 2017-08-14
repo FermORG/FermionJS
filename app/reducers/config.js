@@ -3,58 +3,56 @@
 
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, CHANGE_STATE, CHANGE_PROPS, CHANGE_STYLES, CHANGE_EVENTS } from '../actions/config';
 import { WORKSPACE_ID } from './../constants';
+
 export type configStateType = {
-  //what goes here?
+  // what goes here?
 };
 
 type actionType = {
   +type: string
 };
 
-const addStateValue = (state, aStateValue) =>{
+const addStateValue = (state, aStateValue) => {
   const newState = Object.assign({}, state);
   console.log('newState: ', JSON.stringify(state));
   const newAppState = Object.assign({}, newState.state, aStateValue);
   newState.state = newAppState;
   console.log('newState.state: ', JSON.stringify(newState.state));
   return newState;
-}
-
+};
 
 
 export default function toggleConfig(state: configStateType = {}, action: actionType) {
-
-
   switch (action.type) {
     // use component name to locate change.
     // inject new whatever if adding
     // update whatever if changing.
     case ADD_STATE:
-    return addStateValue(state, action.aState);
+      return addStateValue(state, action.aState);
 
     case ADD_PROPS:
-    return state;
+      return state;
 
     case ADD_STYLES:
-    return state;
+      return state;
 
     case ADD_EVENTS:
-    return state;
+      return state;
 
     case CHANGE_STATE:
-    return state;
+      return state;
 
     case CHANGE_PROPS:
-    return state;
+      return state;
 
     case CHANGE_STYLES:
-    return state;
+      return state;
 
     case CHANGE_EVENTS:
-    return state;
+      return state;
 
     default:
-    return state;
+      return state;
   }
 
   // should allow user to add a prop/etc

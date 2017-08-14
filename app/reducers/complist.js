@@ -7,41 +7,41 @@ type actionType = {
 };
 
 const defaultData = {
-  "availableComponents" : [
+  availableComponents: [
     {
-      "name": "One",
-      "styles": {
-        "backgroundColor": "red",
-        "height": "50%",
-        "width": "50%"
+      name: 'One',
+      styles: {
+        backgroundColor: 'red',
+        height: '50%',
+        width: '50%'
       }
     },
     {
-      "name": "Two",
-      "styles": {
-        "backgroundColor": "yellow",
-        "height": "50%",
-        "width": "50%"
+      name: 'Two',
+      styles: {
+        backgroundColor: 'yellow',
+        height: '50%',
+        width: '50%'
       }
     },
     {
-      "name": "Five",
-      "styles": {
-        "backgroundColor": "white",
-        "height": "50%",
-        "width": "50%"
+      name: 'Five',
+      styles: {
+        backgroundColor: 'white',
+        height: '50%',
+        width: '50%'
       },
     },
     {
-      "name": "Four",
-      "styles": {
-        "backgroundColor": "blue",
-        "height": "50%",
-        "width": "50%"
+      name: 'Four',
+      styles: {
+        backgroundColor: 'blue',
+        height: '50%',
+        width: '50%'
       },
     }
   ]
-}
+};
 
 
 export default function listReducer(state: {} = defaultData, action: actionType) {

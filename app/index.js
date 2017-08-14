@@ -8,12 +8,11 @@ import { ipcRenderer } from 'electron';
 
 ipcRenderer.on('ConfigApp', (event, data) => {
   data = JSON.parse(data);
-  // console.log('recieved data: ', data.availableComponents);
 
   const initialState = {
     availableComponents: data.availableComponents,
-  }
- const store = configureStore(initialState);
+  };
+  const store = configureStore(initialState);
 
   render(
     <AppContainer>
@@ -33,5 +32,4 @@ ipcRenderer.on('ConfigApp', (event, data) => {
       );
     });
   }
-
 });
