@@ -10,7 +10,7 @@ import 'brace/mode/javascript';
 import 'brace/theme/twilight';
 
 // Gui columns
-import Left from './left';
+import Left from './Left';
 import Right from '../containers/RightPage.js';
 
 // Main editor component
