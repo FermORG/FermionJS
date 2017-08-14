@@ -14,6 +14,7 @@ const tabInfo = {
 };
 
 describe('tabs reducer', () => {
+
   describe('TOGGLES', () => {
     it('should return a true value for the StateTab', () => {
       expect(toggleTabs(tabInfo, {
@@ -50,6 +51,13 @@ describe('tabs reducer', () => {
       })).toHaveProperty('activeTab', 'State');
     });
 
+    it('Should return the same values when the action matches the current state', () => {
+      expect(toggleTabs(tabInfo, {
+        type: TOGGLE_STATE,
+        name: 'State',
+      })).toHaveProperty('activeTab', 'State');
+    });
+
     it('Props should be activeTab', () => {
       expect(toggleTabs(tabInfo, {
         type: TOGGLE_PROPS,
@@ -69,6 +77,12 @@ describe('tabs reducer', () => {
         type: TOGGLE_EVENTS,
         name: 'Events',
       })).toHaveProperty('activeTab', 'Events');
+    });
+
+    it('data should not change when a bad action is recieved', () => {
+      expect(toggleTabs(tabInfo, {
+        type: 'GIBBERISH',
+      })).toHaveProperty('activeTab', 'Props');
     });
 
   });

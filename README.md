@@ -15,7 +15,7 @@ yarn dev
 # Testing
 
 ```
-npm run test-jest to run Tests
-npm run test-jest --coverage to run tests and generate a code coverage report.
+npm run test to run tests
+npm run test-jest to run tests and generate a code coverage report.
 
 ```
