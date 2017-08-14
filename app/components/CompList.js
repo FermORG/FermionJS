@@ -21,17 +21,15 @@ class List extends Component {
   render() {
     const { availableComponents, addChild, workspace } = this.props;
 
-    const renderAry = Object.keys(availableComponents).map((component) => {
-      return (
-        <li
-          key={availableComponents[component].name}
-          className={`${styles['list-group-item']}  ${panelStyles.list}`}
-          onDoubleClick={() => addChild(WORKSPACE_ID, availableComponents[component])}
-        >
-          <strong>{availableComponents[component].name}</strong>
-        </li>
-      )
-    });
+    const renderAry = Object.keys(availableComponents).map((component) => (
+      <li
+        key={availableComponents[component].name}
+        className={`${styles['list-group-item']}  ${panelStyles.list}`}
+        onDoubleClick={() => addChild(WORKSPACE_ID, availableComponents[component])}
+      >
+        <strong>{availableComponents[component].name}</strong>
+      </li>
+      ));
 
     return (
       <div className={panelStyles.listContainer}>

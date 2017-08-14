@@ -1,7 +1,5 @@
 // @flow
 // config actions
-
-
 export const ADD_STATE = 'ADD_STATE';
 export const ADD_PROPS = 'ADD_PROPS';
 export const ADD_STYLES = 'ADD_STYLES';
@@ -39,33 +37,33 @@ export function addEvents(event, component) {
     type: 'ADD_EVENTS',
     event,
     component
-  }
+  };
 }
 
 export function deleteState(stateKey, component) {
   return {
     type: 'DELETE_STATE',
     propKey: stateKey,
-  }
+  };
 }
 export function deleteProps(propKey, component) {
   return {
     type: 'DELETE_PROPS',
     prop: propKey,
     component
-  }
+  };
 }
 export function deleteStyles(styleKey, component) {
   return {
     type: 'DELETE_STYLES',
     style: styleKey,
     component
-  }
+  };
 }
 export function deleteEvents(eventKey, component) {
   return {
     type: 'DELETE_EVENTS',
     event: eventKey,
     component
-  }
+  };
 }

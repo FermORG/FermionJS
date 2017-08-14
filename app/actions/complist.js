@@ -1,5 +1,5 @@
-//@flow
-//complist actions.
+// @flow
+// complist actions.
 
 
 // import type { addComponentsStateType } from '../reducers/complist';

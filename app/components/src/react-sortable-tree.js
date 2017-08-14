@@ -23,6 +23,7 @@ import {
   removeNodeAtPath,
   insertNode,
   getDescendantCount,
+  toggleExpandedForAll,
   find,
 } from './utils/tree-data-utils';
 import { memoizedInsertNode } from './utils/memoized-tree-data-utils';
@@ -57,8 +58,8 @@ class ReactSortableTree extends Component {
     // Wrapping classes for use with react-dnd
     this.dndType = dndType || `rst__${dndTypeCounter}`;
     dndTypeCounter += 1;
-    this.nodeContentRenderer = dndWrapSource(nodeContentRenderer, this.dndType);
-    this.treeNodeRenderer = dndWrapTarget(TreeNode, this.dndType);
+    this.nodeContentRenderer = nodeContentRenderer; // dndWrapSource(nodeContentRenderer, this.dndType);
+    this.treeNodeRenderer = TreeNode; // dndWrapTarget(TreeNode, this.dndType);
 
     // Prepare scroll-on-drag options for this list
     if (isVirtualized) {
@@ -79,10 +80,10 @@ class ReactSortableTree extends Component {
     };
 
     this.toggleChildrenVisibility = this.toggleChildrenVisibility.bind(this);
-    this.moveNode = this.moveNode.bind(this);
-    this.startDrag = this.startDrag.bind(this);
-    this.dragHover = this.dragHover.bind(this);
-    this.endDrag = this.endDrag.bind(this);
+    // this.moveNode = this.moveNode.bind(this);
+    // this.startDrag = this.startDrag.bind(this);
+    // this.dragHover = this.dragHover.bind(this);
+    // this.endDrag = this.endDrag.bind(this);
     this.getInitial = this.getInitial.bind(this);
   }
 
@@ -118,42 +119,41 @@ class ReactSortableTree extends Component {
       this.search(nextProps, true, true, true);
     }
   }
-  getInitial(){
-    console.log("inside getInitial");
-    console.log(this.props.treeDataRedux)
+  getInitial() {
     const treeStructure = this.props.treeDataRedux.components.workspace;
-    console.log("this is treeStructure:", treeStructure)
     const treeComponents = this.props.treeDataRedux.components;
-    console.log("this is tree Components", treeComponents)
     const treeData = [getTreeData(treeStructure)];
-    function getTreeData(workspaceTree){
-        return {
-          title: workspaceTree.id,
-          children: getChildrenData(workspaceTree.children)
-        }
+    function getTreeData(workspaceTree) {
+      return {
+        title: workspaceTree.id,
+        children: getChildrenData(workspaceTree.children),
+        expanded: true,
+        id: '0',
+      };
     }
 
-    function getChildrenData(childrenArray){
-      console.log(childrenArray);
+    function getChildrenData(childrenArray) {
       const childrenArrayFinal = [];
-      for (let i=0; i<childrenArray.length; i++){
-        const currComponent = treeComponents[childrenArray[i]]
+      for (let i = 0; i < childrenArray.length; i++) {
+        const currComponent = treeComponents[childrenArray[i]];
         const currComponentChildren = currComponent.children;
-        if (currComponentChildren.length !== 0){
+        if (currComponentChildren.length !== 0) {
           childrenArrayFinal.push({
             title: currComponent.name,
-            children: getChildrenData(currComponentChildren)
+            children: getChildrenData(currComponentChildren),
+            expanded: true,
+            id: currComponent.id,
           });
-        }
-        else {
+        } else {
           childrenArrayFinal.push({
             title: currComponent.name,
+            expanded: true,
+            id: currComponent.id,
           });
         }
       }
       return childrenArrayFinal;
     }
-    console.log(treeData);
     return treeData;
   }
 
@@ -174,7 +174,7 @@ class ReactSortableTree extends Component {
     });
 
     this.props.onChange(treeData);
-
+    // console.log('OC: ', this.props.onChange);
     if (this.props.onVisibilityToggle) {
       this.props.onVisibilityToggle({
         treeData,
@@ -182,24 +182,26 @@ class ReactSortableTree extends Component {
         expanded: !targetNode.expanded,
       });
     }
+    // console.log('td: ', treeData);
+    // console.log(toggleExpandedForAll(treeData, true));
   }
 
-  moveNode({ node, depth, minimumTreeIndex }) {
-    const { treeData, treeIndex, path } = insertNode({
-      treeData: this.state.draggingTreeData,
-      newNode: node,
-      depth,
-      minimumTreeIndex,
-      expandParent: true,
-      getNodeKey: this.props.getNodeKey,
-    });
-
-    this.props.onChange(treeData);
-
-    if (this.props.onMoveNode) {
-      this.props.onMoveNode({ treeData, node, treeIndex, path });
-    }
-  }
+  // moveNode({ node, depth, minimumTreeIndex }) {
+  //   const { treeData, treeIndex, path } = insertNode({
+  //     treeData: this.state.draggingTreeData,
+  //     newNode: node,
+  //     depth,
+  //     minimumTreeIndex,
+  //     expandParent: true,
+  //     getNodeKey: this.props.getNodeKey,
+  //   });
+  //
+  //   this.props.onChange(treeData);
+  //
+  //   if (this.props.onMoveNode) {
+  //     this.props.onMoveNode({ treeData, node, treeIndex, path });
+  //   }
+  // }
 
   search(
     props = this.props,
@@ -269,67 +271,67 @@ class ReactSortableTree extends Component {
     });
   }
 
-  startDrag({ path }) {
-    const draggingTreeData = removeNodeAtPath({
-      treeData: this.props.treeData,
-      path,
-      getNodeKey: this.props.getNodeKey,
-    });
+  // startDrag({ path }) {
+  //   const draggingTreeData = removeNodeAtPath({
+  //     treeData: this.props.treeData,
+  //     path,
+  //     getNodeKey: this.props.getNodeKey,
+  //   });
+  //
+  //   this.setState({
+  //     draggingTreeData,
+  //   });
+  // }
 
-    this.setState({
-      draggingTreeData,
-    });
-  }
+  // dragHover({ node: draggedNode, depth, minimumTreeIndex }) {
+  //   // Fall back to the tree data if something is being dragged in from
+  //   //  an external element
+  //   const draggingTreeData = this.state.draggingTreeData || this.props.treeData;
+  //
+  //   const addedResult = memoizedInsertNode({
+  //     treeData: draggingTreeData,
+  //     newNode: draggedNode,
+  //     depth,
+  //     minimumTreeIndex,
+  //     expandParent: true,
+  //     getNodeKey: this.props.getNodeKey,
+  //   });
+  //
+  //   const rows = this.getRows(addedResult.treeData);
+  //   const expandedParentPath = rows[addedResult.treeIndex].path;
+  //
+  //   const swapFrom = addedResult.treeIndex;
+  //   const swapTo = minimumTreeIndex;
+  //   const swapLength = 1 + getDescendantCount({ node: draggedNode });
+  //   this.setState({
+  //     rows: swapRows(rows, swapFrom, swapTo, swapLength),
+  //     swapFrom,
+  //     swapLength,
+  //     swapDepth: depth,
+  //     draggingTreeData: changeNodeAtPath({
+  //       treeData: draggingTreeData,
+  //       path: expandedParentPath.slice(0, -1),
+  //       newNode: ({ node }) => ({ ...node, expanded: true }),
+  //       getNodeKey: this.props.getNodeKey,
+  //     }),
+  //   });
+  // }
 
-  dragHover({ node: draggedNode, depth, minimumTreeIndex }) {
-    // Fall back to the tree data if something is being dragged in from
-    //  an external element
-    const draggingTreeData = this.state.draggingTreeData || this.props.treeData;
-
-    const addedResult = memoizedInsertNode({
-      treeData: draggingTreeData,
-      newNode: draggedNode,
-      depth,
-      minimumTreeIndex,
-      expandParent: true,
-      getNodeKey: this.props.getNodeKey,
-    });
-
-    const rows = this.getRows(addedResult.treeData);
-    const expandedParentPath = rows[addedResult.treeIndex].path;
-
-    const swapFrom = addedResult.treeIndex;
-    const swapTo = minimumTreeIndex;
-    const swapLength = 1 + getDescendantCount({ node: draggedNode });
-    this.setState({
-      rows: swapRows(rows, swapFrom, swapTo, swapLength),
-      swapFrom,
-      swapLength,
-      swapDepth: depth,
-      draggingTreeData: changeNodeAtPath({
-        treeData: draggingTreeData,
-        path: expandedParentPath.slice(0, -1),
-        newNode: ({ node }) => ({ ...node, expanded: true }),
-        getNodeKey: this.props.getNodeKey,
-      }),
-    });
-  }
-
-  endDrag(dropResult) {
-    if (!dropResult || !dropResult.node) {
-      this.setState({
-        draggingTreeData: null,
-        swapFrom: null,
-        swapLength: null,
-        swapDepth: null,
-        rows: this.getRows(this.props.treeData),
-      });
-
-      return;
-    }
-
-    this.moveNode(dropResult);
-  }
+  // endDrag(dropResult) {
+  //   if (!dropResult || !dropResult.node) {
+  //     this.setState({
+  //       draggingTreeData: null,
+  //       swapFrom: null,
+  //       swapLength: null,
+  //       swapDepth: null,
+  //       rows: this.getRows(this.props.treeData),
+  //     });
+  //
+  //     return;
+  //   }
+  //
+  //   this.moveNode(dropResult);
+  // }
 
   /**
 * Load any children in the tree that are given by a function
@@ -364,9 +366,9 @@ class ReactSortableTree extends Component {
                     //  for in the first place
                     oldNode === node
                       ? {
-                          ...oldNode,
-                          children: childrenArray,
-                        }
+                        ...oldNode,
+                        children: childrenArray,
+                      }
                       : oldNode,
                   getNodeKey: this.props.getNodeKey,
                 })
@@ -433,6 +435,7 @@ class ReactSortableTree extends Component {
         swapDepth={this.state.swapDepth}
         maxDepth={maxDepth}
         dragHover={this.dragHover}
+        // onClick={this.props.handleClick}
       >
         <NodeContentRenderer
           node={node}
@@ -446,6 +449,8 @@ class ReactSortableTree extends Component {
           canDrag={rowCanDrag}
           toggleChildrenVisibility={this.toggleChildrenVisibility}
           scaffoldBlockPxWidth={scaffoldBlockPxWidth}
+          handleClick={this.props.handleClick}
+          clickKey={nodeKey}
           {...nodeProps}
         />
       </TreeNodeRenderer>
@@ -484,7 +489,7 @@ class ReactSortableTree extends Component {
       list = (
         <AutoSizer>
           {({ height, width }) =>
-            <ScrollZoneVirtualList
+            (<ScrollZoneVirtualList
               {...scrollToInfo}
               verticalStrength={this.vStrength}
               horizontalStrength={this.hStrength}
@@ -511,7 +516,7 @@ class ReactSortableTree extends Component {
                   matchKeys
                 )}
               {...this.props.reactVirtualizedListProps}
-            />}
+            />)}
         </AutoSizer>
       );
     } else {
@@ -542,11 +547,10 @@ class ReactSortableTree extends Component {
     );
   }
 }
-function mapStateToProps(state){
-  console.log("inside mapstate")
+function mapStateToProps(state) {
   return {
     workspace: state.workspace
-  }
+  };
 }
 
 ReactSortableTree.propTypes = {
@@ -641,7 +645,7 @@ ReactSortableTree.propTypes = {
 };
 
 ReactSortableTree.defaultProps = {
-  canDrag: true,
+  canDrag: false,
   canDrop: null,
   className: '',
   dndType: null,
@@ -654,8 +658,8 @@ ReactSortableTree.defaultProps = {
   onMoveNode: null,
   onVisibilityToggle: null,
   reactVirtualizedListProps: {},
-  rowHeight: 32, //was 62, changed.
-  scaffoldBlockPxWidth: 23, //was 44, changed.
+  rowHeight: 32, // was 62, changed.
+  scaffoldBlockPxWidth: 23, // was 44, changed.
   searchFinishCallback: null,
   searchFocusOffset: null,
   searchMethod: null,
@@ -669,8 +673,6 @@ ReactSortableTree.defaultProps = {
 // for when component is used with other components using react-dnd.
 // see: https://github.com/gaearon/react-dnd/issues/186
 
-export default connect(mapStateToProps)(dndWrapRoot(ReactSortableTree));
+export default ReactSortableTree;
 
 export { ReactSortableTree as SortableTreeWithoutDndContext };
-
-

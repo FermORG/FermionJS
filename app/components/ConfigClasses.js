@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import React, { Component } from 'react';
 import styles from './photon.css';
 import coreStyles from './Core.css';
@@ -12,21 +12,21 @@ function updateStore(e, action, component) {
     if (key === '') return;
     const newStateObj = {};
     newStateObj[key] = null;
-    action(newStateObj, (component || null) );
+    action(newStateObj, (component || null));
     e.target.value = '';
   }
 }
-
+  // updates values associated with props, styles, etc.
 function updateStoreValues(e, action:()=>void, component:string, prop:string) {
   if (e.key === 'Enter' && e.target.value !== '') {
     const value = e.target.value.trim();
     if (value === '') return;
     const newStateObj = {};
     newStateObj[prop] = value;
-    action(newStateObj, (component || null) );
+    action(newStateObj, (component || null));
   }
 }
-
+  // removes a key value pair from props, styles, etc.
 function deleteStoreValues(deleter:()=>void, component:string, propKey:string) {
   deleter(propKey, component);
 }
@@ -46,33 +46,30 @@ export class State extends Component {
     workspace: {},
   }
   // should return a list built from the current state.
-  render(){
+  render() {
     const { workspace, addState, deleteState } = this.props;
     const { state, activeComponent } = this.props.workspace;
 
-    const list = Object.keys(state).map((prop) => {
-      return (
-        <ConfigOption
-          key={prop}
-          activeComponent={activeComponent}
-          propKey={prop}
-          value={state[prop]}
-          action = {addState}
-          actionHandler={this.updateStoreValues}
-          deleter={deleteState}
-          onClick={this.deleteStoreValues}
-        />
-      )
-    });
+    const list = Object.keys(state).map((prop) => (
+      <ConfigOption
+        key={prop}
+        activeComponent={activeComponent}
+        propKey={prop}
+        value={state[prop]}
+        action={addState}
+        actionHandler={this.updateStoreValues}
+        deleter={deleteState}
+        onClick={this.deleteStoreValues}
+      />
+      ));
 
     return (
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          onKeyPress ={(event) => this.updateStore(event, addState)}
-          placeholder='New State Key...'
-        >
-        </input>
+          onKeyPress={(event) => this.updateStore(event, addState)}
+          placeholder="New State Key..."
+        />
         <hr />
         {list}
       </div>
@@ -108,12 +105,12 @@ export class Props extends Component {
           activeComponent={activeComponent}
           propKey={prop}
           value={Props[prop]}
-          action = {addProps}
+          action={addProps}
           deleter={deleteProps}
           actionHandler={this.updateStoreValues}
           onClick={this.deleteStoreValues}
         />
-      )
+      );
     });
 
     return (
@@ -121,9 +118,8 @@ export class Props extends Component {
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
           placeholder="new Prop Key..."
-          onKeyPress ={(event) => this.updateStore(event, addProps, activeComponent)}
-        >
-        </input>
+          onKeyPress={(event) => this.updateStore(event, addProps, activeComponent)}
+        />
         <hr />
         {list}
       </div>
@@ -145,42 +141,39 @@ export class Styles extends Component {
     workspace: {},
   }
 
-  render(){
+  render() {
     const { activeComponent } = this.props.workspace;
     const { addStyles, deleteStyles } = this.props;
     const style = this.props.workspace.components[activeComponent].props.style;
 
-    const list = Object.keys(style).map((prop) => {
-      return (
-        <ConfigOption
-          key={prop}
-          activeComponent={activeComponent}
-          propKey={prop}
-          value={style[prop]}
-          action = {addStyles}
-          actionHandler={this.updateStoreValues}
-          deleter={deleteStyles}
-          onClick={this.deleteStoreValues}
-        />
-      )
-    });
+    const list = Object.keys(style).map((prop) => (
+      <ConfigOption
+        key={prop}
+        activeComponent={activeComponent}
+        propKey={prop}
+        value={style[prop]}
+        action={addStyles}
+        actionHandler={this.updateStoreValues}
+        deleter={deleteStyles}
+        onClick={this.deleteStoreValues}
+      />
+      ));
 
     return (
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
           placeholder="new Styles..."
-          onKeyPress ={(event) => this.updateStore(event, addStyles, activeComponent)}
-        >
-        </input>
+          onKeyPress={(event) => this.updateStore(event, addStyles, activeComponent)}
+        />
         <hr />
         {list}
       </div>
-  );
+    );
   }
 
 }
-//should return a list of event handlers that can be applied to the app.
+// should return a list of event handlers that can be applied to the app.
 // should be able to insert some custom code for that event handler.
 export class Events extends Component {
   constructor(props) {
@@ -200,29 +193,26 @@ export class Events extends Component {
     const { addEvents, deleteEvents } = this.props;
     const events = this.props.workspace.components[activeComponent].events;
 
-    const list = Object.keys(events).map((prop) => {
-      return (
-        <ConfigOption
-          key={prop}
-          activeComponent={activeComponent}
-          propKey={prop}
-          value={events[prop]}
-          action = {addEvents}
-          deleter={deleteEvents}
-          actionHandler={this.updateStoreValues}
-          onClick={this.deleteStoreValues}
-        />
-      )
-    });
+    const list = Object.keys(events).map((prop) => (
+      <ConfigOption
+        key={prop}
+        activeComponent={activeComponent}
+        propKey={prop}
+        value={events[prop]}
+        action={addEvents}
+        deleter={deleteEvents}
+        actionHandler={this.updateStoreValues}
+        onClick={this.deleteStoreValues}
+      />
+      ));
 
     return (
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
           placeholder="new Event Handler..."
-          onKeyPress ={(event) => this.updateStore(event, addEvents, activeComponent)}
-        >
-        </input>
+          onKeyPress={(event) => this.updateStore(event, addEvents, activeComponent)}
+        />
         <hr />
         {list}
       </div>

@@ -106,12 +106,12 @@ function walkDescendants({
   const selfInfo = isPseudoRoot
     ? null
     : {
-        node,
-        parentNode,
-        path: selfPath,
-        lowerSiblingCounts,
-        treeIndex: currentIndex,
-      };
+      node,
+      parentNode,
+      path: selfPath,
+      lowerSiblingCounts,
+      treeIndex: currentIndex,
+    };
 
   if (!isPseudoRoot) {
     const callbackResult = callback(selfInfo);
@@ -387,6 +387,7 @@ export function map({
  * @return {Object[]} changedTreeData - The changed tree data
  */
 export function toggleExpandedForAll({ treeData, expanded = true }) {
+  console.log('fired');
   return map({
     treeData,
     callback: ({ node }) => ({ ...node, expanded }),
@@ -1044,9 +1045,9 @@ export function find({
     const extraInfo = isPseudoRoot
       ? null
       : {
-          path: selfPath,
-          treeIndex: currentIndex,
-        };
+        path: selfPath,
+        treeIndex: currentIndex,
+      };
 
     // Nodes with with children that aren't lazy
     const hasChildren =

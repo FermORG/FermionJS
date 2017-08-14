@@ -3,7 +3,6 @@ import { DragSource, DropTarget } from 'react-dnd';
 import { ItemTypes } from './item-types';
 import { dragTarget, dropTarget } from './specification';
 import { dragCollect, dropCollect } from './collectors';
-import ReactResizeDetector from 'react-resize-detector';
 
 // Connect and wrap
 export default function (Component) {
