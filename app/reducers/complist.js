@@ -43,13 +43,12 @@ const defaultData = {
   ]
 };
 
-
 export default function listReducer(state: {} = defaultData, action: actionType) {
   const newState = Object.assign({}, state);
-
+  newState.availableComponents =JSON.parse(JSON.stringify(newState.availableComponents));
   switch (action.type) {
     case ADD_COMPONENTS:
-      return newState.components.concat(action.components);
+      return newState.availableComponents.concat(action.components);
     case ADD_TO_PROJECT:
       return newState;
     default:

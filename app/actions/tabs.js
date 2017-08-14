@@ -18,22 +18,22 @@ export function toggleTabs(name: string) {
   switch (name) {
     case 'Props':
       return {
-        type: 'TOGGLE_PROPS',
+        type: TOGGLE_PROPS,
         name,
       };
     case 'Events':
       return {
-        type: 'TOGGLE_EVENTS',
+        type: TOGGLE_EVENTS,
         name,
       };
     case 'Styles':
       return {
-        type: 'TOGGLE_STYLES',
+        type: TOGGLE_STYLES,
         name,
       };
     default:
       return {
-        type: 'TOGGLE_STATE',
+        type: TOGGLE_STATE,
         name,
       };
   }

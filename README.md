@@ -11,3 +11,11 @@ for yarn users,
 yarn install
 yarn dev
 ```
+
+# Testing
+
+```
+npm run test to run tests
+npm run test-jest to run tests and generate a code coverage report.
+
+```
