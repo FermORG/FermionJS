@@ -18,6 +18,8 @@ import Right from '../containers/RightPage.js';
 
 // Main editor component
 import Workspace from '../containers/Workspace';
+import Preview from '../containers/Preview'
+import App from '../export/App/App'
 
 // Visual component exporter function
 import getVisComponent from './VisComponents/exporter';
@@ -82,6 +84,8 @@ class Core extends Component {
             </header>
             <div className = {coreStyles.pads} data-tid='AppContainer'>
               <Workspace />
+              {/* <Preview />  */}
+               <App /> 
             </div>
            
             <div className = {`${this.state.hideEditor ? coreStyles.hideEditor : ""} ${coreStyles.pads}`}>
