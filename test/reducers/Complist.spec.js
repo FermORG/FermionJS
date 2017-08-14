@@ -59,7 +59,8 @@ const defaultData = {
   ]
 };
 
-describe('component listReducer', ()=>{
+
+describe('component listReducer', () => {
   it('should add testData to the components list', () => {
     expect(listReducer(defaultData, {
       type: ADD_COMPONENTS,
@@ -80,4 +81,5 @@ describe('component listReducer', ()=>{
       components: testData.components,
     })).toMatchSnapshot();
   });
+
 });
