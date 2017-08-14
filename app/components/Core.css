@@ -42,6 +42,12 @@
   margin: auto;
   overflow: hidden;
   height: 38vh;
+  border-left: 1px solid #1a1d23;
+  border-right: 1px solid #1a1d23;
+}
+
+.aceInterior {
+  background-color: #282c36 !important;
 }
 
 .backButton {

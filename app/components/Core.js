@@ -6,7 +6,6 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import AceEditor from 'react-ace';
 import brace from 'brace';
-
 import 'brace/mode/javascript';
 import 'brace/theme/twilight';
 
@@ -71,7 +70,6 @@ class Core extends Component {
     return (
       <div>
         <div className={`${styles['window-content']} ${coreStyles.container}`}>
-
           <div className={styles['pane-group']}>
             <Left drag={this.dragComponent} />
             <div className={`${styles.pane} ${coreStyles.main}`}>
@@ -83,14 +81,15 @@ class Core extends Component {
                   hideEditor={this.state.hideEditor}
                 />
               </div>
-              <div className={`${this.state.hideEditor ? coreStyles.hideEditor : ''} ${coreStyles.pads}`}>
+              <div className={`${this.state.hideEditor ? coreStyles.hideEditor : ''}`}>
                 <form data-tid="textEditor">
                   <div className={`${coreStyles.ace}`}>
                     <AceEditor
-                      className={`${coreStyles.footer}`}
+                      className={`${coreStyles.aceInterior}`}
                       mode="javascript"
                       theme="twilight"
                       onChange={this.onChanges}
+                      highlightActiveLine={true}
                       name="editorInterior"
                       style={{width: '100%', margin:'none'}}
                       editorProps={{ $blockScrolling: true }}
