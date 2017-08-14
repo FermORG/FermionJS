@@ -42,5 +42,34 @@ describe('tabs reducer', () => {
         name: 'Events',
       })).toHaveProperty('tabs.Events', true);
     });
+
+    it('State should be activeTab', () => {
+      expect(toggleTabs(tabInfo, {
+        type: TOGGLE_STATE,
+        name: 'State',
+      })).toHaveProperty('activeTab', 'State');
+    });
+
+    it('Props should be activeTab', () => {
+      expect(toggleTabs(tabInfo, {
+        type: TOGGLE_PROPS,
+        name: 'Props',
+      })).toHaveProperty('activeTab', 'Props');
+    });
+
+    it('Styles should be activeTab', () => {
+      expect(toggleTabs(tabInfo, {
+        type: TOGGLE_STYLES,
+        name: 'Styles',
+      })).toHaveProperty('activeTab', 'Styles');
+    });
+
+    it('Events should be activeTab', () => {
+      expect(toggleTabs(tabInfo, {
+        type: TOGGLE_EVENTS,
+        name: 'Events',
+      })).toHaveProperty('activeTab', 'Events');
+    });
+
   });
 });
