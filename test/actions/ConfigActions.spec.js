@@ -4,7 +4,7 @@ import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROP
 describe('Config Panel Actions', () => {
   describe('Adding Values', () => {
     describe('addState', () => {
-      it('should return an object with Jeff\'s tiny biceps', () => {
+      it('should return a payload with the right action type and the state', () => {
         expect(addState({Key: 'value'})).toEqual({
           type: ADD_STATE,
           aState: {Key: 'value'},
@@ -13,7 +13,7 @@ describe('Config Panel Actions', () => {
     });
 
     describe('addProps', () => {
-      it('should return an object with the right type, an object containing its recieved props key value pair and a component to add it to', () => {
+      it('should return a payload with the right action type, the prop and component', () => {
         expect(addProps({'Key': 'value'}, {component: 'component'})).toEqual({
           type: ADD_PROPS,
           prop: {'Key': 'value'},
@@ -23,7 +23,7 @@ describe('Config Panel Actions', () => {
     });
 
     describe('addStyles', () => {
-      it('should return an object with the right type, an object containing its recieved style key value pair and a component to add it to', () => {
+      it('should return a payload with the right action type, the style and the component', () => {
         expect(addStyles({'Key': 'value'}, {component: 'component'})).toEqual({
           type: ADD_STYLES,
           style: {'Key': 'value'},
@@ -33,7 +33,7 @@ describe('Config Panel Actions', () => {
     });
 
     describe('addEvents', () => {
-      it('should return an object with the right type, an object containing its recieved event key value pair and a component to add it to', () => {
+      it('should return a payload with the right action type, the event and the component', () => {
         expect(addEvents({'Key': 'value'}, {component: 'component'})).toEqual({
           type: ADD_EVENTS,
           event: {'Key': 'value'},
@@ -46,7 +46,7 @@ describe('Config Panel Actions', () => {
 
   describe('Deleting Values', () => {
     describe('deleteState', () => {
-      it('should return an object with the right type and an object containing its recieved state key value pair', () => {
+      it('should return a payload with the right action type, and a key to be deleted from state', () => {
         expect(deleteState('Key')).toEqual({
           type: DELETE_STATE,
           propKey: 'Key',
@@ -55,7 +55,7 @@ describe('Config Panel Actions', () => {
     });
 
     describe('deleteProps', () => {
-      it('should return an object with the right type, an object containing its recieved props key value pair and a component to add it to', () => {
+      it('should return a payload with the right action type, a key to delete and the component', () => {
         expect(deleteProps('key', 'component')).toEqual({
           type: DELETE_PROPS,
           prop: 'key',
@@ -65,7 +65,7 @@ describe('Config Panel Actions', () => {
     });
 
     describe('deleteStyles', () => {
-      it('should return an object with the right type, an object containing its recieved style key value pair and a component to add it to', () => {
+      it('should return a payload with the right action type, a key to delete and the component', () => {
         expect(deleteStyles('key', 'component')).toEqual({
           type: DELETE_STYLES,
           style: 'key',
@@ -75,7 +75,7 @@ describe('Config Panel Actions', () => {
     });
 
     describe('deleteEvents', () => {
-      it('should return an object with the right type, an object containing its recieved event key value pair and a component to add it to', () => {
+      it('should return a payload with the right action type, a key to delete and the component', () => {
         expect(deleteEvents('key', 'component')).toEqual({
           type: DELETE_EVENTS,
           event: 'key',
