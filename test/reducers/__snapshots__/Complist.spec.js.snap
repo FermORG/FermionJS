@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component listReducer should add testData to the components list 1`] = `
+Array [
+  Object {
+    "name": "One",
+    "styles": Object {
+      "backgroundColor": "red",
+      "height": "50%",
+      "width": "50%",
+    },
+  },
+  Object {
+    "name": "Two",
+    "styles": Object {
+      "backgroundColor": "yellow",
+      "height": "50%",
+      "width": "50%",
+    },
+  },
+  Object {
+    "name": "Five",
+    "styles": Object {
+      "backgroundColor": "white",
+      "height": "50%",
+      "width": "50%",
+    },
+  },
+  Object {
+    "name": "Four",
+    "styles": Object {
+      "backgroundColor": "blue",
+      "height": "50%",
+      "width": "50%",
+    },
+  },
+  Object {
+    "name": "Six",
+    "styles": Object {
+      "backgroundColor": "white",
+      "height": "50%",
+      "width": "50%",
+    },
+  },
+  Object {
+    "name": "Seven",
+    "styles": Object {
+      "backgroundColor": "blue",
+      "height": "50%",
+      "width": "50%",
+    },
+  },
+]
+`;
+
+exports[`component listReducer should return default data when presented with gibberish 1`] = `
+Object {
+  "availableComponents": Array [
+    Object {
+      "name": "One",
+      "styles": Object {
+        "backgroundColor": "red",
+        "height": "50%",
+        "width": "50%",
+      },
+    },
+    Object {
+      "name": "Two",
+      "styles": Object {
+        "backgroundColor": "yellow",
+        "height": "50%",
+        "width": "50%",
+      },
+    },
+    Object {
+      "name": "Five",
+      "styles": Object {
+        "backgroundColor": "white",
+        "height": "50%",
+        "width": "50%",
+      },
+    },
+    Object {
+      "name": "Four",
+      "styles": Object {
+        "backgroundColor": "blue",
+        "height": "50%",
+        "width": "50%",
+      },
+    },
+  ],
+}
+`;
+
+exports[`component listReducer should return default data when the action type is ADD_TO_PROJECT 1`] = `
+Object {
+  "availableComponents": Array [
+    Object {
+      "name": "One",
+      "styles": Object {
+        "backgroundColor": "red",
+        "height": "50%",
+        "width": "50%",
+      },
+    },
+    Object {
+      "name": "Two",
+      "styles": Object {
+        "backgroundColor": "yellow",
+        "height": "50%",
+        "width": "50%",
+      },
+    },
+    Object {
+      "name": "Five",
+      "styles": Object {
+        "backgroundColor": "white",
+        "height": "50%",
+        "width": "50%",
+      },
+    },
+    Object {
+      "name": "Four",
+      "styles": Object {
+        "backgroundColor": "blue",
+        "height": "50%",
+        "width": "50%",
+      },
+    },
+  ],
+}
+`;
