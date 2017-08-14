@@ -13,76 +13,54 @@ const tabInfo = {
   activeTab: 'Props',
 };
 
+const actionMock = (type, name) => {
+  return {
+    type,
+    name,
+  };
+};
+
 describe('tabs reducer', () => {
 
   describe('TOGGLES', () => {
     it('should return a true value for the StateTab', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_STATE,
-        name: 'State',
-      })).toHaveProperty('tabs.State', true);
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_STATE, 'State'))).toHaveProperty('tabs.State', true);
     });
 
     it('should return a true value for the PropsTab', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_PROPS,
-        name: 'Props',
-      })).toHaveProperty('tabs.Props', true);
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_PROPS, 'Props'))).toHaveProperty('tabs.Props', true);
     });
 
     it('should return a true value for the stylesTab', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_STYLES,
-        name: 'Styles',
-      })).toHaveProperty('tabs.Styles', true);
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_STYLES, 'Styles'))).toHaveProperty('tabs.Styles', true);
     });
 
     it('should return a true value for the eventsTab', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_EVENTS,
-        name: 'Events',
-      })).toHaveProperty('tabs.Events', true);
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_EVENTS, 'Events'))).toHaveProperty('tabs.Events', true);
     });
 
     it('State should be activeTab', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_STATE,
-        name: 'State',
-      })).toHaveProperty('activeTab', 'State');
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_STATE, 'State'))).toHaveProperty('activeTab', 'State');
     });
 
     it('Should return the same values when the action matches the current state', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_STATE,
-        name: 'State',
-      })).toHaveProperty('activeTab', 'State');
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_STATE, 'State'))).toHaveProperty('activeTab', 'State');
     });
 
     it('Props should be activeTab', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_PROPS,
-        name: 'Props',
-      })).toHaveProperty('activeTab', 'Props');
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_PROPS, 'Props'))).toHaveProperty('activeTab', 'Props');
     });
 
     it('Styles should be activeTab', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_STYLES,
-        name: 'Styles',
-      })).toHaveProperty('activeTab', 'Styles');
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_STYLES, 'Styles'))).toHaveProperty('activeTab', 'Styles');
     });
 
     it('Events should be activeTab', () => {
-      expect(toggleTabs(tabInfo, {
-        type: TOGGLE_EVENTS,
-        name: 'Events',
-      })).toHaveProperty('activeTab', 'Events');
+      expect(toggleTabs(tabInfo, actionMock(TOGGLE_EVENTS, 'Events'))).toHaveProperty('activeTab', 'Events');
     });
 
     it('data should not change when a bad action is recieved', () => {
-      expect(toggleTabs(tabInfo, {
-        type: 'GIBBERISH',
-      })).toHaveProperty('activeTab', 'Props');
+      expect(toggleTabs(tabInfo, actionMock('GIBBERISH', 'Props'))).toHaveProperty('activeTab', 'Props');
     });
 
   });

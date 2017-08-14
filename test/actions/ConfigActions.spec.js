@@ -4,7 +4,7 @@ import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROP
 describe('Config Panel Actions', () => {
   describe('Adding Values', () => {
     describe('addState', () => {
-      it('should return an object with the right type and an object containing its recieved state key value pair', () => {
+      it('should return an object with Jeff\'s tiny biceps', () => {
         expect(addState({Key: 'value'})).toEqual({
           type: ADD_STATE,
           aState: {Key: 'value'},

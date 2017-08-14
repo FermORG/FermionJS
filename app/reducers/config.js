@@ -14,19 +14,14 @@ type actionType = {
 
 const addStateValue = (state, aStateValue) => {
   const newState = Object.assign({}, state);
-  console.log('newState: ', JSON.stringify(state));
   const newAppState = Object.assign({}, newState.state, aStateValue);
   newState.state = newAppState;
-  console.log('newState.state: ', JSON.stringify(newState.state));
   return newState;
 };
 
 
 export default function toggleConfig(state: configStateType = {}, action: actionType) {
   switch (action.type) {
-    // use component name to locate change.
-    // inject new whatever if adding
-    // update whatever if changing.
     case ADD_STATE:
       return addStateValue(state, action.aState);
 
@@ -53,9 +48,5 @@ export default function toggleConfig(state: configStateType = {}, action: action
 
     default:
       return state;
-  }
-
-  // should allow user to add a prop/etc
-  // should allow user to edit prop.
-  // should show relevant data bits when a tab is displayed. does that need a reducer? compLib isn't using one.
+  };
 }
