@@ -206,8 +206,30 @@ describe('workspace Reducer', () => {
 
       expect(result).toMatchSnapshot();
       expect(result.components[0].events).toHaveProperty('onClick', null);
-    })
-  })
+    });
+  });
+
+  describe('CASE: DELETE_STATE', () => {
+    it('should remove a value from the app state', () => {
+      const addMock = {
+        type: ADD_STATE,
+        aState: {
+          'test': null,
+        },
+      };
+      const addResult = workspace(defaultWorkspace, addMock);
+      expect(addResult.state).toHaveProperty('test');
+
+      const actionMock = {
+        type: DELETE_STATE,
+        propKey: 'test'
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchSnapshot();
+      expect(result).toMatchObject(defaultWorkspace);
+    });
+  });
 
 
 
