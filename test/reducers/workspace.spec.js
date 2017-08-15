@@ -148,9 +148,52 @@ describe('workspace Reducer', () => {
       const result = workspace(defaultWorkspace, actionMock);
       expect(result).toMatchSnapshot();
       expect(result).toHaveProperty('state.test', null);
-
     });
   });
+
+  describe('CASE: ADD_PROPS', () => {
+    it('should add a prop to a component', () => {
+      const actionMock = {
+        type: ADD_PROPS,
+        prop: {
+          test: null,
+        },
+        component: 0,
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchSnapshot();
+      expect(result.components[0]).toHaveProperty('props.test', null);
+    });
+
+    it('should not add a style prop', () => {
+      const actionMock = {
+        type: ADD_PROPS,
+        prop: {
+          style: null,
+        },
+        component: 0,
+      };
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchObject(defaultWorkspace);
+    })
+  });
+
+  describe('CASE: ADD_STYLES', () => {
+    it('should add a new style to props.style', () => {
+      const actionMock = {
+        type: ADD_STYLES,
+        style: { border: null },
+        component: 0,
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+
+      expect(result).toMatchSnapshot();
+      expect(result.components[0].props.style).toHaveProperty('border', null);
+    })
+  })
+
 
 
 
