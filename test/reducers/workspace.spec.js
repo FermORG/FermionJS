@@ -260,9 +260,43 @@ describe('workspace Reducer', () => {
       const result = workspace(defaultWorkspace, actionMock);
       expect(result.components[0].props.style).not.toHaveProperty('backgroundColor');
       expect(result).toMatchSnapshot();
-    })
-  })
+    });
+  });
 
+  describe('CASE: DELETE EVENTS', () => {
+    it('should remove an event from a component', () => {
+      const actionMock = {
+        type: DELETE_EVENTS,
+        event: 'test',
+        component: 0,
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result.components[0].events).toBeDefined();
+      expect(result.components[0].events).not.toHaveProperty('test');
+      expect(result).toMatchSnapshot();
+    });
+  });
+
+  describe('CASE: SET ACTIVE COMPONENT', () => {
+    it('should update the activeComponent', () => {
+      const actionMock = {
+        type: SET_ACTIVE_COMPONENT,
+        component: "1",
+      };
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toHaveProperty('activeComponent', "1");
+    });
+
+    it('should do nothing if component is already active', () => {
+      const actionMock = {
+        type: SET_ACTIVE_COMPONENT,
+        component: "0",
+      };
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toHaveProperty('activeComponent', "0");
+    });
+  });
 
 
 
