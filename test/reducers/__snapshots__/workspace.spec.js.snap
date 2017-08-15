@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`workspace Reducer CASE: ADD CHILD should add a child to the workspace state 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 3,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "2": Object {
+      "events": Object {
+        "test": "test",
+      },
+      "id": 2,
+      "name": "test",
+      "props": Object {
+        "style": Object {
+          "position": "relative",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+        2,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {},
+}
+`;
