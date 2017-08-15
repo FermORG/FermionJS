@@ -86,10 +86,71 @@ describe('workspace Reducer', () => {
       };
       const result = workspace(defaultWorkspace, actionMock);
       expect(result).toMatchSnapshot();
+      expect(result).toHaveProperty('componentCounter', 3);
+      expect(result).toHaveProperty('components.workspace.children', [0,1,2]);
+        //write some more here later, this is a big object and needs to be controlled.
     });
   });
+  // too big for tonight
+  // describe('CASE: REMOVE CHILD', () => {
+  //   it('should remove a child from the workspace state', () => {
+  //     const actionMock = {
+  //       type: REMOVE_CHILD,
+  //     }
+  //   });
+  // });
 
+  describe('CASE: MOVE_CHILD', () => {
+    it('should nest a component in another component', () => {
+      const actionMock = {
+        type: MOVE_CHILD,
+        targetID: 1,
+        sourceID: 0,
+      };
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchSnapshot();
+      expect(result).toHaveProperty('componentCounter', 2);
+      expect(result.components[1]).toHaveProperty('children', [0]);
+    });
 
+    it('should not move a component into itself', () => {
+      const actionMock = {
+        type: MOVE_CHILD,
+        targetID: 1,
+        sourceID: 1,
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchObject(defaultWorkspace);
+    });
+
+    it('should not move a component into its own parent', () => {
+      const actionMock = {
+        type: MOVE_CHILD,
+        targetID: WORKSPACE_ID,
+        sourceID: 0,
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchObject(defaultWorkspace);
+    })
+  });
+
+  describe('CASE: ADD STATE', () => {
+    it('should add a value to the workspace state object', () => {
+      const actionMock = {
+        type: ADD_STATE,
+        aState: {
+          'test': null,
+        },
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchSnapshot();
+      expect(result).toHaveProperty('state.test', null);
+
+    });
+  });
 
 
 

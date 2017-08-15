@@ -67,3 +67,116 @@ Object {
   "state": Object {},
 }
 `;
+
+exports[`workspace Reducer CASE: ADD STATE should add a value to the workspace state object 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "test": null,
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: MOVE_CHILD should nest a component in another component 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": 1,
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "1": Object {
+      "children": Array [
+        0,
+      ],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {},
+}
+`;
