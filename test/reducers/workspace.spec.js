@@ -191,6 +191,21 @@ describe('workspace Reducer', () => {
 
       expect(result).toMatchSnapshot();
       expect(result.components[0].props.style).toHaveProperty('border', null);
+    });
+  });
+
+  describe('CASE: ADD_EVENTS', () => {
+    it('should add a new event to a component', () => {
+      const actionMock = {
+        type: ADD_EVENTS,
+        event: { onClick: null },
+        component: 0,
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+
+      expect(result).toMatchSnapshot();
+      expect(result.components[0].events).toHaveProperty('onClick', null);
     })
   })
 
