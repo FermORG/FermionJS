@@ -12,7 +12,8 @@ export default function removeComponent(state, action) {
   const componentToDelete = components[action.id];
 
   if (!componentToDelete) {
-    throw 'Attempted to remove component which does not exist';
+    // throw 'Attempted to remove component which does not exist';
+    console.log('Attempted to remove component which does not exist');
     return state;
   } else if (componentToDelete.id === WORKSPACE_ID) {
     throw 'cannot delete workspace';

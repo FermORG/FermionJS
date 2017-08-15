@@ -3,7 +3,7 @@ import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROP
 import { SET_ACTIVE_COMPONENT } from '../../app/actions/FileSystemActions';
 import { WORKSPACE_ID } from '../../app/constants';
 import addComponent from '../../app/reducers/workspace/addComponent';
-import removeComponent from '../../app/reducers/workspace/removeComponent';
+// import removeComponent from '../../app/reducers/workspace/removeComponent';
 import moveChild from '../../app/reducers/workspace/moveChild';
 import addStateValue from '../../app/reducers/workspace/addStateValue';
 import addPropsValue from '../../app/reducers/workspace/addPropsValue';
@@ -92,12 +92,16 @@ describe('workspace Reducer', () => {
         //write some more here later, this is a big object and needs to be controlled.
     });
   });
-  // too big for tonight
+    // function is broken and currently unused, needs to be revisited later.
   // describe('CASE: REMOVE CHILD', () => {
-  //   it('should remove a child from the workspace state', () => {
+  //   it('should do nothing without an id', () => {
   //     const actionMock = {
   //       type: REMOVE_CHILD,
+  //       // id: '0',
   //     }
+  //     const result = workspace(defaultWorkspace, actionMock);
+  //     expect(result).toMatchSnapshot();
+  //     expect(result.workspace.children).toBe([0,1]);
   //   });
   // });
 
@@ -298,7 +302,25 @@ describe('workspace Reducer', () => {
     });
   });
 
+  describe('CASE: UPDATE_STYLE', () => {
+    it('should update style for a component', () => {
+      const actionMock = {
+        type: UPDATE_STYLE,
+        sourceID: 0,
+        newStyle: { 'newStyle': null },
+      };
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result.components[0].props.style).toHaveProperty('newStyle', null);
+    });
+  });
 
-
-
+  describe('CASE: GIBBERISH', () => {
+    it('should do nothing when presented with a bad action type', () => {
+      const actionMock = {
+        type: 'GIBBERISH',
+      };
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchObject(defaultWorkspace);
+    });
+  });
 });
