@@ -16,12 +16,11 @@ class ExportButton extends Component {
   exportCode() {
     const destinationDir = path.join(__dirname, EXPORT_DIR);
     try {
-      const wc = new WorkspaceConverter(this.props.components);
-      const exporter = new WorkspaceExporter(destinationDir, wc.convert());
-      exporter.deleteDir();
-      exporter.export();
-      console.log('successful export to:', destinationDir);
-    } catch (e) {
+      let wc = new WorkspaceConverter(this.props.components)
+      let exporter = new WorkspaceExporter(destinationDir, wc.convert())
+      exporter.deleteDir()
+      exporter.export()
+    } catch(e) {
       console.log(e);
     }
   }
