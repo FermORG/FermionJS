@@ -22,6 +22,7 @@ Object {
           "position": "relative",
           "width": "100px",
         },
+        "testProp": null,
       },
     },
     "1": Object {
@@ -64,7 +65,9 @@ Object {
       "id": "workspace",
     },
   },
-  "state": Object {},
+  "state": Object {
+    "default": "default",
+  },
 }
 `;
 
@@ -90,6 +93,7 @@ Object {
           "position": "relative",
           "width": "100px",
         },
+        "testProp": null,
       },
     },
     "1": Object {
@@ -120,6 +124,7 @@ Object {
     },
   },
   "state": Object {
+    "default": "default",
     "test": null,
   },
 }
@@ -149,6 +154,7 @@ Object {
           "width": "100px",
         },
         "test": null,
+        "testProp": null,
       },
     },
     "1": Object {
@@ -178,7 +184,9 @@ Object {
       "id": "workspace",
     },
   },
-  "state": Object {},
+  "state": Object {
+    "default": "default",
+  },
 }
 `;
 
@@ -205,6 +213,7 @@ Object {
           "width": "100px",
         },
         "test": null,
+        "testProp": null,
       },
     },
     "1": Object {
@@ -234,7 +243,9 @@ Object {
       "id": "workspace",
     },
   },
-  "state": Object {},
+  "state": Object {
+    "default": "default",
+  },
 }
 `;
 
@@ -262,6 +273,7 @@ Object {
           "width": "100px",
         },
         "test": null,
+        "testProp": null,
       },
     },
     "1": Object {
@@ -291,7 +303,126 @@ Object {
       "id": "workspace",
     },
   },
-  "state": Object {},
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: DELETE STYLE should remove a key from the style object 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "onClick": null,
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: DELETE_PROPS should remove a value from a component's props 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "onClick": null,
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
 }
 `;
 
@@ -319,6 +450,7 @@ Object {
           "width": "100px",
         },
         "test": null,
+        "testProp": null,
       },
     },
     "1": Object {
@@ -374,6 +506,7 @@ Object {
           "position": "relative",
           "width": "100px",
         },
+        "testProp": null,
       },
     },
     "1": Object {
@@ -404,6 +537,8 @@ Object {
       "id": "workspace",
     },
   },
-  "state": Object {},
+  "state": Object {
+    "default": "default",
+  },
 }
 `;

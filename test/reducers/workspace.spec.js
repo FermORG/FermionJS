@@ -27,7 +27,7 @@ const defaultWorkspace = {
       children: [0, 1],
     },
   },
-  state: {},
+  state: { default: 'default' },
 };
 
 defaultWorkspace.components[0] = {
@@ -44,6 +44,7 @@ defaultWorkspace.components[0] = {
       backgroundColor: 'black',
       overflow: 'auto',
     },
+    testProp: null,
   },
   events: { test: 'test' }
 };
@@ -148,6 +149,7 @@ describe('workspace Reducer', () => {
       const result = workspace(defaultWorkspace, actionMock);
       expect(result).toMatchSnapshot();
       expect(result).toHaveProperty('state.test', null);
+      expect(result).toHaveProperty('state.default', 'default');
     });
   });
 
@@ -211,26 +213,55 @@ describe('workspace Reducer', () => {
 
   describe('CASE: DELETE_STATE', () => {
     it('should remove a value from the app state', () => {
-      const addMock = {
-        type: ADD_STATE,
-        aState: {
-          'test': null,
-        },
-      };
-      const addResult = workspace(defaultWorkspace, addMock);
-      expect(addResult.state).toHaveProperty('test');
-
       const actionMock = {
         type: DELETE_STATE,
-        propKey: 'test'
+        propKey: 'default'
       };
 
       const result = workspace(defaultWorkspace, actionMock);
       expect(result).toMatchSnapshot();
+      expect(result.state).not.toHaveProperty('default');
+    });
+  });
+
+  describe('CASE: DELETE_PROPS', () => {
+    it('should remove a value from a component\'s props', () => {
+      const actionMock = {
+        type: DELETE_PROPS,
+        prop: 'testProp',
+        component: 0,
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result).toMatchSnapshot();
+      expect(result.components[0].props).not.toHaveProperty('testProp');
+    });
+
+    it('should not remove the style prop from a component', () => {
+      const actionMock = {
+        type: DELETE_PROPS,
+        prop: 'style',
+        component: 0,
+      };
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result.components[0].props).toHaveProperty('style');
       expect(result).toMatchObject(defaultWorkspace);
     });
   });
 
+  describe('CASE: DELETE STYLE', () => {
+    it('should remove a key from the style object', () => {
+      const actionMock = {
+        type: DELETE_STYLES,
+        style: 'backgroundColor',
+        component: 0,
+      };
+
+      const result = workspace(defaultWorkspace, actionMock);
+      expect(result.components[0].props.style).not.toHaveProperty('backgroundColor');
+      expect(result).toMatchSnapshot();
+    })
+  })
 
 
 
