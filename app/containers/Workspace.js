@@ -9,7 +9,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 import { ResizableBox } from 'react-resizable';
 import { WORKSPACE_ID } from './../constants';
-import * as actionCreators from '../actions/workspace';
+import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
@@ -124,6 +124,7 @@ function mapStateToProps(state) {
   };
 }
 
+const actionCreators = { addChild, removeChild, moveChild, updateStyle, setActiveComponent };
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
