@@ -68,7 +68,7 @@ defaultWorkspace.components[1] = {
  }
 describe('tabs components', () => {
   describe('State Tab', () => {
-    const { component, input } = setupState();
+    const { component, input, actions } = setupState();
 
     it('should render HTML as expected', () => {
       expect(component.type()).toEqual('div');
@@ -81,6 +81,19 @@ describe('tabs components', () => {
       const compLength = Object.keys(defaultWorkspace.state).length;
       // there are two pure html elements in the component.
       expect(component.children().length).toEqual(2 + compLength);
+    });
+
+    it('should pass a value to state from the input', () => {
+      const keypressMock = {
+        key: 'Enter',
+        target: {
+          value: 'test'
+        },
+      };
+
+      input.value='TEST';
+      input.simulate('keyPress', keypressMock);
+      expect(actions.addState.called).toBe(true);
     });
   });
 });
