@@ -14,10 +14,12 @@ export default class ExportButton extends Component {
   exportCode() {
     const destinationDir = path.join(__dirname, EXPORT_DIR);
     try {
-      let wc = new WorkspaceConverter(this.props.components)
-      let exporter = new WorkspaceExporter(destinationDir, wc.convert())
-      exporter.deleteDir()
-      exporter.export()
+      // let wc = new WorkspaceConverter(this.props.components);
+      console.log('this.props', this.props);
+      let wc = new WorkspaceConverter(this.props.workspace);
+      let exporter = new WorkspaceExporter(destinationDir, wc.convert());
+      exporter.deleteDir();
+      exporter.export();
     } catch(e) {
       console.log(e);
     }

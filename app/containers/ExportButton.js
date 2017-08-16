@@ -3,7 +3,8 @@ import ExportButton from '../components/ExportButton';
 
 function mapStateToProps(state) {
   return {
-    components: state.workspace.components
+    // components: state.workspace.components,
+    workspace: state.workspace,
   };
 }
 

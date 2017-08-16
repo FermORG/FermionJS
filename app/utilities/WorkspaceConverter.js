@@ -1,7 +1,7 @@
 const PAD_LENGTH = 3
 const WORKSPACE_ID = 'workspace'
 const TOP_LEVEL_NAME = 'App'
-
+let state;
 //    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 if (!String.prototype.padStart) {
   String.prototype.padStart = function padStart(targetLength, padString) {
@@ -18,7 +18,13 @@ if (!String.prototype.padStart) {
     return padString.slice(0, targetLength) + String(this);
   };
 }
+
 const padName = (name, id) => `${name}_${id.padStart(PAD_LENGTH, '0')}`;
+
+// const getState = (workspace) => {
+//   const state = JSON.stringify(Object.assign({}, workspace.state), 2);
+//   return state;
+// }
 
 class ComponentConverter {
   constructor(component) {
@@ -29,7 +35,7 @@ class ComponentConverter {
   }
   get fileName(){
     if (this.component.id === WORKSPACE_ID){
-      return TOP_LEVEL_NAME
+      return TOP_LEVEL_NAME;
     }
     return padName(this.component.name, this.component.id.toString())
   }
@@ -47,8 +53,9 @@ class ComponentConverter {
   }
   getChildren() {
     return this.component.childrenFileNames.reduce((final, childFile, i, array) => {
-      final += `<${childFile} /> `;
-      if (i === array.length - 1) final += '\n';
+      final += `        <${childFile} /> `;
+      // if (i === array.length - 1) final += '\n';
+      final += '\n';
       return final;
     }, '\n');
   }
@@ -69,6 +76,15 @@ class ComponentConverter {
       return final;
     }, '');
   }
+
+  getState(){
+    const appState = {};
+    Object.keys(state).forEach((key) => {
+      appState[key] = state[key].split('"').join('');
+    });
+    console.log(appState);
+    return appState;
+  }
   generateCode() {
     return (
 `
@@ -78,6 +94,7 @@ const divStyle = ${this.getStyle()}
 class ${this.getClass()} extends Component {
   constructor(props){
     super(props)
+  ${this.getClass() === 'App' ? `this.state = ${state.replace(/\"/g, "")}` : `` }
   }
   render(){
     return (
@@ -92,25 +109,29 @@ export default ${this.getClass()}
   }
 }
 class WorkspaceConverter {
-  constructor(components){
-    let comps= Object.assign({}, components)
-    comps[WORKSPACE_ID].name = TOP_LEVEL_NAME
-    this.components = this.convertChildIDtoFileName(comps)
+  // constructor(components){
+constructor(workspace){
+    // let comps= Object.assign({}, components);
+    let comps = Object.assign({}, workspace.components);
+    console.log(comps);
+    state = JSON.stringify(Object.assign({}, workspace.state), '  ');
+    comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
+    this.components = this.convertChildIDtoFileName(comps);
   }
   convertChildIDtoFileName(components){
     let converted = Object.keys(components).reduce((acc, id)=>{
-      let newComponent = Object.assign({}, components[id])
+      let newComponent = Object.assign({}, components[id]);
       newComponent.childrenFileNames = components[id].children.map(childID =>{
         return padName(components[childID].name, components[childID].id.toString())
-      })
-      acc[id] = newComponent
-      return acc
-    }, {})
-    return converted
+      });
+      acc[id] = newComponent;
+      return acc;
+    }, {});
+    return converted;
   }
   convert(){
     return Object.keys(this.components).reduce((acc, key)=>{
-      const cc = new ComponentConverter(this.components[key])
+      const cc = new ComponentConverter(this.components[key]);
       acc.push({
         name: cc.name,
         id: cc.id,
