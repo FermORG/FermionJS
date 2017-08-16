@@ -28,7 +28,6 @@ function updateStoreValues(e, action:()=>void, component:string, prop:string) {
 }
   // removes a key value pair from props, styles, etc.
 function deleteStoreValues(deleter:()=>void, component:string, propKey:string) {
-  console.log('i was clicked');
   deleter(propKey, component);
 }
 
