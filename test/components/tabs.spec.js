@@ -90,10 +90,9 @@ describe('tabs components', () => {
           value: 'test'
         },
       };
-
-      input.value='TEST';
       input.simulate('keyPress', keypressMock);
       expect(actions.addState.called).toBe(true);
+      expect(actions.addState.args[0][0]).toEqual({test: null});
     });
   });
 });
