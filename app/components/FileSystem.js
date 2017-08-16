@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { SortableTreeWithoutDndContext } from './src/index'; // 'react-sortable-tree';
-import SortableTree from './src/index';
 import { connect } from 'react-redux';
 import styles from './photon.css';
 import coreStyles from './Core.css';
