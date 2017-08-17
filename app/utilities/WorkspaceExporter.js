@@ -1,53 +1,53 @@
-const fs = require('fs')
-const path  = require('path')
-const WorkspaceConverter = require('./WorkspaceConverter')
-const rimraf = require('rimraf')
+const fs = require('fs');
+const path = require('path');
+const WorkspaceConverter = require('./WorkspaceConverter');
+const rimraf = require('rimraf');
 
 class WorkspaceExporter {
-  constructor(targetPath, components){
-    this.targetPath = targetPath
-    this.components= components
+  constructor(targetPath, components) {
+    this.targetPath = targetPath;
+    this.components = components;
   }
-  createDir(dirPath){
-    let targetPath = dirPath ? dirPath : this.targetPath 
+  createDir(dirPath) {
+    const targetPath = dirPath || this.targetPath;
     try {
-      fs.mkdirSync(targetPath)
-    } catch (e){
-      console.log(e)
-      throw new Error(`cannot make dir: ${targetPath} ${e}`)
+      fs.mkdirSync(targetPath);
+    } catch (e) {
+      console.log(e);
+      throw new Error(`cannot make dir: ${targetPath} ${e}`);
     }
   }
-  deleteDir(dirPath){
-    let targetPath = dirPath ? dirPath : this.targetPath 
+  deleteDir(dirPath) {
+    const targetPath = dirPath || this.targetPath;
     try {
-      rimraf.sync(targetPath)
-    } catch (e){
-      console.log(e)
-      throw new Error(`cannot delete dir: ${targetPath} ${e}`)
+      rimraf.sync(targetPath);
+    } catch (e) {
+      console.log(e);
+      throw new Error(`cannot delete dir: ${targetPath} ${e}`);
     }
   }
-  exportFile(fPath, content){
+  exportFile(fPath, content) {
     try {
       fs.writeFileSync(fPath, 'hello');
     } catch (e) {
-      console.log(e)
+      console.log(e);
       throw new Error(`saving resource failed: ${e}`);
     }
   }
-  export(){
+  export() {
     try {
-      fs.mkdirSync(this.targetPath)
-      this.components.forEach(component =>{
-        let compDir = path.join(this.targetPath, component.fileName)
-        fs.mkdirSync(compDir)
-        let fPath = path.join(compDir, component.fileName + component.ext)
-        fs.writeFileSync(fPath, component.code)
-      })
-    } catch(e){
-      console.log(e)
-      throw new Error(`exporting failed: ${e}`)
+      fs.mkdirSync(this.targetPath);
+      this.components.forEach(component => {
+        const compDir = path.join(this.targetPath, component.fileName);
+        fs.mkdirSync(compDir);
+        const fPath = path.join(compDir, component.fileName + component.ext);
+        fs.writeFileSync(fPath, component.code);
+      });
+    } catch (e) {
+      console.log(e);
+      throw new Error(`exporting failed: ${e}`);
     }
   }
 }
 
-module.exports = WorkspaceExporter
+module.exports = WorkspaceExporter;

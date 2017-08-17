@@ -27,27 +27,24 @@ class Right extends Component {
       case 'Styles':
         return <Styles />;
       default: return null;
-    };
+    }
   };
 
   render() {
-
     const { tabs, activeTab, toggleTabs } = this.props;
     const renderActiveTab = this.renderActiveTab.bind(this);
     // maps over an array of tab names, dropping in presentational for Tab rendering.
-    let tabsRender = Object.keys(tabs).map(tab => {
-      return (
-        <Tab
-          key = {tab}
-          name = {tab}
-          isActive = {tabs[tab]}
-          handleTabClick = {toggleTabs}
-        />
-      );
-    });
+    const tabsRender = Object.keys(tabs).map(tab => (
+      <Tab
+        key={tab}
+        name={tab}
+        isActive={tabs[tab]}
+        handleTabClick={toggleTabs}
+      />
+      ));
 
     return (
-      <div className={`${styles["pane-med"]} ${coreStyles.sidebar}`}>
+      <div className={`${styles['pane-med']} ${coreStyles.sidebar}`}>
         <div className={panelStyles.stateContainer}>
           <header className={panelStyles.header}>
             <div className={`${styles['tab-group']}`}>
@@ -64,12 +61,12 @@ class Right extends Component {
 }
 
     // presentational with rendering logic for tab windows.
-function Tab({name, handleTabClick, isActive}) {
+function Tab({ name, handleTabClick, isActive }) {
   return (
     <div className={`${styles['tab-item']} ${isActive ? styles.active : ''} ${coreStyles.tab}`} onClick={() => handleTabClick(name)}>
       {name}
     </div>
-  )
+  );
 }
 
 export default Right;

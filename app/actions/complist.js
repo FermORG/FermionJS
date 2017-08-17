@@ -1,5 +1,5 @@
-//@flow
-//complist actions.
+// @flow
+// complist actions.
 
 
 // import type { addComponentsStateType } from '../reducers/complist';
@@ -14,14 +14,14 @@ export const ADD_TO_PROJECT = 'ADD_TO_PROJECT';
 
 export function AddComponents(components) {
   return {
-    type: 'ADD_COMPONENTS',
+    type: ADD_COMPONENTS,
     components
   };
 }
 
 export function AddToProject(component) {
   return {
-    type: 'ADD_TO_PROJECT',
+    type: ADD_TO_PROJECT,
     component
   };
 }

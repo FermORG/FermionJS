@@ -1,4 +1,7 @@
 export const dragTarget = {
+  canDrag(props, monitor) {
+    return !props.resizing;
+  },
   beginDrag(props) {
     return { id: props.id };
   },
