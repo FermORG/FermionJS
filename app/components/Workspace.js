@@ -5,7 +5,6 @@ import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
 import Rnd from 'react-rnd';
 
-import { ResizableBox } from 'react-resizable';
 import { WORKSPACE_ID } from './../constants';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
