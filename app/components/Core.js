@@ -33,18 +33,14 @@ class Core extends Component {
     this.onChanges = this.onChanges.bind(this);
   }
   onChanges(newValue) {
-    console.log('change', newValue);
   }
-  handleClick(e) {
-    console.log('inside handle click');
-
+  handleClick(e){
     this.setState({
       hideEditor: !this.state.hideEditor
     });
   }
   handleTextArea(e) {
     e.preventDefault();
-    console.log(e.target.value);
     this.setState({
       code: e.target.value
     });
