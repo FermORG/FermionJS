@@ -6,7 +6,7 @@ import WorkspaceConverter from '../utilities/WorkspaceConverter';
 import WorkspaceExporter from '../utilities/WorkspaceExporter';
 import path from 'path';
 
-const EXPORT_DIR = 'export';
+const EXPORT_DIR = 'export_files/src/components';
 class ExportButton extends Component {
   constructor(props) {
     super(props);
