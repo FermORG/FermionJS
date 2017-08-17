@@ -16,6 +16,7 @@ class Workspace extends Component {
   constructor(props) {
     super(props);
   }
+  
   renderDeep(componentIDList) {
     if (!Object.keys(componentIDList).length || !componentIDList) {
       return [];
@@ -114,16 +115,5 @@ class Workspace extends Component {
 Workspace.propTypes = {
   workspace: PropTypes.object,
 };
-
-function mapStateToProps(state) {
-  return {
-    components: state.workspace.components
-  };
-}
-
-const actionCreators = { addChild, removeChild, moveChild, updateStyle, setActiveComponent };
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
-}
 
 export default Workspace;

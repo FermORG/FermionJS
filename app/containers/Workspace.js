@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
+import * as actionCreators from '../actions/workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
 import Workspace from '../components/Workspace';
 
@@ -12,9 +12,8 @@ function mapStateToProps(state) {
   };
 }
 
-const actionCreators = { addChild, removeChild, moveChild, updateStyle, setActiveComponent };
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(actionCreators, dispatch);
+  return bindActionCreators({ ...actionCreators, setActiveComponent }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Workspace);
