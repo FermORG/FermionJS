@@ -13,7 +13,12 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import MenuBuilder from './menu';
 import FileLib from './utilities/setFileSystem';
-
+const simulator = require('./components/simulator');
+const registerIpcListener = ()=>{
+  ipcMain.on('openSimulator', (event, root) => {
+    simulator(root);
+  })
+}; 
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {
@@ -56,11 +61,12 @@ app.on('window-all-closed', () => {
 
 
 app.on('ready', async () => {
+  registerIpcListener()
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
 
-  if(FileLib.makeDir(app)) {
+  if (FileLib.makeDir(app)) {
     FileLib.makeConfig(app);
   } else {
     throw new Error('Unable to store config files. please check your file permissions and try again!');
@@ -80,7 +86,7 @@ app.on('ready', async () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
-    //send configuration to mainWindow.
+    // send configuration to mainWindow.
 
     const config = FileLib.loadConfig(app);
     mainWindow.webContents.send('ConfigApp', config);
