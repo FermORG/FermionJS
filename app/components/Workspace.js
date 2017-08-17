@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import coreStyles from '../components/Core.css';
 import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
+import Rnd from 'react-rnd';
 
 import { ResizableBox } from 'react-resizable';
 import { WORKSPACE_ID } from './../constants';
@@ -15,8 +16,11 @@ import { setActiveComponent } from '../actions/FileSystemActions';
 class Workspace extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      mode: false
+    }
   }
-  
+
   renderDeep(componentIDList) {
     if (!Object.keys(componentIDList).length || !componentIDList) {
       return [];
@@ -39,23 +43,7 @@ class Workspace extends Component {
         height: '100%'
       };
 
-      /**
-       * Wrap CustomComponent with a ResizableBox and an outer div
-       * to be prepared to be wrapped again by the drag and drop wrapper
-       */
-      const DivWrappedComponent = (
-        <div
-          id="divwrappedcomp"
-          style={{ width: '100%', height: '100%', display: 'inline-block', margin: '0', padding: '0'}}
-        >
-          <CustomComponent {...componentData.props} style={componentStyle}>
-            { children }
-          </CustomComponent>
-        </div>
-      );
-
-      const DndComponent = dndComponentWrapper(DivWrappedComponent);
-
+      
       /**
        * Since ResizableBox takes integer width and heights,
        * we extract them from the strings suffixed with 'px'
@@ -65,27 +53,64 @@ class Workspace extends Component {
         parseInt(componentData.props.style.height.split('px')[0], 10)
       ];
 
-      return (
-        <ResizableBox
-          width={widthInt}
-          height={heightInt}
-          key={componentData.id}
+      /**
+       * Wrap CustomComponent with a ResizableBox and an outer div
+       * to be prepared to be wrapped again by the drag and drop wrapper
+       */
+      const DivWrappedComponent = (
+        <div
+          id="divwrappedcomp"
+          style={{ 
+            ...componentData.props.style,
+            left: null,
+            top: null,
+          }}
           onClick={(e) => {
             e.stopPropagation();
             this.props.setActiveComponent(componentData.id.toString());
           }}
-          onResizeStop={
-            (e, data) => {
-              const [newWidth, newHeight] = [`${data.size.width}px`, `${data.size.height}px`];
-              this.props.updateStyle(componentData.id, { width: newWidth, height: newHeight });
-            }
-          }
+        >
+          <CustomComponent {...componentData.props} style={componentStyle}>
+            { children }
+          </CustomComponent>
+        </div>
+      );
+
+      const DndComponent = this.state.mode ? 
+        dndComponentWrapper(DivWrappedComponent) : () => DivWrappedComponent;
+
+      return (
+        <Rnd
+          key={componentData.id} 
+          default={{
+            x: componentData.props.style.left || 0,
+            y: componentData.props.style.top || 0,
+            width: widthInt,
+            height: heightInt
+          }}
+          style={{
+            border: '1px solid red'
+          }}
+          minWidth={50}
+          minHeight={50}
+          bounds={"parent"}
+          disableDragging={this.state.mode}
+          onDragStart={(e) => {e.stopPropagation()}}
+          onDragStop={(e, data) => {
+            setTimeout(
+              () => this.props.updateStyle(componentData.id, { left: data.x, top: data.y }), 0
+            );
+          }}
+          onResizeStop={(e, dir, ref, delta) => {
+            const { width, height } = ref.style;
+            setTimeout(() => this.props.updateStyle(componentData.id, { width, height }), 0);
+          }}
         >
           <DndComponent
             id={componentData.id}
             moveChild={this.props.moveChild}
           />
-        </ResizableBox>
+        </ Rnd>
       );
     });
   }
@@ -94,8 +119,8 @@ class Workspace extends Component {
     const worskpaceChildren = this.props.components.workspace.children;
     const { hideEditor } = this.props;
     const Workspace = () => (
-      <div className='unwrappedWorkspace' style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
-        { this.renderDeep(worskpaceChildren) }
+      <div id="test" style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
+        {  this.renderDeep(worskpaceChildren) }
       </div>
     );
 
