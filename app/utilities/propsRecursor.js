@@ -26,8 +26,11 @@ const workspace = {
   state: {'testy': 'casey'},
 };
 
+/**
+* @param {object} workspace:redux_top_level_workspace_state_obj
+*/
 
-/*export default*/ function propsParser(workspace) {
+export default function propsParser(workspace) {
   const clonedWorkspace = cloneDeep(workspace);
   const components = clonedWorkspace.components;
   const app = components.app || components.workspace;
@@ -35,6 +38,11 @@ const workspace = {
   state = Object.assign(state, getChildProps(app, components));
   return clonedWorkspace;
 }
+
+/**
+* @param {object} parent:Object_being_examined
+* @param {object} components:workspace.components_regardless_of_first_param_ID
+*/
 
 function getChildProps(parent, components) {
   const { children } = parent;
@@ -49,11 +57,17 @@ function getChildProps(parent, components) {
   return props;
 }
 
-/*export*/ function flattenStateProps(state, component, components) {
+/**
+* @param {object} state:workspace_state_or_component_props
+* @param {string} component:string_name_of_component
+* @param {object} components:workspace.components_regardless_of_first_param_ID
+*/
+
+export function flattenStateProps(state, component, components) {
 
   const children = components[component].children;
   state = cloneDeep(state);
-  const flatState = Object.keys(state).reduce((final, init) => {
+  return Object.keys(state).reduce((final, init) => {
       if (children.indexOf(init) === -1) {
         final[init] = state[init];
       } else {
@@ -61,12 +75,11 @@ function getChildProps(parent, components) {
       }
       return final;
   }, {});
-  return flatState;
 }
 
-const res = propsParser(workspace);
-console.log(JSON.stringify(res, ' '));
-const unres = flattenStateProps(res.state, 'workspace', res.components);
-
-console.log(JSON.stringify(unres));
-console.log(JSON.stringify(res.state));
+// const res = propsParser(workspace);
+// console.log(JSON.stringify(res, ' '));
+// const unres = flattenStateProps(res.state, 'workspace', res.components);
+//
+// console.log(JSON.stringify(unres));
+// console.log(JSON.stringify(res.state));

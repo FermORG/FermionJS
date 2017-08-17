@@ -1,7 +1,7 @@
 const PAD_LENGTH = 3;
 const WORKSPACE_ID = 'workspace';
 const TOP_LEVEL_NAME = 'App';
-const propsParser = require('./propsRecursor');
+const { propsParser, flattenStateProps } = require('./propsRecursor');
 let state;
 //    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 if (!String.prototype.padStart) {
