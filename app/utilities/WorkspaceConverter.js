@@ -1,6 +1,7 @@
-const PAD_LENGTH = 3
-const WORKSPACE_ID = 'workspace'
-const TOP_LEVEL_NAME = 'App'
+const PAD_LENGTH = 3;
+const WORKSPACE_ID = 'workspace';
+const TOP_LEVEL_NAME = 'App';
+const propsParser = require('./propsRecursor');
 let state;
 //    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 if (!String.prototype.padStart) {
@@ -20,11 +21,6 @@ if (!String.prototype.padStart) {
 }
 
 const padName = (name, id) => `${name}_${id.padStart(PAD_LENGTH, '0')}`;
-
-// const getState = (workspace) => {
-//   const state = JSON.stringify(Object.assign({}, workspace.state), 2);
-//   return state;
-// }
 
 class ComponentConverter {
   constructor(component) {
@@ -77,24 +73,17 @@ class ComponentConverter {
     }, '');
   }
 
-  getState(){
-    const appState = {};
-    Object.keys(state).forEach((key) => {
-      appState[key] = state[key].split('"').join('');
-    });
-    console.log(appState);
-    return appState;
-  }
   generateCode() {
+    const className = this.getClass();
     return (
 `
 import React, { Component } from 'react'
 ${this.getImports()}
 const divStyle = ${this.getStyle()}
-class ${this.getClass()} extends Component {
+class ${className} extends Component {
   constructor(props){
-    super(props)
-  ${this.getClass() === 'App' ? `this.state = ${state.replace(/\"/g, "")}` : `` }
+    super(props);
+  ${className === 'App' ? `this.state = ${state.replace(/\"/g, "")}` : `` }
   }
   render(){
     return (
@@ -103,18 +92,16 @@ class ${this.getClass()} extends Component {
     )
   }
 }
-export default ${this.getClass()}
+export default ${className};
 `
     );
   }
 }
 class WorkspaceConverter {
-  // constructor(components){
-constructor(workspace){
-    // let comps= Object.assign({}, components);
+  constructor(workspace){
+    const clonedWorkspace = propsParser(workspace);
     let comps = Object.assign({}, workspace.components);
-    console.log(comps);
-    state = JSON.stringify(Object.assign({}, workspace.state), '  ');
+    state = JSON.stringify(Object.assign({}, clonedWorkspace.state), '  ');
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
     this.components = this.convertChildIDtoFileName(comps);
   }
@@ -127,6 +114,7 @@ constructor(workspace){
       acc[id] = newComponent;
       return acc;
     }, {});
+    console.log('converted: ', converted);
     return converted;
   }
   convert(){
