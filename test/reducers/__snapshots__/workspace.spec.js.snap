@@ -1,0 +1,601 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`workspace Reducer CASE: ADD CHILD should add a child to the workspace state 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 3,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "testProp": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "2": Object {
+      "events": Object {
+        "test": "test",
+      },
+      "id": 2,
+      "name": "test",
+      "props": Object {
+        "style": Object {
+          "position": "relative",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+        2,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: ADD STATE should add a value to the workspace state object 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "testProp": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+    "test": null,
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: ADD_EVENTS should add a new event to a component 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "onClick": null,
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+        "testProp": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: ADD_PROPS should add a prop to a component 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+        "testProp": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: ADD_STYLES should add a new style to props.style 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "border": null,
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+        "testProp": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: DELETE EVENTS should remove an event from a component 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "onClick": null,
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: DELETE STYLE should remove a key from the style object 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "onClick": null,
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: DELETE_PROPS should remove a value from a component's props 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "onClick": null,
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
+
+exports[`workspace Reducer CASE: DELETE_STATE should remove a value from the app state 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "onClick": null,
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "test": null,
+        "testProp": null,
+      },
+    },
+    "1": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        0,
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {},
+}
+`;
+
+exports[`workspace Reducer CASE: MOVE_CHILD should nest a component in another component 1`] = `
+Object {
+  "activeComponent": "0",
+  "componentCounter": 2,
+  "components": Object {
+    "0": Object {
+      "children": Array [],
+      "events": Object {
+        "test": "test",
+      },
+      "id": 0,
+      "name": "BlackBox",
+      "parentID": 1,
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "black",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+        "testProp": null,
+      },
+    },
+    "1": Object {
+      "children": Array [
+        0,
+      ],
+      "events": Object {
+        "test": "event test =]",
+      },
+      "id": 1,
+      "name": "BlueBox",
+      "parentID": "workspace",
+      "props": Object {
+        "style": Object {
+          "backgroundColor": "blue",
+          "display": "inline-block",
+          "height": "100px",
+          "overflow": "auto",
+          "position": "relative",
+          "width": "100px",
+        },
+      },
+    },
+    "workspace": Object {
+      "children": Array [
+        1,
+      ],
+      "id": "workspace",
+    },
+  },
+  "state": Object {
+    "default": "default",
+  },
+}
+`;
