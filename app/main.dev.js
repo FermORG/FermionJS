@@ -13,7 +13,8 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import MenuBuilder from './menu';
 import FileLib from './utilities/setFileSystem';
-const simulator = require('./components/Simulator');
+// const simulator = require('./components/Simulator');
+import simulator from './utilities/Simulator'
 const registerIpcListener = ()=>{
   ipcMain.on('openSimulator', (event, root) => {
     simulator(root);
