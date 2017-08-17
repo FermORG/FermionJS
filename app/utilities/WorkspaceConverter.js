@@ -23,8 +23,10 @@ if (!String.prototype.padStart) {
 const padName = (name, id) => `${name}_${id.padStart(PAD_LENGTH, '0')}`;
 
 class ComponentConverter {
-  constructor(component) {
+  constructor(component, components) {
     this.component = component;
+    this.components = components;
+    this.state = state;
   }
   get ext() {
     return '.js';
@@ -59,13 +61,23 @@ class ComponentConverter {
     return `${this.component.name}`;
   }
   getStyle() {
-    if (!this.component.props) return;
-    const style = this.component.props.style;
+    let style;
+    if (!this.component.props){
+      style = {height: '100vh', width:'100vw', 'backgroundColor': '#FFF', 'margins': '0px'};
+    } else {
+      style = this.component.props.style;
+    }
     return JSON.stringify(style);
   }
 
   getProps() {
-    const props = Object.assign({}, this.component.props);
+    // const props = Object.assign({}, this.component.props);
+    let props;
+    if (this.component.id !== WORKSPACE_ID){
+      props = flattenStateProps(this.component.props, this.component.id, this.components);
+    } else {
+      return '';
+    }
     delete props.style;
     return Object.keys(props).reduce((final, key) => {
       final += `${key}="${props[key]}" `;
@@ -118,7 +130,7 @@ class WorkspaceConverter {
   }
   convert(){
     return Object.keys(this.components).reduce((acc, key)=>{
-      const cc = new ComponentConverter(this.components[key]);
+      const cc = new ComponentConverter(this.components[key], this.components);
       acc.push({
         name: cc.name,
         id: cc.id,

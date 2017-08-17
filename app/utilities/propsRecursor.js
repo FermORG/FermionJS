@@ -47,7 +47,7 @@ export function propsParser(workspace) {
 function getChildProps(parent, components) {
   const { children } = parent;
   let props = parent.props || {};
-  delete props.style;
+  // delete props.style;
   if (children.length === 0){
     return props;
   }
@@ -64,6 +64,9 @@ function getChildProps(parent, components) {
 */
 
 export function flattenStateProps(state, component, components) {
+  console.log('state: ', state);
+  console.log('component: ', component);
+  console.log('components: ', components);
   const children = components[component].children;
   state = cloneDeep(state);
   return Object.keys(state).reduce((final, init) => {
@@ -72,6 +75,7 @@ export function flattenStateProps(state, component, components) {
       } else {
         final = Object.assign(final, flattenStateProps(state[init], init, components));
       }
+      delete final.style;
       return final;
   }, {});
 }
