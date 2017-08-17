@@ -100,8 +100,8 @@ export default ${className};
 class WorkspaceConverter {
   constructor(workspace){
     const clonedWorkspace = propsParser(workspace);
-    let comps = Object.assign({}, workspace.components);
-    state = JSON.stringify(Object.assign({}, clonedWorkspace.state), '  ');
+    let comps = Object.assign({}, clonedWorkspace.components);
+    state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
     this.components = this.convertChildIDtoFileName(comps);
   }
@@ -114,7 +114,6 @@ class WorkspaceConverter {
       acc[id] = newComponent;
       return acc;
     }, {});
-    console.log('converted: ', converted);
     return converted;
   }
   convert(){
