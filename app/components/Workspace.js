@@ -39,7 +39,8 @@ class Workspace extends Component {
       const componentStyle = {
         ...componentData.props.style,
         width: '100%',
-        height: '100%'
+        height: '100%',
+        overflow: 'hidden'
       };
 
       
@@ -69,7 +70,7 @@ class Workspace extends Component {
             this.props.setActiveComponent(componentData.id.toString());
           }}
         >
-          <CustomComponent {...componentData.props} style={componentStyle}>
+          <CustomComponent {...componentData.props} style={{ ...componentStyle, left: null, top: null }}>
             { children }
           </CustomComponent>
         </div>
@@ -84,11 +85,11 @@ class Workspace extends Component {
           default={{
             x: componentData.props.style.left || 0,
             y: componentData.props.style.top || 0,
-            width: widthInt,
-            height: heightInt
+            width: widthInt + 4,
+            height: heightInt + 4
           }}
           style={{
-            border: '1px solid red'
+            border: '2px solid white',
           }}
           minWidth={50}
           minHeight={50}
@@ -118,19 +119,26 @@ class Workspace extends Component {
     const worskpaceChildren = this.props.components.workspace.children;
     const { hideEditor } = this.props;
     const Workspace = () => (
-      <div id="test" style={{ width: '100%', height: '100%', overflowY: 'scroll' }}>
+      <div id="test" style={{ width: '100%', height: '100%' }}>
         {  this.renderDeep(worskpaceChildren) }
       </div>
+      
     );
 
     const WrappedWorkspace = dropWorkspaceWrapper(Workspace, hideEditor);
 
     return (
+      <div>
       <WrappedWorkspace
         id={WORKSPACE_ID}
         moveChild={this.props.moveChild}
         hideEditor={hideEditor}
       />
+            <button onClick={()=>{this.setState({ mode: !this.state.mode })}}>
+        dnd mode
+      </button> 
+
+      </div>
     );
   }
 }
