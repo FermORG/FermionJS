@@ -2,7 +2,9 @@ const PAD_LENGTH = 3;
 const WORKSPACE_ID = 'workspace';
 const TOP_LEVEL_NAME = 'App';
 const { propsParser, flattenStateProps } = require('./propsRecursor');
+const { cloneDeep } = require('lodash');
 let state;
+let statemap;
 //    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 if (!String.prototype.padStart) {
   String.prototype.padStart = function padStart(targetLength, padString) {
@@ -26,7 +28,7 @@ class ComponentConverter {
   constructor(component, components) {
     this.component = component;
     this.components = components;
-    console.log('c: ', this.components);
+    console.log('c: ', this.component);
     this.children = components[component.id].children;
   }
   get ext() {
@@ -53,8 +55,7 @@ class ComponentConverter {
   getChildren() {
     return this.component.childrenFileNames.reduce((final, childFile, i, array) => {
       console.log(childFile);
-      this.getChildProps(childFile);
-      final += `        <${childFile}\n /> `;
+      final += `        <${childFile}\n ${this.getChildProps(childFile)} /> `;
       // if (i === array.length - 1) final += '\n';
       final += '\n';
       return final;
@@ -87,10 +88,36 @@ class ComponentConverter {
       return final;
     }, '');
   }
-
+    // obj destructures props in render method automatically.
+  destructureProps() {
+    let props;
+    if (this.component.id !== WORKSPACE_ID){
+      props = flattenStateProps(this.component.props, this.component.id, this.components);
+    } else {
+      return '';
+    }
+    delete props.style;
+      const destructuredProps = Object.keys(props).reduce((final, key) => {
+      final += `${key}, `;
+      return final;
+    }, 'const { ');
+    return destructuredProps.slice(0, destructuredProps.length - 2) + ' } = this.props;'
+  }
+    //adds child props to component calls in JSX.
   getChildProps(childFile) {
-    const childProps = parseInt(childFile.slice(-3));
-    console.log(childProps);
+    const child = parseInt(childFile.slice(-3));
+    let childProps;
+    if (this.component.id !== WORKSPACE_ID){
+        childProps = cloneDeep(this.component.props[child]);
+    } else {
+      childProps = flattenStateProps(this.components[child].props, String(child), this.components);
+    }
+      delete childProps.style;
+      console.log('cp: ',childProps);
+      return Object.keys(childProps).reduce((inline, prop) => {
+        inline+= `        ${prop}={${childProps[prop]}}\n`;
+        return inline;
+      }, '');
   }
 
   generateCode() {
@@ -106,8 +133,9 @@ class ${className} extends Component {
   ${className === 'App' ? `this.state = ${state.replace(/\"/g, "")}` : `` }
   }
   render(){
+    ${this.destructureProps()}
     return (
-      <div style={divStyle} ${this.getProps()}>
+      <div style={divStyle}>
         ${this.getChildren()}
       </div>
     )
@@ -122,6 +150,8 @@ class WorkspaceConverter {
   constructor(workspace){
     const clonedWorkspace = propsParser(workspace);
     let comps = Object.assign({}, clonedWorkspace.components);
+    statemap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
+    console.log(statemap);
     state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
     this.components = this.convertChildIDtoFileName(comps);

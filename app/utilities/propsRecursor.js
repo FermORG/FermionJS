@@ -1,31 +1,4 @@
 const { cloneDeep } = require('lodash');
-// const components = {
-//   "One": {
-//     children: ["Two"],
-//     props: {
-//       'test': 'case',
-//       'style': 'blah',
-//     }
-//   },
-//   "Two": {
-//       children: [],
-//       props: {
-//         'test2': 'case2',
-//         'style': 'blah2',
-//       }
-//   } ,
-//   "workspace": {
-//     children: [
-//       "One",
-//     ],
-//   } ,
-// };
-//
-// const workspace = {
-//   components,
-//   state: {'testy': 'casey'},
-// };
-
 /**
 * @param {object} workspace:redux_top_level_workspace_state_obj
 */
@@ -64,10 +37,6 @@ function getChildProps(parent, components) {
 */
 
 export function flattenStateProps(state, component, components) {
-  // console.log('state: ', state);
-  // console.log('component: ', component);
-  // console.log('components: ', components);
-  // console.log('cchain: ', components[component]);
   const children = components[component].children;
   state = cloneDeep(state);
   return Object.keys(state).reduce((final, init) => {
@@ -80,10 +49,3 @@ export function flattenStateProps(state, component, components) {
       return final;
   }, {});
 }
-
-// const res = propsParser(workspace);
-// console.log(JSON.stringify(res, ' '));
-// const unres = flattenStateProps(res.components['One'].props, 'One', res.components);
-//
-// console.log(JSON.stringify(unres));
-// console.log(JSON.stringify(res.state));
