@@ -20,6 +20,11 @@ class Workspace extends Component {
     }
   }
 
+  componentDidMount() {
+    const { width, height } = document.getElementById('workspace').getBoundingClientRect()
+    this.props.updateStyle(WORKSPACE_ID, { width: `${width}px`, height: `${height}px` });
+  }
+
   renderDeep(componentIDList) {
     if (!Object.keys(componentIDList).length || !componentIDList) {
       return [];
@@ -119,7 +124,7 @@ class Workspace extends Component {
     const worskpaceChildren = this.props.components.workspace.children;
     const { hideEditor } = this.props;
     const Workspace = () => (
-      <div id="test" style={{ width: '100%', height: '100%' }}>
+      <div id={WORKSPACE_ID} style={{ width: '100%', height: '100%' }}>
         {  this.renderDeep(worskpaceChildren) }
       </div>
       
