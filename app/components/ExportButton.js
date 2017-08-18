@@ -15,7 +15,6 @@ export default class ExportButton extends Component {
     const destinationDir = path.join(__dirname, EXPORT_DIR);
     try {
       // let wc = new WorkspaceConverter(this.props.components);
-      console.log('this.props', this.props);
       let wc = new WorkspaceConverter(this.props.workspace);
       let exporter = new WorkspaceExporter(destinationDir, wc.convert());
       exporter.deleteDir();

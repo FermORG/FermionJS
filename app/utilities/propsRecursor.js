@@ -64,9 +64,10 @@ function getChildProps(parent, components) {
 */
 
 export function flattenStateProps(state, component, components) {
-  console.log('state: ', state);
-  console.log('component: ', component);
-  console.log('components: ', components);
+  // console.log('state: ', state);
+  // console.log('component: ', component);
+  // console.log('components: ', components);
+  // console.log('cchain: ', components[component]);
   const children = components[component].children;
   state = cloneDeep(state);
   return Object.keys(state).reduce((final, init) => {

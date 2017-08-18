@@ -26,7 +26,8 @@ class ComponentConverter {
   constructor(component, components) {
     this.component = component;
     this.components = components;
-    this.state = state;
+    console.log('c: ', this.components);
+    this.children = components[component.id].children;
   }
   get ext() {
     return '.js';
@@ -51,7 +52,9 @@ class ComponentConverter {
   }
   getChildren() {
     return this.component.childrenFileNames.reduce((final, childFile, i, array) => {
-      final += `        <${childFile} /> `;
+      console.log(childFile);
+      this.getChildProps(childFile);
+      final += `        <${childFile}\n /> `;
       // if (i === array.length - 1) final += '\n';
       final += '\n';
       return final;
@@ -80,9 +83,14 @@ class ComponentConverter {
     }
     delete props.style;
     return Object.keys(props).reduce((final, key) => {
-      final += `${key}="${props[key]}" `;
+      final += `\n        ${key}={${props[key]}}`;
       return final;
     }, '');
+  }
+
+  getChildProps(childFile) {
+    const childProps = parseInt(childFile.slice(-3));
+    console.log(childProps);
   }
 
   generateCode() {
@@ -99,7 +107,8 @@ class ${className} extends Component {
   }
   render(){
     return (
-      <div style={divStyle} ${this.getProps()}>${this.getChildren()}
+      <div style={divStyle} ${this.getProps()}>
+        ${this.getChildren()}
       </div>
     )
   }
