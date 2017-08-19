@@ -2,6 +2,7 @@ import { WORKSPACE_ID } from '../../constants';
 import cloneComponentAndChildren from './utilities';
 import updateStyle from './updateStyle';
 import UPDATE_STYLE from '../../actions/workspace';
+import { pixelsToInt } from '../../utilities/helperFunctions';
 
 /**
  * Moves a component already in the workspace
@@ -34,7 +35,7 @@ export default function moveChild(state, action) {
     source.props.style.height,
     target.props.style.width,
     target.props.style.height
-  ].map(elem => parseInt(elem.split('px')[0]));
+  ].map(elem => pixelsToInt(elem));
 
 
   const reduceSourceSize = sourceHeight > targetHeight || sourceWidth > targetWidth;
