@@ -41,6 +41,8 @@ class Workspace extends Component {
         ...componentData.props.style,
         width: '100%',
         height: '100%',
+        left: null,
+        top: null,
         overflow: 'hidden'
       };
       
@@ -52,17 +54,13 @@ class Workspace extends Component {
       const DivWrappedComponent = (
         <div
           id="divwrappedcomp"
-          style={{ 
-            ...componentData.props.style,
-            left: null,
-            top: null,
-          }}
+          style={componentStyle}
           onClick={(e) => {
             e.stopPropagation();
             this.props.setActiveComponent(componentData.id.toString());
           }}
         >
-          <CustomComponent {...componentData.props} style={{ ...componentStyle, left: null, top: null }}>
+          <CustomComponent {...componentData.props} style={componentStyle}>
             { children }
           </CustomComponent>
         </div>
