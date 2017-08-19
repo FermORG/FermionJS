@@ -24,6 +24,10 @@ const defaultWorkspace = {
     workspace: {
       id: WORKSPACE_ID,
       children: [0, 1],
+      props: {
+        style: {
+        }
+      }
     },
   },
   state: {},
@@ -36,7 +40,7 @@ defaultWorkspace.components[0] = {
   parentID: WORKSPACE_ID,
   props: {
     style: {
-      position: 'relative',
+      position: 'absolute',
       height: '100px',
       width: '100px',
       display: 'inline-block',
@@ -54,7 +58,7 @@ defaultWorkspace.components[1] = {
   parentID: WORKSPACE_ID,
   props: {
     style: {
-      position: 'relative',
+      position: 'absolute',
       height: '100px',
       width: '100px',
       display: 'inline-block',
