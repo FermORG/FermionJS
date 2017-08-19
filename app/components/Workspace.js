@@ -16,9 +16,12 @@ import { pixelsToInt } from '../utilities/helperFunctions';
 class Workspace extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       mode: false
     }
+
+    this.onResizeStopHandler = this.onResizeStopHandler.bind(this);
   }
 
   componentDidMount() {
@@ -89,38 +92,7 @@ class Workspace extends Component {
             const [left, top] = [data.x, data.y];
             setTimeout(() => this.props.updateStyle(componentData.id, { left, top }), 0);
           }}
-          onResizeStop={(e, dir, ref, delta) => {
-            let [resizeWidth, resizeHeight] = [ref.style.width, ref.style.height];
-
-            componentData.children.forEach((childID) => {
-              const { width, height, left, top } = allComponents[childID].props.style;
-              console.log(width, height, left, top)
-              if (width + left > resizeWidth) {
-                console.log('WIDTH TOO SMALL MANG')
-                resizeWidth = width + left;
-              }
-              if (height + top > resizeHeight) {
-                console.log('HEIGHT TOO SMALL MANG')
-                resizeHeight = height + top;
-              }
-            });
-
-            setTimeout(() => 
-              this.props.updateStyle(componentData.id, { 
-                width: resizeWidth,
-                height: resizeHeight 
-              }), 0);
-          }}
-          onResize={(e, dir, ref, delta) => {
-            /* console.log('event')
-            console.log(e)
-            console.log('direction')
-            console.log(dir)
-            console.log('refToElement')
-            console.log(ref)
-            console.log('delta')
-            console.log(delta) */
-          }}
+          onResizeStop={(e, dir, ref, delta) => this.onResizeStopHandler(componentData, ref)}
         >
           <DndComponent
             id={componentData.id}
@@ -129,6 +101,31 @@ class Workspace extends Component {
         </ Rnd>
       );
     });
+  }
+  
+  onResizeStopHandler(componentData, ref) {
+    const allComponents = this.props.components;
+    
+    let [resizeWidth, resizeHeight] = 
+      [ref.style.width, ref.style.height].map(elem => parseInt(elem, 0));
+    
+    componentData.children.forEach((childID) => {
+      const childStyle = allComponents[childID].props.style;
+      
+      const [childWidth, childHeight] = 
+        [childStyle.width, childStyle.height].map(elem => pixelsToInt(elem));
+
+      const [childLeft, childTop] = [childStyle.left, childStyle.top];
+
+      if (childWidth + childLeft > resizeWidth) resizeWidth = childWidth + childLeft;
+      if (childHeight + childTop > resizeHeight) resizeHeight = childHeight + childTop;
+    });
+
+    setTimeout(() => 
+      this.props.updateStyle(componentData.id, { 
+        width: `${resizeWidth}px`,
+        height: `${resizeHeight}px` 
+      }), 0);
   }
 
   render() {
