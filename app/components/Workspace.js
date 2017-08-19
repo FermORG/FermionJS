@@ -11,6 +11,7 @@ import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
 import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
+import { pixelsToInt } from '../utilities/helperFunctions';
 
 class Workspace extends Component {
   constructor(props) {
@@ -47,8 +48,8 @@ class Workspace extends Component {
       };
       
       const [widthInt, heightInt] = [
-        parseInt(componentData.props.style.width.split('px')[0], 10),
-        parseInt(componentData.props.style.height.split('px')[0], 10)
+        pixelsToInt(componentData.props.style.width), 
+        pixelsToInt(componentData.props.style.height)
       ];
 
       const DivWrappedComponent = (
@@ -75,22 +76,50 @@ class Workspace extends Component {
           default={{
             x: componentData.props.style.left || 0,
             y: componentData.props.style.top || 0,
-            width: widthInt + 3,
-            height: heightInt + 3
+            width: widthInt,
+            height: heightInt
           }}
           style={{  border: '1px solid white' }}
           minWidth={50}
           minHeight={50}
           bounds={"parent"}
           disableDragging={this.state.mode}
-          onDragStart={(e) => {e.stopPropagation()}}
+          onDragStart={e => e.stopPropagation()}
           onDragStop={(e, data) => {
             const [left, top] = [data.x, data.y];
             setTimeout(() => this.props.updateStyle(componentData.id, { left, top }), 0);
           }}
           onResizeStop={(e, dir, ref, delta) => {
-            const { width, height } = ref.style;
-            setTimeout(() => this.props.updateStyle(componentData.id, { width, height }), 0);
+            let [resizeWidth, resizeHeight] = [ref.style.width, ref.style.height];
+
+            componentData.children.forEach((childID) => {
+              const { width, height, left, top } = allComponents[childID].props.style;
+              console.log(width, height, left, top)
+              if (width + left > resizeWidth) {
+                console.log('WIDTH TOO SMALL MANG')
+                resizeWidth = width + left;
+              }
+              if (height + top > resizeHeight) {
+                console.log('HEIGHT TOO SMALL MANG')
+                resizeHeight = height + top;
+              }
+            });
+
+            setTimeout(() => 
+              this.props.updateStyle(componentData.id, { 
+                width: resizeWidth,
+                height: resizeHeight 
+              }), 0);
+          }}
+          onResize={(e, dir, ref, delta) => {
+            /* console.log('event')
+            console.log(e)
+            console.log('direction')
+            console.log(dir)
+            console.log('refToElement')
+            console.log(ref)
+            console.log('delta')
+            console.log(delta) */
           }}
         >
           <DndComponent
