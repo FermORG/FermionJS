@@ -5,7 +5,7 @@ import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
 import Rnd from 'react-rnd';
 
-import { WORKSPACE_ID } from './../constants';
+import { WORKSPACE_ID, STATIC_INNER_COMPONENT_STYLE } from './../constants';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
@@ -30,9 +30,7 @@ class Workspace extends Component {
   }
 
   renderDeep(componentIDList) {
-    if (!Object.keys(componentIDList).length || !componentIDList) {
-      return [];
-    }
+    if (!Object.keys(componentIDList).length || !componentIDList) return [];
 
     const allComponents = this.props.components;
 
@@ -40,31 +38,24 @@ class Workspace extends Component {
       const componentData = allComponents[componentID];
       const CustomComponent = getVisComponent(componentData.name);
       const children = this.renderDeep(componentData.children);
-
-      const componentStyle = {
-        ...componentData.props.style,
-        width: '100%',
-        height: '100%',
-        left: null,
-        top: null,
-        overflow: 'hidden'
-      };
       
       const [widthInt, heightInt] = [
         pixelsToInt(componentData.props.style.width), 
         pixelsToInt(componentData.props.style.height)
       ];
 
+      const innerComponentStyle = { ...componentData.props.style, ...STATIC_INNER_COMPONENT_STYLE };
+
       const DivWrappedComponent = (
         <div
           id="divwrappedcomp"
-          style={componentStyle}
+          style={innerComponentStyle}
           onClick={(e) => {
             e.stopPropagation();
             this.props.setActiveComponent(componentData.id.toString());
           }}
         >
-          <CustomComponent {...componentData.props} style={componentStyle}>
+          <CustomComponent {...componentData.props} style={innerComponentStyle}>
             { children }
           </CustomComponent>
         </div>
@@ -102,7 +93,7 @@ class Workspace extends Component {
       );
     });
   }
-  
+
   onResizeStopHandler(componentData, ref) {
     const allComponents = this.props.components;
     
