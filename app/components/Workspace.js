@@ -21,7 +21,7 @@ class Workspace extends Component {
   }
 
   componentDidMount() {
-    const { width, height } = document.getElementById('workspace').getBoundingClientRect()
+    const { width, height } = document.getElementById(WORKSPACE_ID).getBoundingClientRect()
     this.props.updateStyle(WORKSPACE_ID, { width: `${width}px`, height: `${height}px` });
   }
 
@@ -37,31 +37,18 @@ class Workspace extends Component {
       const CustomComponent = getVisComponent(componentData.name);
       const children = this.renderDeep(componentData.children);
 
-      /**
-       * Change component width and height to 100%
-       * Actual width and height gets set on ResizableBox wrapper
-       */
       const componentStyle = {
         ...componentData.props.style,
         width: '100%',
         height: '100%',
         overflow: 'hidden'
       };
-
       
-      /**
-       * Since ResizableBox takes integer width and heights,
-       * we extract them from the strings suffixed with 'px'
-       */
       const [widthInt, heightInt] = [
         parseInt(componentData.props.style.width.split('px')[0], 10),
         parseInt(componentData.props.style.height.split('px')[0], 10)
       ];
 
-      /**
-       * Wrap CustomComponent with a ResizableBox and an outer div
-       * to be prepared to be wrapped again by the drag and drop wrapper
-       */
       const DivWrappedComponent = (
         <div
           id="divwrappedcomp"
@@ -90,21 +77,18 @@ class Workspace extends Component {
           default={{
             x: componentData.props.style.left || 0,
             y: componentData.props.style.top || 0,
-            width: widthInt + 4,
-            height: heightInt + 4
+            width: widthInt + 3,
+            height: heightInt + 3
           }}
-          style={{
-            border: '2px solid white',
-          }}
+          style={{  border: '1px solid white' }}
           minWidth={50}
           minHeight={50}
           bounds={"parent"}
           disableDragging={this.state.mode}
           onDragStart={(e) => {e.stopPropagation()}}
           onDragStop={(e, data) => {
-            setTimeout(
-              () => this.props.updateStyle(componentData.id, { left: data.x, top: data.y }), 0
-            );
+            const [left, top] = [data.x, data.y];
+            setTimeout(() => this.props.updateStyle(componentData.id, { left, top }), 0);
           }}
           onResizeStop={(e, dir, ref, delta) => {
             const { width, height } = ref.style;
