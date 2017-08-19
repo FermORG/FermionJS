@@ -642,6 +642,7 @@ textarea {
 
 .pane-group {
   position: absolute;
+  padding: 10px;
   top: 0;
   right: 0;
   bottom: 0;
@@ -2268,7 +2269,6 @@ td:last-child {
 }
 
 .tab-group {
-  margin-top: -1px;
   display: flex;
   border-top: 1px solid #1a1d23;
 }

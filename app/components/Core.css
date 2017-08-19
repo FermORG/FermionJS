@@ -1,4 +1,3 @@
-
 .sidebar {
   background-color: #232630;
   border-left: 1px solid #1a1d23;
@@ -9,22 +8,25 @@
   background-color: #232630;
   height: 100vh;
 }
+
+
 /* window #282c36
  border #232630*/
+
 .main {
   border: none;
+  padding-left: 5px;
+  padding-right: 5px;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.footer{
+.footer {
   background-color: #282c36;
   border: 1px solid #1a1d23;
   min-height: 30px;
   position: relative;
-  width: 96%;
-  margin: auto;
 }
 
 .title {
@@ -80,12 +82,10 @@
   background-color: #282c36;
   border-left: 1px solid #1a1d23;
   border-right: 1px solid #1a1d23;
-  width: 96%;
-  height: 91.5vh;
+  height: 87.5vh;
   /*height: 48vh; /* height for visible editor*/
-  margin: auto;
-  overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .showEditor {
@@ -97,8 +97,8 @@
   width: 96%;
   height: 54vh;
   margin: auto;
-  overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 hr {
@@ -112,15 +112,16 @@ hr {
   opacity: 1;
 }
 
-.boardContainer{
+.boardContainer {
   height: 100%;
   width: 100%;
 }
 
-.squareContainer{
+.squareContainer {
   margin-top: 100px;
   height: 500px;
 }
+
 .tab {
   color: #31DBC3;
 }
