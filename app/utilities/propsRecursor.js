@@ -23,7 +23,6 @@ export function appParser(workspace) {
 function getChildProps(parent, components) {
   const { children } = parent;
   let props = parent.props || {};
-  // delete props.style;
   if (children.length === 0){
     return props;
   }

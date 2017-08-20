@@ -1,20 +1,4 @@
 const { cloneDeep } = require('lodash');
-
-//
-// /**
-// * @param {object} workspace - redux top level workspace state obj
-// */
-// // may not be needed at this point.
-//
-// // export function eventsParser(workspace) {
-// //   const clonedWorkspace = cloneDeep(workspace);
-// //   const components = clonedWorkspace.components;
-// //   const app = components.app || components.workspace;
-// //   let events = app.events;
-// //   events = Object.assign(events, getChildEvents(app, components));
-// //   return clonedWorkspace;
-// // }
-
 /**
 * @param {object} parent - Object being examined
 * @param {object} components - workspace.components regardless of first param ID
