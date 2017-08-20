@@ -1,6 +1,6 @@
 const { cloneDeep } = require('lodash');
 /**
-* @param {object} workspace:redux_top_level_workspace_state_obj
+* @param {object} workspace - redux top level workspace state obj
 */
 
 export function propsParser(workspace) {
@@ -13,8 +13,8 @@ export function propsParser(workspace) {
 }
 
 /**
-* @param {object} parent:Object_being_examined
-* @param {object} components:workspace.components_regardless_of_first_param_ID
+* @param {object} parent - Object being examined
+* @param {object} components - workspace.components regardless of first param ID
 */
 
 function getChildProps(parent, components) {
@@ -31,9 +31,9 @@ function getChildProps(parent, components) {
 }
 
 /**
-* @param {object} state:workspace_state_or_component_props
-* @param {string} component:string_name_of_component
-* @param {object} components:workspace.components_regardless_of_first_param_ID
+* @param {object} state - workspace state or component props
+* @param {string} component - string name of component
+* @param {object} components - workspace.components regardless of first param ID
 */
 
 export function flattenStateProps(state, component, components) {
