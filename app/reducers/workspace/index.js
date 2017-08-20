@@ -46,7 +46,7 @@ defaultWorkspace.components[0] = {
       overflow: 'auto',
     },
   },
-  events: { test: 'event test =]' }
+  events: { onClick: '()=>{console.log("test")}' }
 };
 
 defaultWorkspace.components[1] = {

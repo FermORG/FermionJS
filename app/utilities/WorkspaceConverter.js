@@ -89,8 +89,14 @@ class ComponentConverter {
     // obj destructures props in render method automatically.
   destructureProps() {
     let props;
+    let events;
     if (this.component.id !== WORKSPACE_ID){
+      console.log(this.component.events);
+      console.log(this.component.props);
       props = flattenStateProps(this.component.props, this.component.id, this.components);
+      events = flattenEvents(this.component.events, this.component.id, this.components);
+      console.log('flatEvents: ', events);
+      console.log('flatProps ', props);
     } else {
       return '';
     }
