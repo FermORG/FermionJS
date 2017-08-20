@@ -64,7 +64,7 @@ defaultWorkspace.components[1] = {
       overflow: 'auto',
     },
   },
-  events: { test: 'event test =]' }
+  events: {}
 };
 
 // Children is just a list of ids

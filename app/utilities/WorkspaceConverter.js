@@ -71,7 +71,7 @@ class ComponentConverter {
   }
   getImports() {
     return this.component.childrenFileNames.reduce((final, childFile) => {
-      final += `import ${childFile} from '../${childFile}/${childFile}'` + '\n';
+      final += `import ${childFile} from '../${childFile}/${childFile}';` + '\n';
       return final;
     }, '');
   }
@@ -139,7 +139,7 @@ class ComponentConverter {
     const className = this.getClass();
     return (
       `
-      import React, { Component } from 'react'
+      import React, { Component } from 'react';
       ${this.getImports()}
       const divStyle = ${this.getStyle()}
       class ${className} extends Component {
