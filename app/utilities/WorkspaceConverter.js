@@ -97,6 +97,8 @@ class ComponentConverter {
       events = flattenEvents(this.component.events, this.component.id, this.components);
       console.log('flatEvents: ', events);
       console.log('flatProps ', props);
+      props = Object.assign(props, events);
+      console.log('mergedPnE: ', props);
     } else {
       return '';
     }
@@ -111,11 +113,15 @@ class ComponentConverter {
   getChildProps(childFile) {
     const child = parseInt(childFile.slice(-3));
     let childProps;
+    let childEvents;
     if (this.component.id !== WORKSPACE_ID){
         childProps = cloneDeep(this.component.props[child]);
+        childEvents = cloneDeep(this.component.events[child]);
     } else {
       childProps = flattenStateProps(this.components[child].props, String(child), this.components);
+      childEvents = flattenEvents(this.components[child].events, String(child), this.components);
     }
+    childProps = Object.assign(childProps, childEvents);
     delete childProps.style;
     return Object.keys(childProps).reduce((inline, prop) => {
       inline+= `        ${prop}={${childProps[prop]}}\n`;
