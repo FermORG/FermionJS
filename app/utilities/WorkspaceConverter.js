@@ -1,9 +1,9 @@
 const PAD_LENGTH = 3;
 const WORKSPACE_ID = 'workspace';
 const TOP_LEVEL_NAME = 'App';
-const { propsParser, flattenStateProps } = require('./propsRecursor');
+const { appParser, flattenStateProps } = require('./propsRecursor');
 const { cloneDeep } = require('lodash');
-
+const { getChildEvents, flattenEvents } = require('./eventsRecursor');
 /**
 * @param {object} state - a flattened version of the state object and all component's props - rolled into one object for exporting the state.
 * @param {object} stateMap - an object containing all state and props values in a semi-flattened state. each component will be represented by a key pointing to its ID in the store, and its props will be lifted up into the statemap as an object at that key.
@@ -85,21 +85,7 @@ class ComponentConverter {
     }
     return JSON.stringify(style);
   }
-      //not in use, commenting out to test and confirm.
-  // getProps() {
-  //   // const props = Object.assign({}, this.component.props);
-  //   let props;
-  //   if (this.component.id !== WORKSPACE_ID){
-  //     props = flattenStateProps(this.component.props, this.component.id, this.components);
-  //   } else {
-  //     return '';
-  //   }
-  //   delete props.style;
-  //   return Object.keys(props).reduce((final, key) => {
-  //     final += `\n        ${key}={${props[key]}}`;
-  //     return final;
-  //   }, '');
-  // }
+
     // obj destructures props in render method automatically.
   destructureProps() {
     let props;
@@ -159,9 +145,11 @@ class ComponentConverter {
 }
 class WorkspaceConverter {
   constructor(workspace){
-    const clonedWorkspace = propsParser(workspace);
+    const clonedWorkspace = appParser(workspace);
     let comps = Object.assign({}, clonedWorkspace.components);
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
+    eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
+    console.log(eventsMap);
     state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
     this.components = this.convertChildIDtoFileName(comps);

@@ -1,8 +1,6 @@
 const { cloneDeep } = require('lodash');
 const WORKSPACE_ID = 'workspace';
-/**
-* @param {object} workspace - redux top level workspace state obj
-*/
+
 
 const defaultWorkspace = {
   componentCounter: 2,
@@ -54,21 +52,26 @@ defaultWorkspace.components[1] = {
   events: { test: 'event test =]' }
 };
 
-export function eventsParser(workspace) {
-  const clonedWorkspace = cloneDeep(workspace);
-  const components = clonedWorkspace.components;
-  const app = components.app || components.workspace;
-  let events = app.events;
-  events = Object.assign(events, getChildEvents(app, components));
-  return clonedWorkspace;
-}
+/**
+* @param {object} workspace - redux top level workspace state obj
+*/
+// may not be needed at this point.
+
+// export function eventsParser(workspace) {
+//   const clonedWorkspace = cloneDeep(workspace);
+//   const components = clonedWorkspace.components;
+//   const app = components.app || components.workspace;
+//   let events = app.events;
+//   events = Object.assign(events, getChildEvents(app, components));
+//   return clonedWorkspace;
+// }
 
 /**
 * @param {object} parent - Object being examined
 * @param {object} components - workspace.components regardless of first param ID
 */
 
-function getChildEvents(parent, components) {
+export function getChildEvents(parent, components) {
   const { children } = parent;
   let events = parent.events || {};
   if (children.length === 0){
