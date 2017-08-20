@@ -138,26 +138,26 @@ class ComponentConverter {
   generateCode() {
     const className = this.getClass();
     return (
-      `
-      import React, { Component } from 'react';
-      ${this.getImports()}
-      const divStyle = ${this.getStyle()}
-      class ${className} extends Component {
-        constructor(props){
-          super(props);
-        ${className === 'App' ? `this.state = ${state.replace(/\"/g, "")}` : `` }
-        }
-        render(){
-          ${this.destructureProps()}
-          return (
-            <div style={divStyle}  ${this.getEvents()}>
-              ${this.getChildren()}
-            </div>
-          )
-        }
-      }
-      export default ${className};
-      `
+`
+import React, { Component } from 'react';
+${this.getImports()}
+const divStyle = ${this.getStyle()}
+class ${className} extends Component {
+  constructor(props){
+    super(props);
+  ${className === 'App' ? `this.state = ${state.replace(/\"/g, "")}` : `` }
+  }
+  render(){
+    ${this.destructureProps()}
+    return (
+      <div style={divStyle}  ${this.getEvents()}>
+        ${this.getChildren()}
+      </div>
+    );
+  }
+}
+export default ${className};
+`
     );
   }
 }
