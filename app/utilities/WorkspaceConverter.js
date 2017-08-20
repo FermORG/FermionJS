@@ -69,6 +69,12 @@ class ComponentConverter {
      return events;
    }, '');
   }
+
+  getMethods() {
+    return Object.keys(this.methods).reduce((methods, method) => {
+
+    }, '');
+  }
   getImports() {
     return this.component.childrenFileNames.reduce((final, childFile) => {
       final += `import ${childFile} from '../${childFile}/${childFile}';` + '\n';

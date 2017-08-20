@@ -1,6 +1,7 @@
 import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD, UPDATE_STYLE } from '../../actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
 import { SET_ACTIVE_COMPONENT } from '../../actions/FileSystemActions';
+import METHODS from '../../actions/methods';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 // import removeComponent from './removeComponent';
@@ -15,6 +16,7 @@ import deleteStylesValue from './deleteStylesValue';
 import deleteEvent from './deleteEvent';
 import setActiveComponent from './setActiveComponent';
 import updateStyle from './updateStyle';
+import updateMethods from './updateMethods';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -114,6 +116,8 @@ export default function workspace(state = defaultWorkspace, action) {
 
     case UPDATE_STYLE:
       return updateStyle(state, action);
+    case METHODS:
+      return updateMethods(state, action.methods);
     default:
       return state;
   }
