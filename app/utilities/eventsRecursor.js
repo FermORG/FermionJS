@@ -1,70 +1,19 @@
 const { cloneDeep } = require('lodash');
-const WORKSPACE_ID = 'workspace';
 
-
-const defaultWorkspace = {
-  componentCounter: 2,
-  activeComponent: '0',
-  components: {
-    workspace: {
-      id: WORKSPACE_ID,
-      children: [0, 1],
-      events: {},
-    },
-  },
-  state: {},
-  methods: {},
-};
-
-defaultWorkspace.components[0] = {
-  id: 0,
-  name: 'BlackBox',
-  children: [],
-  parentID: WORKSPACE_ID,
-  props: {
-    style: {
-      position: 'relative',
-      height: '100px',
-      width: '100px',
-      display: 'inline-block',
-      backgroundColor: 'black',
-      overflow: 'auto',
-    },
-  },
-  events: { onClick: ()=>{console.log('test')} }
-};
-
-defaultWorkspace.components[1] = {
-  id: 1,
-  name: 'BlueBox',
-  children: [],
-  parentID: WORKSPACE_ID,
-  props: {
-    style: {
-      position: 'relative',
-      height: '100px',
-      width: '100px',
-      display: 'inline-block',
-      backgroundColor: 'blue',
-      overflow: 'auto',
-    },
-  },
-  events: { test: 'event test =]' }
-};
-
-/**
-* @param {object} workspace - redux top level workspace state obj
-*/
-// may not be needed at this point.
-
-// export function eventsParser(workspace) {
-//   const clonedWorkspace = cloneDeep(workspace);
-//   const components = clonedWorkspace.components;
-//   const app = components.app || components.workspace;
-//   let events = app.events;
-//   events = Object.assign(events, getChildEvents(app, components));
-//   return clonedWorkspace;
-// }
+//
+// /**
+// * @param {object} workspace - redux top level workspace state obj
+// */
+// // may not be needed at this point.
+//
+// // export function eventsParser(workspace) {
+// //   const clonedWorkspace = cloneDeep(workspace);
+// //   const components = clonedWorkspace.components;
+// //   const app = components.app || components.workspace;
+// //   let events = app.events;
+// //   events = Object.assign(events, getChildEvents(app, components));
+// //   return clonedWorkspace;
+// // }
 
 /**
 * @param {object} parent - Object being examined

@@ -40,7 +40,8 @@ class ComponentConverter {
   constructor(component, components) {
     this.component = component;
     this.components = components;
-    // console.log('c: ', this.component);
+    this.events = component.events;
+    console.log('events: ', this.events);
     this.children = components[component.id].children;
   }
   get ext() {
@@ -57,6 +58,16 @@ class ComponentConverter {
   }
   get name() {
     return this.component.name;
+  }
+
+  getEvents() {
+    return Object.keys(this.events).reduce((events, event) => {
+     if (this.component.children.indexOf(Number(event)) === -1){
+       events += `${event}=`;
+       events += `{${this.events[event]}} `;
+     }
+     return events;
+   }, '');
   }
   getImports() {
     return this.component.childrenFileNames.reduce((final, childFile) => {
@@ -91,14 +102,9 @@ class ComponentConverter {
     let props;
     let events;
     if (this.component.id !== WORKSPACE_ID){
-      console.log(this.component.events);
-      console.log(this.component.props);
       props = flattenStateProps(this.component.props, this.component.id, this.components);
       events = flattenEvents(this.component.events, this.component.id, this.components);
-      console.log('flatEvents: ', events);
-      console.log('flatProps ', props);
       props = Object.assign(props, events);
-      console.log('mergedPnE: ', props);
     } else {
       return '';
     }
@@ -144,7 +150,7 @@ class ComponentConverter {
         render(){
           ${this.destructureProps()}
           return (
-            <div style={divStyle}>
+            <div style={divStyle}  ${this.getEvents()}>
               ${this.getChildren()}
             </div>
           )
@@ -161,7 +167,6 @@ class WorkspaceConverter {
     let comps = Object.assign({}, clonedWorkspace.components);
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
     eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
-    console.log(eventsMap);
     state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
     this.components = this.convertChildIDtoFileName(comps);
