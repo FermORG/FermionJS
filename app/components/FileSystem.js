@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { SortableTreeWithoutDndContext } from './src/index'; // 'react-sortable-tree';
 import { connect } from 'react-redux';
-import styles from './photon.css';
-import coreStyles from './Core.css';
+import styles from './photon.scss';
+import coreStyles from './Core.scss';
 
 const path = require('path');
 const dirTree = require('directory-tree');

@@ -7,6 +7,7 @@
  * v0.1.1 designed by @connors.
  * =====================================================
  */
+@import './variables.scss';
 
 @charset "UTF-8";
 audio,
@@ -591,7 +592,7 @@ input[type="checkbox"] {
   font-size: 13px;
   line-height: 1.6;
   background-color: #fff;
-  border: 1px solid #1a1d23;
+  border: $borders;
   border-radius: 4px;
   outline: none;
   color: black;
@@ -599,7 +600,7 @@ input[type="checkbox"] {
   /*float: right;*/
 }
 .form-control:focus {
-  border-color: #31DBC3;
+  border-color: $primaryColor;
 }
 
 textarea {
@@ -608,6 +609,10 @@ textarea {
 
 .form-group {
   margin-bottom: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .radio,
@@ -713,6 +718,7 @@ img {
 .list-group-item {
   padding: 7px;
   font-size: 12px;
+  text-align: left;
 }
 .list-group-item:last-child {
   border-bottom: 0;
@@ -724,6 +730,7 @@ img {
 
 .list-group-header {
   padding: 10px;
+  border: $borders;
 }
 
 .media-object {
@@ -2270,7 +2277,7 @@ td:last-child {
 
 .tab-group {
   display: flex;
-  border-top: 1px solid #1a1d23;
+  border-top: $borders;
 }
 
 .tab-item {
@@ -2279,7 +2286,7 @@ td:last-child {
   padding: 3px;
   font-size: 12px;
   text-align: center;
-  border-left: 1px solid #1a1d23;
+  border-left: $borders;
   background-color: #282c36;
 }
 .tab-item:first-child {
@@ -2287,7 +2294,7 @@ td:last-child {
 }
 .tab-item.active {
   background-color: #232630;
-  border: 1px solid #31DBC3;
+  border: 1px solid $primaryColor;
 }
 
 .tab-item:after {

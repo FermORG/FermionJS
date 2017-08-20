@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import styles from './photon.css';
-import coreStyles from './Core.css';
-import panelStyles from './Panels.css';
+import styles from './photon.scss';
+import coreStyles from './Core.scss';
+import panelStyles from './Panels.scss';
 
 // returns renderable config Panel options.
 

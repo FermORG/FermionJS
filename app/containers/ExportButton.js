@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styles from '../components/photon.css';
-import coreStyles from '../components/Core.css';
+import styles from '../components/photon.scss';
+import coreStyles from '../components/Core.scss';
 import WorkspaceConverter from '../utilities/WorkspaceConverter';
 import WorkspaceExporter from '../utilities/WorkspaceExporter';
 import path from 'path';

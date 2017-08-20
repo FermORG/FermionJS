@@ -1,7 +1,9 @@
+@import './variables.scss';
+
 .sidebar {
   background-color: #232630;
-  border-left: 1px solid #1a1d23;
-  border-right: 1px solid #1a1d23;
+  border: $borders;
+  border-top: none;
 }
 
 .container {
@@ -24,7 +26,7 @@
 
 .footer {
   background-color: #282c36;
-  border: 1px solid #1a1d23;
+  border: $borders;
   min-height: 30px;
   position: relative;
 }
@@ -32,7 +34,7 @@
 .title {
   font-size: 14px;
   display: block;
-  color: #31DBC3;
+  color: $primaryColor;
 }
 
 .hideEditor {
@@ -44,8 +46,8 @@
   margin: auto;
   overflow: hidden;
   height: 37.5vh;
-  border-left: 1px solid #1a1d23;
-  border-right: 1px solid #1a1d23;
+  border-left: $borders;
+  border-right: $borders;
 }
 
 .aceInterior {
@@ -65,23 +67,23 @@
 }
 
 .input {
-  color: #31DBC3;
+  color: $primaryColor;
   background-color: #282c36;
 }
 
 ::-webkit-input-placeholder {
-  color: #31DBC3;
+  color: $primaryColor;
 }
 
 .propInput {
-  color: #31DBC3;
+  color: $primaryColor;
   background-color: #282c36;
 }
 
 .workspace {
   background-color: #282c36;
-  border-left: 1px solid #1a1d23;
-  border-right: 1px solid #1a1d23;
+  border-left: $borders;
+  border-right: $borders;
   height: 87.5vh;
   /*height: 48vh; /* height for visible editor*/
   overflow-y: auto;
@@ -90,10 +92,10 @@
 
 .showEditor {
   background-color: #282c36;
-  border: 1px solid #1a1d23;
+  border: $borders;
   border-top: 0px;
-  /*border-left: 1px solid #1a1d23;
-  border-right: 1px solid #1a1d23;*/
+  /*border-left: $borders;
+  border-right: $borders;*/
   width: 96%;
   height: 54vh;
   margin: auto;
@@ -123,5 +125,5 @@ hr {
 }
 
 .tab {
-  color: #31DBC3;
+  color: $primaryColor;
 }

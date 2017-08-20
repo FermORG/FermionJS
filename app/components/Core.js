@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './photon.css';
-import coreStyles from './Core.css';
+import styles from './photon.scss';
+import coreStyles from './Core.scss';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import AceEditor from 'react-ace';
@@ -72,7 +72,7 @@ class Core extends Component {
               <header className={`${coreStyles.footer}`}>
                 <h1 className={`${styles.title} ${coreStyles.title}`}>Web View</h1>
               </header>
-              <div  data-tid="AppContainer">
+              <div data-tid="AppContainer">
                 <Workspace
                   hideEditor={this.state.hideEditor}
                 />
