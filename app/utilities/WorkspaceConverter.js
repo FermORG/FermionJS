@@ -109,7 +109,7 @@ class ComponentConverter {
       return '';
     }
     delete props.style;
-      const destructuredProps = Object.keys(props).reduce((final, key) => {
+    const destructuredProps = Object.keys(props).reduce((final, key) => {
       final += `${key}, `;
       return final;
     }, 'const { ');
@@ -124,11 +124,11 @@ class ComponentConverter {
     } else {
       childProps = flattenStateProps(this.components[child].props, String(child), this.components);
     }
-      delete childProps.style;
-      return Object.keys(childProps).reduce((inline, prop) => {
-        inline+= `        ${prop}={${childProps[prop]}}\n`;
-        return inline;
-      }, '');
+    delete childProps.style;
+    return Object.keys(childProps).reduce((inline, prop) => {
+      inline+= `        ${prop}={${childProps[prop]}}\n`;
+      return inline;
+    }, '');
   }
 
   generateCode() {
