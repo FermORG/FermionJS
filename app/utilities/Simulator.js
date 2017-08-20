@@ -5,17 +5,16 @@ const path = require('path');
 const { spawn } = require('child_process');
 const { BrowserWindow } = require('electron');
 
+const EXPORT_FILES = 'export_files';
+const exportedDir = path.join(__dirname, '../', EXPORT_FILES);
 const simulator = root => {
   const WIDTH = 800;
   const HEIGHT = 600;
-  //Deserialize project info from projInfo file, contains path to index.html and presence of webpack among other things
-  // const projInfo = JSON.parse(fs.readFileSync(path.join(__dirname, '../lib/projInfo.js')));
-
   let child = spawn(
     'npm',
     ['start'],
     {
-      cwd: '/Users/jyamamoto/_personal/Fermionjs/app/export_files',
+      cwd: exportedDir,
       stdio: 'inherit',
       env: process.env 
     }
