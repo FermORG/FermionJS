@@ -24,9 +24,11 @@ const defaultWorkspace = {
     workspace: {
       id: WORKSPACE_ID,
       children: [0, 1],
+      events: {},
     },
   },
   state: {},
+  methods: {},
 };
 
 defaultWorkspace.components[0] = {
