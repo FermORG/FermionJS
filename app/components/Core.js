@@ -30,20 +30,27 @@ class Core extends Component {
     };
     this.handleTextArea = this.handleTextArea.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.onChanges = this.onChanges.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.updateMethods = this.props.updateMethods;
   }
-  onChanges(newValue) {
+
+  props: {
+    updateMethods: () => void,
   }
+
+  onChange(newValue) {
+    console.log('props: ', this.props);
+    console.log(newValue);
+    this.updateMethods(newValue);
+  }
+
   handleClick(e){
     this.setState({
       hideEditor: !this.state.hideEditor
     });
   }
   handleTextArea(e) {
-    e.preventDefault();
-    this.setState({
-      code: e.target.value
-    });
+
   }
    /* Recursively renders all levels of a nested component
    */
@@ -63,6 +70,7 @@ class Core extends Component {
     const options = {
       lineNumbers: true
     };
+    const editorValue = this.props.methods;
     return (
       <div>
         <div className={`${styles['window-content']} ${coreStyles.container}`}>
@@ -84,7 +92,8 @@ class Core extends Component {
                       className={`${coreStyles.aceInterior}`}
                       mode="javascript"
                       theme="twilight"
-                      onChange={this.onChanges}
+                      onChange={this.onChange}
+                      value={editorValue}
                       highlightActiveLine={true}
                       name="editorInterior"
                       style={{width: '100%', margin:'none'}}

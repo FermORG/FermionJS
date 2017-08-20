@@ -41,7 +41,6 @@ class ComponentConverter {
     this.component = component;
     this.components = components;
     this.events = component.events;
-    console.log('events: ', this.events);
     this.children = components[component.id].children;
   }
   get ext() {
@@ -71,9 +70,7 @@ class ComponentConverter {
   }
 
   getMethods() {
-    return Object.keys(this.methods).reduce((methods, method) => {
-
-    }, '');
+    return `${methods}`
   }
   getImports() {
     return this.component.childrenFileNames.reduce((final, childFile) => {
@@ -153,6 +150,7 @@ class ${className} extends Component {
     super(props);
   ${className === 'App' ? `this.state = ${state.replace(/\"/g, "")}` : `` }
   }
+  ${className === 'App' ? `${methods.replace(/\"/g, "")}`: ``}
   render(){
     ${this.destructureProps()}
     return (
@@ -173,6 +171,7 @@ class WorkspaceConverter {
     let comps = Object.assign({}, clonedWorkspace.components);
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
     eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
+    methods = (clonedWorkspace.methods);
     state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
     this.components = this.convertChildIDtoFileName(comps);

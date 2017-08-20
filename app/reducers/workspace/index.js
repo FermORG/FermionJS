@@ -1,7 +1,7 @@
 import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD, UPDATE_STYLE } from '../../actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
 import { SET_ACTIVE_COMPONENT } from '../../actions/FileSystemActions';
-import METHODS from '../../actions/methods';
+import { METHODS } from '../../actions/methods';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 // import removeComponent from './removeComponent';
@@ -30,7 +30,7 @@ const defaultWorkspace = {
     },
   },
   state: {},
-  methods: {},
+  methods: '/*Anything you type in here will be appeneded to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc.*/',
 };
 
 defaultWorkspace.components[0] = {
@@ -77,6 +77,7 @@ defaultWorkspace.components[1] = {
 // ////////
 
 export default function workspace(state = defaultWorkspace, action) {
+  console.log('this: ', METHODS);
   switch (action.type) {
     case ADD_CHILD:
       return addComponent(state, action);
@@ -117,6 +118,7 @@ export default function workspace(state = defaultWorkspace, action) {
     case UPDATE_STYLE:
       return updateStyle(state, action);
     case METHODS:
+      console.log('yes');
       return updateMethods(state, action.methods);
     default:
       return state;
