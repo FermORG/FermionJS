@@ -40,7 +40,7 @@ class ComponentConverter {
   constructor(component, components) {
     this.component = component;
     this.components = components;
-    console.log('c: ', this.component);
+    // console.log('c: ', this.component);
     this.children = components[component.id].children;
   }
   get ext() {
@@ -66,7 +66,7 @@ class ComponentConverter {
   }
   getChildren() {
     return this.component.childrenFileNames.reduce((final, childFile, i, array) => {
-      console.log(childFile);
+      // console.log(childFile);
       final += `        <${childFile}\n ${this.getChildProps(childFile)} /> `;
       // if (i === array.length - 1) final += '\n';
       final += '\n';
@@ -85,21 +85,21 @@ class ComponentConverter {
     }
     return JSON.stringify(style);
   }
-
-  getProps() {
-    // const props = Object.assign({}, this.component.props);
-    let props;
-    if (this.component.id !== WORKSPACE_ID){
-      props = flattenStateProps(this.component.props, this.component.id, this.components);
-    } else {
-      return '';
-    }
-    delete props.style;
-    return Object.keys(props).reduce((final, key) => {
-      final += `\n        ${key}={${props[key]}}`;
-      return final;
-    }, '');
-  }
+      //not in use, commenting out to test and confirm.
+  // getProps() {
+  //   // const props = Object.assign({}, this.component.props);
+  //   let props;
+  //   if (this.component.id !== WORKSPACE_ID){
+  //     props = flattenStateProps(this.component.props, this.component.id, this.components);
+  //   } else {
+  //     return '';
+  //   }
+  //   delete props.style;
+  //   return Object.keys(props).reduce((final, key) => {
+  //     final += `\n        ${key}={${props[key]}}`;
+  //     return final;
+  //   }, '');
+  // }
     // obj destructures props in render method automatically.
   destructureProps() {
     let props;

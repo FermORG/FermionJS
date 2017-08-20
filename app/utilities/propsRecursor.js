@@ -25,7 +25,7 @@ function getChildProps(parent, components) {
     return props;
   }
   children.forEach((child) => {
-     props[child] = Object.assign({}, getChildProps(components[child], components));
+    props[child] = Object.assign({}, getChildProps(components[child], components));
   });
   return props;
 }
@@ -40,12 +40,12 @@ export function flattenStateProps(state, component, components) {
   const children = components[component].children;
   state = cloneDeep(state);
   return Object.keys(state).reduce((final, init) => {
-      if (children.indexOf(Number(init)) === -1) {
-        final[init] = state[init];
-      } else {
-        final = Object.assign(final, flattenStateProps(state[init], init, components));
-      }
-      delete final.style;
-      return final;
+    if (children.indexOf(Number(init)) === -1) {
+      final[init] = state[init];
+    } else {
+      final = Object.assign(final, flattenStateProps(state[init], init, components));
+    }
+    delete final.style;
+    return final;
   }, {});
 }
