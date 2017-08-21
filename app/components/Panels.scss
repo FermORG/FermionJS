@@ -39,7 +39,7 @@
   float: right;
   margin-right: 10px;
   background-color: $background-color-primary;
-  border: $borders;
+  border: 1px solid $border-color;
   border-radius: 5px;
   /*color: yellow;*/
 }
@@ -55,8 +55,8 @@
 
 .header{
   background-color: $background-color-primary;
-  border-top: $borders;
-  border-bottom: $borders;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
   margin-bottom: 12px;
   min-height: 30px;
   position: relative;
@@ -80,17 +80,17 @@
   font-size: 13px;
   line-height: 1.6;
   background-color: #232630; /*$background-color-primary;*/
-  /*border: $borders;*/
+  /*border: 1px solid $border-color;*/
   border: none;
   border-radius: 4px;
   outline: none;
   color: $primary-color;
-  /*border-bottom: $borders;*/
+  /*border-bottom: 1px solid $border-color;*/
 }
 
 .list {
   color: $primary-color;
-  border-bottom: $borders;
+  border-bottom: 1px solid $border-color;
 }
 
 .list:hover {

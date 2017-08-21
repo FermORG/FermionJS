@@ -592,7 +592,7 @@ input[type="checkbox"] {
   font-size: 13px;
   line-height: 1.6;
   background-color: #fff;
-  border: $borders;
+  border: 1px solid $border-color;
   border-radius: 4px;
   outline: none;
   color: black;
@@ -730,7 +730,7 @@ img {
 
 .list-group-header {
   padding: 10px;
-  border: $borders;
+  border: 1px solid $border-color;
 }
 
 .media-object {
@@ -2277,7 +2277,7 @@ td:last-child {
 
 .tab-group {
   display: flex;
-  border-top: $borders;
+  border-top: 1px solid $border-color;
 }
 
 .tab-item {
@@ -2286,7 +2286,7 @@ td:last-child {
   padding: 3px;
   font-size: 12px;
   text-align: center;
-  border-left: $borders;
+  border-left: 1px solid $border-color;
   background-color: $background-color-primary;
 }
 .tab-item:first-child {

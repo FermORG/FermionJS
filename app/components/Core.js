@@ -100,6 +100,7 @@ class Core extends Component {
                   </Link>
                 </div>
                 <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show' : 'Hide'} Editor</button>
+                <a href="#" className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}>Editor</a>
                 <ExportButton />
               </footer>
             </div>

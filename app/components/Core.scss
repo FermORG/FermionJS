@@ -2,7 +2,7 @@
 
 .sidebar {
   background-color: #232630;
-  border: $borders;
+  border: 2px solid $border-color;
   border-top: none;
 }
 
@@ -10,6 +10,7 @@
   background-color: #232630;
   height: 100vh;
 }
+
 
 
 /* window $background-color-primary
@@ -26,7 +27,7 @@
 
 .footer {
   background-color: $background-color-primary;
-  border: $borders;
+  border: 1px solid $border-color;
   min-height: 30px;
   position: relative;
 }
@@ -46,8 +47,8 @@
   margin: auto;
   overflow: hidden;
   height: 37.5vh;
-  border-left: $borders;
-  border-right: $borders;
+  border-left: 1px solid $border-color;
+  border-right: 1px solid $border-color;
 }
 
 .aceInterior {
@@ -62,28 +63,28 @@
 }
 
 .btn {
-  background-color: $background-color-primary !important;
+  background-color: $background-color-primary;
   margin: 2px 4px 0px 0px;
 }
 
 .input {
-  color:$primary-color;
+  color: $primary-color;
   background-color: $background-color-primary;
 }
 
 ::-webkit-input-placeholder {
-  color:$primary-color;
+  color: $primary-color;
 }
 
 .propInput {
-  color:$primary-color;
+  color: $primary-color;
   background-color: $background-color-primary;
 }
 
 .workspace {
-  background-color: #282c36; 
-  border-left: $borders;
-  border-right: $borders;
+  background-color: #282c36;
+  border-left: 1px solid $border-color;
+  border-right: 1px solid $border-color;
   height: 87.5vh;
   /*height: 48vh; /* height for visible editor*/
   overflow-y: auto;
@@ -92,10 +93,10 @@
 
 .showEditor {
   background-color: $background-color-primary;
-  border: $borders;
+  border: 1px solid $border-color;
   border-top: 0px;
-  /*border-left: $borders;
-  border-right: $borders;*/
+  /*border-left: 1px solid $border-color;
+  border-right: 1px solid $border-color;*/
   width: 96%;
   height: 54vh;
   margin: auto;
@@ -125,5 +126,77 @@ hr {
 }
 
 .tab {
-  color:$primary-color;
+  color: $primary-color;
+}
+
+
+
+
+/* Footer Buttons */
+
+a.btn {
+  height: 25px;
+  display: inline-block;
+  color: #666;
+  background-color: #eee;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
+  font-family: inherit;
+  padding: 3px 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom-width: 3px;
+}
+
+a.btn:hover {
+  background-color: #e3e3e3;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+a.btn:active {
+  background-color: #CCC;
+  border-color: rgba(0, 0, 0, 0.9);
+}
+
+
+/* blue button */
+
+a.btn.btn-blue {
+  background-color: #3B3F48;
+  border-color: rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  color: #FFF;
+}
+
+a.btn.btn-blue:hover {
+  background-color: #4F87A2;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+a.btn.btn-blue:active {
+  background-color: #3C677B;
+  border-color: rgba(0, 0, 0, 0.9);
+}
+
+
+/* red button */
+
+a.btn.btn-red {
+  background-color: #E48681;
+  border-color: rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  color: #FFF;
+}
+
+a.btn.btn-red:hover {
+  background-color: #DA4F49;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+a.btn.btn-red:active {
+  background-color: #B32C24;
+  border-color: rgba(0, 0, 0, 0.9);
 }
