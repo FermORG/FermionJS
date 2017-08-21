@@ -12,7 +12,7 @@
 }
 
 
-/* window #282c36
+/* window $background-color-primary
  border #232630*/
 
 .main {
@@ -25,7 +25,7 @@
 }
 
 .footer {
-  background-color: #282c36;
+  background-color: $background-color-primary;
   border: $borders;
   min-height: 30px;
   position: relative;
@@ -34,7 +34,7 @@
 .title {
   font-size: 14px;
   display: block;
-  color: $primaryColor;
+  color: $primary-color;
 }
 
 .hideEditor {
@@ -51,37 +51,37 @@
 }
 
 .aceInterior {
-  background-color: #282c36 !important;
+  background-color: $background-color-primary !important;
 }
 
 .backButton {
   position: absolute;
-  background: #282c36;
+  background: $background-color-primary;
   left: 5px;
   bottom: 4px;
 }
 
 .btn {
-  background-color: #282c36 !important;
+  background-color: $background-color-primary !important;
   margin: 2px 4px 0px 0px;
 }
 
 .input {
-  color: $primaryColor;
-  background-color: #282c36;
+  color:$primary-color;
+  background-color: $background-color-primary;
 }
 
 ::-webkit-input-placeholder {
-  color: $primaryColor;
+  color:$primary-color;
 }
 
 .propInput {
-  color: $primaryColor;
-  background-color: #282c36;
+  color:$primary-color;
+  background-color: $background-color-primary;
 }
 
 .workspace {
-  background-color: #282c36;
+  background-color: #282c36; 
   border-left: $borders;
   border-right: $borders;
   height: 87.5vh;
@@ -91,7 +91,7 @@
 }
 
 .showEditor {
-  background-color: #282c36;
+  background-color: $background-color-primary;
   border: $borders;
   border-top: 0px;
   /*border-left: $borders;
@@ -125,5 +125,5 @@ hr {
 }
 
 .tab {
-  color: $primaryColor;
+  color:$primary-color;
 }

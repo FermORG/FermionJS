@@ -70,7 +70,7 @@ class Core extends Component {
             <Left drag={this.dragComponent} />
             <div className={`${styles.pane} ${coreStyles.main}`}>
               <header className={`${coreStyles.footer}`}>
-                <h1 className={`${styles.title} ${coreStyles.title}`}>Web View</h1>
+                <h1 className={`${styles.title} ${coreStyles.title}`}>Workspace</h1>
               </header>
               <div data-tid="AppContainer">
                 <Workspace

@@ -600,7 +600,7 @@ input[type="checkbox"] {
   /*float: right;*/
 }
 .form-control:focus {
-  border-color: $primaryColor;
+  border-color: $primary-color;
 }
 
 textarea {
@@ -2287,14 +2287,14 @@ td:last-child {
   font-size: 12px;
   text-align: center;
   border-left: $borders;
-  background-color: #282c36;
+  background-color: $background-color-primary;
 }
 .tab-item:first-child {
   border-left: 0;
 }
 .tab-item.active {
   background-color: #232630;
-  border: 1px solid $primaryColor;
+  border: 1px solid $primary-color;
 }
 
 .tab-item:after {

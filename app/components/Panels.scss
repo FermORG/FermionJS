@@ -38,7 +38,7 @@
   text-align: center;
   float: right;
   margin-right: 10px;
-  background-color: #282c36;
+  background-color: $background-color-primary;
   border: $borders;
   border-radius: 5px;
   /*color: yellow;*/
@@ -54,7 +54,7 @@
 }
 
 .header{
-  background-color: #282c36;
+  background-color: $background-color-primary;
   border-top: $borders;
   border-bottom: $borders;
   margin-bottom: 12px;
@@ -67,7 +67,7 @@
   bottom: 3px;
   left: 15px;
   font-size: 14px;
-  color: $primaryColor;
+  color: $primary-color;
   text-align: left;
 
 }
@@ -79,24 +79,24 @@
   /*padding: 5px 10px;*/
   font-size: 13px;
   line-height: 1.6;
-  background-color: #232630; /*#282c36;*/
+  background-color: #232630; /*$background-color-primary;*/
   /*border: $borders;*/
   border: none;
   border-radius: 4px;
   outline: none;
-  color: $primaryColor;
+  color: $primary-color;
   /*border-bottom: $borders;*/
 }
 
 .list {
-  color: $primaryColor;
+  color: $primary-color;
   border-bottom: $borders;
 }
 
 .list:hover {
-  background-color: #282c36;
+  background-color: $background-color-primary;
 }
 
 .list:hover .editField {
-  background-color: #282c36;
+  background-color: $background-color-primary;
 }
