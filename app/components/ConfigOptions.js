@@ -13,11 +13,6 @@ export default function ConfigOption(props) {
       <strong>{`${propKey}`}</strong>
       <strong> : </strong>
       {addColorPicker(props)}
-      {/* <input
-        className={`${panelStyles.editField}`}
-        placeholder={`${value}`}
-        onKeyPress={(event) => actionHandler(event, action, activeComponent, propKey)}
-      /> */}
       <div
         className={`${panelStyles.deleteKey}`}
         onClick={() => { onClick(deleter, activeComponent, propKey); }}
@@ -30,8 +25,7 @@ export default function ConfigOption(props) {
 
 function addColorPicker(props) {
   const { activeComponent, propKey, value, action, deleter, actionHandler, onClick } = props;
-  console.log(propKey);
-  if (propKey.indexOf('Color') === -1) {
+  if (propKey.indexOf('Color') === -1 && propKey.indexOf('color') === -1) {
     return (
       <input
         className={`${panelStyles.editField}`}
@@ -42,6 +36,7 @@ function addColorPicker(props) {
   } else {
     return (<ColorPicker
     color={value}
+    activeComponent={activeComponent}
     onChange={(event) => actionHandler(event, action, activeComponent, propKey)}
     />);
   }

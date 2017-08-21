@@ -6,6 +6,7 @@ import { SketchPicker, ChromePicker } from 'react-color';
 class ColorPicker extends React.Component {
   state = {
     displayColorPicker: false,
+    color: '#FFF',
   };
 
   handleClick = () => {
@@ -26,12 +27,43 @@ class ColorPicker extends React.Component {
         value: color.hex,
       },
     };
-    this.props.onChange(fakeEvent);
+    // console.log('FE', fakeEvent);
+    // console.log(this.props.onChange);
     this.setState({ color: color.hex });
+    this.props.onChange(fakeEvent);
   };
 
-  render() {
+  componentWillMount() {
+    if (this.props.color){
+      this.setState({
+        color: this.props.color,
+        activeComponent: this.props.activeComponent,
+      });
+    } else {
+      this.setState({
+        color: '#FFF',
+        activeComponent: this.props.activeComponent,
+      });
+    }
+    return;
+  }
 
+  componentWillReceiveProps(){
+    if (this.props.color){
+      this.setState({
+        color: this.props.color,
+        activeComponent: this.props.activeComponent,
+      });
+    } else {
+      this.setState({
+        color: '#FFF',
+        activeComponent: this.props.activeComponent,
+      });
+    }
+    return;
+  }
+
+  render() {
     const styles = reactCSS({
       'default': {
         color: {
@@ -40,7 +72,7 @@ class ColorPicker extends React.Component {
           height: '10px',
           borderRadius: '50%',
           border: '1 px solid #FFF',
-          background: `${this.props.color}`,
+          background: `${this.state.color}`,
         },
         container: {
           display: 'inline-block'
@@ -75,7 +107,7 @@ class ColorPicker extends React.Component {
         {this.state.displayColorPicker ? <div style={styles.popover}>
           <div style={styles.cover} onClick={this.handleClose}/>
           <ChromePicker
-            color={this.props.color}
+            color={this.state.color}
             onChange={this.handleChange}
             display={'inlineBlock'}
             backgroundColor={'blue'}
