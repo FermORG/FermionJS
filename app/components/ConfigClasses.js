@@ -68,7 +68,7 @@ export class State extends Component {
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
           onKeyPress={(event) => this.updateStore(event, addState)}
-          placeholder="New State Key..."
+          placeholder="add state key..."
         />
         <hr />
         {list}
@@ -117,7 +117,7 @@ export class Props extends Component {
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          placeholder="new Prop Key..."
+          placeholder="add prop key..."
           onKeyPress={(event) => this.updateStore(event, addProps, activeComponent)}
         />
         <hr />
@@ -163,7 +163,7 @@ export class Styles extends Component {
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          placeholder="new Styles..."
+          placeholder="add style key..."
           onKeyPress={(event) => this.updateStore(event, addStyles, activeComponent)}
         />
         <hr />
@@ -210,7 +210,7 @@ export class Events extends Component {
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          placeholder="new Event Handler..."
+          placeholder="add event handler..."
           onKeyPress={(event) => this.updateStore(event, addEvents, activeComponent)}
         />
         <hr />
