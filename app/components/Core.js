@@ -7,7 +7,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import AceEditor from 'react-ace';
 import brace from 'brace';
 import 'brace/mode/javascript';
-import 'brace/theme/twilight';
+import 'brace/theme/tomorrow_night_bright';
 
 // Gui columns
 import Left from './Left';
@@ -83,7 +83,7 @@ class Core extends Component {
                     <AceEditor
                       className={`${coreStyles.aceInterior}`}
                       mode="javascript"
-                      theme="twilight"
+                      theme="tomorrow_night_bright"
                       onChange={this.onChanges}
                       highlightActiveLine={true}
                       name="editorInterior"
@@ -99,12 +99,10 @@ class Core extends Component {
                     <i className="fa fa-arrow-left" />
                   </Link>
                 </div>
-                {/* <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show' : 'Hide'} Text Editor</button> */}
-                <a href="#" className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}>Export Code</a>
-                <a href="#" className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}>
+                <ExportButton />
+                <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}  onClick={this.handleClick}>
                   {this.state.hideEditor ? 'Show' : 'Hide'} Text Editor
                 </a>
-                {/* <ExportButton /> */}
               </footer>
             </div>
             <Right />

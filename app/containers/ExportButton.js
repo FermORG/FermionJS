@@ -14,6 +14,7 @@ class ExportButton extends Component {
   }
 
   exportCode() {
+    console.log('fired')
     const destinationDir = path.join(__dirname, EXPORT_DIR);
     try {
       let wc = new WorkspaceConverter(this.props.components)
@@ -26,7 +27,10 @@ class ExportButton extends Component {
   }
   render() {
     return (
-      <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.exportCode}>Export</button>
+      <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`} onClick={this.exportCode}>
+        Export Code
+      </a>
+      // <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} >Export</button>
     );
   }
 }

@@ -43,7 +43,6 @@
 }
 
 .ace {
-  width: 96%;
   margin: auto;
   overflow: hidden;
   height: 37.5vh;
@@ -52,7 +51,7 @@
 }
 
 .aceInterior {
-  background-color: $background-color-primary !important;
+  background-color: $background-color-primary;
 }
 
 .backButton {
@@ -92,12 +91,10 @@
 }
 
 .showEditor {
-  background-color: $background-color-primary;
   border: 1px solid $border-color;
   border-top: 0px;
   /*border-left: 1px solid $border-color;
   border-right: 1px solid $border-color;*/
-  width: 96%;
   height: 54vh;
   margin: auto;
   overflow-y: auto;
