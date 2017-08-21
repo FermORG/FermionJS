@@ -196,3 +196,149 @@ a.btn.btn-red:active {
   background-color: #B32C24;
   border-color: rgba(0, 0, 0, 0.9);
 }
+
+.deleteKey {
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  font-size: 9px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+  background-color: #C2BFC4;
+  color: #282c36;
+  border: 1px solid #1a1d23;
+  border-radius: 50%;
+}
+
+.deleteKey:hover {
+  background-color: #C72211;
+  color: black;
+}
+
+.deleteKey:active {
+  background-color: #232630;
+  color: red;
+}
+
+
+
+// @import url(//codepen.io/chrisdothtml/pen/ojLzJK.css);
+
+// $color: #c0392b;
+// $color-dark: #a53125;
+// $speed: "0.25s";
+// $transition: all #{$speed} cubic-bezier(0.310, -0.105, 0.430, 1.400);
+
+// /* Main Styles */
+// .button {
+// 	display: block;
+// 	background-color: $color;
+// 	width: 300px;
+// 	height: 100px;
+// 	line-height: 100px;
+// 	margin: auto;
+// 	color: #fff;
+// 	position: absolute;
+// 	top: 0;
+// 	bottom: 0;
+// 	left: 0;
+// 	right: 0;
+// 	cursor: pointer;
+// 	overflow: hidden;
+// 	border-radius: 5px;
+// 	box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+// 	transition: $transition;
+	
+// 	span,
+// 	.icon {
+// 		display: block;
+// 		height: 100%;
+// 		text-align: center;
+// 		position: absolute;
+// 		top: 0;
+// 	}
+	
+// 	span {
+// 		width: 72%;
+// 		line-height: inherit;
+// 		font-size: 22px;
+// 		text-transform: uppercase;
+// 		left: 0;
+// 		transition: $transition;
+		
+// 		&:after {
+// 			content: '';
+// 			background-color: $color-dark;
+// 			width: 2px;
+// 			height: 70%;
+// 			position: absolute;
+// 			top: 15%;
+// 			right: -1px;
+// 		}
+// 	}
+	
+// 	.icon {
+// 		width: 28%;
+// 		right: 0;
+// 		transition: $transition;
+		
+// 		.fa {
+// 			font-size: 30px;
+// 			vertical-align: middle;
+// 			transition: $transition, height #{$speed} ease;
+// 		}
+		
+// 		.fa-remove {
+// 			height: 36px;
+// 		}
+		
+// 		.fa-check {
+// 			display: none;
+// 		}
+// 	}
+	
+// 	&.success,
+// 	&:hover {
+		
+// 		span {
+// 			left: -72%;
+// 			opacity: 0;
+// 		}
+		
+// 		.icon {
+// 			width: 100%;
+			
+// 			.fa {
+// 				font-size: 45px;
+// 			}
+// 		}
+// 	}
+	
+// 	&.success {
+// 		background-color: #27ae60;
+		
+// 		.icon {
+			
+// 			.fa-remove {
+// 				display: none;
+// 			}
+			
+// 			.fa-check {
+// 				display: inline-block;
+// 			}
+// 		}
+// 	}
+	
+// 	&:hover {
+// 		opacity: .9;
+		
+// 		.icon .fa-remove {
+// 			height: 46px;
+// 		}
+// 	}
+	
+// 	&:active {
+// 		opacity: 1;
+// 	}
+// }

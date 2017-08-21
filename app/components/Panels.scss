@@ -75,6 +75,7 @@
   display: inline-block;
   min-height: 25px;
   font-size: 13px;
+  width: 25%;
   line-height: 1.6;
   background-color: #232630; /*$background-color-primary;*/
   /*border: 1px solid $border-color;*/
@@ -83,6 +84,10 @@
   outline: none;
   color: $primary-color;
   /*border-bottom: 1px solid $border-color;*/
+}
+.editField:focus {
+  width: 45%;
+  overflow-wrap: normal;
 }
 
 .list {
