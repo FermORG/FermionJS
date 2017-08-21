@@ -139,7 +139,6 @@ a.btn {
   display: inline-block;
   color: #666;
   background-color: #eee;
-  text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 10px;
   font-family: inherit;
@@ -148,7 +147,7 @@ a.btn {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  border-bottom-width: 3px;
+  border-bottom-width: 2px;
 }
 
 a.btn:hover {
