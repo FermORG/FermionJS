@@ -11,7 +11,6 @@ export default function addComponent(state, action) {
   const components = { ...state.components };
   components.workspace = cloneComponentAndChildren(components.workspace);
   const { newComponent } = action;
-  console.log('newComponent', newComponent);
   newComponent.id = state.componentCounter;
   components[newComponent.id] = newComponent;
   components.workspace.children.push(state.componentCounter);
