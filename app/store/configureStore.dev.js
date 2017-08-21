@@ -9,6 +9,7 @@ import * as CompListActions from '../actions/complist';
 import * as workspaceActions from '../actions/workspace';
 import * as configActions from '../actions/config';
 import * as FileSystemActions from '../actions/FileSystemActions';
+import * as methods from '../actions/methods';
 import type { tabStateType } from '../reducers/tabs';
 
 const history = createHashHistory();
@@ -40,6 +41,7 @@ const configureStore = (initialState) => {
     ...CompListActions,
     ...configActions,
     ...FileSystemActions,
+    ...methods,
   };
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */

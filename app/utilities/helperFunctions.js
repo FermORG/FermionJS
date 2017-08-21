@@ -1,0 +1,1 @@
+export const pixelsToInt = (pxString) => parseInt(pxString.split('px')[0], 0);

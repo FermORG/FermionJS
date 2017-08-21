@@ -198,6 +198,7 @@
     "react-hot-loader": "3.0.0-beta.6",
     "react-redux": "^5.0.5",
     "react-resizable": "^1.7.1",
+    "react-rnd": "^5.0.9",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",

@@ -1,6 +1,7 @@
 import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD, UPDATE_STYLE } from '../../actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
 import { SET_ACTIVE_COMPONENT } from '../../actions/FileSystemActions';
+import { METHODS } from '../../actions/methods';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 // import removeComponent from './removeComponent';
@@ -15,6 +16,7 @@ import deleteStylesValue from './deleteStylesValue';
 import deleteEvent from './deleteEvent';
 import setActiveComponent from './setActiveComponent';
 import updateStyle from './updateStyle';
+import updateMethods from './updateMethods';
 // /// TEST DATA /////
 
 const defaultWorkspace = {
@@ -24,9 +26,15 @@ const defaultWorkspace = {
     workspace: {
       id: WORKSPACE_ID,
       children: [0, 1],
+      events: {},
+      props: {
+        style: {
+        }
+      }
     },
   },
   state: {},
+  methods: '/*Anything you type in here will be appeneded to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc.*/',
 };
 
 defaultWorkspace.components[0] = {
@@ -36,7 +44,7 @@ defaultWorkspace.components[0] = {
   parentID: WORKSPACE_ID,
   props: {
     style: {
-      position: 'relative',
+      position: 'absolute',
       height: '100px',
       width: '100px',
       display: 'inline-block',
@@ -44,7 +52,7 @@ defaultWorkspace.components[0] = {
       overflow: 'auto',
     },
   },
-  events: { test: 'event test =]' }
+  events: { onClick: '()=>{console.log("test")}' }
 };
 
 defaultWorkspace.components[1] = {
@@ -54,7 +62,7 @@ defaultWorkspace.components[1] = {
   parentID: WORKSPACE_ID,
   props: {
     style: {
-      position: 'relative',
+      position: 'absolute',
       height: '100px',
       width: '100px',
       display: 'inline-block',
@@ -62,7 +70,7 @@ defaultWorkspace.components[1] = {
       overflow: 'auto',
     },
   },
-  events: { test: 'event test =]' }
+  events: {}
 };
 
 // Children is just a list of ids
@@ -112,6 +120,8 @@ export default function workspace(state = defaultWorkspace, action) {
 
     case UPDATE_STYLE:
       return updateStyle(state, action);
+    case METHODS:
+      return updateMethods(state, action.methods);
     default:
       return state;
   }
