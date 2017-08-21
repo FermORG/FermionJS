@@ -1,5 +1,7 @@
 import { WORKSPACE_ID } from '../../constants';
 import cloneComponentAndChildren from './utilities';
+import updateStyle from './updateStyle';
+import UPDATE_STYLE from '../../actions/workspace';
 
 /**
  * Moves a component already in the workspace
@@ -13,10 +15,11 @@ export default function moveChild(state, action) {
     return state;
   }
 
-  const { components } = state;
+  const components = { ...state.components };
   const source = cloneComponentAndChildren(components[action.sourceID]);
   const target = cloneComponentAndChildren(components[action.targetID]);
   const prevParent = cloneComponentAndChildren(components[source.parentID]);
+  [source, target, prevParent].forEach(component => components[component.id] = component);
 
   if (source.parentID === target.id || target.parentID === source.id) {
     return state;
@@ -24,14 +27,31 @@ export default function moveChild(state, action) {
 
   source.parentID = target.id;
   target.children.push(source.id);
-
   prevParent.children = prevParent.children.filter(val => val !== source.id);
 
-  const newComponents = { ...components };
-  [source, target, prevParent].forEach(comp => newComponents[comp.id] = comp);
+  const [sourceWidth, sourceHeight, targetWidth, targetHeight] = [
+    source.props.style.width,
+    source.props.style.height,
+    target.props.style.width,
+    target.props.style.height
+  ].map(elem => parseInt(elem.split('px')[0]));
 
-  return {
-    ...state,
-    components: newComponents
+
+  const reduceSourceSize = sourceHeight > targetHeight || sourceWidth > targetWidth;
+  const newStyle = { left: 0, top: 0 };
+
+  if (reduceSourceSize) {
+    newStyle.width = `${targetWidth / 2}px`;
+    newStyle.height = `${targetHeight / 2}px`;
+  }
+
+  const updateStyleAction = {
+    type: UPDATE_STYLE,
+    sourceID: source.id,
+    newStyle
   };
+
+  const newState = updateStyle({ ...state, components }, updateStyleAction);
+
+  return newState;
 }
