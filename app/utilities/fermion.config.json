@@ -33,6 +33,24 @@
       "events": {
 
       }
+    },
+    {
+      "name": "Board",
+      "props": {
+        "style": {
+          "position": "relative",
+          "height": "300px",
+          "width": "300px",
+          "display": "inline-block",
+          "backgroundColor": "black",
+          "resize": "both",
+          "overflow": "auto",
+          "border": "1px solid white"
+        }
+      },
+      "events": {
+
+      }
     }
   ]
 }
