@@ -1,9 +1,9 @@
 'use strict'
-import React from 'react';
+import React, { Component } from 'react';
 import reactCSS from 'reactcss';
 import { SketchPicker, ChromePicker } from 'react-color';
 
-class ColorPicker extends React.Component {
+class ColorPicker extends Component {
   state = {
     displayColorPicker: false,
   };
@@ -17,8 +17,7 @@ class ColorPicker extends React.Component {
   };
 
   handleChange = (color) => {
-
-    // fake an event object to allow colorpicker to reuse functions in redux.
+// fake an event object to allow colorpicker to reuse functions in redux.
     const fakeEvent = {
       key: 'Enter',
       target: {
@@ -32,18 +31,22 @@ class ColorPicker extends React.Component {
     const styles = reactCSS({
       'default': {
         color: {
-          width: '10px',
+          width: '15px',
           display: 'inline-block',
-          height: '10px',
+          height: '15px',
           borderRadius: '50%',
-          border: '1 px solid #FFF',
+          border: '1px solid',
+          borderColor: '#C2BFC4',
           background: `${this.props.color}`,
         },
         container: {
-          display: 'inline-block'
+          display: 'inline-block',
+          flex: '1',
+          flexDirection:'column',
+          justifyContent: 'center',
+          height: '100%'
         },
         swatch: {
-          padding: '5px',
           display: 'inline-block',
           cursor: 'pointer',
         },

@@ -25,6 +25,7 @@ export function addProps(prop, component) {
 }
 
 export function addStyles(style, component) {
+  console.log('as: ', style, component);
   return {
     type: ADD_STYLES,
     style,
