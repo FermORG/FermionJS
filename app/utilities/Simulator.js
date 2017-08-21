@@ -5,14 +5,13 @@ const path = require('path');
 const { spawn } = require('child_process');
 const { BrowserWindow } = require('electron');
 
-const EXPORT_FILES = 'export_files';
-const exportedDir = path.join(__dirname, '../', EXPORT_FILES);
+const exportedDir = path.join(__dirname, '../..');
 const simulator = root => {
   const WIDTH = 800;
   const HEIGHT = 600;
   let child = spawn(
     'npm',
-    ['start'],
+    ['run', 'preview'],
     {
       cwd: exportedDir,
       stdio: 'inherit',
