@@ -5,19 +5,23 @@ import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
 import Rnd from 'react-rnd';
 
-import { WORKSPACE_ID } from './../constants';
+import { WORKSPACE_ID, STATIC_INNER_COMPONENT_STYLE } from './../constants';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
 import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
+import { pixelsToInt } from '../utilities/helperFunctions';
 
 class Workspace extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       mode: false
     }
+
+    this.onResizeStopHandler = this.onResizeStopHandler.bind(this);
   }
 
   componentDidMount() {
@@ -26,9 +30,7 @@ class Workspace extends Component {
   }
 
   renderDeep(componentIDList) {
-    if (!Object.keys(componentIDList).length || !componentIDList) {
-      return [];
-    }
+    if (!Object.keys(componentIDList).length || !componentIDList) return [];
 
     const allComponents = this.props.components;
 
@@ -36,31 +38,24 @@ class Workspace extends Component {
       const componentData = allComponents[componentID];
       const CustomComponent = getVisComponent(componentData.name);
       const children = this.renderDeep(componentData.children);
-
-      const componentStyle = {
-        ...componentData.props.style,
-        width: '100%',
-        height: '100%',
-        left: null,
-        top: null,
-        overflow: 'hidden'
-      };
       
       const [widthInt, heightInt] = [
-        parseInt(componentData.props.style.width.split('px')[0], 10),
-        parseInt(componentData.props.style.height.split('px')[0], 10)
+        pixelsToInt(componentData.props.style.width), 
+        pixelsToInt(componentData.props.style.height)
       ];
+
+      const innerComponentStyle = { ...componentData.props.style, ...STATIC_INNER_COMPONENT_STYLE };
 
       const DivWrappedComponent = (
         <div
           id="divwrappedcomp"
-          style={componentStyle}
+          style={innerComponentStyle}
           onClick={(e) => {
             e.stopPropagation();
             this.props.setActiveComponent(componentData.id.toString());
           }}
         >
-          <CustomComponent {...componentData.props} style={componentStyle}>
+          <CustomComponent {...componentData.props} style={innerComponentStyle}>
             { children }
           </CustomComponent>
         </div>
@@ -75,23 +70,20 @@ class Workspace extends Component {
           default={{
             x: componentData.props.style.left || 0,
             y: componentData.props.style.top || 0,
-            width: widthInt + 3,
-            height: heightInt + 3
+            width: widthInt,
+            height: heightInt
           }}
           style={{  border: '1px solid white' }}
           minWidth={50}
           minHeight={50}
           bounds={"parent"}
           disableDragging={this.state.mode}
-          onDragStart={(e) => {e.stopPropagation()}}
+          onDragStart={e => e.stopPropagation()}
           onDragStop={(e, data) => {
             const [left, top] = [data.x, data.y];
             setTimeout(() => this.props.updateStyle(componentData.id, { left, top }), 0);
           }}
-          onResizeStop={(e, dir, ref, delta) => {
-            const { width, height } = ref.style;
-            setTimeout(() => this.props.updateStyle(componentData.id, { width, height }), 0);
-          }}
+          onResizeStop={(e, dir, ref, delta) => this.onResizeStopHandler(componentData, ref)}
         >
           <DndComponent
             id={componentData.id}
@@ -100,6 +92,31 @@ class Workspace extends Component {
         </ Rnd>
       );
     });
+  }
+
+  onResizeStopHandler(componentData, ref) {
+    const allComponents = this.props.components;
+    
+    let [resizeWidth, resizeHeight] = 
+      [ref.style.width, ref.style.height].map(elem => parseInt(elem, 0));
+    
+    componentData.children.forEach((childID) => {
+      const childStyle = allComponents[childID].props.style;
+      
+      const [childWidth, childHeight] = 
+        [childStyle.width, childStyle.height].map(elem => pixelsToInt(elem));
+
+      const [childLeft, childTop] = [childStyle.left, childStyle.top];
+
+      if (childWidth + childLeft > resizeWidth) resizeWidth = childWidth + childLeft;
+      if (childHeight + childTop > resizeHeight) resizeHeight = childHeight + childTop;
+    });
+
+    setTimeout(() => 
+      this.props.updateStyle(componentData.id, { 
+        width: `${resizeWidth}px`,
+        height: `${resizeHeight}px` 
+      }), 0);
   }
 
   render() {
