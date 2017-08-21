@@ -1,7 +1,7 @@
 'use strict'
 import React from 'react';
 import reactCSS from 'reactcss';
-import { SketchPicker } from 'react-color';
+import { SketchPicker, ChromePicker } from 'react-color';
 
 class ColorPicker extends React.Component {
   state = {
@@ -31,26 +31,34 @@ class ColorPicker extends React.Component {
     const styles = reactCSS({
       'default': {
         color: {
-          width: '25px',
+          width: '10px',
           display: 'inline-block',
-          height: '14px',
-          borderRadius: '2px',
+          height: '10px',
+          borderRadius: '50%',
+          border: '1 px solid #FFF',
           background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
+        },
+        container: {
+          display: 'inline-block'
         },
         swatch: {
           padding: '5px',
           background: '#fff',
-          borderRadius: '1px',
-          boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+          borderRadius: '100%',
+          background: 'none',
+          // borderRadius: '100%',
           display: 'inline-block',
           cursor: 'pointer',
         },
         popover: {
-          position: 'absolute',
+          position: 'relative',
+          width: '100%',
+          right: '-10px',
           zIndex: '2',
         },
         cover: {
           position: 'fixed',
+          display: 'inline-block',
           top: '0px',
           right: '0px',
           bottom: '0px',
@@ -60,16 +68,16 @@ class ColorPicker extends React.Component {
     });
 
     return (
-      <div>
+      <div style={ styles.container}>
         <div style={ styles.swatch } onClick={ this.handleClick }>
           <div style={ styles.color } />
         </div>
         { this.state.displayColorPicker ? <div style={ styles.popover }>
           <div style={ styles.cover } onClick={ this.handleClose }/>
-          <SketchPicker
+          <ChromePicker
             color={ this.state.color }
             onChange={ this.handleChange }
-            width={'85%'}
+            display={'inlineBlock'}
             backgroundColor={'blue'}
           />
         </div> : null }
