@@ -8,7 +8,6 @@ import { ipcRenderer } from 'electron';
 
 ipcRenderer.on('ConfigApp', (event, data) => {
   data = JSON.parse(data);
-
   const initialState = {
     availableComponents: data.availableComponents,
   };
