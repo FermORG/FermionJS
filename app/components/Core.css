@@ -81,8 +81,7 @@
   border-left: 1px solid #1a1d23;
   border-right: 1px solid #1a1d23;
   width: 96%;
-  height: 91.5vh;
-  /*height: 48vh; /* height for visible editor*/
+  height: 91.5vh; /* height for visible editor*/
   margin: auto;
   overflow-y: scroll;
   overflow-x: scroll;
