@@ -6,7 +6,6 @@ import { SketchPicker, ChromePicker } from 'react-color';
 class ColorPicker extends React.Component {
   state = {
     displayColorPicker: false,
-    color: '#FFF',
   };
 
   handleClick = () => {
@@ -18,7 +17,6 @@ class ColorPicker extends React.Component {
   };
 
   handleChange = (color) => {
-    //should be wired directly to redux.
 
     // fake an event object to allow colorpicker to reuse functions in redux.
     const fakeEvent = {
@@ -27,41 +25,8 @@ class ColorPicker extends React.Component {
         value: color.hex,
       },
     };
-    // console.log('FE', fakeEvent);
-    // console.log(this.props.onChange);
-    this.setState({ color: color.hex });
     this.props.onChange(fakeEvent);
   };
-
-  componentWillMount() {
-    if (this.props.color){
-      this.setState({
-        color: this.props.color,
-        activeComponent: this.props.activeComponent,
-      });
-    } else {
-      this.setState({
-        color: '#FFF',
-        activeComponent: this.props.activeComponent,
-      });
-    }
-    return;
-  }
-
-  componentWillReceiveProps(){
-    if (this.props.color){
-      this.setState({
-        color: this.props.color,
-        activeComponent: this.props.activeComponent,
-      });
-    } else {
-      this.setState({
-        color: '#FFF',
-        activeComponent: this.props.activeComponent,
-      });
-    }
-    return;
-  }
 
   render() {
     const styles = reactCSS({
@@ -72,7 +37,7 @@ class ColorPicker extends React.Component {
           height: '10px',
           borderRadius: '50%',
           border: '1 px solid #FFF',
-          background: `${this.state.color}`,
+          background: `${this.props.color}`,
         },
         container: {
           display: 'inline-block'
@@ -107,10 +72,9 @@ class ColorPicker extends React.Component {
         {this.state.displayColorPicker ? <div style={styles.popover}>
           <div style={styles.cover} onClick={this.handleClose}/>
           <ChromePicker
-            color={this.state.color}
+            color={this.props.color}
             onChange={this.handleChange}
             display={'inlineBlock'}
-            backgroundColor={'blue'}
           />
         </div> : null}
 
