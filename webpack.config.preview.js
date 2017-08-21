@@ -20,31 +20,18 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    // the output bundle
-
     path: resolve(exportDir, 'dist'),
-
     publicPath: 'http://localhost:8080/'
     // necessary for HMR to know where to load the hot update chunks
   },
-
-  // context: resolve(exportDir, 'src'),
-
   devtool: 'inline-source-map',
-
   devServer: {
     hot: true,
-    // enable HMR on the server
-
     contentBase: resolve(exportDir, 'dist'),
     // match the output path
-
     publicPath: 'http://localhost:8080/',
     // match the output `publicPath`
-
-    // port: 8081
   },
-
   module: {
     rules: [
       {
@@ -64,11 +51,9 @@ module.exports = {
       },
     ],
   },
-
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     // enable HMR globally
-
     new webpack.NamedModulesPlugin(),
     // prints more readable module names in the browser console on HMR updates
   ],
