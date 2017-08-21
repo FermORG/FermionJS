@@ -20,6 +20,7 @@ import Workspace from '../containers/Workspace';
 import getVisComponent from './VisComponents/exporter';
 
 import ExportButton from '../containers/ExportButton';
+import { ipcRenderer } from 'electron';
 
 class Core extends Component {
   constructor(props) {
@@ -109,6 +110,7 @@ class Core extends Component {
                   </Link>
                 </div>
                 <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show' : 'Hide'} Editor</button>
+                <button onClick={()=>{ipcRenderer.send('openSimulator')}}>preview</button>
                 <ExportButton />
               </footer>
             </div>
