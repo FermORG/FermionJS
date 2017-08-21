@@ -91,6 +91,10 @@
   border-bottom: 1px solid #1a1d23;
 }
 
+.list strong{
+  width: 15px;
+}
+
 .list:hover {
   background-color: #282c36;
 }

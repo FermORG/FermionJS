@@ -191,6 +191,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-ace": "^5.1.2",
+    "react-color": "^2.13.5",
     "react-dnd": "^2.4.0",
     "react-dnd-html5-backend": "^2.4.1",
     "react-dom": "^15.6.1",
@@ -202,6 +203,7 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
     "react-sortable-tree": "^0.1.21",
+    "reactcss": "^1.2.2",
     "redux": "^3.7.1",
     "redux-thunk": "^2.2.0",
     "source-map-support": "^0.4.15"
