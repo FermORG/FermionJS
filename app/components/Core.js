@@ -15,8 +15,6 @@ import Right from '../containers/RightPage.js';
 
 // Main editor component
 import Workspace from '../containers/Workspace';
-// import Preview from '../containers/Preview'
-// import App from '../export/App/App'
 
 // Visual component exporter function
 import getVisComponent from './VisComponents/exporter';
