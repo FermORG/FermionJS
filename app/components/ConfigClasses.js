@@ -70,7 +70,6 @@ export class State extends Component {
           onKeyPress={(event) => this.updateStore(event, addState)}
           placeholder="add state key..."
         />
-        <hr />
         {list}
       </div>
     );
@@ -120,7 +119,6 @@ export class Props extends Component {
           placeholder="add prop key..."
           onKeyPress={(event) => this.updateStore(event, addProps, activeComponent)}
         />
-        <hr />
         {list}
       </div>
     );
@@ -166,7 +164,6 @@ export class Styles extends Component {
           placeholder="add style key..."
           onKeyPress={(event) => this.updateStore(event, addStyles, activeComponent)}
         />
-        <hr />
         {list}
       </div>
     );
@@ -213,7 +210,6 @@ export class Events extends Component {
           placeholder="add event handler..."
           onKeyPress={(event) => this.updateStore(event, addEvents, activeComponent)}
         />
-        <hr />
         {list}
       </div>
     );

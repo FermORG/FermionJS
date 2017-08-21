@@ -14,15 +14,14 @@ export default function ConfigOption(props) {
       <strong> : </strong>
       <input
         className={`${panelStyles.editField}`}
-        placeholder={`${value}`}
         onKeyPress={(event) => actionHandler(event, action, activeComponent, propKey)}
+        defaultValue={value}
       />
-      <div
-        className={`${panelStyles.deleteKey}`}
-        onClick={() => { onClick(deleter, activeComponent, propKey); }}
-      >
-        X
-      </div>
+
+       <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}
+        onClick={() => { onClick(deleter, activeComponent, propKey)}}>
+         X
+      </a> 
     </li>
   );
 }
