@@ -6,12 +6,6 @@ import { SketchPicker, ChromePicker } from 'react-color';
 class ColorPicker extends React.Component {
   state = {
     displayColorPicker: false,
-    color: {
-      r: '241',
-      g: '112',
-      b: '19',
-      a: '1',
-    },
   };
 
   handleClick = () => {
@@ -23,7 +17,8 @@ class ColorPicker extends React.Component {
   };
 
   handleChange = (color) => {
-    this.setState({ color: color.rgb });
+    //should be wired directly to redux.
+    this.setState({ color: color.hex });
   };
 
   render() {
@@ -36,17 +31,13 @@ class ColorPicker extends React.Component {
           height: '10px',
           borderRadius: '50%',
           border: '1 px solid #FFF',
-          background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
+          background: `${this.props.color}`,
         },
         container: {
           display: 'inline-block'
         },
         swatch: {
           padding: '5px',
-          background: '#fff',
-          borderRadius: '100%',
-          background: 'none',
-          // borderRadius: '100%',
           display: 'inline-block',
           cursor: 'pointer',
         },
@@ -68,19 +59,19 @@ class ColorPicker extends React.Component {
     });
 
     return (
-      <div style={ styles.container}>
-        <div style={ styles.swatch } onClick={ this.handleClick }>
-          <div style={ styles.color } />
+      <div style={styles.container}>
+        <div style={styles.swatch} onClick={this.handleClick}>
+          <div style={styles.color} />
         </div>
-        { this.state.displayColorPicker ? <div style={ styles.popover }>
-          <div style={ styles.cover } onClick={ this.handleClose }/>
+        {this.state.displayColorPicker ? <div style={styles.popover}>
+          <div style={styles.cover} onClick={this.handleClose}/>
           <ChromePicker
-            color={ this.state.color }
-            onChange={ this.handleChange }
+            color={this.state.color}
+            onChange={this.handleChange}
             display={'inlineBlock'}
             backgroundColor={'blue'}
           />
-        </div> : null }
+        </div> : null}
 
       </div>
     )

@@ -40,6 +40,7 @@ function addColorPicker(props) {
       />
     );
   } else {
-    return (<ColorPicker />);
+    return (<ColorPicker
+    color={value} />);
   }
 }
