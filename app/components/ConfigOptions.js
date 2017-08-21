@@ -41,6 +41,8 @@ function addColorPicker(props) {
     );
   } else {
     return (<ColorPicker
-    color={value} />);
+    color={value}
+    onChange={(event) => actionHandler(event, action, activeComponent, propKey)}
+    />);
   }
 }

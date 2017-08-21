@@ -18,6 +18,15 @@ class ColorPicker extends React.Component {
 
   handleChange = (color) => {
     //should be wired directly to redux.
+
+    // fake an event object to allow colorpicker to reuse functions in redux.
+    const fakeEvent = {
+      key: 'Enter',
+      target: {
+        value: color.hex,
+      },
+    };
+    this.props.onChange(fakeEvent);
     this.setState({ color: color.hex });
   };
 
@@ -43,7 +52,7 @@ class ColorPicker extends React.Component {
         },
         popover: {
           position: 'relative',
-          width: '100%',
+          width: '95%',
           right: '-10px',
           zIndex: '2',
         },
@@ -66,7 +75,7 @@ class ColorPicker extends React.Component {
         {this.state.displayColorPicker ? <div style={styles.popover}>
           <div style={styles.cover} onClick={this.handleClose}/>
           <ChromePicker
-            color={this.state.color}
+            color={this.props.color}
             onChange={this.handleChange}
             display={'inlineBlock'}
             backgroundColor={'blue'}
