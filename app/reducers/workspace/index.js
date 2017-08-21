@@ -81,7 +81,6 @@ defaultWorkspace.components[1] = {
 // ////////
 
 export default function workspace(state = defaultWorkspace, action) {
-  console.log('this: ', METHODS);
   switch (action.type) {
     case ADD_CHILD:
       return addComponent(state, action);
@@ -122,7 +121,6 @@ export default function workspace(state = defaultWorkspace, action) {
     case UPDATE_STYLE:
       return updateStyle(state, action);
     case METHODS:
-      console.log('yes');
       return updateMethods(state, action.methods);
     default:
       return state;
