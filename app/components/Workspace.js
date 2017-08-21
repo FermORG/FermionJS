@@ -9,7 +9,7 @@ import { WORKSPACE_ID, STATIC_INNER_COMPONENT_STYLE } from './../constants';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
-import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
+import { addComponent, removeComponent, moveComponent, updateStyle } from '../actions/workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
 import { pixelsToInt } from '../utilities/helperFunctions';
 
@@ -87,7 +87,7 @@ class Workspace extends Component {
         >
           <DndComponent
             id={componentData.id}
-            moveChild={this.props.moveChild}
+            moveComponent={this.props.moveComponent}
           />
         </ Rnd>
       );
@@ -135,7 +135,7 @@ class Workspace extends Component {
       <div>
       <WrappedWorkspace
         id={WORKSPACE_ID}
-        moveChild={this.props.moveChild}
+        moveComponent={this.props.moveComponent}
         hideEditor={hideEditor}
       />
             <button onClick={()=>{this.setState({ mode: !this.state.mode })}}>

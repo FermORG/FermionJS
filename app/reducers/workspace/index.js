@@ -1,11 +1,11 @@
-import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD, UPDATE_STYLE } from '../../actions/workspace';
+import { ADD_COMPONENT, REMOVE_COMPONENT, MOVE_COMPONENT, DELETE_COMPONENT, UPDATE_STYLE } from '../../actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
 import { SET_ACTIVE_COMPONENT } from '../../actions/FileSystemActions';
 import { METHODS } from '../../actions/methods';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 // import removeComponent from './removeComponent';
-import moveChild from './moveChild';
+import moveComponent from './moveComponent';
 import addStateValue from './addStateValue';
 import addPropsValue from './addPropsValue';
 import addStyleValue from './addStyleValue';
@@ -82,14 +82,14 @@ defaultWorkspace.components[1] = {
 
 export default function workspace(state = defaultWorkspace, action) {
   switch (action.type) {
-    case ADD_CHILD:
+    case ADD_COMPONENT:
       return addComponent(state, action);
 // currently unused
-    // case REMOVE_CHILD:
+    // case REMOVE_COMPONENT:
     //   return removeComponent(state, action);
 
-    case MOVE_CHILD:
-      return moveChild(state, action);
+    case MOVE_COMPONENT:
+      return moveComponent(state, action);
 
     case ADD_STATE:
       return addStateValue(state, action.aState);
