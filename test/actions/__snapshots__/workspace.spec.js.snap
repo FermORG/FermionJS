@@ -4,6 +4,7 @@ exports[`workspace actions addChild should return a payload with the correct act
 Object {
   "newComponent": Object {
     "children": Array [],
+    "events": undefined,
     "name": "testComponent",
     "parentID": "workspace",
     "props": Object {

@@ -108,6 +108,7 @@ class ComponentConverter {
       props = flattenStateProps(this.component.props, this.component.id, this.components);
       events = flattenEvents(this.component.events, this.component.id, this.components);
       props = Object.assign(props, events);
+      if (Object.keys(props).length === 0) return '';
     } else {
       return '';
     }
