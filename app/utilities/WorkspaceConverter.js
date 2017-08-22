@@ -172,7 +172,7 @@ class WorkspaceConverter {
     let comps = Object.assign({}, clonedWorkspace.components);
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
     eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
-    methods = (clonedWorkspace.methods);
+    methods = (clonedWorkspace.methods.split('@').join(''));
     state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
     this.components = this.convertChildIDtoFileName(comps);
