@@ -14,7 +14,7 @@
 
 - Manipulation
 
-Fermion is all about ease of use and speed. Drag and drop, resize, double-click to design your app layout
+Fermion is all about ease of use and speed. Drag and drop, resize, double-click to design your app layout.
 
 - Configuration
 
