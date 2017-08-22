@@ -10,6 +10,7 @@ const { getChildEvents, flattenEvents } = require('./eventsRecursor');
 * @param {object} events - similar to state, a compressed version of event listeners to be injected into props chain from the top-level down.
 * @param {object} eventsMap - similar to stateMap, but for events.
 * @param {object} methods - a list of methods applied in app class to be spread to eventhandlers.
+* @param {object} methods - a list of method names used to bind this in app constructor.
 */
 
 let state;
@@ -17,6 +18,7 @@ let stateMap;
 let events;
 let eventsMap;
 let methods;
+let methodNames;
 //    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 if (!String.prototype.padStart) {
   String.prototype.padStart = function padStart(targetLength, padString) {
@@ -70,7 +72,9 @@ class ComponentConverter {
   }
 
   getMethods() {
-    return `${methods}`
+    const boundMethods = methodNames.map((method) => `this.${method} = this.${method}.bind(this);`)
+    console.log(boundMethods);
+    return boundMethods.join('\n');
   }
   getImports() {
     return this.component.childrenFileNames.reduce((final, childFile) => {
@@ -82,7 +86,6 @@ class ComponentConverter {
     return this.component.childrenFileNames.reduce((final, childFile, i, array) => {
       // console.log(childFile);
       final += `        <${childFile}\n ${this.getChildProps(childFile)} /> `;
-      // if (i === array.length - 1) final += '\n';
       final += '\n';
       return final;
     }, '\n');
@@ -150,6 +153,7 @@ class ${className} extends Component {
   constructor(props){
     super(props);
   ${className === 'App' ? `this.state = ${state.replace(/\"/g, "")}` : `` }
+  ${className === 'App' ? `${this.getMethods()}` : `` }
   }
   ${className === 'App' ? `${methods.replace(/\"/g, "")}`: ``}
   render(){
@@ -173,6 +177,7 @@ class WorkspaceConverter {
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
     eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
     methods = (clonedWorkspace.methods.split('@').join(''));
+    methodNames = (clonedWorkspace.methodNames);
     state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
     this.components = this.convertChildIDtoFileName(comps);
