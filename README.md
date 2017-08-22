@@ -1,4 +1,5 @@
-<img src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/logo1.png?raw=true" />
+<img height ='100' width='283' src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/logo1.png?raw=true" />
+
 # Fermion [![Build Status](https://travis-ci.org/FermORG/FermionJS.svg?branch=master)](https://travis-ci.org/FermORG/FermionJS)
 
 
