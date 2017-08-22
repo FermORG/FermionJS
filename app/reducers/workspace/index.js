@@ -5,7 +5,7 @@ import { METHODS } from '../../actions/methods';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
 import deleteComponent from './deleteComponent';
-import moveChild from './moveChild';
+import moveComponent from './moveComponent';
 import addStateValue from './addStateValue';
 import addPropsValue from './addPropsValue';
 import addStyleValue from './addStyleValue';
@@ -72,11 +72,6 @@ defaultWorkspace.components[1] = {
   },
   events: {}
 };
-
-// Children is just a list of ids
-// Order doesnt matter here, children could be something like -> [4, 2, 6, 1]
-// defaultWorkspace.children[0] = 0;
-// defaultWorkspace.children[1] = 1;
 
 // ////////
 

@@ -26,8 +26,7 @@ class Workspace extends Component {
   componentDidMount() {
     document.body.onkeydown = (event) => {
       const { activeComponent } = this.props.workspace;
-      console.log(activeComponent);
-      if (event.keyCode === 46) this.props.deleteComponent(activeComponent)
+      if (event.ctrlKey && event.keyCode === 46) this.props.deleteComponent(activeComponent)
     };
 
     const { width, height } = document.getElementById(WORKSPACE_ID).getBoundingClientRect();
@@ -138,18 +137,22 @@ class Workspace extends Component {
     
     return (
       <div>
-      <WrappedWorkspace
-        id={WORKSPACE_ID}
-        moveComponent={this.props.moveComponent}
-        hideEditor={hideEditor}
-      />
-      <button onClick={()=>{this.setState({ mode: !this.state.mode })}}>
-        dnd mode
-      </button>
-      <button onClick={() => this.props.deleteComponent(this.props.workspace.activeComponent)} >
-        delete
-      </button>
-
+        <WrappedWorkspace
+          id={WORKSPACE_ID}
+          moveComponent={this.props.moveComponent}
+          hideEditor={hideEditor}
+        />
+        <button 
+          style={{ backgroundColor: 'blue', color: this.state.mode ? 'coral' : 'white' }} 
+          onClick={()=>{this.setState({ mode: !this.state.mode })}}
+        >
+            dnd mode
+        </button>
+        <button 
+          style={{ backgroundColor: 'red' }} 
+          onClick={() => this.props.deleteComponent(this.props.workspace.activeComponent)} >
+            delete
+        </button>
       </div>
     );
   }
