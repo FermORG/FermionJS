@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
-import styles from './photon.css';
-import panelStyles from './Panels.css';
+import styles from './photon.scss';
+import panelStyles from './Panels.scss';
 import { WORKSPACE_ID } from '../constants';
 // import { Link } from 'react-router-dom';
 // import BlackBox from './VisComponents/BlackBox';

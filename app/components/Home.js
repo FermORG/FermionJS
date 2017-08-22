@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Home.css';
-import photon from './photon.css';
+import styles from './Home.scss';
+import photon from './photon.scss';
 
 export default class Home extends Component {
   render() {

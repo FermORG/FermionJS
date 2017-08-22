@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import coreStyles from '../components/Core.css';
+import coreStyles from '../components/Core.scss';
 import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
 import Rnd from 'react-rnd';

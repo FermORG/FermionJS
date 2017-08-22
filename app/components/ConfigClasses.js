@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import styles from './photon.css';
-import coreStyles from './Core.css';
-import panelStyles from './Panels.css';
+import styles from './photon.scss';
+import coreStyles from './Core.scss';
+import panelStyles from './Panels.scss';
 import ConfigOption from './ConfigOptions';
 
  // sends data to the store from config panel;
@@ -68,9 +68,8 @@ export class State extends Component {
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
           onKeyPress={(event) => this.updateStore(event, addState)}
-          placeholder="New State Key..."
+          placeholder="add state key..."
         />
-        <hr />
         {list}
       </div>
     );
@@ -117,10 +116,9 @@ export class Props extends Component {
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          placeholder="new Prop Key..."
+          placeholder="add prop key..."
           onKeyPress={(event) => this.updateStore(event, addProps, activeComponent)}
         />
-        <hr />
         {list}
       </div>
     );
@@ -163,10 +161,9 @@ export class Styles extends Component {
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          placeholder="new Styles..."
+          placeholder="add style key..."
           onKeyPress={(event) => this.updateStore(event, addStyles, activeComponent)}
         />
-        <hr />
         {list}
       </div>
     );
@@ -210,10 +207,9 @@ export class Events extends Component {
       <div className={`${styles['form-group']}`}>
         <input
           className={`${styles['form-control']} ${coreStyles.input}`}
-          placeholder="new Event Handler..."
+          placeholder="add event handler..."
           onKeyPress={(event) => this.updateStore(event, addEvents, activeComponent)}
         />
-        <hr />
         {list}
       </div>
     );

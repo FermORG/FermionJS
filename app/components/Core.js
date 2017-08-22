@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './photon.css';
-import coreStyles from './Core.css';
+import styles from './photon.scss';
+import coreStyles from './Core.scss';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import AceEditor from 'react-ace';
 import brace from 'brace';
 import 'brace/mode/javascript';
-import 'brace/theme/twilight';
+import 'brace/theme/tomorrow_night_bright';
 
 // Gui columns
 import Left from './Left';
@@ -78,9 +78,9 @@ class Core extends Component {
             <Left drag={this.dragComponent} />
             <div className={`${styles.pane} ${coreStyles.main}`}>
               <header className={`${coreStyles.footer}`}>
-                <h1 className={`${styles.title} ${coreStyles.title}`}>Web View</h1>
+                <h1 className={`${styles.title} ${coreStyles.title}`}>Workspace</h1>
               </header>
-              <div  data-tid="AppContainer">
+              <div data-tid="AppContainer">
                 <Workspace
                   hideEditor={this.state.hideEditor}
                 />
@@ -91,9 +91,8 @@ class Core extends Component {
                     <AceEditor
                       className={`${coreStyles.aceInterior}`}
                       mode="javascript"
-                      theme="twilight"
-                      onChange={this.onChange}
-                      value={editorValue}
+                      theme="tomorrow_night_bright"
+                      onChange={this.onChanges}
                       highlightActiveLine={true}
                       name="editorInterior"
                       style={{width: '100%', margin:'none'}}
@@ -108,8 +107,10 @@ class Core extends Component {
                     <i className="fa fa-arrow-left" />
                   </Link>
                 </div>
-                <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.handleClick}>{this.state.hideEditor ? 'Show' : 'Hide'} Editor</button>
                 <ExportButton />
+                <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}  onClick={this.handleClick}>
+                  {this.state.hideEditor ? 'Show' : 'Hide'} Text Editor
+                </a>
               </footer>
             </div>
             <Right />
