@@ -48,8 +48,6 @@ class NodeRendererDefault extends Component {
       ...otherProps
     } = this.props;
     const { id } = node;
-    // console.log('compID: ', id);
-    // console.log('COMPNAME: ', node.title);
 
     let handle;
 
@@ -108,7 +106,6 @@ class NodeRendererDefault extends Component {
                   (!canDrag ? ` ${styles.rowContentsDragDisabled}` : '')
                 }
                 onClick={(e) => {
-                  console.log('key,', clickKey);
                   let component = clickKey - 1;
                   if (component <= 0) component = 0;
                   handleClick(e, String(id));
