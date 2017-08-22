@@ -3,12 +3,11 @@
       "name": "Square",
       "props": {
         "style": {
-          "position": "relative",
+          "position": "absolute",
           "height": "100px",
           "width": "100px",
           "display": "inline-block",
           "backgroundColor": "grey",
-          "resize": "both",
           "overflow": "auto"
         }
       },
@@ -20,12 +19,11 @@
       "name": "Row",
       "props": {
         "style": {
-          "position": "relative",
+          "position": "absolute",
           "height": "100px",
           "width": "300px",
           "display": "inline-block",
           "backgroundColor": "black",
-          "resize": "both",
           "overflow": "auto",
           "border": "1px solid white"
         }
@@ -38,12 +36,11 @@
       "name": "Board",
       "props": {
         "style": {
-          "position": "relative",
+          "position": "absolute",
           "height": "300px",
           "width": "300px",
           "display": "inline-block",
           "backgroundColor": "black",
-          "resize": "both",
           "overflow": "auto",
           "border": "1px solid white"
         }
