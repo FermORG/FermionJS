@@ -7,11 +7,14 @@ html {
   padding: 0;
   overflow-y: auto;
 }
+
 body {
   position: relative;
   color: white;
   height: 100vh;
-  font-family: Arial, Helvetica, Helvetica Neue, serif;
+  /* font-family: Arial, Helvetica, Helvetica Neue, serif; */
+  font-family: 'Saira Semi Condensed', sans-serif;
+  font-weight: bold;
   overflow-y: auto;
   margin: 0;
   padding: 0;
@@ -64,4 +67,3 @@ a:hover {
   box-sizing: border-box;
   cursor: se-resize;
 }
-
