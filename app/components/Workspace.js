@@ -9,7 +9,6 @@ import { WORKSPACE_ID, STATIC_INNER_COMPONENT_STYLE } from './../constants';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
-import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
 import { pixelsToInt } from '../utilities/helperFunctions';
 
@@ -32,7 +31,7 @@ class Workspace extends Component {
   renderDeep(componentIDList) {
     if (!Object.keys(componentIDList).length || !componentIDList) return [];
 
-    const allComponents = this.props.components;
+    const allComponents = this.props.workspace.components;
 
     return componentIDList.map((componentID) => {
       const componentData = allComponents[componentID];
@@ -53,6 +52,11 @@ class Workspace extends Component {
           onClick={(e) => {
             e.stopPropagation();
             this.props.setActiveComponent(componentData.id.toString());
+          }}
+          onKeyUp={(e) => {
+            e.preventDefault()
+            console.log(e.keyCode);
+            if (e.keyCode === 46) this.props.removeChild(componentData.id);
           }}
         >
           <CustomComponent {...componentData.props} style={innerComponentStyle}>
@@ -95,7 +99,7 @@ class Workspace extends Component {
   }
 
   onResizeStopHandler(componentData, ref) {
-    const allComponents = this.props.components;
+    const allComponents = this.props.workspace.components;
     
     let [resizeWidth, resizeHeight] = 
       [ref.style.width, ref.style.height].map(elem => parseInt(elem, 0));
@@ -120,7 +124,7 @@ class Workspace extends Component {
   }
 
   render() {
-    const worskpaceChildren = this.props.components.workspace.children;
+    const worskpaceChildren = this.props.workspace.components.workspace.children;
     const { hideEditor } = this.props;
     const Workspace = () => (
       <div id={WORKSPACE_ID} style={{ width: '100%', height: '100%' }}>
@@ -138,9 +142,12 @@ class Workspace extends Component {
         moveChild={this.props.moveChild}
         hideEditor={hideEditor}
       />
-            <button onClick={()=>{this.setState({ mode: !this.state.mode })}}>
+      <button onClick={()=>{this.setState({ mode: !this.state.mode })}}>
         dnd mode
-      </button> 
+      </button>
+      <button onClick={() => {this.props.removeChild(this.props.workspace.activeComponent)}} >
+        delete
+      </button>
 
       </div>
     );

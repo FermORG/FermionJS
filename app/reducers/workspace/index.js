@@ -4,7 +4,7 @@ import { SET_ACTIVE_COMPONENT } from '../../actions/FileSystemActions';
 import { METHODS } from '../../actions/methods';
 import { WORKSPACE_ID } from './../../constants';
 import addComponent from './addComponent';
-// import removeComponent from './removeComponent';
+import deleteComponent from './deleteComponent';
 import moveChild from './moveChild';
 import addStateValue from './addStateValue';
 import addPropsValue from './addPropsValue';
@@ -84,9 +84,9 @@ export default function workspace(state = defaultWorkspace, action) {
   switch (action.type) {
     case ADD_CHILD:
       return addComponent(state, action);
-// currently unused
-    // case REMOVE_CHILD:
-    //   return removeComponent(state, action);
+
+    case REMOVE_CHILD:
+      return deleteComponent(state, action);
 
     case MOVE_CHILD:
       return moveChild(state, action);
