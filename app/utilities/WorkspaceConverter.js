@@ -73,7 +73,6 @@ class ComponentConverter {
 
   getMethods() {
     const boundMethods = methodNames.map((method) => `this.${method} = this.${method}.bind(this);`)
-    console.log(boundMethods);
     return boundMethods.join('\n');
   }
   getImports() {
