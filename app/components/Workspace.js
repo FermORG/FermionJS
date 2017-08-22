@@ -17,17 +17,19 @@ class Workspace extends Component {
     super(props);
 
     this.state = {
-      mode: false
+      mode: false,
+      activeComp: this.props.workspace.activeComponent
     }
 
     this.onResizeStopHandler = this.onResizeStopHandler.bind(this);
   }
 
   componentDidMount() {
+    const { activeComponent } = this.props.workspace;
     document.body.onkeydown = (event) => {
-      const { activeComponent } = this.props.workspace;
       if (event.ctrlKey && event.keyCode === 46) this.props.deleteComponent(activeComponent)
     };
+
 
     const { width, height } = document.getElementById(WORKSPACE_ID).getBoundingClientRect();
     this.props.updateStyle(WORKSPACE_ID, { width: `${width}px`, height: `${height}px` });
@@ -83,11 +85,12 @@ class Workspace extends Component {
           minHeight={50}
           bounds={"parent"}
           disableDragging={this.state.mode}
-          onDragStart={e => e.stopPropagation()}
+          onDragStart={e => {e.stopPropagation(); if(componentData.id.toString() !== this.state.activeComp) this.props.setActiveComponent(componentData.id.toString())}}
           onDragStop={(e, data) => {
             const [left, top] = [data.x, data.y];
             setTimeout(() => this.props.updateStyle(componentData.id, { left, top }), 0);
           }}
+          onResizeStart={()=> this.props.setActiveComponent(componentData.id.toString())}
           onResizeStop={(e, dir, ref, delta) => this.onResizeStopHandler(componentData, ref)}
         >
           <DndComponent
@@ -129,7 +132,7 @@ class Workspace extends Component {
     const { hideEditor } = this.props;
     const Workspace = () => (
       <div id={WORKSPACE_ID} style={{ width: '100%', height: '100%' }}>
-        {  this.renderDeep(worskpaceChildren) }
+        { this.renderDeep(worskpaceChildren) }
       </div>
       
     );
