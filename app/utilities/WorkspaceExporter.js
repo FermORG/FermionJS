@@ -26,14 +26,6 @@ class WorkspaceExporter {
       throw new Error(`cannot delete dir: ${targetPath} ${e}`);
     }
   }
-  exportFile(fPath, content) {
-    try {
-      fs.writeFileSync(fPath, 'hello');
-    } catch (e) {
-      console.log(e);
-      throw new Error(`saving resource failed: ${e}`);
-    }
-  }
   export() {
     try {
       fs.mkdirSync(this.targetPath);

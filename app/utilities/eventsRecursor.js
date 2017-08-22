@@ -36,6 +36,12 @@ export function flattenEvents(events, component, components) {
   }, {});
 }
 
+/**
+* @param {function} insertMethods - used to replace 'onClick' etc with the method it calls in the properties chain, both in the destructuring action and the chain action in a component's parent.
+* @param {object} events - events for a given component. may be CHILD or OWN.
+* @param {array} methods - methodNames array
+*/
+
 export function insertMethods(events, methods) {
   Object.keys(events).forEach((key) => {
     const toTest = events[key].split('()=>').join('').split('()').join('');
@@ -47,7 +53,11 @@ export function insertMethods(events, methods) {
   });
   return events;
 }
-
+/**
+* @param {function} insertThis - used to insert the 'this' keyword into a passed down method from app.js
+* @param {object} events - events for a given component. may be CHILD or OWN.
+* @param {array} methods - methodNames array
+*/
 export function insertThis(events, methods) {
   Object.keys(events).forEach((key) => {
     const toTest = events[key].split('()=>').join('').split('()').join('');
