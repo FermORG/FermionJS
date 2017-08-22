@@ -4,7 +4,7 @@ import WorkspaceConverter from '../utilities/WorkspaceConverter';
 import WorkspaceExporter from '../utilities/WorkspaceExporter';
 import path from 'path';
 import React, { Component } from 'react';
-const EXPORT_DIR = 'export';
+const EXPORT_DIR = 'export_files/src/components';
 export default class ExportButton extends Component {
   constructor(props) {
     super(props);

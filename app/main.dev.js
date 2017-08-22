@@ -13,7 +13,12 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import MenuBuilder from './menu';
 import FileLib from './utilities/setFileSystem';
-
+import simulator from './utilities/Simulator'
+const registerIpcListener = ()=>{
+  ipcMain.on('openSimulator', (event, root) => {
+    simulator(root);
+  })
+}; 
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {
@@ -56,6 +61,7 @@ app.on('window-all-closed', () => {
 
 
 app.on('ready', async () => {
+  registerIpcListener()
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }

@@ -45,6 +45,8 @@ export class State extends Component {
     deleteState : () => void,
     workspace: {},
   }
+
+
   // should return a list built from the current state.
   render() {
     const { workspace, addState, deleteState } = this.props;

@@ -33,9 +33,10 @@
 }
 
 .deleteKey {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   text-align: center;
+  font-size: 9px;
   float: right;
   margin-right: 10px;
   background-color: $background-color-primary;
@@ -45,7 +46,8 @@
 }
 
 .deleteKey:hover {
-  background-color: #232630;
+  background-color: #C72211;
+  color: black;
 }
 
 .deleteKey:active {
@@ -94,6 +96,10 @@
   color: $primary-color;
   // border-bottom: 1px solid $border-color;
   border-bottom: 1px solid rgba(255, 255, 255, 0.31);
+}
+
+.list strong{
+  width: 15px;
 }
 
 .list:hover {

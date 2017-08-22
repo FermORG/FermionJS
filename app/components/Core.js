@@ -20,6 +20,7 @@ import Workspace from '../containers/Workspace';
 import getVisComponent from './VisComponents/exporter';
 
 import ExportButton from '../containers/ExportButton';
+import { ipcRenderer } from 'electron';
 
 class Core extends Component {
   constructor(props) {
