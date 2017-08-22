@@ -12,6 +12,6 @@ function methodNames(methods) {
     const end = method.indexOf('()');
     return method.slice(0, end).trim();
   });
-  methodNames.pop();
+  if (methodNames[methodNames.length - 1] === '') methodNames.pop();
   return methodNames;
 }

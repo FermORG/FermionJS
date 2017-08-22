@@ -1,9 +1,9 @@
 const PAD_LENGTH = 3;
 const WORKSPACE_ID = 'workspace';
 const TOP_LEVEL_NAME = 'App';
-const { appParser, flattenStateProps } = require('./propsRecursor');
-const { cloneDeep } = require('lodash');
-const { getChildEvents, flattenEvents } = require('./eventsRecursor');
+import { appParser, flattenStateProps } from './propsRecursor';
+import { cloneDeep } from 'lodash';
+import { getChildEvents, flattenEvents, insertMethods, insertThis } from './eventsRecursor';
 /**
 * @param {object} state - a flattened version of the state object and all component's props - rolled into one object for exporting the state.
 * @param {object} stateMap - an object containing all state and props values in a semi-flattened state. each component will be represented by a key pointing to its ID in the store, and its props will be lifted up into the statemap as an object at that key.
@@ -83,7 +83,6 @@ class ComponentConverter {
   }
   getChildren() {
     return this.component.childrenFileNames.reduce((final, childFile, i, array) => {
-      // console.log(childFile);
       final += `        <${childFile}\n ${this.getChildProps(childFile)} /> `;
       final += '\n';
       return final;
@@ -109,6 +108,8 @@ class ComponentConverter {
     if (this.component.id !== WORKSPACE_ID){
       props = flattenStateProps(this.component.props, this.component.id, this.components);
       events = flattenEvents(this.component.events, this.component.id, this.components);
+
+      events = insertMethods(events, methodNames);
       props = Object.assign(props, events);
       if (Object.keys(props).length === 0) return '';
     } else {
@@ -126,13 +127,20 @@ class ComponentConverter {
     const child = parseInt(childFile.slice(-3));
     let childProps;
     let childEvents;
+
     if (this.component.id !== WORKSPACE_ID){
-        childProps = cloneDeep(this.component.props[child]);
-        childEvents = cloneDeep(this.component.events[child]);
+      childProps = cloneDeep(this.component.props[child]);
+      childEvents = cloneDeep(this.component.events[child]);
     } else {
       childProps = flattenStateProps(this.components[child].props, String(child), this.components);
       childEvents = flattenEvents(this.components[child].events, String(child), this.components);
     }
+    childEvents = insertMethods(childEvents, methodNames);
+
+    if(this.component.id === WORKSPACE_ID) {
+      childEvents = insertThis(childEvents, methodNames);
+    }
+
     childProps = Object.assign(childProps, childEvents);
     delete childProps.style;
     return Object.keys(childProps).reduce((inline, prop) => {
@@ -173,12 +181,18 @@ class WorkspaceConverter {
   constructor(workspace){
     const clonedWorkspace = appParser(workspace);
     let comps = Object.assign({}, clonedWorkspace.components);
+
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
+
     eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
+
     methods = (clonedWorkspace.methods.split('@').join(''));
+
     methodNames = (clonedWorkspace.methodNames);
     state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
+
     comps[WORKSPACE_ID].name = TOP_LEVEL_NAME;
+
     this.components = this.convertChildIDtoFileName(comps);
   }
   convertChildIDtoFileName(components){
