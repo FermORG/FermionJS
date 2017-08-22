@@ -8,6 +8,8 @@
 
 ## Demo
 
+[demo page](http://www.fermionjs.io/features.html)
+
 ## Features
 
 - Manipulation
