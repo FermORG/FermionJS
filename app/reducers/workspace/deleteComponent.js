@@ -11,7 +11,7 @@ export default function deleteComponent(state, action) {
   components[parent.id] = parent;  
   parent.children = parent.children.filter(id => id  !== deleteTarget.id);
   
-
+  
   return {
     ...state,
     activeComponent: WORKSPACE_ID,

@@ -1,4 +1,4 @@
-import { ADD_COMPONENT, REMOVE_COMPONENT, MOVE_COMPONENT, DELETE_COMPONENT, UPDATE_STYLE } from '../../actions/workspace';
+import { ADD_COMPONENT, MOVE_COMPONENT, DELETE_COMPONENT, UPDATE_STYLE } from '../../actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../actions/config';
 import { SET_ACTIVE_COMPONENT } from '../../actions/FileSystemActions';
 import { METHODS } from '../../actions/methods';
@@ -84,15 +84,9 @@ export default function workspace(state = defaultWorkspace, action) {
   switch (action.type) {
     case ADD_COMPONENT:
       return addComponent(state, action);
-<<<<<<< HEAD
-// currently unused
-    // case REMOVE_COMPONENT:
-    //   return removeComponent(state, action);
-=======
 
-    case REMOVE_CHILD:
+    case DELETE_COMPONENT:
       return deleteComponent(state, action);
->>>>>>> 72cd533
 
     case MOVE_COMPONENT:
       return moveComponent(state, action);

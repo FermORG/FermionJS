@@ -4,7 +4,6 @@ export const ADD_COMPONENT = 'ADD_COMPONENT';
 export const CREATE_COMPONENT = 'CREATE_COMPONENT';
 export const DELETE_COMPONENT = 'DELETE_COMPONENT';
 export const MOVE_COMPONENT = 'MOVE_COMPONENT';
-export const REMOVE_COMPONENT = 'REMOVE_COMPONENT';
 export const UPDATE_STYLE = 'UPDATE_STYLE';
 
 const createComponent = ({ name, props, events }) => ({
@@ -24,9 +23,9 @@ export function addComponent(targetID, component) {
   };
 }
 
-export function removeComponent(id) {
+export function deleteComponent(id) {
   return {
-    type: REMOVE_COMPONENT,
+    type: DELETE_COMPONENT,
     id
   };
 }
