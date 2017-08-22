@@ -3,7 +3,7 @@ import { DropTarget } from 'react-dnd';
 import { ItemTypes } from './item-types';
 import { dropTarget } from './specification';
 import { dropCollect } from './collectors';
-import coreStyles from '../components/Core.css';
+import coreStyles from '../components/Core.scss';
 // Connect and wrap
 export default function (Workspace, hideEditor) {
   const divWrappedWorkspace = (

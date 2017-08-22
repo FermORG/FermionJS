@@ -16,11 +16,42 @@ Object {
 }
 `;
 
+exports[`workspace actions addComponent should return a payload with the correct action type, a component and a target 1`] = `
+Object {
+  "newComponent": Object {
+    "children": Array [],
+    "events": undefined,
+    "name": "testComponent",
+    "parentID": "workspace",
+    "props": Object {
+      "testKey": "testProps",
+    },
+  },
+  "targetID": "target",
+  "type": "ADD_COMPONENT",
+}
+`;
+
+exports[`workspace actions deleteComponent should return a payload with the correct action type and an id 1`] = `
+Object {
+  "id": "testID",
+  "type": "DELETE_COMPONENT",
+}
+`;
+
 exports[`workspace actions moveChild should return a payload with the correct action type, a target and a source 1`] = `
 Object {
   "sourceID": "testSource",
   "targetID": "testTarget",
   "type": "MOVE_CHILD",
+}
+`;
+
+exports[`workspace actions moveComponent should return a payload with the correct action type, a target and a source 1`] = `
+Object {
+  "sourceID": "testSource",
+  "targetID": "testTarget",
+  "type": "MOVE_COMPONENT",
 }
 `;
 

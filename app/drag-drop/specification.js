@@ -9,7 +9,7 @@ export const dragTarget = {
     if (!monitor.didDrop()) return;
     const targetID = monitor.getDropResult().id;
     const sourceID = props.id;
-    props.moveChild(sourceID, targetID);
+    props.moveComponent(sourceID, targetID);
   }
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import styles from './photon.css';
-import coreStyle from './Core.css';
-import panelStyles from './Panels.css';
+import styles from './photon.scss';
+import coreStyle from './Core.scss';
+import panelStyles from './Panels.scss';
 import CompList from '../containers/CompList.js';
 import FileTree from '../containers/FileSystem.js';
 

@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
-import styles from './photon.css';
-import panelStyles from './Panels.css';
+import styles from './photon.scss';
+import panelStyles from './Panels.scss';
 import { WORKSPACE_ID } from '../constants';
 // import { Link } from 'react-router-dom';
 // import BlackBox from './VisComponents/BlackBox';
@@ -15,17 +15,17 @@ class List extends Component {
     workspace: {},
     // AddComponents: () => void,
     // AddToProject: () => void,
-    addChild: () => void,
+    addComponent: () => void,
   };
 
   render() {
-    const { availableComponents, addChild, workspace } = this.props;
+    const { availableComponents, addComponent, workspace } = this.props;
 
     const renderAry = Object.keys(availableComponents).map((component) => (
       <li
         key={availableComponents[component].name}
         className={`${styles['list-group-item']}  ${panelStyles.list}`}
-        onDoubleClick={() => addChild(WORKSPACE_ID, availableComponents[component])}
+        onDoubleClick={() => addComponent(WORKSPACE_ID, availableComponents[component])}
       >
         <strong>{availableComponents[component].name}</strong>
       </li>
