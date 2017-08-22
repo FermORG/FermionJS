@@ -3,7 +3,7 @@ import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROP
 import { SET_ACTIVE_COMPONENT } from '../../app/actions/FileSystemActions';
 import { WORKSPACE_ID } from '../../app/constants';
 import addComponent from '../../app/reducers/workspace/addComponent';
-import moveChild from '../../app/reducers/workspace/moveChild';
+import moveComponent from '../../app/reducers/workspace/moveComponent';
 import addStateValue from '../../app/reducers/workspace/addStateValue';
 import addPropsValue from '../../app/reducers/workspace/addPropsValue';
 import addStyleValue from '../../app/reducers/workspace/addStyleValue';
