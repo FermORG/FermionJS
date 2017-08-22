@@ -61,6 +61,7 @@ class Workspace extends Component {
         >
           <CustomComponent {...componentData.props} style={innerComponentStyle}>
             { children }
+
           </CustomComponent>
         </div>
       );
@@ -143,15 +144,15 @@ class Workspace extends Component {
           hideEditor={hideEditor}
         />
         <button 
-          style={{ backgroundColor: 'blue', color: this.state.mode ? 'coral' : 'white' }} 
+          style={{ backgroundColor: this.state.mode ? 'white' : '#07ff00', color:  'black' }} 
           onClick={()=>{this.setState({ mode: !this.state.mode })}}
         >
-            dnd mode
+            resize/free-move mode
         </button>
         <button 
           style={{ backgroundColor: 'red' }} 
           onClick={() => this.props.deleteComponent(this.props.workspace.activeComponent)} >
-            delete
+            delete component
         </button>
       </div>
     );
