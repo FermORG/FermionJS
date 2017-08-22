@@ -1,5 +1,5 @@
 import { WORKSPACE_ID } from '../../constants';
-import cloneComponentAndChildren from './utilities';
+import cloneComponentAndchildren from './utilities';
 import updateStyle from './updateStyle';
 import UPDATE_STYLE from '../../actions/workspace';
 import { pixelsToInt } from '../../utilities/helperFunctions';
@@ -11,15 +11,15 @@ import { pixelsToInt } from '../../utilities/helperFunctions';
  * -> @property {number} action.targetID - ID of parent component to add component to
  * -> @property {number} action.sourceID - ID of component being moved into another
  */
-export default function moveChild(state, action) {
+export default function moveComponent(state, action) {
   if (action.targetID === action.sourceID) {
     return state;
   }
 
   const components = { ...state.components };
-  const source = cloneComponentAndChildren(components[action.sourceID]);
-  const target = cloneComponentAndChildren(components[action.targetID]);
-  const prevParent = cloneComponentAndChildren(components[source.parentID]);
+  const source = cloneComponentAndchildren(components[action.sourceID]);
+  const target = cloneComponentAndchildren(components[action.targetID]);
+  const prevParent = cloneComponentAndchildren(components[source.parentID]);
   [source, target, prevParent].forEach(component => components[component.id] = component);
 
   if (source.parentID === target.id || target.parentID === source.id) {

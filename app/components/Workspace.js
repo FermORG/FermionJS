@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import coreStyles from '../components/Core.css';
+import coreStyles from '../components/Core.scss';
 import { DropTarget } from 'react-dnd';
 import { DragDropContext } from 'react-dnd';
 import Rnd from 'react-rnd';
@@ -9,7 +9,6 @@ import { WORKSPACE_ID, STATIC_INNER_COMPONENT_STYLE } from './../constants';
 import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
-import { addChild, removeChild, moveChild, updateStyle } from '../actions/workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
 import { pixelsToInt } from '../utilities/helperFunctions';
 
@@ -18,21 +17,28 @@ class Workspace extends Component {
     super(props);
 
     this.state = {
-      mode: false
+      mode: false,
+      activeComp: this.props.workspace.activeComponent
     }
 
     this.onResizeStopHandler = this.onResizeStopHandler.bind(this);
   }
 
   componentDidMount() {
-    const { width, height } = document.getElementById(WORKSPACE_ID).getBoundingClientRect()
+    const { activeComponent } = this.props.workspace;
+    document.body.onkeydown = (event) => {
+      if (event.ctrlKey && event.keyCode === 46) this.props.deleteComponent(activeComponent)
+    };
+
+
+    const { width, height } = document.getElementById(WORKSPACE_ID).getBoundingClientRect();
     this.props.updateStyle(WORKSPACE_ID, { width: `${width}px`, height: `${height}px` });
   }
 
   renderDeep(componentIDList) {
     if (!Object.keys(componentIDList).length || !componentIDList) return [];
 
-    const allComponents = this.props.components;
+    const allComponents = this.props.workspace.components;
 
     return componentIDList.map((componentID) => {
       const componentData = allComponents[componentID];
@@ -57,6 +63,7 @@ class Workspace extends Component {
         >
           <CustomComponent {...componentData.props} style={innerComponentStyle}>
             { children }
+
           </CustomComponent>
         </div>
       );
@@ -78,16 +85,17 @@ class Workspace extends Component {
           minHeight={50}
           bounds={"parent"}
           disableDragging={this.state.mode}
-          onDragStart={e => e.stopPropagation()}
+          onDragStart={e => {e.stopPropagation(); if(componentData.id.toString() !== this.state.activeComp) this.props.setActiveComponent(componentData.id.toString())}}
           onDragStop={(e, data) => {
             const [left, top] = [data.x, data.y];
             setTimeout(() => this.props.updateStyle(componentData.id, { left, top }), 0);
           }}
+          onResizeStart={()=> this.props.setActiveComponent(componentData.id.toString())}
           onResizeStop={(e, dir, ref, delta) => this.onResizeStopHandler(componentData, ref)}
         >
           <DndComponent
             id={componentData.id}
-            moveChild={this.props.moveChild}
+            moveComponent={this.props.moveComponent}
           />
         </ Rnd>
       );
@@ -95,7 +103,7 @@ class Workspace extends Component {
   }
 
   onResizeStopHandler(componentData, ref) {
-    const allComponents = this.props.components;
+    const allComponents = this.props.workspace.components;
     
     let [resizeWidth, resizeHeight] = 
       [ref.style.width, ref.style.height].map(elem => parseInt(elem, 0));
@@ -120,28 +128,35 @@ class Workspace extends Component {
   }
 
   render() {
-    const worskpaceChildren = this.props.components.workspace.children;
+    const worskpaceChildren = this.props.workspace.components.workspace.children;
     const { hideEditor } = this.props;
     const Workspace = () => (
       <div id={WORKSPACE_ID} style={{ width: '100%', height: '100%' }}>
-        {  this.renderDeep(worskpaceChildren) }
+        { this.renderDeep(worskpaceChildren) }
       </div>
       
     );
 
     const WrappedWorkspace = dropWorkspaceWrapper(Workspace, hideEditor);
-
+    
     return (
       <div>
-      <WrappedWorkspace
-        id={WORKSPACE_ID}
-        moveChild={this.props.moveChild}
-        hideEditor={hideEditor}
-      />
-            <button onClick={()=>{this.setState({ mode: !this.state.mode })}}>
-        dnd mode
-      </button> 
-
+        <WrappedWorkspace
+          id={WORKSPACE_ID}
+          moveComponent={this.props.moveComponent}
+          hideEditor={hideEditor}
+        />
+        <button 
+          style={{ backgroundColor: this.state.mode ? 'white' : '#07ff00', color:  'black' }} 
+          onClick={()=>{this.setState({ mode: !this.state.mode })}}
+        >
+            resize/free-move mode
+        </button>
+        <button 
+          style={{ backgroundColor: 'red' }} 
+          onClick={() => this.props.deleteComponent(this.props.workspace.activeComponent)} >
+            delete component
+        </button>
       </div>
     );
   }

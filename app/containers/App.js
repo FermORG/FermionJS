@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import type { Children } from 'react';
-import styles from '../components/photon.css';
+import styles from '../components/photon.scss';
 
 export default class App extends Component {
   props: {

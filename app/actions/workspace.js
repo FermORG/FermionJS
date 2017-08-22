@@ -1,13 +1,12 @@
 import { WORKSPACE_ID } from './../constants';
 
-export const ADD_CHILD = 'ADD_CHILD';
-export const CREATE_CHILD = 'CREATE_CHILD';
-export const DELETE_CHILD = 'DELETE_CHILD';
-export const MOVE_CHILD = 'MOVE_CHILD';
-export const REMOVE_CHILD = 'REMOVE_CHILD';
+export const ADD_COMPONENT = 'ADD_COMPONENT';
+export const CREATE_COMPONENT = 'CREATE_COMPONENT';
+export const DELETE_COMPONENT = 'DELETE_COMPONENT';
+export const MOVE_COMPONENT = 'MOVE_COMPONENT';
 export const UPDATE_STYLE = 'UPDATE_STYLE';
 
-const createChild = ({ name, props, events }) => ({
+const createComponent = ({ name, props, events }) => ({
   name,
   props,
   events,
@@ -15,25 +14,25 @@ const createChild = ({ name, props, events }) => ({
   parentID: WORKSPACE_ID,
 });
 
-export function addChild(targetID, component) {
-  const newComponent = createChild(component);
+export function addComponent(targetID, component) {
+  const newComponent = createComponent(component);
   return {
-    type: ADD_CHILD,
+    type: ADD_COMPONENT,
     newComponent,
     targetID
   };
 }
 
-export function removeChild(id) {
+export function deleteComponent(id) {
   return {
-    type: REMOVE_CHILD,
+    type: DELETE_COMPONENT,
     id
   };
 }
 
-export function moveChild(sourceID, targetID) {
+export function moveComponent(sourceID, targetID) {
   return {
-    type: MOVE_CHILD,
+    type: MOVE_COMPONENT,
     targetID,
     sourceID
   };
