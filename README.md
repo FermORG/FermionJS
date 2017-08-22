@@ -4,16 +4,20 @@
 
 ## Features
 
-#### Manipulation
+- Manipulation
+
 Fermion is all about ease of use and speed. Drag and drop, resize, double-click to design your app layout
 
-#### Configuration
+- Configuration
+
 Configure your components on the fly. Change style and add event-handling to your app.
 
-#### Preview
+- Preview
+
 Fermion leverages webpack to create a preview of your new app. Start prototyping and instantly get feedback.
 
-#### Exporting
+- Exporting
+
 Once you are done prototyping, code away! Fermion exports your React app with all the configuration as working code.
 
 ## Setup
