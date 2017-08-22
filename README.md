@@ -1,24 +1,19 @@
-<img height ='100' width='283' src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/logo1.png?raw=true" />
+<img text-align='center' height ='100' width='283' src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/logo1.png?raw=true" />
 
-# Fermion [![Build Status](https://travis-ci.org/FermORG/FermionJS.svg?branch=master)](https://travis-ci.org/FermORG/FermionJS)
+[![Build Status](https://travis-ci.org/FermORG/FermionJS.svg?branch=master)](https://travis-ci.org/FermORG/FermionJS)
 
-
-rea
 ## Features
 
-
-•Title page
-You can make React app really fast
-•Manipulation
+#### Manipulation
 Fermion is all about ease of use and speed. Drag and drop, resize, double-click to design your app layout
 
-•Configuration
+#### Configuration
 Configure your components on the fly. Change style and add event-handling to your app.
 
-•Preview
+#### Preview
 Fermion leverages webpack to create a preview of your new app. Start prototyping and instantly get feedback.
 
-•Exporting
+#### Exporting
 Once you are done prototyping, code away! Fermion exports your React app with all the configuration as working code.
 
 ## Setup
