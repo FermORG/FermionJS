@@ -1,6 +1,12 @@
-<img display='block' margin='auto' height ='100' width='283' src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/logo1.png?raw=true" />
+<p align='center'><img height ='100' width='283' src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/logo1.png?raw=true" /></p>
 
-[![Build Status](https://travis-ci.org/FermORG/FermionJS.svg?branch=master)](https://travis-ci.org/FermORG/FermionJS)
+
+<p align='center'>
+<img src="https://img.shields.io/travis/FermORG/FermionJS.svg" alt="Build Status" /></a>
+<a href="https://travis-ci.org/FermORG/FermionJS">
+</p>
+
+## Demo
 
 ## Features
 
