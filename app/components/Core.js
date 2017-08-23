@@ -25,9 +25,11 @@ import { ipcRenderer } from 'electron';
 class Core extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       code: '*** Insert Code Here ***',
-      hideEditor: true
+      hideEditor: true,
+      freeMoveMode: true
     };
     this.handleTextArea = this.handleTextArea.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -53,20 +55,6 @@ class Core extends Component {
   handleTextArea(e) {
 
   }
-   /* Recursively renders all levels of a nested component
-   */
-  renderDeep(nestedComponentsList) {
-    if (!nestedComponentsList.length) return [];
-
-    return nestedComponentsList.map((nestedComponent) => {
-      const CustomComponent = getVisComponent(nestedComponent.name);
-      return (
-        <CustomComponent id={nestedComponent.id} key={Math.random() * 10000}>
-          {this.renderDeep(nestedComponent.children)}
-        </CustomComponent>
-      );
-    });
-  }
   render() {
     const options = {
       lineNumbers: true
@@ -84,6 +72,7 @@ class Core extends Component {
               <div data-tid="AppContainer">
                 <Workspace
                   hideEditor={this.state.hideEditor}
+                  freeMoveMode={this.state.freeMoveMode}
                 />
               </div>
               <div className={`${this.state.hideEditor ? coreStyles.hideEditor : ''}`}>
@@ -108,6 +97,17 @@ class Core extends Component {
                     <i className="fa fa-arrow-left" />
                   </Link>
                 </div>
+                <a 
+                  className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
+                  onClick={()=>{this.setState({ freeMoveMode: !this.state.freeMoveMode })}}
+                >
+                  { this.state.freeMoveMode ? 'Nest' : 'Move'  } mode
+                </a>
+                <a
+                  className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
+                  onClick={() => this.props.deleteComponent(this.props.activeComponent)} >
+                    Delete component
+                </a>
                 <ExportButton />
                 <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}  onClick={this.handleClick}>
                   {this.state.hideEditor ? 'Show' : 'Hide'} Text Editor

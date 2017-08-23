@@ -68,8 +68,8 @@ class Workspace extends Component {
         </div>
       );
 
-      const DndComponent = this.state.mode ? 
-        dndComponentWrapper(DivWrappedComponent) : () => DivWrappedComponent;
+      const DndComponent = this.props.freeMoveMode ? 
+        () => DivWrappedComponent : dndComponentWrapper(DivWrappedComponent);
 
       return (
         <Rnd
@@ -84,7 +84,7 @@ class Workspace extends Component {
           minWidth={50}
           minHeight={50}
           bounds={"parent"}
-          disableDragging={this.state.mode}
+          disableDragging={!this.props.freeMoveMode}
           onDragStart={e => {e.stopPropagation(); if(componentData.id.toString() !== this.state.activeComp) this.props.setActiveComponent(componentData.id.toString())}}
           onDragStop={(e, data) => {
             const [left, top] = [data.x, data.y];
@@ -146,17 +146,6 @@ class Workspace extends Component {
           moveComponent={this.props.moveComponent}
           hideEditor={hideEditor}
         />
-        <button 
-          style={{ backgroundColor: this.state.mode ? 'white' : '#07ff00', color:  'black' }} 
-          onClick={()=>{this.setState({ mode: !this.state.mode })}}
-        >
-            resize/free-move mode
-        </button>
-        <button 
-          style={{ backgroundColor: 'red' }} 
-          onClick={() => this.props.deleteComponent(this.props.workspace.activeComponent)} >
-            delete component
-        </button>
       </div>
     );
   }
