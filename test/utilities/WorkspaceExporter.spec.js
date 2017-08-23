@@ -33,7 +33,7 @@ describe('exporter will', ()=>{
     let targetPath2 = path.join(destinationDir, 'test2', 'test2.js' );
     expect(fs.existsSync(targetPath)).toBe(true);
     expect(fs.existsSync(targetPath2)).toBe(true);
-  })
+  });
   test('export component\'s code', () => {
     const fileContentOf = (targetPath)=>{
       return fs.readFileSync(targetPath, {encoding: 'utf8'});
@@ -43,5 +43,18 @@ describe('exporter will', ()=>{
     let targetPath2 = path.join(destinationDir, 'test2', 'test2.js' );
     expect(fileContentOf(targetPath)).toBe('console.log("hello")');
     expect(fileContentOf(targetPath2)).toBe('const test = 3');
+  });
+
+  test('deleteDir should delete a directory', () =>{
+    exporter.export();
+    let targetPath = path.join(destinationDir, 'test1', 'test1.js' );
+    expect(fs.existsSync(targetPath)).toBe(true);
+    exporter.deleteDir(destinationDir);
+    expect(fs.existsSync(destinationDir)).toBe(false);
+  });
+
+  test('createDir should create a directory', ()=> {
+    exporter.createDir(destinationDir);
+    expect(fs.existsSync(destinationDir)).toBe(true);
   })
-})
+});
