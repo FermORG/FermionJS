@@ -93,7 +93,7 @@ class Core extends Component {
                 <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}  onClick={this.toggleEditor}>
                   {this.state.hideEditor ? 'Show' : 'Hide'} Text Editor
                 </a>
-                <button onClick={()=>{ipcRenderer.send('openSimulator')}}>preview</button>
+                <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`} onClick={()=>{ipcRenderer.send('openSimulator')}}>preview</a>
               </footer>
             </div>
             <Right />
