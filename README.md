@@ -14,27 +14,25 @@
 
  ## Manipulation ##
 
-Fermion is all about ease of use and speed. Drag and drop, resize, double-click to design your app layout.
+Fermion is all about ease of use and speed. Drag and drop, resize, and nest your components to prototype your app layout.
 
 <img src="https://raw.githubusercontent.com/FermORG/fermorg.github.io/master/assets/images/manipulation.gif" alt="Fermion Manipulation" />
 
 ## Configuration ##
 
-Configure your components on the fly. Change style and add event-handling to your app.
+Configure your components in real-time. Fermion allows you to apply style and add event-handling to your components.
 
 <img src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/config.gif?raw=true" alt="Fermion Manipulation" />
 
 ## Preview ##
 
-Fermion leverages webpack to create a preview of your new app. Start prototyping and instantly get feedback.
+Fermion leverages webpack to create a live preview of your new prototype. Simply export your project and our simulator will display how your project will look in the browser.
 
 ## Exporting ##
 
-Once you are done prototyping, code away! Fermion exports your React app with all the configuration as working code.
+Once you are done prototyping, the real fun begins! Fermion exports your prototype along with all of your configurations as working code so that you can continue to refine your project in the setting of your choice.
 
----
-
-# Setup
+## Setup and Run!
 
 ```
 npm install
