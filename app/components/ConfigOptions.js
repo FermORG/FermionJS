@@ -1,43 +1,44 @@
 // @flow
 import React, { Component } from 'react';
-import styles from './photon.css';
-import coreStyles from './Core.css';
-import panelStyles from './Panels.css';
-import ColorPicker from './ColorPicker';
+import styles from './photon.scss';
+import coreStyles from './Core.scss';
+import panelStyles from './Panels.scss';
+
 // returns renderable config Panel options.
 
-export default function ConfigOption(props) {
-  const { activeComponent, propKey, value, action, deleter, actionHandler, onClick } = props;
-  return (
-    <li className={`${styles['list-group-item']}  ${panelStyles.list}`}>
-      <strong>{`${propKey}`}</strong>
-      <strong> : </strong>
-      {addColorPicker(props)}
-      <div
-        className={`${panelStyles.deleteKey}`}
-        onClick={() => { onClick(deleter, activeComponent, propKey); }}
-      >
-        X
-      </div>
-    </li>
-  );
-}
-
-function addColorPicker(props) {
-  const { activeComponent, propKey, value, action, deleter, actionHandler, onClick } = props;
-  if (propKey.indexOf('Color') === -1 && propKey.indexOf('color') === -1) {
-    return (
-      <input
-        className={`${panelStyles.editField}`}
-        placeholder={`${value}`}
-        onKeyPress={(event) => actionHandler(event, action, activeComponent, propKey)}
-      />
-    );
-  } else {
-    return (<ColorPicker
-    color={value || '#f2f2f2'}
-    activeComponent={activeComponent}
-    onChange={(event) => actionHandler(event, action, activeComponent, propKey)}
-    />);
+export default class ConfigOption extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      deleteButton: ""
+    }
   }
+  render(){
+    const { activeComponent, propKey, value, action, deleter, actionHandler, onClick } = this.props;
+    return (
+      <li className={`${styles['list-group-item']}  ${panelStyles.list}`}>
+        <strong>{`${propKey}`}</strong>
+        <strong> : </strong>
+        <input
+          className={`${panelStyles.editField}`}
+          onKeyPress={(event) => actionHandler(event, action, activeComponent, propKey)}
+          defaultValue={value}
+        />
+        <a className={`${coreStyles['deleteKey']}`}
+          onClick={() => { onClick(deleter, activeComponent, propKey)}}
+          onMouseOver={() => {this.setState({deleteButton: "X"})}}
+          onMouseLeave={() => {this.setState({deleteButton: ""})}}>
+          {this.state.deleteButton}
+        </a> 
+    
+      </li>
+    );
+  }
+
 }
+ 
+
+// <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}
+//   onClick={() => { onClick(deleter, activeComponent, propKey)}}>
+//   X
+// </a> 

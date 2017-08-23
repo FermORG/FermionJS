@@ -8,7 +8,7 @@ import Workspace from '../components/Workspace';
 
 function mapStateToProps(state) {
   return {
-    components: state.workspace.components
+    workspace: state.workspace
   };
 }
 

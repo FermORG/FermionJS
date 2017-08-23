@@ -1,9 +1,9 @@
 import { WORKSPACE_ID } from '../../app/constants';
-import { ADD_CHILD, CREATE_CHILD, DELETE_CHILD, MOVE_CHILD, REMOVE_CHILD, UPDATE_STYLE } from '../../app/actions/workspace';
-import { addChild, removeChild, moveChild, updateStyle } from '../../app/actions/workspace';
+import { ADD_COMPONENT, CREATE_COMPONENT, DELETE_COMPONENT, MOVE_COMPONENT, UPDATE_STYLE } from '../../app/actions/workspace';
+import { addComponent, deleteComponent, moveComponent, updateStyle } from '../../app/actions/workspace';
 
 describe('workspace actions', () => {
-  describe('addChild', () => {
+  describe('addComponent', () => {
     it('should return a payload with the correct action type, a component and a target', () => {
       const componentMock = {
         name: 'testComponent',
@@ -11,31 +11,31 @@ describe('workspace actions', () => {
           testKey: 'testProps'
         },
       };
-      const result = addChild('target', componentMock);
+      const result = addComponent('target', componentMock);
       expect(result).toMatchSnapshot();
       expect(result).toHaveProperty('targetID', 'target');
       expect(result).toHaveProperty('newComponent');
       expect(result).toHaveProperty('newComponent.props.testKey', 'testProps');
       expect(result).toHaveProperty('newComponent.name', 'testComponent');
       expect(result).toHaveProperty('newComponent.parentID', WORKSPACE_ID);
-      expect(result).toHaveProperty('type', ADD_CHILD);
+      expect(result).toHaveProperty('type', ADD_COMPONENT);
     });
   });
 
-  describe('removeChild', () => {
+  describe('deleteComponent', () => {
     it('should return a payload with the correct action type and an id', () => {
-      const result = removeChild('testID');
+      const result = deleteComponent('testID');
       expect(result).toMatchSnapshot();
-      expect(result).toHaveProperty('type', REMOVE_CHILD);
+      expect(result).toHaveProperty('type', DELETE_COMPONENT);
       expect(result).toHaveProperty('id', 'testID');
     });
   });
 
-  describe('moveChild', () => {
+  describe('moveComponent', () => {
     it('should return a payload with the correct action type, a target and a source', () => {
-      const result = moveChild('testSource', 'testTarget');
+      const result = moveComponent('testSource', 'testTarget');
       expect(result).toMatchSnapshot();
-      expect(result).toHaveProperty('type', MOVE_CHILD);
+      expect(result).toHaveProperty('type', MOVE_COMPONENT);
       expect(result).toHaveProperty('sourceID', 'testSource');
       expect(result).toHaveProperty('targetID', 'testTarget');
     });

@@ -1,10 +1,9 @@
-import { ADD_CHILD, REMOVE_CHILD, MOVE_CHILD, DELETE_CHILD, UPDATE_STYLE } from '../../app/actions/workspace';
+import { ADD_COMPONENT, MOVE_COMPONENT, DELETE_COMPONENT, UPDATE_STYLE } from '../../app/actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../app/actions/config';
 import { SET_ACTIVE_COMPONENT } from '../../app/actions/FileSystemActions';
 import { WORKSPACE_ID } from '../../app/constants';
 import addComponent from '../../app/reducers/workspace/addComponent';
-// import removeComponent from '../../app/reducers/workspace/removeComponent';
-import moveChild from '../../app/reducers/workspace/moveChild';
+import moveComponent from '../../app/reducers/workspace/moveComponent';
 import addStateValue from '../../app/reducers/workspace/addStateValue';
 import addPropsValue from '../../app/reducers/workspace/addPropsValue';
 import addStyleValue from '../../app/reducers/workspace/addStyleValue';
@@ -73,7 +72,7 @@ describe('workspace Reducer', () => {
   describe('CASE: ADD CHILD', () => {
     it('should add a child to the workspace state', () => {
       const actionMock = {
-        type: ADD_CHILD,
+        type: ADD_COMPONENT,
         newComponent: {
           id: 2,
           name: 'test',
@@ -92,23 +91,11 @@ describe('workspace Reducer', () => {
         //write some more here later, this is a big object and needs to be controlled.
     });
   });
-    // function is broken and currently unused, needs to be revisited later.
-  // describe('CASE: REMOVE CHILD', () => {
-  //   it('should do nothing without an id', () => {
-  //     const actionMock = {
-  //       type: REMOVE_CHILD,
-  //       // id: '0',
-  //     }
-  //     const result = workspace(defaultWorkspace, actionMock);
-  //     expect(result).toMatchSnapshot();
-  //     expect(result.workspace.children).toBe([0,1]);
-  //   });
-  // });
-
+  
   describe('CASE: MOVE_CHILD', () => {
     it('should nest a component in another component', () => {
       const actionMock = {
-        type: MOVE_CHILD,
+        type: MOVE_COMPONENT,
         targetID: 1,
         sourceID: 0,
       };
@@ -120,7 +107,7 @@ describe('workspace Reducer', () => {
 
     it('should not move a component into itself', () => {
       const actionMock = {
-        type: MOVE_CHILD,
+        type: MOVE_COMPONENT,
         targetID: 1,
         sourceID: 1,
       };
@@ -131,7 +118,7 @@ describe('workspace Reducer', () => {
 
     it('should not move a component into its own parent', () => {
       const actionMock = {
-        type: MOVE_CHILD,
+        type: MOVE_COMPONENT,
         targetID: WORKSPACE_ID,
         sourceID: 0,
       };
