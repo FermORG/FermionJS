@@ -26,12 +26,10 @@ class Core extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: '*** Insert Code Here ***',
       hideEditor: true
     };
-    this.handleTextArea = this.handleTextArea.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.toggleEditor = this.toggleEditor.bind(this);
+    this.onEditorChange = this.onEditorChange.bind(this);
     this.updateMethods = this.props.updateMethods;
   }
 
@@ -39,34 +37,16 @@ class Core extends Component {
     updateMethods: () => void,
   }
 
-  onChange(newValue) {
-    console.log('props: ', this.props);
-    console.log(newValue);
+  onEditorChange(newValue) {
     this.updateMethods(newValue);
   }
 
-  handleClick(e){
+  toggleEditor(e){
     this.setState({
       hideEditor: !this.state.hideEditor
     });
   }
-  handleTextArea(e) {
 
-  }
-   /* Recursively renders all levels of a nested component
-   */
-  renderDeep(nestedComponentsList) {
-    if (!nestedComponentsList.length) return [];
-
-    return nestedComponentsList.map((nestedComponent) => {
-      const CustomComponent = getVisComponent(nestedComponent.name);
-      return (
-        <CustomComponent id={nestedComponent.id} key={Math.random() * 10000}>
-          {this.renderDeep(nestedComponent.children)}
-        </CustomComponent>
-      );
-    });
-  }
   render() {
     const options = {
       lineNumbers: true
@@ -93,8 +73,9 @@ class Core extends Component {
                       className={`${coreStyles.aceInterior}`}
                       mode="javascript"
                       theme="tomorrow_night_bright"
-                      onChange={this.onChanges}
+                      onChange={this.onEditorChange}
                       highlightActiveLine={true}
+                      value={editorValue}
                       name="editorInterior"
                       style={{width: '100%', margin:'none'}}
                       editorProps={{ $blockScrolling: true }}
@@ -109,9 +90,10 @@ class Core extends Component {
                   </Link>
                 </div>
                 <ExportButton />
-                <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}  onClick={this.handleClick}>
+                <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}  onClick={this.toggleEditor}>
                   {this.state.hideEditor ? 'Show' : 'Hide'} Text Editor
                 </a>
+                <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`} onClick={()=>{ipcRenderer.send('openSimulator')}}>preview</a>
               </footer>
             </div>
             <Right />

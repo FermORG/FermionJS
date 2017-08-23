@@ -6,6 +6,7 @@ class BlackBox extends Component {
   constructor(props){
     super(props);
   
+  
   }
   
   render(){
