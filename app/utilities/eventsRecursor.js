@@ -45,6 +45,7 @@ export function flattenEvents(events, component, components) {
 export function insertMethods(events, methods) {
   Object.keys(events).forEach((key) => {
     const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '');
+
     const methName = methods.indexOf(toTest);
     if (methName !== -1) {
       Object.defineProperty(events, methods[methName], Object.getOwnPropertyDescriptor(events, key));
