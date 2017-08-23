@@ -1,4 +1,4 @@
-import { ADD_CHILD, MOVE_CHILD, DELETE_COMPONENT, UPDATE_STYLE } from '../../app/actions/workspace';
+import { ADD_COMPONENT, MOVE_COMPONENT, DELETE_COMPONENT, UPDATE_STYLE } from '../../app/actions/workspace';
 import { ADD_STATE, ADD_PROPS, ADD_STYLES, ADD_EVENTS, DELETE_STATE, DELETE_PROPS, DELETE_STYLES, DELETE_EVENTS } from '../../app/actions/config';
 import { SET_ACTIVE_COMPONENT } from '../../app/actions/FileSystemActions';
 import { WORKSPACE_ID } from '../../app/constants';
@@ -72,7 +72,7 @@ describe('workspace Reducer', () => {
   describe('CASE: ADD CHILD', () => {
     it('should add a child to the workspace state', () => {
       const actionMock = {
-        type: ADD_CHILD,
+        type: ADD_COMPONENT,
         newComponent: {
           id: 2,
           name: 'test',
@@ -95,7 +95,7 @@ describe('workspace Reducer', () => {
   describe('CASE: MOVE_CHILD', () => {
     it('should nest a component in another component', () => {
       const actionMock = {
-        type: MOVE_CHILD,
+        type: MOVE_COMPONENT,
         targetID: 1,
         sourceID: 0,
       };
@@ -107,7 +107,7 @@ describe('workspace Reducer', () => {
 
     it('should not move a component into itself', () => {
       const actionMock = {
-        type: MOVE_CHILD,
+        type: MOVE_COMPONENT,
         targetID: 1,
         sourceID: 1,
       };
@@ -118,7 +118,7 @@ describe('workspace Reducer', () => {
 
     it('should not move a component into its own parent', () => {
       const actionMock = {
-        type: MOVE_CHILD,
+        type: MOVE_COMPONENT,
         targetID: WORKSPACE_ID,
         sourceID: 0,
       };
