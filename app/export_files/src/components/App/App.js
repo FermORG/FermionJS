@@ -8,10 +8,11 @@ class App extends Component {
   constructor(props){
     super(props);
   this.state = {}
+  this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    console.log('git i hate you');
-}@
+    console.log('test');
+}
   render(){
     
     return (
@@ -21,7 +22,7 @@ class App extends Component {
          onClick={()=>{console.log("test")}}
  /> 
         <BlueBox_001
-         onClick={()=>handleClick()}
+         handleClick={()=>this.handleClick()}
  /> 
 
       </div>
