@@ -42,6 +42,9 @@ class Core extends Component {
   onEditorChange(newValue) {
     this.updateMethods(newValue);
   }
+  // onEditorFocus() {
+  //
+  // }
 
   toggleEditor(e){
     this.setState({

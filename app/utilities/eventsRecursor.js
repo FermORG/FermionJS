@@ -44,7 +44,7 @@ export function flattenEvents(events, component, components) {
 
 export function insertMethods(events, methods) {
   Object.keys(events).forEach((key) => {
-    const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '');
+    const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
 
     const methName = methods.indexOf(toTest);
     if (methName !== -1) {
@@ -61,7 +61,7 @@ export function insertMethods(events, methods) {
 */
 export function insertThis(events, methods) {
   Object.keys(events).forEach((key) => {
-    const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '');
+    const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
     const methName = methods.indexOf(toTest);
     if (methName !== -1) {
       const method = methods[methName];
