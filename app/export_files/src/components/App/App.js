@@ -1,28 +1,29 @@
 
 import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
-import Square_002 from '../Square_002/Square_002';
+import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
-const divStyle = {"width":"696.625px","height":"872.375px"}
+const divStyle = {"width":"602.40625px","height":"617.75px"}
 class App extends Component {
   constructor(props){
     super(props);
   this.state = {}
   this.handleClick = this.handleClick.bind(this);
   }
-  handleClick() {
-  }
+  handleClick(red) {
+    console.log('test');
+}
+
   render(){
     
     return (
       <div style={divStyle}  >
         
         <BlackBox_000
-         onClick={()=>{console.log("test")}}
+         handleClick={()=>this.handleClick(red)}
  /> 
-        <Square_002
-         handleClick={()=>this.handleClick()}
- /> 
+        <BlueBox_001
+  /> 
 
       </div>
     );

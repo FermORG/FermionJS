@@ -16,12 +16,6 @@ const BlackBox = (props) => (
     {props
       ? props.children
       : null}
-    <ul>
-      <li> Garrett </li>
-      <li> Jeff </li>
-      <li> Hai </li>
-      <li> Chris</li>
-    </ul>
   </div>
 );
 

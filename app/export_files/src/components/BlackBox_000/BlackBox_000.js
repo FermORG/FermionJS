@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-const divStyle = {"position":"absolute","height":"100px","width":"100px","display":"inline-block","backgroundColor":"black","overflow":"auto","left":58,"top":175}
+const divStyle = {"position":"absolute","height":"100px","width":"100px","display":"inline-block","backgroundColor":"black","overflow":"auto"}
 class BlackBox extends Component {
   constructor(props){
     super(props);
@@ -10,9 +10,9 @@ class BlackBox extends Component {
   }
   
   render(){
-    const { onClick } = this.props;
+    const { handleClick } = this.props;
     return (
-      <div style={divStyle}  onClick={()=>{console.log("test")}} >
+      <div style={divStyle}  onClick={()=>handleClick(red)} >
         
 
       </div>

@@ -34,7 +34,7 @@ const defaultWorkspace = {
     },
   },
   state: {},
-  methods: '/*Anything you type in here will be appended to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc.*/',
+  methods: '/*Anything you type in here will be appended to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc. \n make sure to append an "@" symbol following the closing bracket of your method!*/',
   methodNames: [],
 };
 

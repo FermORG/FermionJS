@@ -27,7 +27,6 @@ class Core extends Component {
     super(props);
     console.log(props);
     this.state = {
-      code: '*** Insert Code Here ***',
       hideEditor: true,
       freeMoveMode: true
     };
@@ -43,6 +42,9 @@ class Core extends Component {
   onEditorChange(newValue) {
     this.updateMethods(newValue);
   }
+  // onEditorFocus() {
+  //
+  // }
 
   toggleEditor(e){
     this.setState({
@@ -93,11 +95,11 @@ class Core extends Component {
                     <i className="fa fa-arrow-left" />
                   </Link>
                 </div>
-                <a 
+                <a
                   className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
                   onClick={()=>{this.setState({ freeMoveMode: !this.state.freeMoveMode })}}
                 >
-                  { this.state.freeMoveMode ? 'Nest' : 'Move'  } mode
+                  { this.state.freeMoveMode ? 'Move' : 'Nest'  } mode
                 </a>
                 <a
                   className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
