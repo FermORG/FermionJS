@@ -63,7 +63,6 @@ class Workspace extends Component {
         >
           <CustomComponent {...componentData.props} style={innerComponentStyle}>
             { children }
-
           </CustomComponent>
         </div>
       );

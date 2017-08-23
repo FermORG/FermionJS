@@ -13,25 +13,17 @@ class WorkspaceExporter {
     try {
       fs.mkdirSync(targetPath);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       throw new Error(`cannot make dir: ${targetPath} ${e}`);
     }
   }
-  deleteDir(dirPath) {
-    const targetPath = dirPath || this.targetPath;
+  deleteDir(dirPath = this.targetPath) {
+    // const targetPath = dirPath || this.targetPath;
     try {
-      rimraf.sync(targetPath);
+      rimraf.sync(dirPath);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       throw new Error(`cannot delete dir: ${targetPath} ${e}`);
-    }
-  }
-  exportFile(fPath, content) {
-    try {
-      fs.writeFileSync(fPath, 'hello');
-    } catch (e) {
-      console.log(e);
-      throw new Error(`saving resource failed: ${e}`);
     }
   }
   export() {
@@ -44,7 +36,7 @@ class WorkspaceExporter {
         fs.writeFileSync(fPath, component.code);
       });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       throw new Error(`exporting failed: ${e}`);
     }
   }
