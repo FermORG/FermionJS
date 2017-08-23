@@ -2,7 +2,7 @@
 
 
 <p align='center'>
-<img src="https://img.shields.io/travis/FermORG/FermionJS.svg" alt="Build Status" /></a>
+<img src="https://travis-ci.org/FermORG/FermionJS.svg?branch=master" alt="Build Status" /></a>
 <a href="https://travis-ci.org/FermORG/FermionJS">
 </p>
 
@@ -15,10 +15,12 @@
 - Manipulation
 
 Fermion is all about ease of use and speed. Drag and drop, resize, double-click to design your app layout.
+<img src="https://raw.githubusercontent.com/FermORG/fermorg.github.io/master/assets/images/manipulation.gif" alt="Fermion Manipulation" />
 
 - Configuration
 
 Configure your components on the fly. Change style and add event-handling to your app.
+<img src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/config.gif?raw=true" alt="Fermion Manipulation" />
 
 - Preview
 
