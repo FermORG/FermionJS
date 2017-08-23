@@ -21,7 +21,7 @@ export function appParser(workspace) {
 * @param {object} components - workspace.components regardless of first param ID
 */
 
-function getChildProps(parent, components) {
+export function getChildProps(parent, components) {
   const { children } = parent;
   let props = parent.props || {};
   if (children.length === 0){
