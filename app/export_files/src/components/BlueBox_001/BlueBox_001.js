@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-const divStyle = {"position":"absolute","height":"100px","width":"100px","display":"inline-block","backgroundColor":"#4e4e87","overflow":"auto","border":"1px solid lightgreen","left":126,"top":1}
+const divStyle = {"position":"absolute","height":"100px","width":"100px","display":"inline-block","backgroundColor":"#ffcc00","overflow":"auto","border":"1px solid lightgreen","left":210,"top":0}
 class BlueBox extends Component {
   constructor(props){
     super(props);

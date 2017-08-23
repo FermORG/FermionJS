@@ -102,13 +102,11 @@ describe('events Recursor', () => {
   describe('flattenEvents', () => {
     it('should flatten an eventsMap into an unnested object', () => {
       const events = getChildEvents(defaultWorkspace.components['workspace'], defaultWorkspace.components);
-
       const flatEvents = flattenEvents(events, 'workspace', defaultWorkspace.components);
-
-      expect(events).toHaveProperty('test');
-      expect(events).toHaveProperty('test2');
-      expect(events).not.toHaveProperty('0');
-      expect(events).not.toHaveProperty('1');
+      expect(flatEvents).toHaveProperty('test');
+      expect(flatEvents).toHaveProperty('test2');
+      expect(flatEvents).not.toHaveProperty('0');
+      expect(flatEvents).not.toHaveProperty('1');
     });
   });
 });

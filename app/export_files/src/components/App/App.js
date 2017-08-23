@@ -11,7 +11,7 @@ class App extends Component {
   this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    console.log('test');
+    console.log('chris is a fellow but also lame');
 }
   render(){
     
