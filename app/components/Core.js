@@ -25,8 +25,11 @@ import { ipcRenderer } from 'electron';
 class Core extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      hideEditor: true
+      code: '*** Insert Code Here ***',
+      hideEditor: true,
+      freeMoveMode: true
     };
     this.toggleEditor = this.toggleEditor.bind(this);
     this.onEditorChange = this.onEditorChange.bind(this);
@@ -64,6 +67,7 @@ class Core extends Component {
               <div data-tid="AppContainer">
                 <Workspace
                   hideEditor={this.state.hideEditor}
+                  freeMoveMode={this.state.freeMoveMode}
                 />
               </div>
               <div className={`${this.state.hideEditor ? coreStyles.hideEditor : ''}`}>
@@ -89,6 +93,17 @@ class Core extends Component {
                     <i className="fa fa-arrow-left" />
                   </Link>
                 </div>
+                <a 
+                  className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
+                  onClick={()=>{this.setState({ freeMoveMode: !this.state.freeMoveMode })}}
+                >
+                  { this.state.freeMoveMode ? 'Nest' : 'Move'  } mode
+                </a>
+                <a
+                  className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
+                  onClick={() => this.props.deleteComponent(this.props.activeComponent)} >
+                    Delete component
+                </a>
                 <ExportButton />
                 <a className={`${coreStyles['btn']} ${coreStyles['btn-blue']} ${styles['pull-right']}`}  onClick={this.toggleEditor}>
                   {this.state.hideEditor ? 'Show' : 'Hide'} Text Editor
