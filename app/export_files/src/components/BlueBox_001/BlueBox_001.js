@@ -5,15 +5,15 @@ const divStyle = {"position":"absolute","height":"427px","width":"510px","displa
 class BlueBox extends Component {
   constructor(props){
     super(props);
-  
-  
+
+
   }
-  
+
   render(){
-    
+
     return (
       <div style={divStyle}  >
-        
+
 
       </div>
     );

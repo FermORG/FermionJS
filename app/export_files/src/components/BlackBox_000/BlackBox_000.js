@@ -5,15 +5,15 @@ const divStyle = {"position":"absolute","height":"100px","width":"100px","displa
 class BlackBox extends Component {
   constructor(props){
     super(props);
-  
-  
+
+
   }
-  
+
   render(){
     const { onClick } = this.props;
     return (
       <div style={divStyle}  onClick={()=>{console.log("test")}} >
-        
+
 
       </div>
     );
