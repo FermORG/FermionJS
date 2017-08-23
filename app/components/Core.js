@@ -72,7 +72,7 @@ class Core extends Component {
                     <AceEditor
                       className={`${coreStyles.aceInterior}`}
                       mode="javascript"
-                      theme="twilight"
+                      theme="tomorrow_night_bright"
                       onChange={this.onEditorChange}
                       highlightActiveLine={true}
                       value={editorValue}
