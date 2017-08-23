@@ -2,10 +2,8 @@
 import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
 import BlueBox_001 from '../BlueBox_001/BlueBox_001';
-import One_002 from '../One_002/One_002';
-import One_003 from '../One_003/One_003';
 
-const divStyle = {"width":"587.828125px","height":"645.984375px"}
+const divStyle = {"width":"602.40625px","height":"617.75px"}
 class App extends Component {
   constructor(props){
     super(props);
@@ -22,10 +20,6 @@ class App extends Component {
          onClick={()=>{console.log("test")}}
  /> 
         <BlueBox_001
-  /> 
-        <One_002
-  /> 
-        <One_003
   /> 
 
       </div>
