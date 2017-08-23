@@ -110,7 +110,6 @@ describe('tabs components', () => {
     const { component, input, actions } = setupState();
     it('should render HTML as expected', () => {
       expect(component.type()).toEqual('div');
-      expect(component.contains(<hr />)).toBe(true);
       expect(input.is('.input')).toBe(true);
       expect(input.is('.form-control')).toBe(true);
     });
@@ -118,7 +117,7 @@ describe('tabs components', () => {
     it('should render a child for each entry in state', () => {
       const compLength = Object.keys(defaultWorkspace.state).length;
       // there are two pure html elements in the component.
-      expect(component.children().length).toEqual(2 + compLength);
+      expect(component.children().length).toEqual(1 + compLength);
     });
 
     it('should pass a value to state from the input', () => {
@@ -140,7 +139,6 @@ describe('tabs components', () => {
 
     it('should render HTML as expected', () => {
       expect(component.type()).toEqual('div');
-      expect(component.contains(<hr />)).toBe(true);
       expect(input.is('.input')).toBe(true);
       expect(input.is('.form-control')).toBe(true);
     });
@@ -148,7 +146,7 @@ describe('tabs components', () => {
     it('should render a child for each entry in props, less style', () => {
       const compLength = Object.keys(defaultWorkspace.components[0].props).length - 1; // less one for style
       // there are two pure html elements in the component.
-      expect(component.children().length).toEqual(2 + compLength);
+      expect(component.children().length).toEqual(1 + compLength);
     });
 
     it('should pass a value to props from the input', () => {
@@ -170,7 +168,6 @@ describe('tabs components', () => {
 
     it('should render HTML as expected', () => {
       expect(component.type()).toEqual('div');
-      expect(component.contains(<hr />)).toBe(true);
       expect(input.is('.input')).toBe(true);
       expect(input.is('.form-control')).toBe(true);
     });
@@ -178,7 +175,7 @@ describe('tabs components', () => {
     it('should render a child for each entry in style', () => {
       const compLength = Object.keys(defaultWorkspace.components[0].props.style).length;
       // there are two pure html elements in the component.
-      expect(component.children().length).toEqual(2 + compLength);
+      expect(component.children().length).toEqual(1 + compLength);
     });
 
     it('should pass a value to styles from the input', () => {
@@ -200,7 +197,6 @@ describe('tabs components', () => {
 
     it('should render HTML as expected', () => {
       expect(component.type()).toEqual('div');
-      expect(component.contains(<hr />)).toBe(true);
       expect(input.is('.input')).toBe(true);
       expect(input.is('.form-control')).toBe(true);
     });
@@ -208,7 +204,7 @@ describe('tabs components', () => {
     it('should render a child for each entry in style', () => {
       const compLength = Object.keys(defaultWorkspace.components[0].events).length;
       // there are two pure html elements in the component.
-      expect(component.children().length).toEqual(2 + compLength);
+      expect(component.children().length).toEqual(1 + compLength);
     });
 
     it('should pass a value to styles from the input', () => {
