@@ -1,27 +1,29 @@
 
 import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
-import Square_002 from '../Square_002/Square_002';
+import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
-const divStyle = {"width":"1140px","height":"906.5px"}
+const divStyle = {"width":"602.40625px","height":"617.75px"}
 class App extends Component {
   constructor(props){
     super(props);
   this.state = {}
-
+  this.handleClick = this.handleClick.bind(this);
   }
-  /*Anything you type in here will be appended to App.js as a
- method. you can then attach them as event handlers, logic handlers, etc.*/
-  render(){
+  handleClick(red) {
+    console.log('test');
+}
 
+  render(){
+    
     return (
       <div style={divStyle}  >
-
+        
         <BlackBox_000
-         onClick={()=>{console.log("test")}}
- />
+         handleClick={()=>this.handleClick(red)}
+ /> 
         <BlueBox_001
-  />
+  /> 
 
       </div>
     );

@@ -99,7 +99,7 @@ class Core extends Component {
                   className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
                   onClick={()=>{this.setState({ freeMoveMode: !this.state.freeMoveMode })}}
                 >
-                  { this.state.freeMoveMode ? 'Nest' : 'Move'  } mode
+                  { this.state.freeMoveMode ? 'Move' : 'Nest'  } mode
                 </a>
                 <a
                   className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
