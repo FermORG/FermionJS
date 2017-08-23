@@ -41,9 +41,9 @@
   margin-right: 10px;
   margin-top: 10px;
   background-color: $background-color-primary;
-  color: #282c36;
+  color: $background-color-primary;
   border: 1px solid $border-color;
-  border-radius: 5px;
+  border-radius: 50%;
   /*color: yellow;*/
 }
 
