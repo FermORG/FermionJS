@@ -27,7 +27,6 @@ class Core extends Component {
     super(props);
     console.log(props);
     this.state = {
-      code: '*** Insert Code Here ***',
       hideEditor: true,
       freeMoveMode: true
     };
@@ -93,7 +92,7 @@ class Core extends Component {
                     <i className="fa fa-arrow-left" />
                   </Link>
                 </div>
-                <a 
+                <a
                   className={`${coreStyles['btn']} ${coreStyles['btn-blue']}`}
                   onClick={()=>{this.setState({ freeMoveMode: !this.state.freeMoveMode })}}
                 >
