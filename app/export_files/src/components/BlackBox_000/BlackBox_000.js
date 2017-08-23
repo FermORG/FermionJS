@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-const divStyle = {"position":"absolute","height":"100px","width":"100px","display":"inline-block","backgroundColor":"black","overflow":"auto"}
+const divStyle = {"position":"absolute","height":"100px","width":"100px","display":"inline-block","backgroundColor":"black","overflow":"auto","left":507,"top":180}
 class BlackBox extends Component {
   constructor(props){
     super(props);
