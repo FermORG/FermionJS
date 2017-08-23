@@ -95,7 +95,7 @@ describe('events Recursor', () => {
       expect(events).toHaveProperty('0');
       expect(events).toHaveProperty('1');
       expect(events["0"]).toHaveProperty("test", "test");
-      expect(events["1"]).toHaveProperty("test2", "test2")
+      expect(events["1"]).toHaveProperty("test2", "test2");
     });
   });
 
