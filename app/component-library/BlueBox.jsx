@@ -10,7 +10,7 @@ const style = {
 
 const BlackBox = (props) => <div {...props} />
 
-module.exports = {
+export default {
   jsx: BlackBox,
   style
 };
