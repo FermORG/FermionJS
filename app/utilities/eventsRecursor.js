@@ -50,6 +50,8 @@ export function insertMethods(events, methods) {
     if (methName !== -1) {
       Object.defineProperty(events, methods[methName], Object.getOwnPropertyDescriptor(events, key));
       delete events[key];
+    } else {
+      delete events[key];
     }
   });
   return events;
