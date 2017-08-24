@@ -1,7 +1,7 @@
 // @flow
 // complist reducers
 import { ADD_COMPONENTS, ADD_TO_PROJECT } from '../actions/complist';
-import getComponentLibrary from '../component-library/componentExporter';
+import getComponentLibrary from '../component-library/componentLoader';
 
 type actionType = {+type: string,
 };
