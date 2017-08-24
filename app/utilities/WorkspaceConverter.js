@@ -147,7 +147,11 @@ class ComponentConverter {
 
     return Object.keys(childProps).reduce((inline, prop) => {
       if (className === 'App') {
-        inline+= `        ${prop}={this.state.${prop}}\n`;
+        if(childEvents.hasOwnProperty(prop)) {
+          inline+= `        ${prop}={this.${prop}}\n`;
+        } else {
+          inline+= `        ${prop}={this.state.${prop}}\n`;
+        }
       } else {
         inline+= `        ${prop}={${prop}}\n`;
       }
