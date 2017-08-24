@@ -5,7 +5,7 @@ const style = {
   height: '100px',
   width: '100%',
   display: 'inline-block',
-  backgroundColor: 'black',
+  backgroundColor: 'blue',
 };
 
 const BlackBox = (props) => <div {...props} />

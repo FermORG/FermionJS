@@ -12,7 +12,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  console.log('DELCOMP', deleteComponent)
   return bindActionCreators({ ...methodActions, deleteComponent }, dispatch);
 }
 
