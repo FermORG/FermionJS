@@ -27,4 +27,6 @@ const getComponentLibrary = (directory = __dirname) => {
 
     return componentData;
   });
-}
+};
+
+export getComponentLibrary;
