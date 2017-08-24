@@ -27,6 +27,7 @@ const getComponentLibrary = (directory = path.join(__dirname, '/components/VisCo
 
     return {
       name,
+      children: [],
       props: { style: finalStyle },
       events: {}
     };
