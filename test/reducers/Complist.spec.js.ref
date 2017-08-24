@@ -61,21 +61,21 @@ const defaultData = {
 
 
 describe('component listReducer', () => {
-  it('should add testData to the components list', () => {
+  xit('should add testData to the components list', () => {
     expect(listReducer(defaultData, {
       type: ADD_COMPONENTS,
       components: testData.components,
     })).toMatchSnapshot();
   });
 
-  it('should return default data when presented with gibberish', () => {
+  xit('should return default data when presented with gibberish', () => {
     expect(listReducer(defaultData, {
       type: 'GIBBERISH',
       components: testData.components,
     })).toMatchSnapshot();
   });
 
-  it('should return default data when the action type is ADD_TO_PROJECT', () => {
+  xit('should return default data when the action type is ADD_TO_PROJECT', () => {
     expect(listReducer(defaultData, {
       type: ADD_TO_PROJECT,
       components: testData.components,
