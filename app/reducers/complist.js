@@ -7,7 +7,6 @@ type actionType = {+type: string,
 };
 
 const defaultData = getComponentLibrary();
-console.log('defaultDATA:', defaultData)
 
 export default function listReducer(state: {} = defaultData, action: actionType) {
   const newState = Object.assign({}, state);

@@ -42,7 +42,6 @@ class Workspace extends Component {
     return componentIDList.map((componentID) => {
       const componentData = allComponents[componentID];
       const CustomComponent = componentData.jsx;
-      console.log(componentData);
       const children = this.renderDeep(componentData.children);
 
       const [widthInt, heightInt] = [
