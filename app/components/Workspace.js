@@ -6,7 +6,6 @@ import { DragDropContext } from 'react-dnd';
 import Rnd from 'react-rnd';
 
 import { WORKSPACE_ID, STATIC_INNER_COMPONENT_STYLE } from './../constants';
-import getVisComponent from '../components/VisComponents/jsxExporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
@@ -42,7 +41,8 @@ class Workspace extends Component {
 
     return componentIDList.map((componentID) => {
       const componentData = allComponents[componentID];
-      const CustomComponent = getVisComponent(componentData.name);
+      const CustomComponent = componentData.jsx;
+      console.log(componentData);
       const children = this.renderDeep(componentData.children);
 
       const [widthInt, heightInt] = [

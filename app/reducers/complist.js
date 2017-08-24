@@ -1,16 +1,17 @@
 // @flow
 // complist reducers
 import { ADD_COMPONENTS, ADD_TO_PROJECT } from '../actions/complist';
-import getComponentLibrary from '../components/VisComponents/dataExporter';
+import getComponentLibrary from '../component-library/componentExporter';
 
 type actionType = {+type: string,
 };
 
 const defaultData = getComponentLibrary();
+console.log('defaultDATA:', defaultData)
 
 export default function listReducer(state: {} = defaultData, action: actionType) {
   const newState = Object.assign({}, state);
-  
+
   switch (action.type) {
     case ADD_COMPONENTS:
       return newState.availableComponents.concat(action.components);
