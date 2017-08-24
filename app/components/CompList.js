@@ -19,7 +19,6 @@ class List extends Component {
   };
 
   render() {
-    console.log('fasfsafasfas', this.props)
     const { availableComponents, addComponent, workspace } = this.props;
     const renderAry = Object.keys(availableComponents).map((component) => (
       <li
@@ -30,8 +29,6 @@ class List extends Component {
         <strong>{availableComponents[component].name}</strong>
       </li>
       ));
-    // console.log(availableComponents)
-    // console.log('wewewe', availableComponents[0].name)
 
     return (
       <div className={panelStyles.listContainer}>

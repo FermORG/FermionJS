@@ -11,8 +11,7 @@ class App extends Component {
   this.handleClick = this.handleClick.bind(this);
   }
   handleClick(red) {
-    console.log('test');
-}
+  }
 
   render(){
     
