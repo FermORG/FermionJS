@@ -1,7 +1,7 @@
 // @flow
 // complist reducers
 import { ADD_COMPONENTS, ADD_TO_PROJECT } from '../actions/complist';
-import getComponentLibrary from '../components/VisComponents/componentLibrary';
+import getComponentLibrary from '../components/VisComponents/dataExporter';
 
 type actionType = {+type: string,
 };
