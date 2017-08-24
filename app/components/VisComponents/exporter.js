@@ -11,8 +11,6 @@ const components = fs
     return acc;
   }, {});
 
-console.log(components);
-
 const getVisComponent = (key) => components[key];
 
 export default getVisComponent;

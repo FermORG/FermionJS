@@ -4,9 +4,6 @@ const style = {
   width: '100%',
   display: 'inline-block',
   backgroundColor: 'black',
-  resize: 'both',
-  overflow: 'auto',
-  zIndex: 1
 };
 
 const BlackBox = (props) => <div {...props} />

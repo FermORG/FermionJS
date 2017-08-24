@@ -10,23 +10,27 @@ const defaultRequiredComponentStyle = {
   height: '100px'
 };
 
-const getComponentLibrary = (directory = __dirname) => {
+const getComponentLibrary = (directory = path.join(__dirname, '/components/VisComponents')) => {
   const componentList = fs
     .readdirSync(directory)
     .filter(file => path.extname(file) === '.jsx')
 
   return componentList.map(file => {
-    const { style } = require(path.join(directory, file));
-    const componentData = { name: path.name(file) };
+    const { style } = require(`./${file}`);
+    const name = file.split('.jsx')[0];
 
-    {
-      ...defaultRequiredComponentStyles,
+    const finalStyle = {
+      ...defaultRequiredComponentStyle,
       ...style,
       ...overrideRequiredComponentStyle
     };
 
-    return componentData;
+    return {
+      name,
+      props: { style: finalStyle },
+      events: {}
+    };
   });
 };
 
-export getComponentLibrary;
+export default getComponentLibrary;
