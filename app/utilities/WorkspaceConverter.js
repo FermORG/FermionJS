@@ -136,21 +136,28 @@ class ComponentConverter {
       childEvents = flattenEvents(this.components[child].events, String(child), this.components);
     }
     childEvents = insertMethods(childEvents, methodNames);
-
+    // add function to strip out event handlers that don't reference parent methods - no need to pass these.
     if(this.component.id === WORKSPACE_ID) {
       childEvents = insertThis(childEvents, methodNames);
     }
 
     childProps = Object.assign(childProps, childEvents);
     delete childProps.style;
+    const className = this.getClass();
+
     return Object.keys(childProps).reduce((inline, prop) => {
-      inline+= `        ${prop}={${childProps[prop]}}\n`;
+      if (className === 'App') {
+        inline+= `        ${prop}={this.state.${prop}}\n`;
+      } else {
+        inline+= `        ${prop}={${prop}}\n`;
+      }
       return inline;
     }, '');
   }
 
   generateCode() {
     const className = this.getClass();
+    console.log('className, ', className);
     return (
 `
 import React, { Component } from 'react';
