@@ -80,8 +80,13 @@ describe('events Recursor', () => {
       const newEvent = insertMethods(events, methods);
       expect(newEvent).not.toHaveProperty('onClick');
       expect(newEvent).toHaveProperty('handleTest');
-      expect(newEvent).toHaveProperty('test');
-    })
+      expect(newEvent).not.toHaveProperty('test');
+    });
+
+    it('should remove events from the chain that do not reference methods', ()=> {
+      const newEvent = insertMethods(events, methods);
+      expect(newEvent).not.toHaveProperty('test');
+    });
   });
 
   describe('getChildEvents', () => {
