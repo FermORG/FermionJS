@@ -17,16 +17,13 @@ import deleteEvent from './deleteEvent';
 import setActiveComponent from './setActiveComponent';
 import updateStyle from './updateStyle';
 import updateMethods from './updateMethods';
-// /// TEST DATA /////
 
 const defaultWorkspace = {
   componentCounter: 0,
-  // activeComponent: '0',
   activeComponent: WORKSPACE_ID,
   components: {
     workspace: {
       id: WORKSPACE_ID,
-      // children: [0, 1],
       children: [],
       events: {},
       props: {
@@ -38,44 +35,6 @@ const defaultWorkspace = {
   methods: '/*Anything you type in here will be appended to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc. \n make sure to append an "@" symbol following the closing bracket of your method!*/',
   methodNames: [],
 };
-
-// defaultWorkspace.components[0] = {
-//   id: 0,
-//   name: 'BlackBox',
-//   children: [],
-//   parentID: WORKSPACE_ID,
-//   props: {
-//     style: {
-//       position: 'absolute',
-//       height: '100px',
-//       width: '100px',
-//       display: 'inline-block',
-//       backgroundColor: 'black',
-//       overflow: 'auto',
-//     },
-//   },
-//   events: { onClick: '()=>{console.log("test")}' }
-// };
-
-// defaultWorkspace.components[1] = {
-//   id: 1,
-//   name: 'BlueBox',
-//   children: [],
-//   parentID: WORKSPACE_ID,
-//   props: {
-//     style: {
-//       position: 'absolute',
-//       height: '100px',
-//       width: '100px',
-//       display: 'inline-block',
-//       backgroundColor: 'blue',
-//       overflow: 'auto',
-//     },
-//   },
-//   events: {}
-// };
-
-// ////////
 
 export default function workspace(state = defaultWorkspace, action) {
   switch (action.type) {
