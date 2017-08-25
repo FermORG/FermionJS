@@ -107,7 +107,7 @@ class ComponentConverter {
     let events;
     if (this.component.id !== WORKSPACE_ID){
       props = flattenStateProps(this.component.props, this.component.id, this.components);
-      events = flattenEvents(this.component.events, this.component.id, this.components);
+      events = flattenEvents(this.component.events, this.component.id, this.components, methodNames);
 
       events = insertMethods(events, methodNames);
       props = Object.assign(props, events);
@@ -125,18 +125,23 @@ class ComponentConverter {
     //adds child props to component calls in JSX.
   getChildProps(childFile) {
     const child = parseInt(childFile.slice(-3));
+    console.log(child);
+    console.log(eventsMap);
     let childProps;
     let childEvents;
 
     if (this.component.id !== WORKSPACE_ID){
       childProps = cloneDeep(this.component.props[child]);
       childEvents = cloneDeep(this.component.events[child]);
+      console.log('ce ', childEvents);
     } else {
       childProps = flattenStateProps(this.components[child].props, String(child), this.components);
-      childEvents = flattenEvents(this.components[child].events, String(child), this.components);
+      childEvents = flattenEvents(this.components[child].events, String(child), this.components, methodNames);
+      console.log('top level: ', childEvents);
     }
     childEvents = insertMethods(childEvents, methodNames);
-    // add function to strip out event handlers that don't reference parent methods - no need to pass these.
+    console.log('IM: ', childEvents);
+    console.log('MN ', methodNames);
     if(this.component.id === WORKSPACE_ID) {
       childEvents = insertThis(childEvents, methodNames);
     }

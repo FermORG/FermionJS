@@ -22,16 +22,22 @@ export function getChildEvents(parent, components) {
 * @param {object} components - workspace.components regardless of first param ID
 */
 
-export function flattenEvents(events, component, components) {
+export function flattenEvents(events, component, components, methods) {
   const children = components[component].children;
   events = cloneDeep(events);
   return Object.keys(events).reduce((final, key) => {
     if (children.indexOf(Number(key)) === -1) {
       final[key] = events[key];
     } else {
+      console.log('ee', events);
+      const methodEvents = insertMethods(events[key], methods);
+      console.log('me', methodEvents);
+      console.log('ee', events);
+
       final = Object.assign(final, flattenEvents(events[key], key, components));
     }
-    delete final.style;
+    // delete final.style;
+    console.log('ret: ',final, 'comp: ', component);
     return final;
   }, {});
 }
@@ -44,8 +50,8 @@ export function flattenEvents(events, component, components) {
 
 export function insertMethods(events, methods) {
   Object.keys(events).forEach((key) => {
-    const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
-
+    const toTest = events[key].split('() => ').join('()=>').split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
+    if (key === toTest) return;
     const methName = methods.indexOf(toTest);
     if (methName !== -1) {
       Object.defineProperty(events, methods[methName], Object.getOwnPropertyDescriptor(events, key));
@@ -63,7 +69,7 @@ export function insertMethods(events, methods) {
 */
 export function insertThis(events, methods) {
   Object.keys(events).forEach((key) => {
-    const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
+    const toTest = events[key].split('() => ').join('()=>').split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
     const methName = methods.indexOf(toTest);
     if (methName !== -1) {
       const method = methods[methName];

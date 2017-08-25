@@ -13,7 +13,7 @@ function removeNote(methods) {
 function methodNames(methods) {
   const methodArray = methods.split('}@\n');
   const methodNames = methodArray.map((method) => {
-    let end = method.indexOf('() {\n');
+    let end = method.split('(){').join('() {').indexOf('() {\n');
     if (end !== -1 ) return method.slice(0, end).trim();
 
     end = method.match(/\((.+)\)/);
