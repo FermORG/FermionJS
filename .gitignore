@@ -51,5 +51,4 @@ main.js.map
 .idea
 npm-debug.log.*
 
-app/export/*
-app/export_files/*
+app/export_files/src/components/*

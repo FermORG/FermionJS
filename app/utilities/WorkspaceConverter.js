@@ -7,10 +7,12 @@ import { getChildEvents, flattenEvents, insertMethods, insertThis } from './even
 /**
 * @param {object} state - a flattened version of the state object and all component's props - rolled into one object for exporting the state.
 * @param {object} stateMap - an object containing all state and props values in a semi-flattened state. each component will be represented by a key pointing to its ID in the store, and its props will be lifted up into the statemap as an object at that key.
+    stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
 * @param {object} events - similar to state, a compressed version of event listeners to be injected into props chain from the top-level down.
 * @param {object} eventsMap - similar to stateMap, but for events.
+    eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
 * @param {object} methods - a list of methods applied in app class to be spread to eventhandlers.
-* @param {object} methods - a list of method names used to bind this in app constructor.
+* @param {object} methodNames - a list of method names used to bind this in app constructor.
 */
 
 let state;
@@ -166,7 +168,6 @@ class ComponentConverter {
 
   generateCode() {
     const className = this.getClass();
-    console.log('className, ', className);
     return (
 `
 import React, { Component } from 'react';
@@ -198,12 +199,7 @@ class WorkspaceConverter {
     const clonedWorkspace = appParser(workspace);
     let comps = Object.assign({}, clonedWorkspace.components);
 
-    stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
-
-    eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
-
     methods = (clonedWorkspace.methods.split('@').join(''));
-
     methodNames = (clonedWorkspace.methodNames);
     state = JSON.stringify(Object.assign({}, flattenStateProps(clonedWorkspace.state, 'workspace', clonedWorkspace.components)), '  ');
 
