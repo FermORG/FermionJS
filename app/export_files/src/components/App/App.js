@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
-import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
 const divStyle = {"width":"602.40625px","height":"617.75px"}
 class App extends Component {
@@ -10,20 +9,17 @@ class App extends Component {
   this.state = {}
   this.handleClick = this.handleClick.bind(this);
   }
-  handleClick(red) {
-    console.log('test');
+  handleClick() {
+    console.log('i should work fine');
 }
-
   render(){
     
     return (
       <div style={divStyle}  >
         
         <BlackBox_000
-         handleClick={()=>this.handleClick(red)}
+         handleClick={this.handleClick}
  /> 
-        <BlueBox_001
-  /> 
 
       </div>
     );
