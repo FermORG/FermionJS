@@ -6,19 +6,14 @@ import { cloneDeep } from 'lodash';
 import { getChildEvents, flattenEvents, insertMethods, insertThis } from './eventsRecursor';
 /**
 * @param {object} state - a flattened version of the state object and all component's props - rolled into one object for exporting the state.
-* @param {object} stateMap - an object containing all state and props values in a semi-flattened state. each component will be represented by a key pointing to its ID in the store, and its props will be lifted up into the statemap as an object at that key.
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
 * @param {object} events - similar to state, a compressed version of event listeners to be injected into props chain from the top-level down.
-* @param {object} eventsMap - similar to stateMap, but for events.
-    eventsMap = JSON.stringify(Object.assign({}, clonedWorkspace.components.workspace.events));
 * @param {object} methods - a list of methods applied in app class to be spread to eventhandlers.
 * @param {object} methodNames - a list of method names used to bind this in app constructor.
 */
 
 let state;
-let stateMap;
 let events;
-let eventsMap;
 let methods;
 let methodNames;
 //    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
@@ -127,23 +122,17 @@ class ComponentConverter {
     //adds child props to component calls in JSX.
   getChildProps(childFile) {
     const child = parseInt(childFile.slice(-3));
-    console.log(child);
-    console.log(eventsMap);
     let childProps;
     let childEvents;
 
     if (this.component.id !== WORKSPACE_ID){
       childProps = cloneDeep(this.component.props[child]);
       childEvents = cloneDeep(this.component.events[child]);
-      console.log('ce ', childEvents);
     } else {
       childProps = flattenStateProps(this.components[child].props, String(child), this.components);
       childEvents = flattenEvents(this.components[child].events, String(child), this.components, methodNames);
-      console.log('top level: ', childEvents);
     }
     childEvents = insertMethods(childEvents, methodNames);
-    console.log('IM: ', childEvents);
-    console.log('MN ', methodNames);
     if(this.component.id === WORKSPACE_ID) {
       childEvents = insertThis(childEvents, methodNames);
     }

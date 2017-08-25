@@ -29,15 +29,10 @@ export function flattenEvents(events, component, components, methods) {
     if (children.indexOf(Number(key)) === -1) {
       final[key] = events[key];
     } else {
-      console.log('ee', events);
       const methodEvents = insertMethods(events[key], methods);
-      console.log('me', methodEvents);
-      console.log('ee', events);
-
-      final = Object.assign(final, flattenEvents(events[key], key, components));
+      final = Object.assign(final, flattenEvents(methodEvents, key, components));
     }
     // delete final.style;
-    console.log('ret: ',final, 'comp: ', component);
     return final;
   }, {});
 }
