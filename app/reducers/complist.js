@@ -6,7 +6,23 @@ import getComponentLibrary from '../component-library/componentLoader';
 type actionType = {+type: string,
 };
 
-const defaultData = getComponentLibrary();
+const setRequiredComponentProperties = (componentList) => {
+  const requiredProperties = { events: {}, children: [] };
+
+  return componentList.map(componentData => {
+    const { name, jsx, style } = componentData;
+
+    return {
+      ...requiredProperties,
+      props: { style },
+      name,
+      jsx
+    };
+  });
+};
+
+const componentLibrary = getComponentLibrary();
+const defaultData = setRequiredComponentProperties(componentLibrary);
 
 export default function listReducer(state: {} = defaultData, action: actionType) {
   const newState = Object.assign({}, state);

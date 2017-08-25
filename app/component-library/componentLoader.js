@@ -5,14 +5,14 @@ const getComponentLibrary = (componentList = getAllComponentFileNames()) => {
   return componentList.map(file => {
     const { jsx, style } = require(`./${file}`);
     const name = path.basename(file, path.extname(file));
-    return new ComponentData(name, jsx, style);
+    return formatComponentData(name, jsx, style);
   });
 };
 
 const getAllComponentFileNames = (directory = path.join(__dirname, '/component-library')) =>
   fs.readdirSync(directory).filter(file => path.extname(file) === '.jsx');
 
-function ComponentData(name, jsx, style) {
+const formatComponentData = (name, jsx, style) => {
   const overrideRequiredComponentStyle = {
     position: 'absolute'
   };
@@ -22,17 +22,13 @@ function ComponentData(name, jsx, style) {
     height: '100px'
   };
 
-  this.name = name;
-  this.jsx = jsx;
-  this.children = [];
-  this.props = {};
-  this.events = {};
-
-  this.props.style = {
+  const finalStyle = {
     ...defaultRequiredComponentStyle,
     ...style,
     ...overrideRequiredComponentStyle
-  };
+  }
+
+  return { name, jsx, style: finalStyle };
 };
 
 export default getComponentLibrary;
