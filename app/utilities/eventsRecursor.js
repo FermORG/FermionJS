@@ -1,4 +1,5 @@
-import { cloneDeep }  from 'lodash';
+// import { cloneDeep }  from 'lodash';
+import cloneDeep from './cloneDeep';
 /**
 * @param {object} parent - Object being examined
 * @param {object} components - workspace.components regardless of first param ID
@@ -24,17 +25,17 @@ export function getChildEvents(parent, components) {
 
 export function flattenEvents(events, component, components, methods) {
   const children = components[component].children;
-  events = cloneDeep(events);
-  return Object.keys(events).reduce((final, key) => {
+  const cloneEvents = cloneDeep(events);
+  const flatEvents = Object.keys(events).reduce((final, key) => {
     if (children.indexOf(Number(key)) === -1) {
       final[key] = events[key];
     } else {
-      const methodEvents = insertMethods(events[key], methods);
-      final = Object.assign(final, flattenEvents(methodEvents, key, components));
+      const methodEvents = insertMethods(flattenEvents(events[key], key, components, methods));
+      final = Object.assign(final, methodEvents);
     }
-    // delete final.style;
     return final;
   }, {});
+  return insertMethods(flatEvents, methods);
 }
 
 /**

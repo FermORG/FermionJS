@@ -2,7 +2,8 @@ const PAD_LENGTH = 3;
 const WORKSPACE_ID = 'workspace';
 const TOP_LEVEL_NAME = 'App';
 import { appParser, flattenStateProps } from './propsRecursor';
-import { cloneDeep } from 'lodash';
+// import { cloneDeep } from 'lodash';
+import cloneDeep from './cloneDeep';
 import { getChildEvents, flattenEvents, insertMethods, insertThis } from './eventsRecursor';
 /**
 * @param {object} state - a flattened version of the state object and all component's props - rolled into one object for exporting the state.
@@ -13,7 +14,7 @@ import { getChildEvents, flattenEvents, insertMethods, insertThis } from './even
 */
 
 let state;
-let events;
+// let events;
 let methods;
 let methodNames;
 //    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
@@ -105,7 +106,6 @@ class ComponentConverter {
     if (this.component.id !== WORKSPACE_ID){
       props = flattenStateProps(this.component.props, this.component.id, this.components);
       events = flattenEvents(this.component.events, this.component.id, this.components, methodNames);
-
       events = insertMethods(events, methodNames);
       props = Object.assign(props, events);
       if (Object.keys(props).length === 0) return '';
@@ -127,7 +127,9 @@ class ComponentConverter {
 
     if (this.component.id !== WORKSPACE_ID){
       childProps = cloneDeep(this.component.props[child]);
+      childProps = flattenStateProps(childProps, child, this.components, methodNames);
       childEvents = cloneDeep(this.component.events[child]);
+      childEvents = flattenEvents(childEvents, child, this.components, methodNames);
     } else {
       childProps = flattenStateProps(this.components[child].props, String(child), this.components);
       childEvents = flattenEvents(this.components[child].events, String(child), this.components, methodNames);
