@@ -5,6 +5,7 @@ import { appParser, flattenStateProps } from './propsRecursor';
 // import { cloneDeep } from 'lodash';
 import cloneDeep from './cloneDeep';
 import { getChildEvents, flattenEvents, insertMethods, insertThis } from './eventsRecursor';
+import captureHtml from './innerHTML';
 /**
 * @param {object} state - a flattened version of the state object and all component's props - rolled into one object for exporting the state.
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
@@ -42,6 +43,7 @@ class ComponentConverter {
     this.components = components;
     this.events = component.events;
     this.children = components[component.id].children;
+    this.captureHtml = captureHtml.bind(this);
   }
   get ext() {
     return '.js';
@@ -175,6 +177,7 @@ class ${className} extends Component {
     ${this.destructureProps()}
     return (
       <div style={divStyle}  ${this.getEvents()}>
+
         ${this.getChildren()}
       </div>
     );
