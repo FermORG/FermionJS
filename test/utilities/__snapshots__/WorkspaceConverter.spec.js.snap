@@ -1,21 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`conversion of empty workspace will  1`] = `
+exports[`empty ws will generate App jsx 1`] = `
 Array [
   Object {
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
+const divStyle = {\\"width\\":\\"1558px\\",\\"height\\":\\"0px\\"}
 class App extends Component {
   constructor(props){
     super(props);
   this.state = {}
   
   }
-  /*Anything you type in here will be appended to App.js as a 
- method. you can then attach them as event handlers, logic handlers, etc. 
- make sure to append an  symbol following the closing bracket of your method!*/
+  
   render(){
     
     return (
@@ -36,14 +34,217 @@ export default App;
 ]
 `;
 
-exports[`conversion of workspace with one nested components and the child has events will generate 3 exportable texts 1`] = `
+exports[`ws with one nested component and the child has event attached to method will generate 3 exportable jsx with event and method 1`] = `
 Array [
   Object {
     "code": "
 import React, { Component } from 'react';
 import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
+const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\"}
+class BlackBox extends Component {
+  constructor(props){
+    super(props);
+  
+  
+  }
+  
+  render(){
+    const { hello } = this.props;
+    return (
+      <div style={divStyle}  >
+        
+        <BlueBox_001
+         hello={hello}
+ /> 
+
+      </div>
+    );
+  }
+}
+export default BlackBox;
+",
+    "ext": ".js",
+    "fileName": "BlackBox_000",
+    "id": 0,
+    "name": "BlackBox",
+  },
+  Object {
+    "code": "
+import React, { Component } from 'react';
+
+const divStyle = {\\"width\\":\\"53px\\",\\"height\\":\\"51px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"border\\":\\"1px solid lightgreen\\",\\"left\\":0,\\"top\\":0}
+class BlueBox extends Component {
+  constructor(props){
+    super(props);
+  
+  
+  }
+  
+  render(){
+    const { hello } = this.props;
+    return (
+      <div style={divStyle}  onClick={()=>hello()} >
+        
+
+      </div>
+    );
+  }
+}
+export default BlueBox;
+",
+    "ext": ".js",
+    "fileName": "BlueBox_001",
+    "id": 1,
+    "name": "BlueBox",
+  },
+  Object {
+    "code": "
+import React, { Component } from 'react';
+import BlackBox_000 from '../BlackBox_000/BlackBox_000';
+
+const divStyle = {\\"width\\":\\"1558px\\",\\"height\\":\\"0px\\"}
+class App extends Component {
+  constructor(props){
+    super(props);
+  this.state = {}
+  this.hello = this.hello.bind(this);
+  }
+  hello(){
+    console.log('hello')
+}
+
+  render(){
+    
+    return (
+      <div style={divStyle}  >
+        
+        <BlackBox_000
+         hello={this.hello}
+ /> 
+
+      </div>
+    );
+  }
+}
+export default App;
+",
+    "ext": ".js",
+    "fileName": "App",
+    "id": "workspace",
+    "name": "App",
+  },
+]
+`;
+
+exports[`ws with one nested component and the child has event handler associated to prop will generate 3 exportable component jsx with event handler and associated method 1`] = `
+Array [
+  Object {
+    "code": "
+import React, { Component } from 'react';
+import BlueBox_001 from '../BlueBox_001/BlueBox_001';
+
+const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\"}
+class BlackBox extends Component {
+  constructor(props){
+    super(props);
+  
+  
+  }
+  
+  render(){
+    const { name } = this.props;
+    return (
+      <div style={divStyle}  >
+        
+        <BlueBox_001
+         name={name}
+ /> 
+
+      </div>
+    );
+  }
+}
+export default BlackBox;
+",
+    "ext": ".js",
+    "fileName": "BlackBox_000",
+    "id": 0,
+    "name": "BlackBox",
+  },
+  Object {
+    "code": "
+import React, { Component } from 'react';
+
+const divStyle = {\\"width\\":\\"68px\\",\\"height\\":\\"55px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"left\\":0,\\"top\\":0,\\"border\\":\\"1px solid lightgreen\\"}
+class BlueBox extends Component {
+  constructor(props){
+    super(props);
+  
+  
+  }
+  
+  render(){
+    const { name } = this.props;
+    return (
+      <div style={divStyle}  onClick={()=>console.log('name', name)} >
+        
+
+      </div>
+    );
+  }
+}
+export default BlueBox;
+",
+    "ext": ".js",
+    "fileName": "BlueBox_001",
+    "id": 1,
+    "name": "BlueBox",
+  },
+  Object {
+    "code": "
+import React, { Component } from 'react';
+import BlackBox_000 from '../BlackBox_000/BlackBox_000';
+
+const divStyle = {\\"width\\":\\"587.40625px\\",\\"height\\":\\"638.921875px\\"}
+class App extends Component {
+  constructor(props){
+    super(props);
+  this.state = {name:'jeff'}
+  
+  }
+  
+  render(){
+    
+    return (
+      <div style={divStyle}  >
+        
+        <BlackBox_000
+         name={this.state.name}
+ /> 
+
+      </div>
+    );
+  }
+}
+export default App;
+",
+    "ext": ".js",
+    "fileName": "App",
+    "id": "workspace",
+    "name": "App",
+  },
+]
+`;
+
+exports[`ws with one nested component and the child has event will generate 3 exportable component jsx with event 1`] = `
+Array [
+  Object {
+    "code": "
+import React, { Component } from 'react';
+import BlueBox_001 from '../BlueBox_001/BlueBox_001';
+
+const divStyle = {\\"width\\":\\"197px\\",\\"height\\":\\"202px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\"}
 class BlackBox extends Component {
   constructor(props){
     super(props);
@@ -54,7 +255,7 @@ class BlackBox extends Component {
   render(){
     
     return (
-      <div style={divStyle}  onClick={()=>{console.log(\\"test\\")}} >
+      <div style={divStyle}  >
         
         <BlueBox_001
   /> 
@@ -74,7 +275,7 @@ export default BlackBox;
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
+const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"left\\":0,\\"top\\":0,\\"border\\":\\"1px solid lightgreen\\"}
 class BlueBox extends Component {
   constructor(props){
     super(props);
@@ -85,7 +286,7 @@ class BlueBox extends Component {
   render(){
     
     return (
-      <div style={divStyle}  onClick={()=>{console.log(\\"hello\\")} >
+      <div style={divStyle}  onClick={()=>console.log('hello')} >
         
 
       </div>
@@ -104,16 +305,14 @@ export default BlueBox;
 import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
 
-const divStyle = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
+const divStyle = {\\"width\\":\\"1558px\\",\\"height\\":\\"0px\\"}
 class App extends Component {
   constructor(props){
     super(props);
   this.state = {}
   
   }
-  /*Anything you type in here will be appended to App.js as a 
- method. you can then attach them as event handlers, logic handlers, etc. 
- make sure to append an  symbol following the closing bracket of your method!*/
+  
   render(){
     
     return (
@@ -136,14 +335,114 @@ export default App;
 ]
 `;
 
-exports[`conversion of workspace with one nested components will generate 3 exportable texts 1`] = `
+exports[`ws with one nested component and the child has prop will generate 3 exportable component jsx with prop 1`] = `
 Array [
   Object {
     "code": "
 import React, { Component } from 'react';
 import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
+const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\"}
+class BlackBox extends Component {
+  constructor(props){
+    super(props);
+  
+  
+  }
+  
+  render(){
+    const { key } = this.props;
+    return (
+      <div style={divStyle}  >
+        
+        <BlueBox_001
+         key={key}
+ /> 
+
+      </div>
+    );
+  }
+}
+export default BlackBox;
+",
+    "ext": ".js",
+    "fileName": "BlackBox_000",
+    "id": 0,
+    "name": "BlackBox",
+  },
+  Object {
+    "code": "
+import React, { Component } from 'react';
+
+const divStyle = {\\"width\\":\\"50px\\",\\"height\\":\\"56px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"border\\":\\"1px solid lightgreen\\",\\"left\\":0,\\"top\\":0}
+class BlueBox extends Component {
+  constructor(props){
+    super(props);
+  
+  
+  }
+  
+  render(){
+    const { key } = this.props;
+    return (
+      <div style={divStyle}  >
+        
+
+      </div>
+    );
+  }
+}
+export default BlueBox;
+",
+    "ext": ".js",
+    "fileName": "BlueBox_001",
+    "id": 1,
+    "name": "BlueBox",
+  },
+  Object {
+    "code": "
+import React, { Component } from 'react';
+import BlackBox_000 from '../BlackBox_000/BlackBox_000';
+
+const divStyle = {\\"width\\":\\"587.40625px\\",\\"height\\":\\"638.921875px\\"}
+class App extends Component {
+  constructor(props){
+    super(props);
+  this.state = {key:1}
+  
+  }
+  
+  render(){
+    
+    return (
+      <div style={divStyle}  >
+        
+        <BlackBox_000
+         key={this.state.key}
+ /> 
+
+      </div>
+    );
+  }
+}
+export default App;
+",
+    "ext": ".js",
+    "fileName": "App",
+    "id": "workspace",
+    "name": "App",
+  },
+]
+`;
+
+exports[`ws with one nested component will generate 3 exportable component jsx App->Blackbox->Bluebox 1`] = `
+Array [
+  Object {
+    "code": "
+import React, { Component } from 'react';
+import BlueBox_001 from '../BlueBox_001/BlueBox_001';
+
+const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"border\\":\\"1px solid lightgreen\\",\\"left\\":176,\\"top\\":35}
 class BlackBox extends Component {
   constructor(props){
     super(props);
@@ -174,7 +473,7 @@ export default BlackBox;
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
+const divStyle = {\\"width\\":\\"50px\\",\\"height\\":\\"73px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"left\\":0,\\"top\\":0}
 class BlueBox extends Component {
   constructor(props){
     super(props);
@@ -204,16 +503,14 @@ export default BlueBox;
 import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
 
-const divStyle = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
+const divStyle = {\\"width\\":\\"447px\\",\\"height\\":\\"638.921875px\\"}
 class App extends Component {
   constructor(props){
     super(props);
   this.state = {}
   
   }
-  /*Anything you type in here will be appended to App.js as a 
- method. you can then attach them as event handlers, logic handlers, etc. 
- make sure to append an  symbol following the closing bracket of your method!*/
+  
   render(){
     
     return (
@@ -236,13 +533,13 @@ export default App;
 ]
 `;
 
-exports[`conversion of workspace with two components will generate 3 exportable texts 1`] = `
+exports[`ws with two components as siblings will generate 3 exportable component jsx 1`] = `
 Array [
   Object {
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
+const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"border\\":\\"1px solid lightgreen\\",\\"left\\":176,\\"top\\":35}
 class BlackBox extends Component {
   constructor(props){
     super(props);
@@ -253,7 +550,7 @@ class BlackBox extends Component {
   render(){
     
     return (
-      <div style={divStyle}  onClick={()=>{console.log(\\"test\\")}} >
+      <div style={divStyle}  >
         
 
       </div>
@@ -271,7 +568,7 @@ export default BlackBox;
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
+const divStyle = {\\"width\\":\\"50px\\",\\"height\\":\\"73px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"left\\":0,\\"top\\":0}
 class BlueBox extends Component {
   constructor(props){
     super(props);
@@ -302,16 +599,14 @@ import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
 import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
-const divStyle = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
+const divStyle = {\\"width\\":\\"447px\\",\\"height\\":\\"638.921875px\\"}
 class App extends Component {
   constructor(props){
     super(props);
   this.state = {}
   
   }
-  /*Anything you type in here will be appended to App.js as a 
- method. you can then attach them as event handlers, logic handlers, etc. 
- make sure to append an  symbol following the closing bracket of your method!*/
+  
   render(){
     
     return (

@@ -1,7 +1,7 @@
 const WorkspaceConverter = require('../../app/utilities/WorkspaceConverter');
 import { WORKSPACE_ID } from '../../app/constants';
 
-describe('conversion of empty workspace', ()=>{
+describe('empty ws', ()=>{
   const defaultWorkspace = {
     componentCounter: 0,
     activeComponent: 'workspace',
@@ -22,14 +22,14 @@ describe('conversion of empty workspace', ()=>{
     methods: '',
     methodNames: []
   };
-  it('will generate state', () => {
+  it('will generate App jsx', () => {
     const wc = new WorkspaceConverter(defaultWorkspace);
     let result = wc.convert();
     expect(result).toMatchSnapshot();
   });
 });
 
-describe('conversion of workspace with two components', ()=>{
+describe('ws with two components as siblings', ()=>{
   const flatWorkspace = {
     componentCounter: 2,
     activeComponent: '0',
@@ -90,14 +90,14 @@ describe('conversion of workspace with two components', ()=>{
     methods: '',
     methodNames: []
   };
-  it('will generate 3 exportable texts', () => {
+  it('will generate 3 exportable component jsx', () => {
     const wc = new WorkspaceConverter(flatWorkspace);
     let result = wc.convert(flatWorkspace);
     expect(result).toMatchSnapshot();
   });
 });
 
-describe('conversion of workspace with one nested component', ()=>{
+describe('ws with one nested component', ()=>{
   const nestedWorkspace = {
     componentCounter: 2,
     activeComponent: '0',
@@ -155,14 +155,14 @@ describe('conversion of workspace with one nested component', ()=>{
     methods: '',
     methodNames: []
   };
-  it('will generate 3 exportable texts', () => {
+  it('will generate 3 exportable component jsx App->Blackbox->Bluebox', () => {
     const wc = new WorkspaceConverter(nestedWorkspace);
     let result = wc.convert();
     expect(result).toMatchSnapshot();
   });
 });
 
-describe('conversion of workspace with one nested component and the child has event', ()=>{
+describe('ws with one nested component and the child has event', ()=>{
   const nestedWorkspace = {
     componentCounter: 2,
     activeComponent: '1',
@@ -224,14 +224,14 @@ describe('conversion of workspace with one nested component and the child has ev
     methods: '',
     methodNames: []
   };
-  it('will generate 3 exportable texts', () => {
+  it('will generate 3 exportable component jsx with event', () => {
     const wc = new WorkspaceConverter(nestedWorkspace);
     let result = wc.convert();
     expect(result).toMatchSnapshot();
   });
 });
 
-describe('conversion of workspace with one nested component and the child has event attached to method', ()=>{
+describe('ws with one nested component and the child has event attached to method', ()=>{
   const nestedWorkspaceMethod = {
     componentCounter: 2,
     activeComponent: '1',
@@ -295,14 +295,14 @@ describe('conversion of workspace with one nested component and the child has ev
       'hello'
     ]
   };
-  it('will generate 3 exportable texts', () => {
+  it('will generate 3 exportable jsx with event and method', () => {
     const wc = new WorkspaceConverter(nestedWorkspaceMethod);
     let result = wc.convert();
     expect(result).toMatchSnapshot();
   });
 });
 
-describe('conversion of workspace with one nested component and the child has prop', ()=>{
+describe('ws with one nested component and the child has prop', ()=>{
   const nestedWorkspaceProp = {
     componentCounter: 2,
     activeComponent: '1',
@@ -363,13 +363,13 @@ describe('conversion of workspace with one nested component and the child has pr
     methods: '',
     methodNames: []
   };
-  it('will generate 3 exportable texts', () => {
+  it('will generate 3 exportable component jsx with prop', () => {
     const wc = new WorkspaceConverter(nestedWorkspaceProp);
     let result = wc.convert();
     expect(result).toMatchSnapshot();
   });
 });
-describe('conversion of workspace with one nested component and the child has event handler associated to prop', ()=>{
+describe('ws with one nested component and the child has event handler associated to prop', ()=>{
   const nestedWorkspaceProp = {
     componentCounter: 2,
     activeComponent: '1',
@@ -432,7 +432,7 @@ describe('conversion of workspace with one nested component and the child has ev
     methods: '',
     methodNames: []
   };
-  it('will generate 3 exportable texts', () => {
+  it('will generate 3 exportable component jsx with event handler and associated method', () => {
     const wc = new WorkspaceConverter(nestedWorkspaceProp);
     let result = wc.convert();
     expect(result).toMatchSnapshot();
