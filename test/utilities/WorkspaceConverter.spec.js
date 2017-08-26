@@ -1,12 +1,6 @@
 const WorkspaceConverter = require('../../app/utilities/WorkspaceConverter');
 import { WORKSPACE_ID } from '../../app/constants';
 
-beforeEach(() => {
-  
-});
-afterAll(() => {
-});
-
 describe('conversion of empty workspace', ()=>{
   const defaultWorkspace = {
     componentCounter: 0,
