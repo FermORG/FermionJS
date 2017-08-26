@@ -20,7 +20,6 @@ class List extends Component {
 
   render() {
     const { availableComponents, addComponent, workspace } = this.props;
-
     const renderAry = Object.keys(availableComponents).map((component) => (
       <li
         key={availableComponents[component].name}

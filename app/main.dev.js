@@ -12,7 +12,6 @@
  */
 import { app, BrowserWindow, ipcMain } from 'electron';
 import MenuBuilder from './menu';
-import FileLib from './utilities/setFileSystem';
 import simulator from './utilities/Simulator'
 const registerIpcListener = ()=>{
   ipcMain.on('openSimulator', (event, root) => {
@@ -66,12 +65,6 @@ app.on('ready', async () => {
     await installExtensions();
   }
 
-  if (FileLib.makeDir(app)) {
-    FileLib.makeConfig(app);
-  } else {
-    throw new Error('Unable to store config files. please check your file permissions and try again!');
-  }
-
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
@@ -86,18 +79,11 @@ app.on('ready', async () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
-    // send configuration to mainWindow.
-
-    const config = FileLib.loadConfig(app);
-    mainWindow.webContents.send('ConfigApp', config);
 
     mainWindow.show();
     mainWindow.focus();
   });
-    // listens for an update to the component's library, and makes it.
-  ipcMain.on('AddComponent', (event, componentsArray) => {
-    FileLib.updateConfig(app, componentsArray);
-  });
+
 
   mainWindow.on('closed', () => {
     mainWindow = null;
