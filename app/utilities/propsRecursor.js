@@ -1,16 +1,18 @@
-const { cloneDeep } = require('lodash');
-const { getChildEvents } = require('./eventsRecursor');
+// import { cloneDeep } from 'lodash';
+import cloneDeep from './cloneDeep';
+import { getChildEvents } from './eventsRecursor';
 /**
 * @param {object} workspace - redux top level workspace state obj
 */
 
 export function appParser(workspace) {
-  const clonedWorkspace = cloneDeep(workspace);
+  // const clonedWorkspace = cloneDeep(workspace);
+  const clonedWorkspace = JSON.parse(JSON.stringify(workspace));
   const components = clonedWorkspace.components;
   const app = components.app || components.workspace;
   let state = clonedWorkspace.state;
   let events = app.events;
-  events = Object.assign(state, getChildEvents(app, components));
+  events = Object.assign(events, getChildEvents(app, components));
   state = Object.assign(state, getChildProps(app, components));
   return clonedWorkspace;
 }
@@ -20,7 +22,7 @@ export function appParser(workspace) {
 * @param {object} components - workspace.components regardless of first param ID
 */
 
-function getChildProps(parent, components) {
+export function getChildProps(parent, components) {
   const { children } = parent;
   let props = parent.props || {};
   if (children.length === 0){

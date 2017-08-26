@@ -34,7 +34,8 @@ const defaultWorkspace = {
     },
   },
   state: {},
-  methods: '/*Anything you type in here will be appeneded to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc.*/',
+  methods: '',
+  methodNames: [],
 };
 
 defaultWorkspace.components[0] = {
@@ -52,7 +53,7 @@ defaultWorkspace.components[0] = {
       overflow: 'auto',
     },
   },
-  events: { onClick: '()=>{console.log("test")}' }
+  events: {},
 };
 
 defaultWorkspace.components[1] = {
