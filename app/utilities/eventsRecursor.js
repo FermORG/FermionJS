@@ -30,7 +30,7 @@ export function flattenEvents(events, component, components, methods) {
     if (children.indexOf(Number(key)) === -1) {
       final[key] = events[key];
     } else {
-      const methodEvents = insertMethods(flattenEvents(events[key], key, components, methods));
+      const methodEvents = insertMethods(flattenEvents(events[key], key, components, methods), methods);
       final = Object.assign(final, methodEvents);
     }
     return final;
@@ -47,7 +47,7 @@ export function flattenEvents(events, component, components, methods) {
 export function insertMethods(events, methods) {
   Object.keys(events).forEach((key) => {
     const toTest = events[key].split('() => ').join('()=>').split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
-    if (key === toTest) return;
+    if (methods.indexOf(key) !== -1) return;
     const methName = methods.indexOf(toTest);
     if (methName !== -1) {
       Object.defineProperty(events, methods[methName], Object.getOwnPropertyDescriptor(events, key));

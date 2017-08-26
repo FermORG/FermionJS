@@ -1,5 +1,6 @@
 export default function cloneDeep(value) {
   if (!isObject(value)) return value;
+  if (value === null || undefined ) return value;
   if (Array.isArray(value)) {
     return value.slice(0).map((element) => {
       return cloneDeep(element);

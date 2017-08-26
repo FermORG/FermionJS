@@ -28,7 +28,7 @@ defaultWorkspace.components[0] = {
     },
     testProp: null,
   },
-  events: { test: 'test' }
+  events: { onTest: '()=>handleTest()' }
 };
 
 defaultWorkspace.components[1] = {
@@ -46,7 +46,7 @@ defaultWorkspace.components[1] = {
       overflow: 'auto',
     },
   },
-  events: { test2: 'test2' }
+  events: { onTest2: '()=>handleTest2()' }
 };
 
 
@@ -92,24 +92,25 @@ describe('events Recursor', () => {
   describe('getChildEvents', () => {
     it('should return parent events when there are no children', () => {
       const events = getChildEvents(defaultWorkspace.components[0], defaultWorkspace.components);
-      expect(events).toHaveProperty('test');
+      expect(events).toHaveProperty('onTest');
     });
 
     it('should return each child\'s events', () => {
       const events = getChildEvents(defaultWorkspace.components['workspace'], defaultWorkspace.components);
       expect(events).toHaveProperty('0');
       expect(events).toHaveProperty('1');
-      expect(events["0"]).toHaveProperty("test", "test");
-      expect(events["1"]).toHaveProperty("test2", "test2");
+      expect(events["0"]).toHaveProperty("onTest", "()=>handleTest()");
+      expect(events["1"]).toHaveProperty("onTest2", "()=>handleTest2()");
     });
   });
 
   describe('flattenEvents', () => {
-    it('should flatten an eventsMap into an unnested object', () => {
+    it('should flatten an eventsMap into an unnested object of methods', () => {
+      const methods = ['handleTest', 'handleTest2'];
       const events = getChildEvents(defaultWorkspace.components['workspace'], defaultWorkspace.components);
-      const flatEvents = flattenEvents(events, 'workspace', defaultWorkspace.components);
-      expect(flatEvents).toHaveProperty('test');
-      expect(flatEvents).toHaveProperty('test2');
+      const flatEvents = flattenEvents(events, 'workspace', defaultWorkspace.components, methods);
+      expect(flatEvents).toHaveProperty('handleTest');
+      expect(flatEvents).toHaveProperty('handleTest2');
       expect(flatEvents).not.toHaveProperty('0');
       expect(flatEvents).not.toHaveProperty('1');
     });
