@@ -161,11 +161,18 @@ class ComponentConverter {
 
   generateCode() {
     const className = this.getClass();
+    let innerHTML;
+    if (this.component.id !== WORKSPACE_ID) {
+      innerHTML = this.captureHtml(this.fileName.slice(0, -4) + '.jsx');
+    } else {
+      innerHTML = '';
+    }
+
     return (
 `
 import React, { Component } from 'react';
 ${this.getImports()}
-const divStyle = ${this.getStyle()}
+const style = ${this.getStyle()}
 class ${className} extends Component {
   constructor(props){
     super(props);
@@ -174,10 +181,11 @@ class ${className} extends Component {
   }
   ${className === 'App' ? `${methods.replace(/\"/g, "")}`: ``}
   render(){
+    const props = this.props;
     ${this.destructureProps()}
     return (
-      <div style={divStyle}  ${this.getEvents()}>
-
+      <div style={style}  ${this.getEvents()}>
+        ${innerHTML}
         ${this.getChildren()}
       </div>
     );

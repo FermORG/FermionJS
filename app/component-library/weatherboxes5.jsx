@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 
 const style = {
   border: '1 px solid #131131 ',

@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 
 const style = {
   border: '1 px solid #131131 ',
@@ -17,7 +17,9 @@ const style = {
   }
 };
 
-const Weatherbox = (props)=>(
+const props = { };
+
+const Weatherbox = (props) => (
   <div {...props}>
     <form onSubmit={(e) => props.getWeather(e)}>
       <input style={style.inputStyles} type="text" placeholder="Enter location"/>

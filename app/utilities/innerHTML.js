@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 export default function captureHtml(component) {
-  const fileLocation = path.join(__dirname + '/../component-library/' + component);
+  const fileLocation = path.join(__dirname + '/../app/component-library/' + component);
   const file = String(fs.readFileSync(fileLocation));
 
 // check for function keyword:
