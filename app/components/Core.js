@@ -16,9 +16,6 @@ import Right from '../containers/RightPage.js';
 // Main editor component
 import Workspace from '../containers/Workspace';
 
-// Visual component exporter function
-import getVisComponent from './VisComponents/exporter';
-
 import ExportButton from '../containers/ExportButton';
 import { ipcRenderer } from 'electron';
 

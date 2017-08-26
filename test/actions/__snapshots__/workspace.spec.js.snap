@@ -3,8 +3,6 @@
 exports[`workspace actions addComponent should return a payload with the correct action type, a component and a target 1`] = `
 Object {
   "newComponent": Object {
-    "children": Array [],
-    "events": undefined,
     "name": "testComponent",
     "parentID": "workspace",
     "props": Object {

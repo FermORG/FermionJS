@@ -174,7 +174,6 @@ class ReactSortableTree extends Component {
     });
 
     this.props.onChange(treeData);
-    // console.log('OC: ', this.props.onChange);
     if (this.props.onVisibilityToggle) {
       this.props.onVisibilityToggle({
         treeData,
@@ -182,8 +181,6 @@ class ReactSortableTree extends Component {
         expanded: !targetNode.expanded,
       });
     }
-    // console.log('td: ', treeData);
-    // console.log(toggleExpandedForAll(treeData, true));
   }
 
   // moveNode({ node, depth, minimumTreeIndex }) {

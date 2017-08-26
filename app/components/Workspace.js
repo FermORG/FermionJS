@@ -6,7 +6,6 @@ import { DragDropContext } from 'react-dnd';
 import Rnd from 'react-rnd';
 
 import { WORKSPACE_ID, STATIC_INNER_COMPONENT_STYLE } from './../constants';
-import getVisComponent from '../components/VisComponents/exporter';
 import dndComponentWrapper from '../drag-drop/wrapper-component';
 import dropWorkspaceWrapper from '../drag-drop/wrapper-workspace';
 import { setActiveComponent } from '../actions/FileSystemActions';
@@ -42,16 +41,16 @@ class Workspace extends Component {
 
     return componentIDList.map((componentID) => {
       const componentData = allComponents[componentID];
-      const CustomComponent = getVisComponent(componentData.name);
+      const CustomComponent = componentData.jsx;
       const children = this.renderDeep(componentData.children);
-      
+
       const [widthInt, heightInt] = [
         pixelsToInt(componentData.props.style.width), 
         pixelsToInt(componentData.props.style.height)
       ];
 
       const innerComponentStyle = { ...componentData.props.style, ...STATIC_INNER_COMPONENT_STYLE };
-
+      
       const DivWrappedComponent = (
         <div
           id="divwrappedcomp"
@@ -66,10 +65,10 @@ class Workspace extends Component {
           </CustomComponent>
         </div>
       );
-
+      
       const DndComponent = this.props.freeMoveMode ? 
         () => DivWrappedComponent : dndComponentWrapper(DivWrappedComponent);
-
+        
       return (
         <Rnd
           key={componentData.id} 
@@ -128,21 +127,20 @@ class Workspace extends Component {
 
   render() {
     const worskpaceChildren = this.props.workspace.components.workspace.children;
-    const { hideEditor } = this.props;
+    const { hideEditor, moveComponent } = this.props;
     const Workspace = () => (
       <div id={WORKSPACE_ID} style={{ width: '100%', height: '100%' }}>
         { this.renderDeep(worskpaceChildren) }
-      </div>
-      
+      </div>     
     );
-
-    const WrappedWorkspace = dropWorkspaceWrapper(Workspace, hideEditor);
     
+    const WrappedWorkspace = dropWorkspaceWrapper(Workspace, hideEditor);
+
     return (
       <div>
         <WrappedWorkspace
           id={WORKSPACE_ID}
-          moveComponent={this.props.moveComponent}
+          moveComponent={moveComponent}
           hideEditor={hideEditor}
         />
       </div>

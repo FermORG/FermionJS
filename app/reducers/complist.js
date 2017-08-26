@@ -1,51 +1,32 @@
 // @flow
 // complist reducers
 import { ADD_COMPONENTS, ADD_TO_PROJECT } from '../actions/complist';
+import getComponentLibrary from '../component-library/componentLoader';
 
-type actionType = {
-  +type: string,
+type actionType = {+type: string,
 };
 
-const defaultData = {
-  availableComponents: [
-    {
-      name: 'One',
-      styles: {
-        backgroundColor: 'red',
-        height: '50%',
-        width: '50%'
-      }
-    },
-    {
-      name: 'Two',
-      styles: {
-        backgroundColor: 'yellow',
-        height: '50%',
-        width: '50%'
-      }
-    },
-    {
-      name: 'Five',
-      styles: {
-        backgroundColor: 'white',
-        height: '50%',
-        width: '50%'
-      },
-    },
-    {
-      name: 'Four',
-      styles: {
-        backgroundColor: 'blue',
-        height: '50%',
-        width: '50%'
-      },
-    }
-  ]
+const setRequiredComponentProperties = (componentList) => {
+  const requiredProperties = { events: {}, children: [] };
+
+  return componentList.map(componentData => {
+    const { name, jsx, style } = componentData;
+
+    return {
+      ...requiredProperties,
+      props: { style },
+      name,
+      jsx
+    };
+  });
 };
+
+const componentLibrary = getComponentLibrary();
+const defaultData = setRequiredComponentProperties(componentLibrary);
 
 export default function listReducer(state: {} = defaultData, action: actionType) {
   const newState = Object.assign({}, state);
-  // newState.availableComponents =JSON.parse(JSON.stringify(newState.availableComponents));
+
   switch (action.type) {
     case ADD_COMPONENTS:
       return newState.availableComponents.concat(action.components);

@@ -6,12 +6,9 @@ export const DELETE_COMPONENT = 'DELETE_COMPONENT';
 export const MOVE_COMPONENT = 'MOVE_COMPONENT';
 export const UPDATE_STYLE = 'UPDATE_STYLE';
 
-const createComponent = ({ name, props, events }) => ({
-  name,
-  props,
-  events,
-  children: [],
-  parentID: WORKSPACE_ID,
+const createComponent = (component) => ({
+  ...component,
+  parentID: WORKSPACE_ID
 });
 
 export function addComponent(targetID, component) {

@@ -81,7 +81,6 @@ class FileTree extends Component {
     this.props.setActiveComponent(component);
     let initial = e.target.innerHTML;
     e.target.innerHTML = `<span style="color:green">${initial}</span>`;
-    console.log(e.currentTarget);
   }
   render() {
     const getData = this.props.workspace;
