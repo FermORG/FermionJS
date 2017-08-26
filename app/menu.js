@@ -49,7 +49,7 @@ export default class MenuBuilder {
       submenu: [
         { label: 'About Fermion', selector: 'orderFrontStandardAboutPanel:' },
         { type: 'separator' },
-        { label: 'Services', submenu: [] },
+        { label: 'Import Components', submenu: [] },
         { type: 'separator' },
         { label: 'Hide Fermion', accelerator: 'Command+H', selector: 'hide:' },
         { label: 'Hide Others', accelerator: 'Command+Shift+H', selector: 'hideOtherApplications:' },
@@ -98,7 +98,6 @@ export default class MenuBuilder {
       submenu: [
         { label: 'Learn More', click() { shell.openExternal('http://www.fermionjs.io/'); } },
         { label: 'Documentation', click() { shell.openExternal('https://github.com/FermORG/FermionJS#readme'); } },
-        // { label: 'Community Discussions', click() { shell.openExternal('https://discuss.atom.io/c/electron'); } },
         { label: 'Search Issues', click() { shell.openExternal('https://github.com/FermORG/FermionJS/issues'); } }
       ]
     };
