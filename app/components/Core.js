@@ -25,7 +25,6 @@ import { ipcRenderer } from 'electron';
 class Core extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       hideEditor: true,
       freeMoveMode: true
@@ -42,9 +41,6 @@ class Core extends Component {
   onEditorChange(newValue) {
     this.updateMethods(newValue);
   }
-  // onEditorFocus() {
-  //
-  // }
 
   toggleEditor(e){
     this.setState({

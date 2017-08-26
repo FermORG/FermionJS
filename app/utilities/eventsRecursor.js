@@ -1,4 +1,5 @@
-import { cloneDeep }  from 'lodash';
+// import { cloneDeep }  from 'lodash';
+import cloneDeep from './cloneDeep';
 /**
 * @param {object} parent - Object being examined
 * @param {object} components - workspace.components regardless of first param ID
@@ -22,18 +23,19 @@ export function getChildEvents(parent, components) {
 * @param {object} components - workspace.components regardless of first param ID
 */
 
-export function flattenEvents(events, component, components) {
+export function flattenEvents(events, component, components, methods) {
   const children = components[component].children;
-  events = cloneDeep(events);
-  return Object.keys(events).reduce((final, key) => {
+  const cloneEvents = cloneDeep(events);
+  const flatEvents = Object.keys(events).reduce((final, key) => {
     if (children.indexOf(Number(key)) === -1) {
       final[key] = events[key];
     } else {
-      final = Object.assign(final, flattenEvents(events[key], key, components));
+      const methodEvents = insertMethods(flattenEvents(events[key], key, components, methods), methods);
+      final = Object.assign(final, methodEvents);
     }
-    delete final.style;
     return final;
   }, {});
+  return insertMethods(flatEvents, methods);
 }
 
 /**
@@ -44,8 +46,8 @@ export function flattenEvents(events, component, components) {
 
 export function insertMethods(events, methods) {
   Object.keys(events).forEach((key) => {
-    const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
-
+    const toTest = events[key].split('() => ').join('()=>').split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
+    if (methods.indexOf(key) !== -1) return;
     const methName = methods.indexOf(toTest);
     if (methName !== -1) {
       Object.defineProperty(events, methods[methName], Object.getOwnPropertyDescriptor(events, key));
@@ -63,7 +65,7 @@ export function insertMethods(events, methods) {
 */
 export function insertThis(events, methods) {
   Object.keys(events).forEach((key) => {
-    const toTest = events[key].split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
+    const toTest = events[key].split('() => ').join('()=>').split('()=>').join('').replace(/\((.+)\)/, '').split('()').join('');
     const methName = methods.indexOf(toTest);
     if (methName !== -1) {
       const method = methods[methName];

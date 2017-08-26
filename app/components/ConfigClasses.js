@@ -63,7 +63,7 @@ export class State extends Component {
         deleter={deleteState}
         onClick={this.deleteStoreValues}
       />
-      ));
+    ));
 
     return (
       <div className={`${styles['form-group']}`}>
@@ -157,7 +157,7 @@ export class Styles extends Component {
         deleter={deleteStyles}
         onClick={this.deleteStoreValues}
       />
-      ));
+    ));
 
     return (
       <div className={`${styles['form-group']}`}>
@@ -203,7 +203,7 @@ export class Events extends Component {
         actionHandler={this.updateStoreValues}
         onClick={this.deleteStoreValues}
       />
-      ));
+    ));
 
     return (
       <div className={`${styles['form-group']}`}>
