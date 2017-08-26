@@ -83,21 +83,33 @@
   background-color: #282c36;
   border-left: 1px solid $border-color;
   border-right: 1px solid $border-color;
-  height: 87.5vh;
-  /*height: 48vh; /* height for visible editor*/
+  height: 90.5vh;
   overflow-y: auto;
   overflow-x: auto;
+}
+
+@media screen and (min-width: 1920px) {
+  .workspace {
+    height: 93.2vh;
+  }
 }
 
 .showEditor {
   border: 1px solid $border-color;
   border-top: 0px;
+  background-color: #282c36;
   /*border-left: 1px solid $border-color;
   border-right: 1px solid $border-color;*/
-  height: 54vh;
+  height: 53vh;
   margin: auto;
   overflow-y: auto;
   overflow-x: auto;
+}
+
+@media screen and (min-width: 1920px) {
+  .showEditor {
+    height: 55.7vh;
+  }
 }
 
 hr {
@@ -248,7 +260,7 @@ a.btn.btn-red:active {
 // 	border-radius: 5px;
 // 	box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
 // 	transition: $transition;
-	
+
 // 	span,
 // 	.icon {
 // 		display: block;
@@ -257,7 +269,7 @@ a.btn.btn-red:active {
 // 		position: absolute;
 // 		top: 0;
 // 	}
-	
+
 // 	span {
 // 		width: 72%;
 // 		line-height: inherit;
@@ -265,7 +277,7 @@ a.btn.btn-red:active {
 // 		text-transform: uppercase;
 // 		left: 0;
 // 		transition: $transition;
-		
+
 // 		&:after {
 // 			content: '';
 // 			background-color: $color-dark;
@@ -276,67 +288,67 @@ a.btn.btn-red:active {
 // 			right: -1px;
 // 		}
 // 	}
-	
+
 // 	.icon {
 // 		width: 28%;
 // 		right: 0;
 // 		transition: $transition;
-		
+
 // 		.fa {
 // 			font-size: 30px;
 // 			vertical-align: middle;
 // 			transition: $transition, height #{$speed} ease;
 // 		}
-		
+
 // 		.fa-remove {
 // 			height: 36px;
 // 		}
-		
+
 // 		.fa-check {
 // 			display: none;
 // 		}
 // 	}
-	
+
 // 	&.success,
 // 	&:hover {
-		
+
 // 		span {
 // 			left: -72%;
 // 			opacity: 0;
 // 		}
-		
+
 // 		.icon {
 // 			width: 100%;
-			
+
 // 			.fa {
 // 				font-size: 45px;
 // 			}
 // 		}
 // 	}
-	
+
 // 	&.success {
 // 		background-color: #27ae60;
-		
+
 // 		.icon {
-			
+
 // 			.fa-remove {
 // 				display: none;
 // 			}
-			
+
 // 			.fa-check {
 // 				display: inline-block;
 // 			}
 // 		}
 // 	}
-	
+
 // 	&:hover {
 // 		opacity: .9;
-		
+
 // 		.icon .fa-remove {
 // 			height: 46px;
 // 		}
 // 	}
-	
+
 // 	&:active {
 // 		opacity: 1;
 // 	}
