@@ -47,11 +47,11 @@ export default class MenuBuilder {
     const subMenuAbout = {
       label: 'Fermion',
       submenu: [
-        { label: 'About ElectronReact', selector: 'orderFrontStandardAboutPanel:' },
+        { label: 'About Fermion', selector: 'orderFrontStandardAboutPanel:' },
         { type: 'separator' },
         { label: 'Services', submenu: [] },
         { type: 'separator' },
-        { label: 'Hide ElectronReact', accelerator: 'Command+H', selector: 'hide:' },
+        { label: 'Hide Fermion', accelerator: 'Command+H', selector: 'hide:' },
         { label: 'Hide Others', accelerator: 'Command+Shift+H', selector: 'hideOtherApplications:' },
         { label: 'Show All', selector: 'unhideAllApplications:' },
         { type: 'separator' },
@@ -96,10 +96,10 @@ export default class MenuBuilder {
     const subMenuHelp = {
       label: 'Help',
       submenu: [
-        { label: 'Learn More', click() { shell.openExternal('http://electron.atom.io'); } },
-        { label: 'Documentation', click() { shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme'); } },
-        { label: 'Community Discussions', click() { shell.openExternal('https://discuss.atom.io/c/electron'); } },
-        { label: 'Search Issues', click() { shell.openExternal('https://github.com/atom/electron/issues'); } }
+        { label: 'Learn More', click() { shell.openExternal('http://www.fermionjs.io/'); } },
+        { label: 'Documentation', click() { shell.openExternal('https://github.com/FermORG/FermionJS#readme'); } },
+        // { label: 'Community Discussions', click() { shell.openExternal('https://discuss.atom.io/c/electron'); } },
+        { label: 'Search Issues', click() { shell.openExternal('https://github.com/FermORG/FermionJS/issues'); } }
       ]
     };
 
