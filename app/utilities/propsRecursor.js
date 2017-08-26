@@ -1,11 +1,13 @@
-import { cloneDeep } from 'lodash';
+// import { cloneDeep } from 'lodash';
+import cloneDeep from './cloneDeep';
 import { getChildEvents } from './eventsRecursor';
 /**
 * @param {object} workspace - redux top level workspace state obj
 */
 
 export function appParser(workspace) {
-  const clonedWorkspace = cloneDeep(workspace);
+  // const clonedWorkspace = cloneDeep(workspace);
+  const clonedWorkspace = JSON.parse(JSON.stringify(workspace));
   const components = clonedWorkspace.components;
   const app = components.app || components.workspace;
   let state = clonedWorkspace.state;
