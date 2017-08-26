@@ -188,6 +188,7 @@
     "devtron": "^1.4.0",
     "directory-tree": "^2.0.0",
     "electron-debug": "^1.2.0",
+    "expect": "^1.20.2",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
     "lodash": "^4.17.4",
