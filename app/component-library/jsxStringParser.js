@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import path from 'path';
+import fs from 'fs';
 
 const jsxIdentifier = {
   start: '/* @fermion jsx */',
@@ -11,4 +11,4 @@ const getJsxString = (fileName, directory = path.join(__dirname, '/component-lib
   .split(jsxIdentifier.start)[1]
   .split(jsxIdentifier.end)[0]
 
-module.exports = { getJsxString };
+export default getJsxString;

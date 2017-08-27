@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { getJsxString } = require('./jsxStringParser');
+const getJsxString = require('./jsxStringParser');
 
 const getComponentLibrary = (componentList = getAllComponentFileNames()) => {
   return componentList.map(file => {
