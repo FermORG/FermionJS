@@ -84,8 +84,8 @@ const createPropString = (props) => {
   return Object.entries(props)
     .reduce((propString, entry) => {
       const [key, val] = entry;
-      if (typeof val === 'string') return propString + `${key}=${val} `
-      else return propString + `${key}={${val}} `;
+      if (typeof val === 'string' || typeof val === 'number') return propString + `${key}=${val} `
+      else return propString + `${key}={${JSON.stringify(val, null, 2)}} `;
     }, '').trim();
 }
 
