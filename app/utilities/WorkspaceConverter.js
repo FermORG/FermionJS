@@ -64,6 +64,7 @@ class ComponentConverter {
   getEvents() {
     return Object.keys(this.events).reduce((events, event) => {
      if (this.component.children.indexOf(Number(event)) === -1){
+       if (event.indexOf('raw') !== -1) return events;
        events += `${event}=`;
        events += `{${this.events[event]}} `;
      }
