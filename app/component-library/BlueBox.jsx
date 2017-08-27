@@ -9,10 +9,10 @@ const style = {
 };
 
 /* @fermion jsx */
-const BlackBox = (props) => <div {...props} />
+const BlueBox = (props) => <div {...props} />
 /* @fermion !jsx */
 
 export default {
-  jsx: BlackBox,
+  jsx: BlueBox,
   style
 };

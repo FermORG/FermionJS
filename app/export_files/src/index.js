@@ -5,7 +5,8 @@ import { AppContainer } from 'react-hot-loader';
 // AppContainer is a necessary wrapper component for HMR
 
 const appPath  = './components/App'
-import App from './components/App';
+import { App } from './components/App';
+console.log(App);
 
 const render = (Component) => {
   ReactDOM.render(
