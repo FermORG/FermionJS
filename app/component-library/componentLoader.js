@@ -15,7 +15,7 @@ const getComponentLibrary = (componentList = getAllComponentFileNames()) => {
 const getAllComponentFileNames = (directory = path.join(__dirname, '/component-library')) =>
   fs.readdirSync(directory).filter(file => path.extname(file) === '.jsx');
 
-const formatFinalStyle = (name, jsx, jsxAsString, style) => {
+const formatFinalStyle = (style) => {
   const overrideRequiredComponentStyle = {
     position: 'absolute'
   };
