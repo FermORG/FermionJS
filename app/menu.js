@@ -160,22 +160,17 @@ export default class MenuBuilder {
       submenu: [{
         label: 'Learn More',
         click() {
-          shell.openExternal('http://electron.atom.io');
+          shell.openExternal('http://www.fermionjs.io/');
         }
       }, {
         label: 'Documentation',
         click() {
-          shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme');
-        }
-      }, {
-        label: 'Community Discussions',
-        click() {
-          shell.openExternal('https://discuss.atom.io/c/electron');
+          shell.openExternal('https://github.com/FermORG/FermionJS#readme');
         }
       }, {
         label: 'Search Issues',
         click() {
-          shell.openExternal('https://github.com/atom/electron/issues');
+          shell.openExternal('https://github.com/FermORG/FermionJS/issues');
         }
       }]
     }];
