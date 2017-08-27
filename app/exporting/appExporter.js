@@ -21,7 +21,7 @@ const createDirectory = (directory) => {
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory);
   }
-}
+};
 
 const getComponentNamesSet = (components) => {
   return Object.values(components)
@@ -38,7 +38,7 @@ const writeComponentFiles = (componentNameSet, libraryDirectory, exportDirectory
     const fileContents = formatComponentFile(name, jsxContent);
     fs.writeFileSync(path.join(exportDirectory, fullFileName), fileContents);
   });
-}
+};
 
 const formatComponentFile = (componentName, jsxContent) => (
   `import React from 'react';
@@ -54,7 +54,7 @@ export const createTopLevelApp = (workspace, componentNameSet, directory) => {
   appContents += `export class App extends Component {\n`;
   appContents += createRenderFunction(workspace.components);
   return appContents;
-}
+};
 
 const createComponentImportStatements = (componentNameSet) => {
   let output = '';
@@ -75,10 +75,10 @@ const createRenderFunction = (components) => {
     return (
       `<${componentName} ${createPropString(component.props)}>${childrenText}</${componentName}>`
     );
-  }
+  };
 
   return 'render() {\n' + createElementText(components[WORKSPACE_ID]) + '\n}';
-}
+};
 
 const createPropString = (props) => {
   return Object.entries(props)
@@ -87,6 +87,6 @@ const createPropString = (props) => {
       if (typeof val === 'string' || typeof val === 'number') return propString + `${key}=${val} `
       else return propString + `${key}={${JSON.stringify(val, null, 2)}} `;
     }, '').trim();
-}
+};
 
 /*  */
