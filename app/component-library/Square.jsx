@@ -6,8 +6,9 @@ const style = {
   display: "inline-block",
   backgroundColor: "grey",
 }
-
+/* @fermion jsx */
 const Square = (props) => <div {...props}/>;
+/* @fermion !jsx */
 
 export default {
   jsx: Square,

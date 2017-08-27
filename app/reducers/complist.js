@@ -10,13 +10,15 @@ const setRequiredComponentProperties = (componentList) => {
   const requiredProperties = { events: {}, children: [] };
 
   return componentList.map(componentData => {
-    const { name, jsx, style } = componentData;
+    const { name, jsx, jsxAsString, style } = componentData;
+    console.log(componentData)
 
     return {
       ...requiredProperties,
       props: { style },
       name,
-      jsx
+      jsx,
+      jsxAsString
     };
   });
 };

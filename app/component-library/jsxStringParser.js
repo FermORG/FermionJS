@@ -6,8 +6,8 @@ const jsxIdentifier = {
   end: '/* @fermion !jsx */'
 }
 
-const getJsxString = (fileName, directory = path.join(__dirname, fileName)) =>
-  fs.readFileSync(directory, 'utf8')
+const getJsxString = (fileName, directory = path.join(__dirname, '/component-library')) =>
+  fs.readFileSync(path.join(directory, fileName), 'utf8')
   .split(jsxIdentifier.start)[1]
   .split(jsxIdentifier.end)[0]
 

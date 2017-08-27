@@ -8,7 +8,9 @@ const style = {
   backgroundColor: 'black',
 };
 
+/* @fermion jsx */
 const BlackBox = (props) => <div {...props} />
+/* @fermion !jsx */
 
 export default {
   jsx: BlackBox,
