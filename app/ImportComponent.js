@@ -4,23 +4,38 @@ import electron from 'electron';
 const { dialog } = electron;
 import fs from 'fs';
 
-const importer = {
+const options = {
+  title: 'Select Components',
+  buttonLabel: 'Import',
+  filters: [
+    {
+      name: 'React Components',
+      extensions: [
+      'jsx',
+     ],
+    },
+  ],
+  properties: [
+    'openFile',
+    'multiSelections',
+  ],
+};
 
-
-import: dialog.showOpenDialog((fileNames) => {
-  if (!fileNames) {
-    alert('select a file');
-    return;
-  }
-
-  fs.readFile(filepath, 'utf-8', (err, data) => {
-    if (err) {
-      alert('an error occured!');
+const importWrapper = () => {
+  return dialog.showOpenDialog(options, (fileNames) => {
+    if (!fileNames) {
       return;
     }
-    alert(data);
-  });
-}),
+    console.log(fileNames);
 
+    // fs.readFile(filepath, 'utf-8', (err, data) => {
+    //   if (err) {
+    //     console.log('an error occured!');
+    //     return;
+    //   }
+    //   console.log(data);
+    // });
+  });
 }
-export default importer;
+
+export default importWrapper;
