@@ -22,7 +22,10 @@ const buttonStyle = {
 /* @fermion jsx */
 const Weatherbox = (props) => (
   <div {...props}>
-    <form onSubmit={(e) => props.getWeather(e)}>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      props.getWeather(e)
+      }}>
       <input
         style={{ ...props.inputStyle}}
         type="text"

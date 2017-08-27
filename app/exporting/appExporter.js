@@ -14,7 +14,7 @@ export const exportApp = (workspace) => {
   const componentNameSet = getComponentNameSet(workspace.components);
   const appFileContents = createTopLevelApp(workspace, componentNameSet, EXPORT_DIRECTORY.COMPONENTS);
 
-  fs.writeFileSync(path.join(EXPORT_DIRECTORY.COMPONENTS, 'App.jsx'), appFileContents, 'utf8');
+  fs.writeFileSync(path.join(EXPORT_DIRECTORY.COMPONENTS, 'App.js'), appFileContents, 'utf8');
   writeComponentFiles(componentNameSet, COMPONENT_LIBRARY_DIRECTORY, EXPORT_DIRECTORY.COMPONENTS);
 };
 
@@ -37,7 +37,7 @@ const writeComponentFiles = (componentNameSet, libraryDirectory, exportDirectory
     const fullFileName = `${name}.jsx`;
     const jsxContent = getJsxString(fullFileName, libraryDirectory);
     const fileContents = formatComponentFile(name, jsxContent);
-    fs.writeFileSync(path.join(exportDirectory, fullFileName), fileContents);
+    fs.writeFileSync(path.join(exportDirectory, fullFileName.slice(0, -1)), fileContents);
   });
 };
 
@@ -55,34 +55,35 @@ export const createTopLevelApp = (workspace, componentNameSet, directory) => {
   appContents += `export class App extends Component {\n`;
   appContents += createAppMethods(workspace.methods);
   appContents += createRenderFunction(workspace.components);
+  appContents += '\n}';
   return appContents;
 };
 
 const createComponentImportStatements = (componentNameSet) => {
   let output = '';
-  componentNameSet.forEach(name => output += `import ${name} from './${name}';\n`);
+  componentNameSet.forEach(name => output += `import ${name} from './${name}.js';\n`);
   output += `\n`;
   return output;
 };
 
 const createRenderFunction = (components) => {
   const createElementText = (component) => {
-    const componentName = component.id === WORKSPACE_ID ? 'App' : component.name;
-    const propString = createPropString(component.props);
+    const componentName = component.id === WORKSPACE_ID ? 'div' : component.name;
+    const propString = createPropsString(component.props);
 
     const childrenText = component.children.reduce((acc, childID) => {
       return acc + '\n' + createElementText(components[childID]);
     }, '') + '\n';
 
     return (
-      `<${componentName} ${createPropString(component.props)}>${childrenText}</${componentName}>`
+      `<${componentName} ${createPropsString(component.props)} ${createEventPropsString(component.events)}>${childrenText}</${componentName}>`
     );
   };
 
-  return 'render() {\n' + createElementText(components[WORKSPACE_ID]) + '\n}';
+  return 'render() {\nreturn (' + createElementText(components[WORKSPACE_ID]) + '\n);' + '\n}';
 };
 
-const createPropString = (props) => {
+const createPropsString = (props) => {
   return Object.entries(props)
     .reduce((propString, entry) => {
       const [key, val] = entry;
@@ -91,9 +92,17 @@ const createPropString = (props) => {
     }, '').trim();
 };
 
+const createEventPropsString = (events) => {
+  return Object.entries(events)
+    .reduce((eventString, entry) => {
+      const [key, val] = entry;
+      return eventString + ` ${key}={${val.trim()}}` + ' ';
+    }, '').trim();
+};
+
 const createAppMethods = (methodsString) => {
   return methodsString.split('@').reduce((acc, method) => {
-    return acc + method.trim() + '\n\n';
+    return acc + method.trim() + '\n';
   }, '');
 };
 
