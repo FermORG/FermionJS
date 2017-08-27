@@ -1,6 +1,6 @@
 // @flow
-import { app, Menu, shell, BrowserWindow } from 'electron';
-
+import { app, Menu, shell, BrowserWindow, dialog } from 'electron';
+// import importer from './ImportComponent';
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
 
@@ -49,7 +49,7 @@ export default class MenuBuilder {
       submenu: [
         { label: 'About Fermion', selector: 'orderFrontStandardAboutPanel:' },
         { type: 'separator' },
-        { label: 'Import Components', submenu: [] },
+        { label: 'Import Components', click: ()=> dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']}) },
         { type: 'separator' },
         { label: 'Hide Fermion', accelerator: 'Command+H', selector: 'hide:' },
         { label: 'Hide Others', accelerator: 'Command+Shift+H', selector: 'hideOtherApplications:' },
