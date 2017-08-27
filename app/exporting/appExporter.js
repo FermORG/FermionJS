@@ -6,7 +6,7 @@
 import path from 'path';
 import fs from 'fs';
 import { WORKSPACE_ID, COMPONENT_LIBRARY_DIRECTORY, EXPORT_DIRECTORY } from '../constants';
-import { getJsxString } from '../component-library/jsxStringParser';
+import getJsxString from '../component-library/jsxStringParser';
 
 export const exportApp = (workspace) => {
   createDirectory(EXPORT_DIRECTORY.COMPONENTS);
