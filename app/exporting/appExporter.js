@@ -64,20 +64,29 @@ const createComponentImportStatements = (componentNameSet) => {
 };
 
 const createRenderFunction = (components) => {
-
   const createElementText = (component) => {
     const componentName = component.id === WORKSPACE_ID ? 'App' : component.name;
+    const propString = createPropString(component.props);
 
     const childrenText = component.children.reduce((acc, childID) => {
       return acc + '\n' + createElementText(components[childID]);
     }, '') + '\n';
 
     return (
-      `<${componentName}>${childrenText}</${componentName}>`      
+      `<${componentName} ${createPropString(component.props)}>${childrenText}</${componentName}>`
     );
   }
 
   return 'render() {\n' + createElementText(components[WORKSPACE_ID]) + '\n}';
+}
+
+const createPropString = (props) => {
+  return Object.entries(props)
+    .reduce((propString, entry) => {
+      const [key, val] = entry;
+      if (typeof val === 'string') return propString + `${key}=${val} `
+      else return propString + `${key}={${val}} `;
+    }, '').trim();
 }
 
 /*  */
