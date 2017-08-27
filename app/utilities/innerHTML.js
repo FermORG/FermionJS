@@ -1,8 +1,14 @@
 const fs = require('fs');
 const path = require('path');
+let midDir;
+if (process.env.NODE_ENV === 'test'){
+  midDir = '/../component-library/';
+} else {
+  midDir = '/../app/component-library/';
+}
 
 export default function captureHtml(component) {
-  const fileLocation = path.join(__dirname + '/../app/component-library/' + component);
+  const fileLocation = path.join(__dirname + midDir + component);
   const file = String(fs.readFileSync(fileLocation));
 
 // check for function keyword:

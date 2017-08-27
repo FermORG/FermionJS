@@ -6,7 +6,7 @@ Array [
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
+const style = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
 class App extends Component {
   constructor(props){
     super(props);
@@ -17,9 +17,11 @@ class App extends Component {
  method. you can then attach them as event handlers, logic handlers, etc. 
  make sure to append an  symbol following the closing bracket of your method!*/
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  >
+      <div style={style}  >
+        
         
 
       </div>
@@ -43,7 +45,7 @@ Array [
 import React, { Component } from 'react';
 import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
+const style = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
 class BlackBox extends Component {
   constructor(props){
     super(props);
@@ -52,9 +54,11 @@ class BlackBox extends Component {
   }
   
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  onClick={()=>{console.log(\\"test\\")}} >
+      <div style={style}  onClick={()=>{console.log(\\"test\\")}} >
+        <div {...props} />
         
         <BlueBox_001
   /> 
@@ -74,7 +78,7 @@ export default BlackBox;
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
+const style = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
 class BlueBox extends Component {
   constructor(props){
     super(props);
@@ -83,9 +87,11 @@ class BlueBox extends Component {
   }
   
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  onClick={()=>{console.log(\\"hello\\")} >
+      <div style={style}  onClick={()=>{console.log(\\"hello\\")} >
+        <div {...props} />
         
 
       </div>
@@ -104,7 +110,7 @@ export default BlueBox;
 import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
 
-const divStyle = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
+const style = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
 class App extends Component {
   constructor(props){
     super(props);
@@ -115,9 +121,11 @@ class App extends Component {
  method. you can then attach them as event handlers, logic handlers, etc. 
  make sure to append an  symbol following the closing bracket of your method!*/
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  >
+      <div style={style}  >
+        
         
         <BlackBox_000
   /> 
@@ -143,7 +151,7 @@ Array [
 import React, { Component } from 'react';
 import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
+const style = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
 class BlackBox extends Component {
   constructor(props){
     super(props);
@@ -152,9 +160,11 @@ class BlackBox extends Component {
   }
   
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  >
+      <div style={style}  >
+        <div {...props} />
         
         <BlueBox_001
   /> 
@@ -174,7 +184,7 @@ export default BlackBox;
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
+const style = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
 class BlueBox extends Component {
   constructor(props){
     super(props);
@@ -183,9 +193,11 @@ class BlueBox extends Component {
   }
   
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  >
+      <div style={style}  >
+        <div {...props} />
         
 
       </div>
@@ -204,7 +216,7 @@ export default BlueBox;
 import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
 
-const divStyle = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
+const style = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
 class App extends Component {
   constructor(props){
     super(props);
@@ -215,9 +227,11 @@ class App extends Component {
  method. you can then attach them as event handlers, logic handlers, etc. 
  make sure to append an  symbol following the closing bracket of your method!*/
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  >
+      <div style={style}  >
+        
         
         <BlackBox_000
   /> 
@@ -242,7 +256,7 @@ Array [
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
+const style = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
 class BlackBox extends Component {
   constructor(props){
     super(props);
@@ -251,9 +265,11 @@ class BlackBox extends Component {
   }
   
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  onClick={()=>{console.log(\\"test\\")}} >
+      <div style={style}  onClick={()=>{console.log(\\"test\\")}} >
+        <div {...props} />
         
 
       </div>
@@ -271,7 +287,7 @@ export default BlackBox;
     "code": "
 import React, { Component } from 'react';
 
-const divStyle = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
+const style = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
 class BlueBox extends Component {
   constructor(props){
     super(props);
@@ -280,9 +296,11 @@ class BlueBox extends Component {
   }
   
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  >
+      <div style={style}  >
+        <div {...props} />
         
 
       </div>
@@ -302,7 +320,7 @@ import React, { Component } from 'react';
 import BlackBox_000 from '../BlackBox_000/BlackBox_000';
 import BlueBox_001 from '../BlueBox_001/BlueBox_001';
 
-const divStyle = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
+const style = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
 class App extends Component {
   constructor(props){
     super(props);
@@ -313,9 +331,11 @@ class App extends Component {
  method. you can then attach them as event handlers, logic handlers, etc. 
  make sure to append an  symbol following the closing bracket of your method!*/
   render(){
+    const props = this.props;
     
     return (
-      <div style={divStyle}  >
+      <div style={style}  >
+        
         
         <BlackBox_000
   /> 
