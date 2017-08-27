@@ -10,11 +10,12 @@ import getJsxString from '../component-library/jsxStringParser';
 
 export const exportApp = (workspace) => {
   createDirectory(EXPORT_DIRECTORY.COMPONENTS);
-  const componentNameSet = getComponentNamesSet(workspace.components);
-  writeComponentFiles(componentNameSet, COMPONENT_LIBRARY_DIRECTORY, EXPORT_DIRECTORY.COMPONENTS);
+
+  const componentNameSet = getComponentNameSet(workspace.components);
   const appFileContents = createTopLevelApp(workspace, componentNameSet, EXPORT_DIRECTORY.COMPONENTS);
+
   fs.writeFileSync(path.join(EXPORT_DIRECTORY.COMPONENTS, 'App.jsx'), appFileContents, 'utf8');
-  console.log(appFileContents);
+  writeComponentFiles(componentNameSet, COMPONENT_LIBRARY_DIRECTORY, EXPORT_DIRECTORY.COMPONENTS);
 };
 
 const createDirectory = (directory) => {
@@ -23,11 +24,11 @@ const createDirectory = (directory) => {
   }
 };
 
-const getComponentNamesSet = (components) => {
+const getComponentNameSet = (components) => {
   return Object.values(components)
-    .reduce((setAccumulator, currentComponent) => {
-      if (currentComponent.id !== WORKSPACE_ID) setAccumulator.add(currentComponent.name);
-      return setAccumulator;
+    .reduce((nameSetAccumulator, currentComponent) => {
+      if (currentComponent.id !== WORKSPACE_ID) nameSetAccumulator.add(currentComponent.name);
+      return nameSetAccumulator;
     }, new Set());
 };
 
