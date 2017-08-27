@@ -6,6 +6,7 @@ import { appParser, flattenStateProps } from './propsRecursor';
 import cloneDeep from './cloneDeep';
 import { getChildEvents, flattenEvents, insertMethods, insertThis } from './eventsRecursor';
 import captureHtml from './innerHTML';
+import prettier from 'prettier';
 /**
 * @param {object} state - a flattened version of the state object and all component's props - rolled into one object for exporting the state.
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
@@ -64,7 +65,7 @@ class ComponentConverter {
   getEvents() {
     return Object.keys(this.events).reduce((events, event) => {
      if (this.component.children.indexOf(Number(event)) === -1){
-       if (event.indexOf('raw') !== -1) return events;
+       if (event.indexOf('*') !== -1) return events;
        events += `${event}=`;
        events += `{${this.events[event]}} `;
      }
@@ -229,7 +230,7 @@ class WorkspaceConverter {
         id: cc.id,
         fileName: cc.fileName,
         ext: cc.ext,
-        code: cc.generateCode() });
+        code: prettier.format(cc.generateCode() )});
       return acc;
     }, []);
   }
