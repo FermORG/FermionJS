@@ -52,6 +52,7 @@ export const createTopLevelApp = (workspace, componentNameSet, directory) => {
   let appContents = 'import React, {Component} from \'react\';\n';
   appContents += createComponentImportStatements(componentNameSet);
   appContents += `export class App extends Component {\n`;
+  appContents += createAppMethods(workspace.methods);
   appContents += createRenderFunction(workspace.components);
   return appContents;
 };
@@ -87,6 +88,12 @@ const createPropString = (props) => {
       if (typeof val === 'string' || typeof val === 'number') return propString + `${key}=${val} `
       else return propString + `${key}={${JSON.stringify(val, null, 2)}} `;
     }, '').trim();
+};
+
+const createAppMethods = (methodsString) => {
+  return methodsString.split('@').reduce((acc, method) => {
+    return acc + method.trim() + '\n\n';
+  }, '');
 };
 
 /*  */
