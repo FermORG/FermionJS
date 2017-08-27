@@ -19,7 +19,7 @@ const buttonStyle = {
   borderRadius: '1px'
 };
 
-/* @FERMION JSX */
+/* @fermion jsx */
 const Weatherbox = (props) => (
   <div {...props}>
     <form onSubmit={(e) => props.getWeather(e)}>
@@ -33,9 +33,10 @@ const Weatherbox = (props) => (
       </button>
         {props.weatherData}
     </form>
+      { props.children }
   </div>
 );
-/* @FERMION !JSX */
+/* @fermion !jsx */
 
 export default {
   jsx : Weatherbox,
