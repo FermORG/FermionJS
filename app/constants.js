@@ -15,6 +15,6 @@ const constants = {
   }
 };
 
-constants.EXPORT_DIRECTORY.COMPONENTS = path.join(constants.EXPORT_DIRECTORY.MAIN, '/components');
+constants.EXPORT_DIRECTORY.COMPONENTS = path.join(constants.EXPORT_DIRECTORY.MAIN, '/src/components/');
 
 export default constants;
