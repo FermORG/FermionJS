@@ -1,7 +1,8 @@
 import styles from '../components/photon.scss';
 import coreStyles from '../components/Core.scss';
-import WorkspaceConverter from '../utilities/WorkspaceConverter';
-import WorkspaceExporter from '../utilities/WorkspaceExporter';
+// import WorkspaceConverter from '../utilities/WorkspaceConverter';
+// import WorkspaceExporter from '../utilities/WorkspaceExporter';
+import { exportComponentFiles } from '../exporting/componentFilesExporter';
 import path from 'path';
 import React, { Component } from 'react';
 const EXPORT_DIR = 'export_files/src/components';
@@ -25,7 +26,7 @@ export default class ExportButton extends Component {
   }
   render() {
     return (
-      <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={this.exportCode}>Export</button>
+      <button className={`${styles.btn} ${styles['btn-primary']} ${styles['pull-right']} ${coreStyles.btn}`} onClick={() => exportComponentFiles(this.props.workspace.components)}>Export</button>
     );
   }
 }
