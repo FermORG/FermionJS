@@ -4,8 +4,8 @@ exports[`conversion of empty workspace will  1`] = `
 Array [
   Object {
     "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const style = { width: \\"602.40625px\\", height: \\"617.75px\\" };
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,114 +16,13 @@ class App extends Component {
  make sure to append an  symbol following the closing bracket of your method!*/
   render() {
     const props = this.props;
+    const style = reactCSS({
+      default: {
+        app: { width: \\"602.40625px\\", height: \\"617.75px\\" }
+      }
+    });
 
-    return <div style={style} />;
-  }
-}
-export default App;
-",
-    "ext": ".js",
-    "fileName": "App",
-    "id": "workspace",
-    "name": "App",
-  },
-]
-`;
-
-exports[`conversion of workspace with one nested components and the child has events will generate 3 exportable texts 1`] = `
-Array [
-  Object {
-    "code": "
-import React, { Component } from 'react';
-import BlueBox_001 from '../BlueBox_001/BlueBox_001';
-
-const style = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"overflow\\":\\"auto\\"}
-class BlackBox extends Component {
-  constructor(props){
-    super(props);
-  
-  
-  }
-  
-  render(){
-    const props = this.props;
-    
-    return (
-      <div style={style}  onClick={()=>{console.log(\\"test\\")}} >
-        <div {...props} />
-        
-        <BlueBox_001
-  /> 
-
-      </div>
-    );
-  }
-}
-export default BlackBox;
-",
-    "ext": ".js",
-    "fileName": "BlackBox_000",
-    "id": 0,
-    "name": "BlackBox",
-  },
-  Object {
-    "code": "
-import React, { Component } from 'react';
-
-const style = {\\"position\\":\\"absolute\\",\\"height\\":\\"100px\\",\\"width\\":\\"100px\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"overflow\\":\\"auto\\"}
-class BlueBox extends Component {
-  constructor(props){
-    super(props);
-  
-  
-  }
-  
-  render(){
-    const props = this.props;
-    
-    return (
-      <div style={style}  onClick={()=>{console.log(\\"hello\\")} >
-        <div {...props} />
-        
-
-      </div>
-    );
-  }
-}
-export default BlueBox;
-",
-    "ext": ".js",
-    "fileName": "BlueBox_001",
-    "id": 1,
-    "name": "BlueBox",
-  },
-  Object {
-    "code": "
-import React, { Component } from 'react';
-import BlackBox_000 from '../BlackBox_000/BlackBox_000';
-
-const style = {\\"width\\":\\"602.40625px\\",\\"height\\":\\"617.75px\\"}
-class App extends Component {
-  constructor(props){
-    super(props);
-  this.state = {}
-  
-  }
-  /*Anything you type in here will be appended to App.js as a 
- method. you can then attach them as event handlers, logic handlers, etc. 
- make sure to append an  symbol following the closing bracket of your method!*/
-  render(){
-    const props = this.props;
-    
-    return (
-      <div style={style}  >
-        
-        
-        <BlackBox_000
-  /> 
-
-      </div>
-    );
+    return <div style={style.app} />;
   }
 }
 export default App;
@@ -140,16 +39,9 @@ exports[`conversion of workspace with one nested components will generate 3 expo
 Array [
   Object {
     "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 import BlueBox_001 from \\"../BlueBox_001/BlueBox_001\\";
 
-const style = {
-  position: \\"absolute\\",
-  height: \\"100px\\",
-  width: \\"100px\\",
-  display: \\"inline-block\\",
-  backgroundColor: \\"black\\",
-  overflow: \\"auto\\"
-};
 class BlackBox extends Component {
   constructor(props) {
     super(props);
@@ -157,9 +49,21 @@ class BlackBox extends Component {
 
   render() {
     const props = this.props;
+    const style = reactCSS({
+      default: {
+        blackbox: {
+          position: \\"absolute\\",
+          height: \\"100px\\",
+          width: \\"100px\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"black\\",
+          overflow: \\"auto\\"
+        }
+      }
+    });
 
     return (
-      <div style={style}>
+      <div style={style.blackbox}>
         <div {...props} />
 
         <BlueBox_001 />
@@ -176,15 +80,8 @@ export default BlackBox;
   },
   Object {
     "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const style = {
-  position: \\"absolute\\",
-  height: \\"100px\\",
-  width: \\"100px\\",
-  display: \\"inline-block\\",
-  backgroundColor: \\"blue\\",
-  overflow: \\"auto\\"
-};
 class BlueBox extends Component {
   constructor(props) {
     super(props);
@@ -192,9 +89,21 @@ class BlueBox extends Component {
 
   render() {
     const props = this.props;
+    const style = reactCSS({
+      default: {
+        bluebox: {
+          position: \\"absolute\\",
+          height: \\"100px\\",
+          width: \\"100px\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"blue\\",
+          overflow: \\"auto\\"
+        }
+      }
+    });
 
     return (
-      <div style={style}>
+      <div style={style.bluebox}>
         <div {...props} />
       </div>
     );
@@ -209,9 +118,9 @@ export default BlueBox;
   },
   Object {
     "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 import BlackBox_000 from \\"../BlackBox_000/BlackBox_000\\";
 
-const style = { width: \\"602.40625px\\", height: \\"617.75px\\" };
 class App extends Component {
   constructor(props) {
     super(props);
@@ -222,9 +131,14 @@ class App extends Component {
  make sure to append an  symbol following the closing bracket of your method!*/
   render() {
     const props = this.props;
+    const style = reactCSS({
+      default: {
+        app: { width: \\"602.40625px\\", height: \\"617.75px\\" }
+      }
+    });
 
     return (
-      <div style={style}>
+      <div style={style.app}>
         <BlackBox_000 />
       </div>
     );
@@ -244,15 +158,8 @@ exports[`conversion of workspace with two components will generate 3 exportable 
 Array [
   Object {
     "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const style = {
-  position: \\"absolute\\",
-  height: \\"100px\\",
-  width: \\"100px\\",
-  display: \\"inline-block\\",
-  backgroundColor: \\"black\\",
-  overflow: \\"auto\\"
-};
 class BlackBox extends Component {
   constructor(props) {
     super(props);
@@ -260,10 +167,22 @@ class BlackBox extends Component {
 
   render() {
     const props = this.props;
+    const style = reactCSS({
+      default: {
+        blackbox: {
+          position: \\"absolute\\",
+          height: \\"100px\\",
+          width: \\"100px\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"black\\",
+          overflow: \\"auto\\"
+        }
+      }
+    });
 
     return (
       <div
-        style={style}
+        style={style.blackbox}
         onClick={() => {
           console.log(\\"test\\");
         }}
@@ -282,15 +201,8 @@ export default BlackBox;
   },
   Object {
     "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const style = {
-  position: \\"absolute\\",
-  height: \\"100px\\",
-  width: \\"100px\\",
-  display: \\"inline-block\\",
-  backgroundColor: \\"blue\\",
-  overflow: \\"auto\\"
-};
 class BlueBox extends Component {
   constructor(props) {
     super(props);
@@ -298,9 +210,21 @@ class BlueBox extends Component {
 
   render() {
     const props = this.props;
+    const style = reactCSS({
+      default: {
+        bluebox: {
+          position: \\"absolute\\",
+          height: \\"100px\\",
+          width: \\"100px\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"blue\\",
+          overflow: \\"auto\\"
+        }
+      }
+    });
 
     return (
-      <div style={style}>
+      <div style={style.bluebox}>
         <div {...props} />
       </div>
     );
@@ -315,10 +239,10 @@ export default BlueBox;
   },
   Object {
     "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 import BlackBox_000 from \\"../BlackBox_000/BlackBox_000\\";
 import BlueBox_001 from \\"../BlueBox_001/BlueBox_001\\";
 
-const style = { width: \\"602.40625px\\", height: \\"617.75px\\" };
 class App extends Component {
   constructor(props) {
     super(props);
@@ -329,9 +253,14 @@ class App extends Component {
  make sure to append an  symbol following the closing bracket of your method!*/
   render() {
     const props = this.props;
+    const style = reactCSS({
+      default: {
+        app: { width: \\"602.40625px\\", height: \\"617.75px\\" }
+      }
+    });
 
     return (
-      <div style={style}>
+      <div style={style.app}>
         <BlackBox_000 />
         <BlueBox_001 />
       </div>

@@ -25,7 +25,7 @@ const Weatherbox = (props) => (
     <form onSubmit={(e) => props.getWeather(e)}>
       <input style={style.inputStyles} type="text" placeholder="Enter location"/>
       <button style={style.buttonStyles} type="submit">Get Weather</button>
-      {props.weatherData}
+      <div>{props.weatherData}</div>
     </form>
   </div>
 );
