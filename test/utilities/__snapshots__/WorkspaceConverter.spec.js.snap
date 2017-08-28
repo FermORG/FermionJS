@@ -17,9 +17,7 @@ class App extends Component {
   render() {
     const props = this.props;
     const style = reactCSS({
-      default: {
-        app: { width: \\"602.40625px\\", height: \\"617.75px\\" }
-      }
+      default: { app: { width: \\"602.40625px\\", height: \\"617.75px\\" } }
     });
 
     return <div style={style.app} />;
@@ -132,9 +130,7 @@ class App extends Component {
   render() {
     const props = this.props;
     const style = reactCSS({
-      default: {
-        app: { width: \\"602.40625px\\", height: \\"617.75px\\" }
-      }
+      default: { app: { width: \\"602.40625px\\", height: \\"617.75px\\" } }
     });
 
     return (
@@ -254,9 +250,7 @@ class App extends Component {
   render() {
     const props = this.props;
     const style = reactCSS({
-      default: {
-        app: { width: \\"602.40625px\\", height: \\"617.75px\\" }
-      }
+      default: { app: { width: \\"602.40625px\\", height: \\"617.75px\\" } }
     });
 
     return (
