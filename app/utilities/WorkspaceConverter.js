@@ -169,12 +169,13 @@ class ComponentConverter {
     } else {
       innerHTML = '';
     }
-
+//${const style = ${this.getStyle()}}
     return (
 `
 import React, { Component } from 'react';
+import reactCSS from 'reactcss';
 ${this.getImports()}
-const style = ${this.getStyle()}
+
 class ${className} extends Component {
   constructor(props){
     super(props);
@@ -184,9 +185,16 @@ class ${className} extends Component {
   ${className === 'App' ? `${methods.replace(/\"/g, "")}`: ``}
   render(){
     const props = this.props;
+    const style = reactCSS({
+      default:{
+        ${this.getClass().toLowerCase()}: ${this.getStyle()}
+
+      }
+    });
     ${this.destructureProps()}
     return (
-      <div style={style}  ${this.getEvents()}>
+
+      <div style={style.${this.getClass().toLowerCase()}}  ${this.getEvents()}>
         ${innerHTML}
         ${this.getChildren()}
       </div>

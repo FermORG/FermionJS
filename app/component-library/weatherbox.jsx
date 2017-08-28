@@ -13,7 +13,8 @@ const style = {
   buttonStyles: {
     display: 'inline-block',
     margin: 'auto',
-    borderRadius: '1px'
+    borderRadius: '1px',
+    backgroundColor: 'blue',
   }
 };
 
