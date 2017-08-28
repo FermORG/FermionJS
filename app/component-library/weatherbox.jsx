@@ -15,6 +15,11 @@ const style = {
     margin: 'auto',
     borderRadius: '1px',
     backgroundColor: 'blue',
+  },
+  output: {
+    display: 'flex',
+    textAlign: 'center',
+    color: 'white',
   }
 };
 
@@ -25,7 +30,7 @@ const Weatherbox = (props) => (
     <form onSubmit={(e) => props.getWeather(e)}>
       <input style={style.inputStyles} type="text" placeholder="Enter location"/>
       <button style={style.buttonStyles} type="submit">Get Weather</button>
-      <div>{props.weatherData}</div>
+      <div style={style.output}>{props.weatherData}</div>
     </form>
   </div>
 );

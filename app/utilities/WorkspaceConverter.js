@@ -95,12 +95,31 @@ class ComponentConverter {
   }
   getStyle() {
     let style;
-    if (!this.component.props){
+    if (!this.component.props.style){
       style = {height: '100vh', width:'100vw', 'backgroundColor': '#FFF', 'margins': '0px'};
     } else {
-      style = this.component.props.style;
+
+      const styleObj = cloneDeep(this.component.props.style);
+      const keys = Object.keys(styleObj).map((style) => {
+        if (typeof styleObj[style] === 'object'){
+          delete styleObj[style];
+          return style;
+        }
+      }).filter((value) => value !== undefined);
+
+      const styles = { };
+      styles[this.getClass().toLowerCase()] = styleObj;
+
+      keys.forEach((key) => {
+        styles[key] = cloneDeep(this.component.props.style[key]);
+      });
+
+      style = `reactCSS({
+        default: ${JSON.stringify(styles)},
+      });`
+
     }
-    return JSON.stringify(style);
+    return style;
   }
 
     // obj destructures props in render method automatically.
@@ -185,12 +204,7 @@ class ${className} extends Component {
   ${className === 'App' ? `${methods.replace(/\"/g, "")}`: ``}
   render(){
     const props = this.props;
-    const style = reactCSS({
-      default:{
-        ${this.getClass().toLowerCase()}: ${this.getStyle()}
-
-      }
-    });
+    const style = ${this.getStyle()}
     ${this.destructureProps()}
     return (
 
