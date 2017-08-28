@@ -1,10 +1,10 @@
 const WorkspaceConverter = require('../../app/utilities/WorkspaceConverter');
 import { WORKSPACE_ID } from '../../app/constants';
 
-describe('conversion of empty workspace', ()=>{
+describe('empty ws', ()=>{
   const defaultWorkspace = {
     componentCounter: 0,
-    activeComponent: '0',
+    activeComponent: 'workspace',
     components: {
       workspace: {
         id: 'workspace',
@@ -12,63 +12,64 @@ describe('conversion of empty workspace', ()=>{
         events: {},
         props: {
           style: {
-            width: '602.40625px',
-            height: '617.75px'
+            width: '1558px',
+            height: '0px'
           }
         }
       }
     },
     state: {},
-    methods: '/*Anything you type in here will be appended to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc. \n make sure to append an "@" symbol following the closing bracket of your method!*/',
+    methods: '',
     methodNames: []
   };
-  it('will ', () => {
+  it('will generate App jsx', () => {
     const wc = new WorkspaceConverter(defaultWorkspace);
     let result = wc.convert();
     expect(result).toMatchSnapshot();
   });
 });
 
-describe('conversion of workspace with two components', ()=>{
+describe('ws with two components as siblings', ()=>{
   const flatWorkspace = {
     componentCounter: 2,
     activeComponent: '0',
     components: {
       '0': {
-        id: 0,
-        name: 'BlackBox',
+        events: {},
         children: [],
-        parentID: 'workspace',
         props: {
           style: {
-            position: 'absolute',
-            height: '100px',
             width: '100px',
+            height: '100px',
+            position: 'absolute',
             display: 'inline-block',
             backgroundColor: 'black',
-            overflow: 'auto'
+            border: '1px solid lightgreen',
+            left: 176,
+            top: 35
           }
         },
-        events: {
-          onClick: '()=>{console.log("test")}'
-        }
+        name: 'BlackBox',
+        parentID: 'workspace',
+        id: 0
       },
       '1': {
-        id: 1,
-        name: 'BlueBox',
+        events: {},
         children: [],
-        parentID: 'workspace',
         props: {
           style: {
+            width: '50px',
+            height: '73px',
             position: 'absolute',
-            height: '100px',
-            width: '100px',
             display: 'inline-block',
             backgroundColor: 'blue',
-            overflow: 'auto'
+            left: 0,
+            top: 0
           }
         },
-        events: {}
+        name: 'BlueBox',
+        parentID: 'workspace',
+        id: 1
       },
       workspace: {
         id: 'workspace',
@@ -79,61 +80,64 @@ describe('conversion of workspace with two components', ()=>{
         events: {},
         props: {
           style: {
-            width: '602.40625px',
-            height: '617.75px'
+            width: '447px',
+            height: '638.921875px'
           }
         }
       }
     },
     state: {},
-    methods: '/*Anything you type in here will be appended to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc. \n make sure to append an "@" symbol following the closing bracket of your method!*/',
+    methods: '',
     methodNames: []
   };
-  it('will generate 3 exportable texts', () => {
+  it('will generate 3 exportable component jsx', () => {
     const wc = new WorkspaceConverter(flatWorkspace);
     let result = wc.convert(flatWorkspace);
     expect(result).toMatchSnapshot();
   });
 });
 
-describe('conversion of workspace with one nested components', ()=>{
-  const flatWorkspace = {
+describe('ws with one nested component', ()=>{
+  const nestedWorkspace = {
     componentCounter: 2,
     activeComponent: '0',
     components: {
       '0': {
-        id: 0,
-        name: 'BlackBox',
+        events: {},
         children: [ 1 ],
-        parentID: 'workspace',
         props: {
           style: {
-            position: 'absolute',
-            height: '100px',
             width: '100px',
+            height: '100px',
+            position: 'absolute',
             display: 'inline-block',
             backgroundColor: 'black',
-            overflow: 'auto'
+            border: '1px solid lightgreen',
+            left: 176,
+            top: 35
           }
         },
-        events: {}
+        name: 'BlackBox',
+        parentID: 'workspace',
+        id: 0
       },
       '1': {
-        id: 1,
-        name: 'BlueBox',
+        events: {},
         children: [],
-        parentID: 'workspace',
         props: {
           style: {
+            width: '50px',
+            height: '73px',
             position: 'absolute',
-            height: '100px',
-            width: '100px',
             display: 'inline-block',
             backgroundColor: 'blue',
-            overflow: 'auto'
+            left: 0,
+            top: 0
           }
         },
-        events: {}
+        name: 'BlueBox',
+        parentID: 0,
+        id: 1
       },
       workspace: {
         id: 'workspace',
@@ -141,80 +145,291 @@ describe('conversion of workspace with one nested components', ()=>{
         events: {},
         props: {
           style: {
-            width: '602.40625px',
-            height: '617.75px'
+            width: '447px',
+            height: '638.921875px'
           }
         }
       }
     },
     state: {},
-    methods: '/*Anything you type in here will be appended to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc. \n make sure to append an "@" symbol following the closing bracket of your method!*/',
+    methods: '',
     methodNames: []
   };
-  it('will generate 3 exportable texts', () => {
-    const wc = new WorkspaceConverter(flatWorkspace);
-    let result = wc.convert(flatWorkspace);
+  it('will generate 3 exportable component jsx App->Blackbox->Bluebox', () => {
+    const wc = new WorkspaceConverter(nestedWorkspace);
+    let result = wc.convert();
     expect(result).toMatchSnapshot();
   });
 });
 
-describe('conversion of workspace with one nested components and the child has events', ()=>{
-  const flatWorkspace = {
+describe('ws with one nested component and the child has event', ()=>{
+  const nestedWorkspace = {
     componentCounter: 2,
-    activeComponent: '0',
+    activeComponent: '1',
     components: {
       '0': {
-        id: 0,
-        name: 'BlackBox',
-        children: [ 1 ],
-        parentID: 'workspace',
+        events: {},
+        children: [
+          1
+        ],
         props: {
           style: {
+            width: '197px',
+            height: '202px',
             position: 'absolute',
-            height: '100px',
-            width: '100px',
             display: 'inline-block',
-            backgroundColor: 'black',
-            overflow: 'auto'
+            backgroundColor: 'black'
           }
         },
-        events: {
-          onClick: '()=>{console.log("test")}'
-        }
+        name: 'BlackBox',
+        parentID: 'workspace',
+        id: 0
       },
       '1': {
-        id: 1,
-        name: 'BlueBox',
+        events: {
+          onClick: '()=>console.log(\'hello\')'
+        },
         children: [],
-        parentID: 'workspace',
         props: {
           style: {
-            position: 'absolute',
-            height: '100px',
             width: '100px',
+            height: '100px',
+            position: 'absolute',
             display: 'inline-block',
             backgroundColor: 'blue',
-            overflow: 'auto'
+            left: 0,
+            top: 0,
+            border: '1px solid lightgreen'
           }
         },
-        events: {
-          onClick: '()=>{console.log("hello")'
-        }
+        name: 'BlueBox',
+        parentID: 0,
+        id: 1
       },
       workspace: {
         id: 'workspace',
-        children: [ 0 ],
+        children: [
+          0
+        ],
         events: {},
         props: {
           style: {
-            width: '602.40625px',
-            height: '617.75px'
+            width: '1558px',
+            height: '0px'
           }
         }
       }
     },
     state: {},
-    methods: '/*Anything you type in here will be appended to App.js as a \n method. you can then attach them as event handlers, logic handlers, etc. \n make sure to append an "@" symbol following the closing bracket of your method!*/',
+    methods: '',
+    methodNames: []
+  };
+  it('will generate 3 exportable component jsx with event', () => {
+    const wc = new WorkspaceConverter(nestedWorkspace);
+    let result = wc.convert();
+    expect(result).toMatchSnapshot();
+  });
+});
+
+describe('ws with one nested component and the child has event attached to method', ()=>{
+  const nestedWorkspaceMethod = {
+    componentCounter: 2,
+    activeComponent: '1',
+    components: {
+      '0': {
+        events: {},
+        children: [
+          1
+        ],
+        props: {
+          style: {
+            width: '100px',
+            height: '100px',
+            position: 'absolute',
+            display: 'inline-block',
+            backgroundColor: 'black'
+          }
+        },
+        name: 'BlackBox',
+        parentID: 'workspace',
+        id: 0
+      },
+      '1': {
+        events: {
+          onClick: '()=>hello()'
+        },
+        children: [],
+        props: {
+          style: {
+            width: '53px',
+            height: '51px',
+            position: 'absolute',
+            display: 'inline-block',
+            backgroundColor: 'blue',
+            border: '1px solid lightgreen',
+            left: 0,
+            top: 0
+          }
+        },
+        name: 'BlueBox',
+        parentID: 0,
+        id: 1
+      },
+      workspace: {
+        id: 'workspace',
+        children: [
+          0
+        ],
+        events: {},
+        props: {
+          style: {
+            width: '1558px',
+            height: '0px'
+          }
+        }
+      }
+    },
+    state: {},
+    methods: 'hello(){\n    console.log(\'hello\')\n}@\n',
+    methodNames: [
+      'hello'
+    ]
+  };
+  it('will generate 3 exportable jsx with event and method', () => {
+    const wc = new WorkspaceConverter(nestedWorkspaceMethod);
+    let result = wc.convert();
+    expect(result).toMatchSnapshot();
+  });
+});
+
+describe('ws with one nested component and the child has prop', ()=>{
+  const nestedWorkspaceProp = {
+    componentCounter: 2,
+    activeComponent: '1',
+    components: {
+      '0': {
+        events: {},
+        children: [
+          1
+        ],
+        props: {
+          style: {
+            width: '100px',
+            height: '100px',
+            position: 'absolute',
+            display: 'inline-block',
+            backgroundColor: 'black'
+          }
+        },
+        name: 'BlackBox',
+        parentID: 'workspace',
+        id: 0
+      },
+      '1': {
+        events: {},
+        children: [],
+        props: {
+          style: {
+            width: '50px',
+            height: '56px',
+            position: 'absolute',
+            display: 'inline-block',
+            backgroundColor: 'blue',
+            border: '1px solid lightgreen',
+            left: 0,
+            top: 0
+          },
+          key: '1'
+        },
+        name: 'BlueBox',
+        parentID: 0,
+        id: 1
+      },
+      workspace: {
+        id: 'workspace',
+        children: [
+          0
+        ],
+        events: {},
+        props: {
+          style: {
+            width: '587.40625px',
+            height: '638.921875px'
+          }
+        }
+      }
+    },
+    state: {},
+    methods: '',
+    methodNames: []
+  };
+  it('will generate 3 exportable component jsx with prop', () => {
+    const wc = new WorkspaceConverter(nestedWorkspaceProp);
+    let result = wc.convert();
+    expect(result).toMatchSnapshot();
+  });
+});
+describe('ws with one nested component and the child has event handler associated to prop', ()=>{
+  const nestedWorkspaceProp = {
+    componentCounter: 2,
+    activeComponent: '1',
+    components: {
+      '0': {
+        events: {},
+        children: [
+          1
+        ],
+        props: {
+          style: {
+            width: '100px',
+            height: '100px',
+            position: 'absolute',
+            display: 'inline-block',
+            backgroundColor: 'black'
+          }
+        },
+        name: 'BlackBox',
+        parentID: 'workspace',
+        id: 0
+      },
+      '1': {
+        events: {
+          onClick: '()=>console.log(\'name\', name)'
+        },
+        children: [],
+        props: {
+          style: {
+            width: '68px',
+            height: '55px',
+            position: 'absolute',
+            display: 'inline-block',
+            backgroundColor: 'blue',
+            left: 0,
+            top: 0,
+            border: '1px solid lightgreen'
+          },
+          name: '\'jeff\''
+        },
+        name: 'BlueBox',
+        parentID: 0,
+        id: 1
+      },
+      workspace: {
+        id: 'workspace',
+        children: [
+          0
+        ],
+        events: {},
+        props: {
+          style: {
+            width: '587.40625px',
+            height: '638.921875px'
+          }
+        }
+      }
+    },
+    state: {},
+    methods: '',
     methodNames: []
   };
   //prettier has an issue with this test. currently, we're not sure what that issue is.

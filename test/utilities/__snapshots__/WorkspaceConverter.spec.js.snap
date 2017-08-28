@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`conversion of empty workspace will  1`] = `
+exports[`empty ws will generate App jsx 1`] = `
 Array [
   Object {
     "code": "import React, { Component } from \\"react\\";
@@ -11,8 +11,8 @@ class App extends Component {
     super(props);
     this.state = {};
   }
-  /*Anything you type in here will be appended to App.js as a 
- method. you can then attach them as event handlers, logic handlers, etc. 
+  /*Anything you type in here will be appended to App.js as a
+ method. you can then attach them as event handlers, logic handlers, etc.
  make sure to append an  symbol following the closing bracket of your method!*/
   render() {
     const props = this.props;
@@ -124,8 +124,8 @@ class App extends Component {
     super(props);
     this.state = {};
   }
-  /*Anything you type in here will be appended to App.js as a 
- method. you can then attach them as event handlers, logic handlers, etc. 
+  /*Anything you type in here will be appended to App.js as a
+ method. you can then attach them as event handlers, logic handlers, etc.
  make sure to append an  symbol following the closing bracket of your method!*/
   render() {
     const props = this.props;
@@ -150,7 +150,7 @@ export default App;
 ]
 `;
 
-exports[`conversion of workspace with two components will generate 3 exportable texts 1`] = `
+exports[`ws with two components as siblings will generate 3 exportable component jsx 1`] = `
 Array [
   Object {
     "code": "import React, { Component } from \\"react\\";
@@ -244,8 +244,8 @@ class App extends Component {
     super(props);
     this.state = {};
   }
-  /*Anything you type in here will be appended to App.js as a 
- method. you can then attach them as event handlers, logic handlers, etc. 
+  /*Anything you type in here will be appended to App.js as a
+ method. you can then attach them as event handlers, logic handlers, etc.
  make sure to append an  symbol following the closing bracket of your method!*/
   render() {
     const props = this.props;
