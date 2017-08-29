@@ -78,7 +78,6 @@ class Workspace extends Component {
             width: widthInt,
             height: heightInt
           }}
-          style={{  border: '1px solid white' }}
           minWidth={50}
           minHeight={50}
           bounds={"parent"}
