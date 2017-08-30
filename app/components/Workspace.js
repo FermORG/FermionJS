@@ -45,12 +45,12 @@ class Workspace extends Component {
       const children = this.renderDeep(componentData.children);
 
       const [widthInt, heightInt] = [
-        pixelsToInt(componentData.props.style.width), 
+        pixelsToInt(componentData.props.style.width),
         pixelsToInt(componentData.props.style.height)
       ];
 
       const innerComponentStyle = { ...componentData.props.style, ...STATIC_INNER_COMPONENT_STYLE };
-      
+
       const DivWrappedComponent = (
         <div
           id="divwrappedcomp"
@@ -65,20 +65,19 @@ class Workspace extends Component {
           </CustomComponent>
         </div>
       );
-      
-      const DndComponent = this.props.freeMoveMode ? 
+
+      const DndComponent = this.props.freeMoveMode ?
         () => DivWrappedComponent : dndComponentWrapper(DivWrappedComponent);
-        
+
       return (
         <Rnd
-          key={componentData.id} 
+          key={componentData.id}
           default={{
             x: componentData.props.style.left || 0,
             y: componentData.props.style.top || 0,
             width: widthInt,
             height: heightInt
           }}
-          style={{  border: '1px solid white' }}
           minWidth={50}
           minHeight={50}
           bounds={"parent"}
@@ -102,14 +101,14 @@ class Workspace extends Component {
 
   onResizeStopHandler(componentData, ref) {
     const allComponents = this.props.workspace.components;
-    
-    let [resizeWidth, resizeHeight] = 
+
+    let [resizeWidth, resizeHeight] =
       [ref.style.width, ref.style.height].map(elem => parseInt(elem, 0));
-    
+
     componentData.children.forEach((childID) => {
       const childStyle = allComponents[childID].props.style;
-      
-      const [childWidth, childHeight] = 
+
+      const [childWidth, childHeight] =
         [childStyle.width, childStyle.height].map(elem => pixelsToInt(elem));
 
       const [childLeft, childTop] = [childStyle.left, childStyle.top];
@@ -118,10 +117,10 @@ class Workspace extends Component {
       if (childHeight + childTop > resizeHeight) resizeHeight = childHeight + childTop;
     });
 
-    setTimeout(() => 
-      this.props.updateStyle(componentData.id, { 
+    setTimeout(() =>
+      this.props.updateStyle(componentData.id, {
         width: `${resizeWidth}px`,
-        height: `${resizeHeight}px` 
+        height: `${resizeHeight}px`
       }), 0);
   }
 
@@ -131,9 +130,9 @@ class Workspace extends Component {
     const Workspace = () => (
       <div id={WORKSPACE_ID} style={{ width: '100%', height: '100%' }}>
         { this.renderDeep(worskpaceChildren) }
-      </div>     
+      </div>
     );
-    
+
     const WrappedWorkspace = dropWorkspaceWrapper(Workspace, hideEditor);
 
     return (

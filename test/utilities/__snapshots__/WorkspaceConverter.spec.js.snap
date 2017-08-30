@@ -3,25 +3,22 @@
 exports[`empty ws will generate App jsx 1`] = `
 Array [
   Object {
-    "code": "
-import React, { Component } from 'react';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const divStyle = {\\"width\\":\\"1558px\\",\\"height\\":\\"0px\\"}
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  this.state = {}
-  
+    this.state = {};
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
 
-      </div>
-    );
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: { app: { width: \\"1558px\\", height: \\"0px\\" } }
+    });
+
+    return <div style={style.app} />;
   }
 }
 export default App;
@@ -37,27 +34,34 @@ export default App;
 exports[`ws with one nested component and the child has event attached to method will generate 3 exportable jsx with event and method 1`] = `
 Array [
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlueBox_001 from '../BlueBox_001/BlueBox_001';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlueBox_001 from \\"../BlueBox_001/BlueBox_001\\";
 
-const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\"}
 class BlackBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
+
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        blackbox: {
+          width: \\"100px\\",
+          height: \\"100px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"black\\"
+        }
+      }
+    });
     const { hello } = this.props;
     return (
-      <div style={divStyle}  >
-        
-        <BlueBox_001
-         hello={hello}
- /> 
+      <div style={style.blackbox}>
+        <div {...props} />
 
+        <BlueBox_001 hello={hello} />
       </div>
     );
   }
@@ -70,23 +74,34 @@ export default BlackBox;
     "name": "BlackBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const divStyle = {\\"width\\":\\"53px\\",\\"height\\":\\"51px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"border\\":\\"1px solid lightgreen\\",\\"left\\":0,\\"top\\":0}
 class BlueBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
+
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        bluebox: {
+          width: \\"53px\\",
+          height: \\"51px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"blue\\",
+          border: \\"1px solid lightgreen\\",
+          left: 0,
+          top: 0
+        }
+      }
+    });
     const { hello } = this.props;
     return (
-      <div style={divStyle}  onClick={()=>hello()} >
-        
-
+      <div style={style.bluebox} onClick={() => hello()}>
+        <div {...props} />
       </div>
     );
   }
@@ -99,130 +114,29 @@ export default BlueBox;
     "name": "BlueBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlackBox_000 from '../BlackBox_000/BlackBox_000';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlackBox_000 from \\"../BlackBox_000/BlackBox_000\\";
 
-const divStyle = {\\"width\\":\\"1558px\\",\\"height\\":\\"0px\\"}
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  this.state = {}
-  this.hello = this.hello.bind(this);
+    this.state = {};
+    this.hello = this.hello.bind(this);
   }
-  hello(){
-    console.log('hello')
-}
+  hello() {
+    console.log(\\"hello\\");
+  }
 
-  render(){
-    
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: { app: { width: \\"1558px\\", height: \\"0px\\" } }
+    });
+
     return (
-      <div style={divStyle}  >
-        
-        <BlackBox_000
-         hello={this.hello}
- /> 
-
-      </div>
-    );
-  }
-}
-export default App;
-",
-    "ext": ".js",
-    "fileName": "App",
-    "id": "workspace",
-    "name": "App",
-  },
-]
-`;
-
-exports[`ws with one nested component and the child has event handler associated to prop will generate 3 exportable component jsx with event handler and associated method 1`] = `
-Array [
-  Object {
-    "code": "
-import React, { Component } from 'react';
-import BlueBox_001 from '../BlueBox_001/BlueBox_001';
-
-const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\"}
-class BlackBox extends Component {
-  constructor(props){
-    super(props);
-  
-  
-  }
-  
-  render(){
-    const { name } = this.props;
-    return (
-      <div style={divStyle}  >
-        
-        <BlueBox_001
-         name={name}
- /> 
-
-      </div>
-    );
-  }
-}
-export default BlackBox;
-",
-    "ext": ".js",
-    "fileName": "BlackBox_000",
-    "id": 0,
-    "name": "BlackBox",
-  },
-  Object {
-    "code": "
-import React, { Component } from 'react';
-
-const divStyle = {\\"width\\":\\"68px\\",\\"height\\":\\"55px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"left\\":0,\\"top\\":0,\\"border\\":\\"1px solid lightgreen\\"}
-class BlueBox extends Component {
-  constructor(props){
-    super(props);
-  
-  
-  }
-  
-  render(){
-    const { name } = this.props;
-    return (
-      <div style={divStyle}  onClick={()=>console.log('name', name)} >
-        
-
-      </div>
-    );
-  }
-}
-export default BlueBox;
-",
-    "ext": ".js",
-    "fileName": "BlueBox_001",
-    "id": 1,
-    "name": "BlueBox",
-  },
-  Object {
-    "code": "
-import React, { Component } from 'react';
-import BlackBox_000 from '../BlackBox_000/BlackBox_000';
-
-const divStyle = {\\"width\\":\\"587.40625px\\",\\"height\\":\\"638.921875px\\"}
-class App extends Component {
-  constructor(props){
-    super(props);
-  this.state = {name:'jeff'}
-  
-  }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
-        <BlackBox_000
-         name={this.state.name}
- /> 
-
+      <div style={style.app}>
+        <BlackBox_000 hello={this.hello} />
       </div>
     );
   }
@@ -240,26 +154,34 @@ export default App;
 exports[`ws with one nested component and the child has event will generate 3 exportable component jsx with event 1`] = `
 Array [
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlueBox_001 from '../BlueBox_001/BlueBox_001';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlueBox_001 from \\"../BlueBox_001/BlueBox_001\\";
 
-const divStyle = {\\"width\\":\\"197px\\",\\"height\\":\\"202px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\"}
 class BlackBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
-        <BlueBox_001
-  /> 
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        blackbox: {
+          width: \\"197px\\",
+          height: \\"202px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"black\\"
+        }
+      }
+    });
+
+    return (
+      <div style={style.blackbox}>
+        <div {...props} />
+
+        <BlueBox_001 />
       </div>
     );
   }
@@ -272,23 +194,34 @@ export default BlackBox;
     "name": "BlackBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"left\\":0,\\"top\\":0,\\"border\\":\\"1px solid lightgreen\\"}
 class BlueBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  onClick={()=>console.log('hello')} >
-        
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        bluebox: {
+          width: \\"100px\\",
+          height: \\"100px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"blue\\",
+          left: 0,
+          top: 0,
+          border: \\"1px solid lightgreen\\"
+        }
+      }
+    });
+
+    return (
+      <div style={style.bluebox} onClick={() => console.log(\\"hello\\")}>
+        <div {...props} />
       </div>
     );
   }
@@ -301,26 +234,25 @@ export default BlueBox;
     "name": "BlueBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlackBox_000 from '../BlackBox_000/BlackBox_000';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlackBox_000 from \\"../BlackBox_000/BlackBox_000\\";
 
-const divStyle = {\\"width\\":\\"1558px\\",\\"height\\":\\"0px\\"}
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  this.state = {}
-  
+    this.state = {};
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
-        <BlackBox_000
-  /> 
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: { app: { width: \\"1558px\\", height: \\"0px\\" } }
+    });
+
+    return (
+      <div style={style.app}>
+        <BlackBox_000 />
       </div>
     );
   }
@@ -338,27 +270,34 @@ export default App;
 exports[`ws with one nested component and the child has prop will generate 3 exportable component jsx with prop 1`] = `
 Array [
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlueBox_001 from '../BlueBox_001/BlueBox_001';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlueBox_001 from \\"../BlueBox_001/BlueBox_001\\";
 
-const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\"}
 class BlackBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
+
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        blackbox: {
+          width: \\"100px\\",
+          height: \\"100px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"black\\"
+        }
+      }
+    });
     const { key } = this.props;
     return (
-      <div style={divStyle}  >
-        
-        <BlueBox_001
-         key={key}
- /> 
+      <div style={style.blackbox}>
+        <div {...props} />
 
+        <BlueBox_001 key={key} />
       </div>
     );
   }
@@ -371,23 +310,34 @@ export default BlackBox;
     "name": "BlackBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const divStyle = {\\"width\\":\\"50px\\",\\"height\\":\\"56px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"border\\":\\"1px solid lightgreen\\",\\"left\\":0,\\"top\\":0}
 class BlueBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
+
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        bluebox: {
+          width: \\"50px\\",
+          height: \\"56px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"blue\\",
+          border: \\"1px solid lightgreen\\",
+          left: 0,
+          top: 0
+        }
+      }
+    });
     const { key } = this.props;
     return (
-      <div style={divStyle}  >
-        
-
+      <div style={style.bluebox}>
+        <div {...props} />
       </div>
     );
   }
@@ -400,27 +350,25 @@ export default BlueBox;
     "name": "BlueBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlackBox_000 from '../BlackBox_000/BlackBox_000';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlackBox_000 from \\"../BlackBox_000/BlackBox_000\\";
 
-const divStyle = {\\"width\\":\\"587.40625px\\",\\"height\\":\\"638.921875px\\"}
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  this.state = {key:1}
-  
+    this.state = { key: 1 };
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
-        <BlackBox_000
-         key={this.state.key}
- /> 
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: { app: { width: \\"587.40625px\\", height: \\"638.921875px\\" } }
+    });
+
+    return (
+      <div style={style.app}>
+        <BlackBox_000 key={this.state.key} />
       </div>
     );
   }
@@ -438,26 +386,37 @@ export default App;
 exports[`ws with one nested component will generate 3 exportable component jsx App->Blackbox->Bluebox 1`] = `
 Array [
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlueBox_001 from '../BlueBox_001/BlueBox_001';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlueBox_001 from \\"../BlueBox_001/BlueBox_001\\";
 
-const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"border\\":\\"1px solid lightgreen\\",\\"left\\":176,\\"top\\":35}
 class BlackBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
-        <BlueBox_001
-  /> 
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        blackbox: {
+          width: \\"100px\\",
+          height: \\"100px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"black\\",
+          border: \\"1px solid lightgreen\\",
+          left: 176,
+          top: 35
+        }
+      }
+    });
+
+    return (
+      <div style={style.blackbox}>
+        <div {...props} />
+
+        <BlueBox_001 />
       </div>
     );
   }
@@ -470,23 +429,33 @@ export default BlackBox;
     "name": "BlackBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const divStyle = {\\"width\\":\\"50px\\",\\"height\\":\\"73px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"left\\":0,\\"top\\":0}
 class BlueBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        bluebox: {
+          width: \\"50px\\",
+          height: \\"73px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"blue\\",
+          left: 0,
+          top: 0
+        }
+      }
+    });
+
+    return (
+      <div style={style.bluebox}>
+        <div {...props} />
       </div>
     );
   }
@@ -499,26 +468,25 @@ export default BlueBox;
     "name": "BlueBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlackBox_000 from '../BlackBox_000/BlackBox_000';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlackBox_000 from \\"../BlackBox_000/BlackBox_000\\";
 
-const divStyle = {\\"width\\":\\"447px\\",\\"height\\":\\"638.921875px\\"}
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  this.state = {}
-  
+    this.state = {};
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
-        <BlackBox_000
-  /> 
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: { app: { width: \\"447px\\", height: \\"638.921875px\\" } }
+    });
+
+    return (
+      <div style={style.app}>
+        <BlackBox_000 />
       </div>
     );
   }
@@ -536,23 +504,34 @@ export default App;
 exports[`ws with two components as siblings will generate 3 exportable component jsx 1`] = `
 Array [
   Object {
-    "code": "
-import React, { Component } from 'react';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const divStyle = {\\"width\\":\\"100px\\",\\"height\\":\\"100px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"black\\",\\"border\\":\\"1px solid lightgreen\\",\\"left\\":176,\\"top\\":35}
 class BlackBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        blackbox: {
+          width: \\"100px\\",
+          height: \\"100px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"black\\",
+          border: \\"1px solid lightgreen\\",
+          left: 176,
+          top: 35
+        }
+      }
+    });
+
+    return (
+      <div style={style.blackbox}>
+        <div {...props} />
       </div>
     );
   }
@@ -565,23 +544,33 @@ export default BlackBox;
     "name": "BlackBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
 
-const divStyle = {\\"width\\":\\"50px\\",\\"height\\":\\"73px\\",\\"position\\":\\"absolute\\",\\"display\\":\\"inline-block\\",\\"backgroundColor\\":\\"blue\\",\\"left\\":0,\\"top\\":0}
 class BlueBox extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  
-  
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: {
+        bluebox: {
+          width: \\"50px\\",
+          height: \\"73px\\",
+          position: \\"absolute\\",
+          display: \\"inline-block\\",
+          backgroundColor: \\"blue\\",
+          left: 0,
+          top: 0
+        }
+      }
+    });
+
+    return (
+      <div style={style.bluebox}>
+        <div {...props} />
       </div>
     );
   }
@@ -594,29 +583,27 @@ export default BlueBox;
     "name": "BlueBox",
   },
   Object {
-    "code": "
-import React, { Component } from 'react';
-import BlackBox_000 from '../BlackBox_000/BlackBox_000';
-import BlueBox_001 from '../BlueBox_001/BlueBox_001';
+    "code": "import React, { Component } from \\"react\\";
+import reactCSS from \\"reactcss\\";
+import BlackBox_000 from \\"../BlackBox_000/BlackBox_000\\";
+import BlueBox_001 from \\"../BlueBox_001/BlueBox_001\\";
 
-const divStyle = {\\"width\\":\\"447px\\",\\"height\\":\\"638.921875px\\"}
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-  this.state = {}
-  
+    this.state = {};
   }
-  
-  render(){
-    
-    return (
-      <div style={divStyle}  >
-        
-        <BlackBox_000
-  /> 
-        <BlueBox_001
-  /> 
 
+  render() {
+    const props = this.props;
+    const style = reactCSS({
+      default: { app: { width: \\"447px\\", height: \\"638.921875px\\" } }
+    });
+
+    return (
+      <div style={style.app}>
+        <BlackBox_000 />
+        <BlueBox_001 />
       </div>
     );
   }

@@ -5,6 +5,8 @@ import { appParser, flattenStateProps } from './propsRecursor';
 // import { cloneDeep } from 'lodash';
 import cloneDeep from './cloneDeep';
 import { getChildEvents, flattenEvents, insertMethods, insertThis } from './eventsRecursor';
+import captureHtml from './innerHTML';
+import prettier from 'prettier';
 /**
 * @param {object} state - a flattened version of the state object and all component's props - rolled into one object for exporting the state.
     stateMap = JSON.stringify(Object.assign({}, clonedWorkspace.state));
@@ -42,6 +44,7 @@ class ComponentConverter {
     this.components = components;
     this.events = component.events;
     this.children = components[component.id].children;
+    this.captureHtml = captureHtml.bind(this);
   }
   get ext() {
     return '.js';
@@ -62,6 +65,7 @@ class ComponentConverter {
   getEvents() {
     return Object.keys(this.events).reduce((events, event) => {
      if (this.component.children.indexOf(Number(event)) === -1){
+       if (event.indexOf('*') !== -1) return events;
        events += `${event}=`;
        events += `{${this.events[event]}} `;
      }
@@ -91,12 +95,31 @@ class ComponentConverter {
   }
   getStyle() {
     let style;
-    if (!this.component.props){
+    if (!this.component.props.style){
       style = {height: '100vh', width:'100vw', 'backgroundColor': '#FFF', 'margins': '0px'};
     } else {
-      style = this.component.props.style;
+
+      const styleObj = cloneDeep(this.component.props.style);
+      const keys = Object.keys(styleObj).map((style) => {
+        if (typeof styleObj[style] === 'object'){
+          delete styleObj[style];
+          return style;
+        }
+      }).filter((value) => value !== undefined);
+
+      const styles = { };
+      styles[this.getClass().toLowerCase()] = styleObj;
+
+      keys.forEach((key) => {
+        styles[key] = cloneDeep(this.component.props.style[key]);
+      });
+
+      style = `reactCSS({
+        default: ${JSON.stringify(styles)},
+      });`
+
     }
-    return JSON.stringify(style);
+    return style;
   }
 
     // obj destructures props in render method automatically.
@@ -159,11 +182,19 @@ class ComponentConverter {
 
   generateCode() {
     const className = this.getClass();
+    let innerHTML;
+    if (this.component.id !== WORKSPACE_ID) {
+      innerHTML = this.captureHtml(this.fileName.slice(0, -4) + '.jsx');
+    } else {
+      innerHTML = '';
+    }
+//${const style = ${this.getStyle()}}
     return (
 `
 import React, { Component } from 'react';
+import reactCSS from 'reactcss';
 ${this.getImports()}
-const divStyle = ${this.getStyle()}
+
 class ${className} extends Component {
   constructor(props){
     super(props);
@@ -172,9 +203,13 @@ class ${className} extends Component {
   }
   ${className === 'App' ? `${methods.replace(/\"/g, "")}`: ``}
   render(){
+    const props = this.props;
+    const style = ${this.getStyle()}
     ${this.destructureProps()}
     return (
-      <div style={divStyle}  ${this.getEvents()}>
+
+      <div style={style.${this.getClass().toLowerCase()}}  ${this.getEvents()}>
+        ${innerHTML}
         ${this.getChildren()}
       </div>
     );
@@ -217,7 +252,7 @@ class WorkspaceConverter {
         id: cc.id,
         fileName: cc.fileName,
         ext: cc.ext,
-        code: cc.generateCode() });
+        code: prettier.format(cc.generateCode() )});
       return acc;
     }, []);
   }
