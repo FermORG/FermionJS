@@ -1,6 +1,5 @@
 <p align='center'><img height ='100' width='283' src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/logo1.png?raw=true" /></p>
 
-
 <p align='center'>
 <img src="https://travis-ci.org/FermORG/FermionJS.svg?branch=master" alt="Build Status" /></a>
 <a href="https://travis-ci.org/FermORG/FermionJS">
@@ -8,27 +7,27 @@
 
 # Demo
 
-[demo page](http://www.fermionjs.io/features.html)
+[demo page](https://fermorg.github.io/fermion/)
 
 # Features
 
- ## Manipulation ##
+## Manipulation
 
 Fermion is all about ease of use and speed. Drag and drop, resize, and nest your components to prototype your app layout.
 
 <img src="https://raw.githubusercontent.com/FermORG/fermorg.github.io/master/assets/images/manipulation.gif" alt="Fermion Manipulation" />
 
-## Configuration ##
+## Configuration
 
 Configure your components in real-time. Fermion allows you to apply style and add event-handling to your components.
 
 <img src="https://github.com/FermORG/fermorg.github.io/blob/master/assets/images/config.gif?raw=true" alt="Fermion Manipulation" />
 
-## Preview ##
+## Preview
 
 Fermion leverages webpack to create a live preview of your new prototype. Simply export your project and our simulator will display how your project will look in the browser.
 
-## Exporting ##
+## Exporting
 
 Once you are done prototyping, the real fun begins! Fermion exports your prototype along with all of your configurations as working code so that you can continue to refine your project in the setting of your choice.
 
@@ -38,7 +37,9 @@ Once you are done prototyping, the real fun begins! Fermion exports your prototy
 npm install
 npm run dev
 ```
+
 for yarn users
+
 ```
 yarn install
 yarn dev
@@ -71,10 +72,13 @@ State is applied to App.js, and commingled with any added Props when you export 
 # Testing
 
 to run tests
+
 ```
 npm run test
 ```
+
 to run tests and generate a code coverage report.
+
 ```
 npm run test-jest
 ```
