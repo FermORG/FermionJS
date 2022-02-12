@@ -105,7 +105,7 @@
     "setupFiles": []
   },
   "devDependencies": {
-    "ajv": "^5.2.2",
+    "ajv": "^6.12.3",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
